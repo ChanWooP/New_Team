@@ -57,6 +57,13 @@ CREATE TABLE detailPayment (
 );
 ALTER TABLE detailPayment
     ADD CONSTRAINT detailPayment_pk PRIMARY KEY(detailPaymentId);
+
+ALTER TABLE detailPayment
+    ADD CONSTRAINT lastPaymentId_fk FOREIGN KEY(lastPaymentId)
+    REFERENCES lastPayment(lastPaymentId);
+ALTER TABLE detailPayment
+    ADD CONSTRAINT itemId_fk FOREIGN KEY(itemId)
+    REFERENCES lastPayment(lastPaymentId);
     
 -- 결제내역 테이블
 CREATE TABLE Payment (
@@ -93,6 +100,11 @@ CREATE TABLE PointHistory(
 );
 ALTER TABLE PointHistory
     ADD CONSTRAINT PointHistory_HistoryId_PK PRIMARY KEY(PointHistoryId);
+ALTER TABLE PointHistory
+    ADD CONSTRAINT PointHistory_UserId_FK FOREIGN KEY(UserId) REFERENCES User_(UserId);
+ALTER TABLE PointHistory    
+    ADD CONSTRAINT PointHistory_LastPaymentId_FK FOREIGN KEY(LastPaymentId, PaymentListId) 
+    REFERENCES Payment(LastPaymentId, PaymentListId);
     
 --------------------------------------------------------------------------
 -- 사용자 테이블
@@ -111,7 +123,3 @@ CREATE TABLE Admin_(
 );
 ALTER TABLE Admin_
    ADD CONSTRAINT Admin_pk PRIMARY KEY(adminId);
-
-
-
-

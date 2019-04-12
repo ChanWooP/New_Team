@@ -9,7 +9,7 @@ public class OracleConnection {
  
     private static Connection conn;
  
-    // µ¥ÀÌÅ×º£ÀÌ½º Ä¿³Ø¼Ç °´Ã¼ »ı¼º ¸Ş¼Òµå
+    // ë°ì´í…Œë² ì´ìŠ¤ ì»¤ë„¥ì…˜ ê°ì²´ ìƒì„± ë©”ì†Œë“œ
     public static Connection connect() throws ClassNotFoundException, SQLException {
  
         // STEP 2: Register JDBC driver
@@ -20,7 +20,7 @@ public class OracleConnection {
         return conn;
     }
  
-    // µ¥ÀÌÅ×º£ÀÌ½º Ä¿³Ø¼Ç °´Ã¼ ¼Ò¸ê ¸Ş¼Òµå
+    // ë°ì´í…Œë² ì´ìŠ¤ ì»¤ë„¥ì…˜ ê°ì²´ ì†Œë©¸ ë©”ì†Œë“œ
     public static void close() throws SQLException {
         if (conn != null) {
             conn.close();

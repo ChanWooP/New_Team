@@ -4,22 +4,6 @@ CREATE TABLE Category_(
     ,CategoryName VARCHAR2(20) -- 카테고리명
 );
 
-INSERT INTO Category_ (CategoryId, CategoryName)
-VALUES((SELECT CONCAT('C', LPAD(NVL(SUBSTR(MAX(CategoryId), 4), 0) + 1, 3, 0)) AS newId FROM Category_), '샌드위치');
-
-INSERT INTO Category_ (CategoryId, CategoryName)
-VALUES((SELECT CONCAT('C', LPAD(NVL(SUBSTR(MAX(CategoryId), 4), 0) + 1, 3, 0)) AS newId FROM Category_), '사이드');
-
-INSERT INTO Category_ (CategoryId, CategoryName)
-VALUES((SELECT CONCAT('C', LPAD(NVL(SUBSTR(MAX(CategoryId), 4), 0) + 1, 3, 0)) AS newId FROM Category_), '빵');
-
-INSERT INTO Category_ (CategoryId, CategoryName)
-VALUES((SELECT CONCAT('C', LPAD(NVL(SUBSTR(MAX(CategoryId), 4), 0) + 1, 3, 0)) AS newId FROM Category_), '야채');
-
-INSERT INTO Category_ (CategoryId, CategoryName)
-VALUES((SELECT CONCAT('C', LPAD(NVL(SUBSTR(MAX(CategoryId), 4), 0) + 1, 3, 0)) AS newId FROM Category_), '소스');
-COMMIT;
-
 ALTER TABLE Category_
     ADD CONSTRAINT Category_Id_PK PRIMARY KEY(CategoryId);
 
@@ -38,44 +22,6 @@ ALTER TABLE Item
 			FOREIGN KEY(CategoryId)
 			REFERENCES Category_(CategoryId);
 
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C001','에그마요',5000);
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C001','폴더포크',4000);
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C001','터키',5500);
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C001','쉬림프',6000);
-
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C002','음료',1000);
-COMMIT;
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C002','음료+쿠키 세트',1500);
-COMMIT;
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C002','쿠키',1000);
-COMMIT;
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C002','과자',1000);
-COMMIT;
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C002','더블미트',1500);
-COMMIT;
-INSERT INTO Item (ItemId, CategoryId,ItemName, ItemPrice)
-VALUES((SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(ItemId), 4), 0) + 1, 3, 0)) AS ItemId FROM Item)
-, 'C002','웨지감자',3000);
-COMMIT;
-
 -- 재료 테이블
 CREATE TABLE Material(
     MaterialId VARCHAR2(4) -- 재료ID PK
@@ -89,55 +35,7 @@ ALTER TABLE Material
 	ADD CONSTRAINT Material_CategoryId_FK 
 			FOREIGN KEY(CategoryId)
 			REFERENCES Category_(CategoryId);
-            
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C003','플랫');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C003','화이트');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C003','허니오트');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C003','파마산');
-
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C004','피망');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C004','양파');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C004','올리브');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C004','할라피뇨');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C004','양상추');
-
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C005','핫칠리');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C005','랜치');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C005','스위트어니언');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C005','스위트칠리');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C005','바베큐');
-INSERT INTO Material (MaterialId, CategoryId, MaterialName)
-VALUES((SELECT CONCAT('M', LPAD(NVL(SUBSTR(MAX(MaterialId), 4), 0) + 1, 3, 0)) AS MaterialId FROM Material)
-, 'C005','머스타드');
-COMMIT;  
+              
 -----------------------------------------------------------------------
 -- 최종결제내역 테이블
 CREATE TABLE LastPayment (
@@ -148,17 +46,6 @@ CREATE TABLE LastPayment (
 
 ALTER TABLE LastPayment
    ADD CONSTRAINT LastPayment_pk PRIMARY KEY(lastPaymentId);  
-
-INSERT INTO LastPayment(lastPaymentId, lastPaymentDate, lastPaymentMoney)
-VALUES((SELECT CONCAT('L', LPAD(NVL(SUBSTR(MAX(lastPaymentId), 4), 0) + 1, 3, 0)) AS lastPaymentId FROM LastPayment)
-, '2019-03-01', 10000);
-INSERT INTO LastPayment(lastPaymentId, lastPaymentDate, lastPaymentMoney)
-VALUES((SELECT CONCAT('L', LPAD(NVL(SUBSTR(MAX(lastPaymentId), 4), 0) + 1, 3, 0)) AS lastPaymentId FROM LastPayment)
-, '2019-03-02', 10000);
-INSERT INTO LastPayment(lastPaymentId, lastPaymentDate, lastPaymentMoney)
-VALUES((SELECT CONCAT('L', LPAD(NVL(SUBSTR(MAX(lastPaymentId), 4), 0) + 1, 3, 0)) AS lastPaymentId FROM LastPayment)
-, SYSDATE, 10000);
-Commit;
 
 -- 결제상새내역 테이블
 CREATE TABLE detailPayment (
@@ -179,29 +66,6 @@ ALTER TABLE detailPayment
     ADD CONSTRAINT itemId_fk FOREIGN KEY(itemId)
     REFERENCES Item(itemId);
 
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L001', 'I001', 5000, 1);
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L001', 'I007', 1000, 5);
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L002', 'I001', 5000, 1);
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L002', 'I002', 4000, 1);
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L002', 'I005', 1000, 1);
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L003', 'I001', 5000, 1);
-INSERT INTO detailPayment(detailPaymentId, lastPaymentId, itemId, price, Cnt)
-VALUES((SELECT CONCAT('D', LPAD(NVL(SUBSTR(MAX(detailPaymentId), 4), 0) + 1, 3, 0)) AS detailPaymentId FROM detailPayment)
-,'L003', 'I005', 1000, 5);
-commit;
-
 -- 결제내역 테이블
 CREATE TABLE Payment (
     lastPaymentId VARCHAR2(4) --PK.FK.결제내역ID
@@ -218,16 +82,6 @@ ALTER TABLE Payment
     ADD CONSTRAINT Payment_paymentListId_fk FOREIGN KEY(paymentListId)
     REFERENCES PaymentList(paymentListId);
 
-INSERT INTO Payment(lastPaymentId, PaymentListId, PaymentMoney)
-VALUES('L001', 'A001', 10000);
-INSERT INTO Payment(lastPaymentId, PaymentListId, PaymentMoney)
-VALUES('L002', 'A001', 5000);
-INSERT INTO Payment(lastPaymentId, PaymentListId, PaymentMoney)
-VALUES('L002', 'A002', 5000);
-INSERT INTO Payment(lastPaymentId, PaymentListId, PaymentMoney)
-VALUES('L003', 'A001', 10000);
-commit;
-
 -- 결제종류 테이블
 CREATE TABLE paymentList(
     paymentListId VARCHAR2(4), --결제종류ID, PK
@@ -237,20 +91,13 @@ CREATE TABLE paymentList(
 ALTER TABLE paymentList
     ADD CONSTRAINT paymentListId_pk PRIMARY KEY(paymentListId);
 
-INSERT INTO paymentList(paymentListId, paymentListName)
-VALUES((SELECT CONCAT('A', LPAD(NVL(SUBSTR(MAX(paymentListId), 4), 0) + 1, 3, 0)) AS paymentListId FROM paymentList)
-, '카드');
-INSERT INTO paymentList(paymentListId, paymentListName)
-VALUES((SELECT CONCAT('A', LPAD(NVL(SUBSTR(MAX(paymentListId), 4), 0) + 1, 3, 0)) AS paymentListId FROM paymentList)
-, '포인트');
-COMMIT;
 
 -- 포인트히스토리 테이블
 CREATE TABLE PointHistory(
     PointHistoryId VARCHAR2(4) --PK HistoryId
     ,LastPaymentId VARCHAR2(4) --FK 결재내역ID
     ,PaymentListId VARCHAR2(4) --FK 결제종류ID
-    ,UserId VARCHAR2(4) --FK 회원ID
+    ,UserPhone VARCHAR2(20) --FK 회원 전화번호
     ,Point_ NUMBER -- 포인트 금액
     ,Gubun VARCHAR2(10) -- 구분
 );
@@ -258,35 +105,23 @@ CREATE TABLE PointHistory(
 ALTER TABLE PointHistory
     ADD CONSTRAINT PointHistory_HistoryId_PK PRIMARY KEY(PointHistoryId);
 ALTER TABLE PointHistory
-    ADD CONSTRAINT PointHistory_UserId_FK FOREIGN KEY(UserId) REFERENCES User_(UserId);
+    ADD CONSTRAINT PointHistory_UserPhone_FK FOREIGN KEY(UserPhone) REFERENCES User_(UserPhone);
 ALTER TABLE PointHistory    
     ADD CONSTRAINT PointHistory_LastPaymentId_FK FOREIGN KEY(LastPaymentId, PaymentListId) 
     REFERENCES Payment(LastPaymentId, PaymentListId);
-    
-INSERT INTO PointHistory(PointHistoryId, LastPaymentId, PaymentListId, UserId, Point_, Gubun)
-VALUES((SELECT CONCAT('H', LPAD(NVL(SUBSTR(MAX(PointHistoryId), 4), 0) + 1, 3, 0)) AS PointHistoryId FROM PointHistory)
-,'L001','A001','U001',10000,'적립');
-INSERT INTO PointHistory(PointHistoryId, LastPaymentId, PaymentListId, UserId, Point_, Gubun)
-VALUES((SELECT CONCAT('H', LPAD(NVL(SUBSTR(MAX(PointHistoryId), 4), 0) + 1, 3, 0)) AS PointHistoryId FROM PointHistory)
-,'L002','A002','U001',5000,'사용');
-INSERT INTO PointHistory(PointHistoryId, LastPaymentId, PaymentListId, UserId, Point_, Gubun)
-VALUES((SELECT CONCAT('H', LPAD(NVL(SUBSTR(MAX(PointHistoryId), 4), 0) + 1, 3, 0)) AS PointHistoryId FROM PointHistory)
-,'L002','A001','U001',5000,'적립');
-COMMIT;
+
 
 --------------------------------------------------------------------------
 -- 사용자 테이블
 CREATE TABLE user_(
-    UserId VARCHAR2(4) --PK 회원ID
-    ,UserPhone VARCHAR2(20) --회원 연락처
+    UserPhone VARCHAR2(20) -- PK회원 연락처
     ,UserPoint VARCHAR(20) -- 회원 포인트
 );
-ALTER TABLE User_
-    ADD CONSTRAINT User_UserId_PK PRIMARY KEY(UserId);
 
-INSERT INTO user_(UserId, UserPhone, UserPoint)
-VALUES((SELECT CONCAT('U', LPAD(NVL(SUBSTR(MAX(UserId), 4), 0) + 1, 3, 0)) AS UserId FROM user_)
-, '010-1111-1111', '5000');
+ALTER TABLE User_
+    ADD CONSTRAINT User_UserPhone_PK PRIMARY KEY(UserPhone);
+ALTER TABLE User_
+    ADD CONSTRAINT User_UserPhone_PK PRIMARY KEY(UserPhone);
 
 -- 관리자 테이블
 CREATE TABLE Admin_(
@@ -296,6 +131,113 @@ CREATE TABLE Admin_(
 ALTER TABLE Admin_
    ADD CONSTRAINT Admin_pk PRIMARY KEY(adminId);
  
-INSERT INTO Admin_(adminId, adminPw)
-VALUES('admin','1234');
-commit;
+------------------------------------------------------------------------------------------------
+
+/*
+번호 자동증가 방법
+SELECT CONCAT('구분자', LPAD(NVL(SUBSTR(MAX(테이블id),2, 4), 0) + 1, 3, 0)) AS 테이블id FROM 테이블;
+*/
+--예시)
+SELECT CONCAT('I', LPAD(NVL(SUBSTR(MAX(itemid),2, 4), 0) + 1, 3, 0)) AS itemid FROM item;
+
+------------------------------------------------------------------------------------------------
+
+--1.샌드위치 주문
+--1.샌드위치 주문 / 샌드위치 종류 주문
+SELECT itemid, categoryid, itemname, itemprice
+    FROM Item
+    WHERE categoryid = 'C001'
+    ORDER BY itemid;
+--1.샌드위치 주문 / 빵 주문
+SELECT MaterialId, CategoryId, MaterialName
+    FROM Material
+    WHERE categoryid = 'C003'
+    ORDER BY MaterialId;
+--1.샌드위치 주문 / 야채 주문
+SELECT MaterialId, CategoryId, MaterialName
+    FROM Material
+    WHERE categoryid = 'C004'
+    ORDER BY MaterialId;
+--1.샌드위치 주문 / 소스 주문
+SELECT MaterialId, CategoryId, MaterialName
+    FROM Material
+    WHERE categoryid = 'C005'
+    ORDER BY MaterialId;
+
+--2.사이드주문
+SELECT itemId, categoryId, Itemname, itemPrice
+FROM item
+WHERE categoryId = 'C002'
+ORDER BY itemId;
+
+--3.장바구니(결제)
+SELECT userPoint
+FROM user_
+WHERE userPhone = '010-1111-1111';
+--3.장바구니(결제) / 일반결제
+--3.장바구니(결제) / 포인트 적립
+--3.장바구니(결제) / 포인트 결제
+
+--4. 포인트내역 / 회원포인트 조회
+--4. 포인트내역 / 회원포인트 조회 / 포인트 내역 조회
+SELECT l.LastPaymentDate, p.userphone, p.Point_, p.Gubun
+    FROM PointHistory p, Payment p1, User_ u, LastPayment l
+    WHERE p.lastpaymentid = p1.lastpaymentid
+    AND p.paymentlistid = p1.paymentlistid
+    AND p.userphone = u.userphone
+    AND l.lastpaymentid = p1.lastpaymentid
+    AND p.userphone = '010-1111-1111';
+
+--4. 포인트내역 / 회원포인트 조회 / 포인트 잔액 조회
+SELECT userPoint
+FROM user_
+WHERE userPhone = '010-1111-1111';
+
+--99.관리자메뉴
+--99.관리자메뉴 / 1.메뉴관리 
+SELECT CategoryId, CategoryName 
+    FROM Category_;
+SELECT ItemId, CategoryId, ItemName, ItemPrice
+    FROM Item
+    WHERE CategoryId = 'C001';
+SELECT MaterialId, CategoryId, MaterialName
+    FROM Material
+    WHERE CategoryId = 'C004';
+--99.관리자메뉴 / 1.메뉴관리 / 1.신 메뉴 추가
+--99.관리자메뉴 / 1.메뉴관리 / 2.기존 메뉴 삭제
+--99.관리자메뉴 / 1.메뉴관리 / 3. 기존 메뉴 가격 변경
+
+--99.관리자메뉴 / 2. 일일결산
+SELECT COUNT(*)
+    FROM LastPayment 
+    WHERE LastPaymentDate = '20190301';
+
+SELECT i.itemname, total.cnt_, total.price_
+FROM item i
+    ,(SELECT d.itemid, sum(d.price) price_, sum(d.cnt) cnt_
+        FROM LastPayment l, detailPayment d
+        WHERE l.LastPaymentId = d.LastPaymentId
+        AND l.LastPaymentDate = '20190301'
+        GROUP BY d.itemid) total
+WHERE i.itemid = total.itemid;
+--99.관리자메뉴 / 2. 일일결산 / 1.전일결산
+--99.관리자메뉴 / 2. 일일결산 / 2.금일결산
+
+--99.관리자메뉴 / 3. 월말결산 
+SELECT RANK() OVER(ORDER BY TO_CHAR(LastPaymentDate,'YYYY-MM')) num_
+        ,TO_CHAR(LastPaymentDate,'YYYY-MM') month_, SUM(lastpaymentmoney) price_
+    FROM LastPayment
+    GROUP BY TO_CHAR(LastPaymentDate,'YYYY-MM');
+--99.관리자메뉴 / 3. 월말결산  / 달 선택 시
+SELECT COUNT(*)
+    FROM LastPayment 
+    WHERE TO_CHAR(LastPaymentDate,'YYYYMM') = '201903';
+
+SELECT i.itemname, total.cnt_, total.price_
+FROM item i
+    ,(SELECT d.itemid, sum(d.price) price_, sum(d.cnt) cnt_
+        FROM LastPayment l, detailPayment d
+        WHERE l.LastPaymentId = d.LastPaymentId
+        AND TO_CHAR(l.LastPaymentDate,'YYYYMM') = '201903'
+        GROUP BY d.itemid) total
+WHERE i.itemid = total.itemid;

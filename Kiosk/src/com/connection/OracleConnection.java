@@ -5,8 +5,9 @@ import java.sql.*;
 public class OracleConnection {
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String DB_URL = "jdbc:oracle:thin:Team/1234@211.238.142.52:1521:xe";
- 
+    //private static final String DB_URL = "jdbc:oracle:thin:Team/1234@211.238.142.52:1521:xe";
+    private static final String DB_URL = "jdbc:oracle:thin:qkrcksdn/1234@localhost:1521:xe";
+    
     private static Connection conn;
  
     // 데이테베이스 커넥션 객체 생성 메소드

@@ -312,7 +312,8 @@ public class PayService {
 			System.out.printf("적립금 %d%n", Inpoint);
 		}
 		
-		
+		List<SubOrder> orderList = new ArrayList<SubOrder>();
+		dao.getOrder().setOrderList(orderList);
 	}
 	
 }

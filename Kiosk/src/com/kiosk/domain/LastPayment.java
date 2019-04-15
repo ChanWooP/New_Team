@@ -13,7 +13,7 @@ public class LastPayment {
 	
 	}
 
-	public LastPayment(int price_, String day_) {
+	public LastPayment(String day_, int price_) {
 		this.price_ = price_;
 		this.day_ = day_;
 	}

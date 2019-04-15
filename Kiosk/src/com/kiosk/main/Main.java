@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 import com.kiosk.domain.SubOrder;
 import com.kiosk.persistance.DAO;
+import com.kiosk.service.AdminService;
 import com.kiosk.service.PayService;
+import com.kiosk.service.PointService;
 import com.kiosk.service.SandwitchService;
 import com.kiosk.service.SideService;
 
@@ -41,8 +43,8 @@ public class Main {
 			case 1: new SandwitchService().menu01(sc, dao); break;
 			case 2: new SideService().menu02(sc, dao); break;
 			case 3: new PayService().menu03(sc, dao); break;
-			case 4:
-			case 99:
+			case 4: new PointService().menu04(sc, dao); break;
+			case 99: new AdminService().pw(sc, dao); break;
 			}
 			
 		}

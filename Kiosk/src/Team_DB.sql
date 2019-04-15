@@ -368,7 +368,15 @@ SELECT userPoint
 FROM user_
 WHERE userPhone = '010-1111-1111';
 
+SELECT * FROM Item
+WHERE itemid = 'I001'
+
+UPDATE Item SET itemprice = ?
+WHERE itemid = ?
+
+select * from detailPayment
 --99.관리자메뉴
+SELECT adminpw FROM admin_;
 --99.관리자메뉴 / 1.메뉴관리 
 SELECT CategoryId, CategoryName 
     FROM Category_;
@@ -406,7 +414,7 @@ SELECT RANK() OVER(ORDER BY TO_CHAR(LastPaymentDate,'YYYY-MM')) num_
 --99.관리자메뉴 / 3. 월말결산  / 달 선택 시
 SELECT COUNT(*)
     FROM LastPayment 
-    WHERE TO_CHAR(LastPaymentDate,'YYYYMM') = '201903';
+    WHERE TO_CHAR(LastPaymentDate,'YYYYMM') = '2019-03';
 
 SELECT i.itemname, total.cnt_, total.price_
 FROM item i
@@ -416,3 +424,7 @@ FROM item i
         AND TO_CHAR(l.LastPaymentDate,'YYYYMM') = '201903'
         GROUP BY d.itemid) total
 WHERE i.itemid = total.itemid;
+
+SELECT lastpaymentdate, SUM(lastpaymentmoney)
+FROM LastPayment
+GROUP BY lastpaymentdate

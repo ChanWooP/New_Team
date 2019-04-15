@@ -14,6 +14,13 @@ public class DetailPayment {
 		
 	}
 
+	public DetailPayment(String lastPaymentId, String itemId, int price, int cnt) {
+		this.lastPaymentId = lastPaymentId;
+		this.itemId = itemId;
+		this.price = price;
+		this.cnt = cnt;
+	}
+	
 	public DetailPayment(String detailePaymentId, String lastPaymentId, String itemId, int price, int cnt) {
 		this.detailePaymentId = detailePaymentId;
 		this.lastPaymentId = lastPaymentId;

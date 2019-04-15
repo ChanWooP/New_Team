@@ -21,6 +21,15 @@ public class Pointhistory {
 	}
 
 
+	public Pointhistory(String lastPaymentId, String paymentListId, String userphone, int point_,
+			String gubun) {
+		LastPaymentId = lastPaymentId;
+		PaymentListId = paymentListId;
+		this.userphone = userphone;
+		Point_ = point_;
+		Gubun = gubun;
+	}
+	
 	public Pointhistory(String pointHistoryId, String lastPaymentId, String paymentListId, String userphone, int point_,
 			String gubun) {
 		PointHistoryId = pointHistoryId;

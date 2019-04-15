@@ -278,6 +278,16 @@ INSERT INTO user_(UserPhone, UserPoint)
 VALUES('010-1111-1111', 1000);
 commit;
 
+select * from PointHistory
+select * from LastPayment
+select * from detailPayment
+select * from payment
+select * from User_
+UPDATE User_ SET userpoint = 571
+WHERE userphone = '010-1111-1112'; 
+delete from User_ 
+where userphone = '010-1111-1112';
+
 -- 관리자 테이블
 CREATE TABLE Admin_(
     adminId VARCHAR2(20) --PK.관리자ID
@@ -332,6 +342,14 @@ SELECT userPoint
 FROM user_
 WHERE userPhone = '010-1111-1111';
 --3.장바구니(결제) / 일반결제
+SELECT *
+    FROM LastPayment
+SELECT *
+    FROM detailPayment
+
+SELECT *
+    FROM Payment
+    WHERE 
 --3.장바구니(결제) / 포인트 적립
 --3.장바구니(결제) / 포인트 결제
 

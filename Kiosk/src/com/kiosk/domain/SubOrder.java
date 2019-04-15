@@ -17,6 +17,20 @@ public class SubOrder {
 		this.matr = matr;
 		this.count = count;
 	}
+	
+	public List<Item> getItem() {
+		return item;
+	}
+	
+
+	public int getCount() {
+		return count;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 	@Override
 	public String toString() {
@@ -26,12 +40,14 @@ public class SubOrder {
 			result += i.getItemName();
 		}
 		
-		for(Material m : matr) {
-			result += " / ";
-			result += m.getMaterialName();
+		if(matr != null) {
+			for(Material m : matr) {
+				result += " / ";
+				result += m.getMaterialName();
+			}
 		}
 		
-		result += count;
+		result += " " + count;
 		
 		return result;
 	}

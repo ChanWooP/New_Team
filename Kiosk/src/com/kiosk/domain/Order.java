@@ -11,7 +11,6 @@ public class Order {
 	}
 
 	public Order(String date_, List<SubOrder> orderList) {
-		super();
 		this.date_ = date_;
 		this.orderList = orderList;
 	}
@@ -32,4 +31,5 @@ public class Order {
 		this.orderList = orderList;
 	}
 	
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.kiosk.domain.Category_;
 import com.kiosk.domain.Item;
 import com.kiosk.domain.SubOrder;
 import com.kiosk.persistance.DAO;
@@ -14,7 +15,8 @@ public class SideService {
 	
 	public void menu02(Scanner sc, DAO daos) {
 		this.dao = daos;
-		List<Item> list = dao.itemList("side", "");
+		List<Category_> category = dao.Category_List("", "");
+		List<Item> list = dao.itemList(category.get(1).getCategoryId(), "");
 		List<Item> item = new ArrayList<Item>();
 		
 		System.out.println();

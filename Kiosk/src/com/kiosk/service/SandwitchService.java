@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.kiosk.domain.Category_;
 import com.kiosk.domain.Item;
 import com.kiosk.domain.Material;
 import com.kiosk.domain.SubOrder;
@@ -17,22 +18,23 @@ public class SandwitchService {
 		this.dao = daos;
 		List<Item> item = new ArrayList<Item>();
 		List<Material> material = new ArrayList<Material>();
+		List<Category_> category = dao.Category_List("", "");
 		
-		Item temp = this.menu01_1(sc);
+		Item temp = this.menu01_1(sc, category.get(0).getCategoryId());
 		if(temp == null) return;
 		item.add(temp);
 
-		Material temp1 = this.menu01_2(sc);
+		Material temp1 = this.menu01_2(sc, category.get(2).getCategoryId());
 		if(temp1 == null) return;
 		material.add(temp1);
 		
-		List<Material> temp2 = this.menu01_3(sc);
+		List<Material> temp2 = this.menu01_3(sc, category.get(3).getCategoryId());
 		if(temp2 == null) return;
 		for(Material m : temp2) {
 			material.add(m);
 		}
 		
-		List<Material> temp3 = this.menu01_4(sc);
+		List<Material> temp3 = this.menu01_4(sc, category.get(4).getCategoryId());
 		if(temp3 == null) return;
 		for(Material m : temp3) {
 			material.add(m);
@@ -48,8 +50,8 @@ public class SandwitchService {
 
 	}
 	
-	private Item menu01_1(Scanner sc) {
-		List<Item> list = dao.itemList("sandwitch", "");
+	private Item menu01_1(Scanner sc, String category) {
+		List<Item> list = dao.itemList(category, "");
 		Item item = null;
 		System.out.println();
 		System.out.println("----------------------");
@@ -77,8 +79,8 @@ public class SandwitchService {
 		return item;
 	}
 	
-	private Material menu01_2(Scanner sc) {
-		List<Material> list = dao.MaterialList("bread", "");
+	private Material menu01_2(Scanner sc,String category) {
+		List<Material> list = dao.MaterialList(category, "");
 		Material material = null;
 		System.out.println();
 		System.out.println("----------------------");
@@ -106,8 +108,8 @@ public class SandwitchService {
 		return material;
 	}
 	
-	private List<Material> menu01_3(Scanner sc) {
-		List<Material> list = dao.MaterialList("vegitable", "");
+	private List<Material> menu01_3(Scanner sc, String category) {
+		List<Material> list = dao.MaterialList(category, "");
 		String MaterialId = "";
 		List<Material> material = new ArrayList<Material>();
 		
@@ -142,8 +144,8 @@ public class SandwitchService {
 		return material;
 	}
 	
-	private List<Material> menu01_4(Scanner sc) {
-		List<Material> list = dao.MaterialList("souce", "");
+	private List<Material> menu01_4(Scanner sc, String category) {
+		List<Material> list = dao.MaterialList(category, "");
 		String MaterialId = "";
 		List<Material> material = new ArrayList<Material>();
 		

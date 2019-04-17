@@ -11,6 +11,7 @@ import java.util.Set;
 import com.kiosk.domain.DetailPayment;
 import com.kiosk.domain.LastPayment;
 import com.kiosk.domain.Payment;
+import com.kiosk.domain.PaymentList;
 import com.kiosk.domain.Pointhistory;
 import com.kiosk.domain.SubOrder;
 import com.kiosk.domain.User_;
@@ -247,6 +248,7 @@ public class PayService {
 		List<DetailPayment> d = new ArrayList<DetailPayment>();
 		List<Payment> p = new ArrayList<Payment>();
 		List<Pointhistory> ph = new ArrayList<Pointhistory>();
+		List<PaymentList> pl = dao.payment_List("", "");
 		
 		for(SubOrder s : sublist) {
 			total += s.getItem().get(0).getItemPrice() * s.getCount();
@@ -262,16 +264,16 @@ public class PayService {
 		}
 		
 		if(pay.equals("카드")) {
-			p.add(new Payment(dao.newLastPaymentid(), "A001", total));
+			p.add(new Payment(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), total));
 		}else if(pay.equals("포인트적립")){
-			p.add(new Payment(dao.newLastPaymentid(), "A001", total));
-			ph.add(new Pointhistory(dao.newLastPaymentid(), "A001", phone, total/10, "적립"));
+			p.add(new Payment(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), total));
+			ph.add(new Pointhistory(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), phone, total/10, "적립"));
 		}else if(pay.equals("포인트사용")) {
-			p.add(new Payment(dao.newLastPaymentid(), "A002", usepoint));
-			ph.add(new Pointhistory(dao.newLastPaymentid(), "A002", phone, usepoint, "사용"));
+			p.add(new Payment(dao.newLastPaymentid(), pl.get(1).getPaymentListId(), usepoint));
+			ph.add(new Pointhistory(dao.newLastPaymentid(), pl.get(1).getPaymentListId(), phone, usepoint, "사용"));
 			if((total - usepoint) > 0) {
-				p.add(new Payment(dao.newLastPaymentid(), "A001", total - usepoint));
-				ph.add(new Pointhistory(dao.newLastPaymentid(), "A001", phone, (total - usepoint)/10, "적립"));
+				p.add(new Payment(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), total - usepoint));
+				ph.add(new Pointhistory(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), phone, (total - usepoint)/10, "적립"));
 			}
 		}	
 

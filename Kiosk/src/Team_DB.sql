@@ -264,9 +264,7 @@ INSERT INTO PointHistory(PointHistoryId, LastPaymentId, PaymentListId, UserPhone
 VALUES((SELECT CONCAT('H', LPAD(NVL(SUBSTR(MAX(PointHistoryId),2, 4), 0) + 1, 3, 0)) AS PointHistoryId FROM PointHistory)
 ,'L002', 'A001', '010-1111-1111', 1000, '적립');
 COMMIT; 
-select * from PointHistory
-update PointHistory set point_='1000'
-where point_= 900
+
 --------------------------------------------------------------------------
 -- 사용자 테이블
 CREATE TABLE user_(

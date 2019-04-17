@@ -12,6 +12,7 @@ import com.kiosk.domain.LastPayment;
 import com.kiosk.domain.Material;
 import com.kiosk.domain.Order;
 import com.kiosk.domain.Payment;
+import com.kiosk.domain.PaymentList;
 import com.kiosk.domain.Pointhistory;
 import com.kiosk.domain.SubOrder;
 import com.kiosk.domain.User_;
@@ -46,11 +47,7 @@ public class DAO {
 			
 			stmt = conn.prepareStatement(sql);
 			
-			if(key.equals("sandwitch")) {
-				stmt.setString(1, "C001");
-			}else if(key.equals("side")) {
-				stmt.setString(1, "C002");
-			}
+			stmt.setString(1, key);
 			
 			ResultSet rs = stmt.executeQuery();
 			
@@ -101,13 +98,7 @@ public class DAO {
 			
 			stmt = conn.prepareStatement(sql);
 			
-			if(key.equals("bread")) {
-				stmt.setString(1, "C003");
-			}else if(key.equals("vegitable")) {
-				stmt.setString(1, "C004");
-			}else if(key.equals("souce")) {
-				stmt.setString(1, "C005");
-			}
+			stmt.setString(1, key);
 			
 			ResultSet rs = stmt.executeQuery();
 			
@@ -1129,6 +1120,51 @@ public class DAO {
 		      }
 		}
 		
+		
+		return result;
+	}
+	
+	public List<PaymentList> payment_List(String key, String value){
+
+		List<PaymentList> result = new ArrayList<PaymentList>();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+
+			conn = OracleConnection.connect();
+			
+			String sql = "SELECT paymentListId, paymentListName\r\n" + 
+					"    FROM paymentList";
+			
+			stmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				String paymentListId = rs.getString("paymentListId");
+				String paymentListName = rs.getString("paymentListName");
+				
+				result.add(new PaymentList(paymentListId, paymentListName));
+			}
+			
+			rs.close();
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			 try{
+		         if(stmt!=null)
+		            stmt.close();
+		      }catch(SQLException se2){
+		      }
+		      try{
+		        	 OracleConnection.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+		}
 		
 		return result;
 	}

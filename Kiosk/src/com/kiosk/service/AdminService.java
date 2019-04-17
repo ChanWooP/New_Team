@@ -84,25 +84,25 @@ public class AdminService {
 		List<Item> list2 = null;
 		List<Material> list3 = null;
 		
+		System.out.println("1. 품목 2. 재료");
+		int subcategory = sc.nextInt();
+		sc.nextLine();
+		
 		System.out.println("카테고리 종류 중 하나를 선택하세요");
 		for(Category_ c : list) {
 			System.out.printf("%s %s%n",c.getCategoryId(), c.getCategoryName());
 		}
 		System.out.print("선택>");
 		String c1 = sc.nextLine();
-		if(c1.equals("C001")) {
-			list2 = dao.itemList("sandwitch", "");
-		}else if(c1.equals("C002")) {
-			list2 = dao.itemList("side", "");
-		}else if(c1.equals("C003")) {
-			list3 = dao.MaterialList("bread", "");
-		}else if(c1.equals("C004")) {
-			list3 = dao.MaterialList("vegitable", "");
-		}else if(c1.equals("C005")) {
-			list3 = dao.MaterialList("souce", "");
-		}
-
-		if(c1.equals("C001") || c1.equals("C002")) {
+		
+		if(subcategory == 1) {
+			list2 = dao.itemList(c1, "");
+			
+			if(list2.size() == 0) {
+				System.out.println("해당 카테고리는 품목이 아닙니다.");
+				return;
+			}
+			
 			for(Item i : list2) {
 				System.out.printf("%s %s%n", i.getItemId(), i.getItemName());
 			}
@@ -115,8 +115,14 @@ public class AdminService {
 			sc.nextLine();
 			
 			dao.newItem(new Item(itemId, c1, itemName, price));
+		}else if(subcategory == 2) {
+			list3 = dao.MaterialList("c1", "");
 			
-		}else if(c1.equals("C003") || c1.equals("C004") || c1.equals("C005")){
+			if(list3.size() == 0) {
+				System.out.println("해당 카테고리는 재료가 아닙니다.");
+				return;
+			}
+			
 			for(Material m : list3) {
 				System.out.printf("%s %s%n", m.getMaterialId(), m.getMaterialName());
 			}
@@ -127,8 +133,6 @@ public class AdminService {
 			dao.newMaterial(new Material(itemId, c1, itemName));
 		}
 		System.out.println("메뉴가 추가되었습니다");
-		
-		
 	}
 	
 	private void menu99_1_2(Scanner sc) {
@@ -136,25 +140,26 @@ public class AdminService {
 		List<Item> list2 = null;
 		List<Material> list3 = null;
 		int count_ = 0;
+		
+		System.out.println("1. 품목 2. 재료");
+		int subcategory = sc.nextInt();
+		sc.nextLine();
+		
 		System.out.println("카테고리 종류 중 하나를 선택하세요");
 		for(Category_ c : list) {
 			System.out.printf("%s %s%n",c.getCategoryId(), c.getCategoryName());
 		}
 		System.out.print("선택>");
 		String c1 = sc.nextLine();
-		if(c1.equals("C001")) {
-			list2 = dao.itemList("sandwitch", "");
-		}else if(c1.equals("C002")) {
-			list2 = dao.itemList("side", "");
-		}else if(c1.equals("C003")) {
-			list3 = dao.MaterialList("bread", "");
-		}else if(c1.equals("C004")) {
-			list3 = dao.MaterialList("vegitable", "");
-		}else if(c1.equals("C005")) {
-			list3 = dao.MaterialList("souce", "");
-		}
-
-		if(c1.equals("C001") || c1.equals("C002")) {
+		
+		if(subcategory == 1) {
+			list2 = dao.itemList(c1, "");
+			
+			if(list2.size() == 0) {
+				System.out.println("해당 카테고리는 품목이 아닙니다.");
+				return;
+			}
+			
 			for(Item i : list2) {
 				System.out.printf("%s %s%n", i.getItemId(), i.getItemName());
 			}
@@ -173,9 +178,13 @@ public class AdminService {
 			}else {
 				count_ = -1;
 			}
-
+		}else if(subcategory == 2) {
+			list3 = dao.MaterialList(c1, "");
 			
-		}else if(c1.equals("C003") || c1.equals("C004") || c1.equals("C005")){
+			if(list3.size() == 0) {
+				System.out.println("해당 카테고리는 재료가 아닙니다.");
+				return;
+			}
 			for(Material m : list3) {
 				System.out.printf("%s %s%n", m.getMaterialId(), m.getMaterialName());
 			}
@@ -207,24 +216,23 @@ public class AdminService {
 		List<Item> list2 = null;
 
 		int newprice = 0;
+		
 		System.out.println("카테고리 종류 중 하나를 선택하세요");
 		for(Category_ c : list) {
-			if(c.getCategoryId().equals("C001") || c.getCategoryId().equals("C002")) {
-				System.out.printf("%s %s%n",c.getCategoryId(), c.getCategoryName());
-			}
+			System.out.printf("%s %s%n",c.getCategoryId(), c.getCategoryName());
 		}
 		System.out.print("선택>");
 		String c1 = sc.nextLine();
-		if(c1.equals("C001")) {
-			list2 = dao.itemList("sandwitch", "");
-		}else if(c1.equals("C002")) {
-			list2 = dao.itemList("side", "");
-		}
+		
+		list2 = dao.itemList(c1, "");
 
-		if(c1.equals("C001") || c1.equals("C002")) {
+		if(list2.size() == 0) {
+			System.out.println("해당 카테고리는 가격 변경이 불가능 합니다.");
+		}else {
 			for(Item i : list2) {
 				System.out.printf("%s %s %s%n", i.getItemId(), i.getItemName(), i.getItemPrice());
 			}
+			
 			System.out.print("선택>");
 			String itemId = sc.nextLine();
 			
@@ -233,15 +241,19 @@ public class AdminService {
 					System.out.printf("기존가격 : %d원%n",i.getItemPrice());
 				}
 			}
-			
+				
 			System.out.print("변경할 가격>");
 			newprice = sc.nextInt();
 			sc.nextLine();
+				
+			int result = dao.ChangeItem(itemId, newprice);
+			if(result <= 0) {
+				System.out.println("변경 실패");
+			}else {
+				System.out.println("변경 완료");
+			}
 			
-			dao.ChangeItem(itemId, newprice);
-			System.out.println("변경 완료");
 		}
-
 	}
 	
 	private void menu99_2(Scanner sc) {

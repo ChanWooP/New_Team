@@ -243,7 +243,7 @@ public class PayService {
 	
 	private void print_Receipt(List<SubOrder> sub, String pay, int point, String phone, int usepoint) {
 		int total = 0;
-
+		int idx = 0;
 		List<SubOrder> sublist = dao.getOrder().getOrderList();
 		List<DetailPayment> d = new ArrayList<DetailPayment>();
 		List<Payment> p = new ArrayList<Payment>();
@@ -252,10 +252,11 @@ public class PayService {
 		
 		for(SubOrder s : sublist) {
 			total += s.getItem().get(0).getItemPrice() * s.getCount();
-			String itemId = dao.getOrder().getOrderList().get(0).getItem().get(0).getItemId();
-			int price = dao.getOrder().getOrderList().get(0).getItem().get(0).getItemPrice();
+	
+			String itemId = dao.getOrder().getOrderList().get(idx).getItem().get(0).getItemId();
+			int price = dao.getOrder().getOrderList().get(idx).getItem().get(0).getItemPrice();
 			d.add(new DetailPayment(dao.new_LastPaymentid(),itemId, price * s.getCount(), s.getCount()));
-			
+			++idx;
 		}
 		
 		if(point == -1) {

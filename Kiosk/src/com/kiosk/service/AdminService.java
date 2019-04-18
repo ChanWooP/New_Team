@@ -323,8 +323,9 @@ public class AdminService {
 	}
 	
 	private void menu99_3_1(Scanner sc, List<LastPayment> list) {
-		int total = 0;
+		
 		while(true) {
+			int total = 0;
 			System.out.println();
 			System.out.println("----------------------");
 			System.out.println("뒤로가기 : 0");

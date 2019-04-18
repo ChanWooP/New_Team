@@ -126,7 +126,7 @@ public class SandwitchService {
 		System.out.println("----------------------");
 		System.out.println("제외할 야채번호를 선택해주세요.");
 		
-		if(MaterialId.equals("0") || MaterialId.equals("1")) break;
+		
 		while(true) {
 			System.out.print("선택>");
 			MaterialId = sc.nextLine();
@@ -139,7 +139,8 @@ public class SandwitchService {
 			}
 			if(check || MaterialId.equals("0") || MaterialId.equals("1")) break;
 			System.out.println("존재하지 않는 재료번호입니다.");
-			}	
+			}
+		if(MaterialId.equals("0") || MaterialId.equals("1")) break;
 		}
 		return material;
 	}
@@ -162,7 +163,7 @@ public class SandwitchService {
 		System.out.println("----------------------");
 		System.out.println("추가할 소스번호를 선택해주세요.");
 		
-		if(MaterialId.equals("0") || MaterialId.equals("1")) break;
+		
 		while(true) {
 			System.out.print("선택>");
 			MaterialId = sc.nextLine();
@@ -175,7 +176,8 @@ public class SandwitchService {
 			}
 			if(check || MaterialId.equals("0") || MaterialId.equals("1")) break;
 			System.out.println("존재하지 않는 재료번호입니다.");
-			}	
+			}
+		if(MaterialId.equals("0") || MaterialId.equals("1")) break;
 		}
 		return material;
 	}

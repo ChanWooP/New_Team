@@ -1,7 +1,7 @@
 package com.kiosk.domain;
 
 public class LastPayment {
-	private String lastPayment;
+	private String lastPaymentId;
 	private String lastPaymentDate;
 	private int lastPaymentMoney;
 	private int num_;
@@ -21,7 +21,7 @@ public class LastPayment {
 
 
 	public LastPayment(String lastPaymentId, String lastPaymentDate, int lastPaymentMoney) {
-		this.lastPayment = lastPaymentId;
+		this.lastPaymentId = lastPaymentId;
 		this.lastPaymentDate = lastPaymentDate;
 		this.lastPaymentMoney = lastPaymentMoney;
 	}
@@ -35,11 +35,11 @@ public class LastPayment {
 	}
 
 	public String getLastPaymentId() {
-		return lastPayment;
+		return lastPaymentId;
 	}
 
 	public void setLastPaymentId(String lastPaymentId) {
-		lastPayment = lastPaymentId;
+		this.lastPaymentId = lastPaymentId;
 	}
 
 	public String getLastPaymentDate() {

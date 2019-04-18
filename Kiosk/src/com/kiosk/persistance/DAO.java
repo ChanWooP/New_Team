@@ -746,7 +746,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String new_Item(Item item){
+	public String in_Item(Item item){
 
 		String result = "";
 		
@@ -787,7 +787,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String new_Material(Material item){
+	public String in_Material(Material item){
 
 		String result = "";
 		

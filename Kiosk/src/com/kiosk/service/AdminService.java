@@ -115,7 +115,7 @@ public class AdminService {
 			int price = sc.nextInt();
 			sc.nextLine();
 			
-			dao.new_Item(new Item(itemId, c1, itemName, price));
+			dao.in_Item(new Item(itemId, c1, itemName, price));
 		}else if(subcategory == 2) {
 			list3 = dao.list_Material(c1, "");
 			
@@ -131,7 +131,7 @@ public class AdminService {
 			System.out.print("추가할 메뉴 이름>");
 			String itemName = sc.nextLine();
 			
-			dao.new_Material(new Material(itemId, c1, itemName));
+			dao.in_Material(new Material(itemId, c1, itemName));
 		}
 		System.out.println("메뉴가 추가되었습니다");
 	}

@@ -182,7 +182,7 @@ public class SandwitchService {
 	
 	private void print_item(List<Item> list) {
 		for(Item i : list) {
-			System.out.printf("%d %s %s %d%n",i.getItemId(), i.getItemName(), i.getItemPrice());
+			System.out.printf("%s %s %d%n", i.getItemId(), i.getItemName(), i.getItemPrice());
 		}
 	}
 	
@@ -194,7 +194,7 @@ public class SandwitchService {
 	
 	private void print_Material_C(List<Material> list, List<Material> material) {
 		for(Material m : list) {
-			System.out.printf("%s %s",m.getMaterialId(), m.getMaterialName());
+			System.out.printf("%s %s", m.getMaterialId(), m.getMaterialName());
 			for(Material m2 : material) {
 				if(m2.getMaterialId().equals(m.getMaterialId())) {
 					System.out.printf(" %s","V");

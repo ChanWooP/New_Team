@@ -1,42 +1,42 @@
 package com.kiosk.domain;
 
 public class Material {
-	private String MaterialId;
-	private String CategoryId;
-	private String MaterialName;
+	private String materialId;
+	private String categoryId;
+	private String materialName;
 	
 	public Material() {
 		
 	}
 
 	public Material(String materialId, String categoryId, String materialName) {
-		MaterialId = materialId;
-		CategoryId = categoryId;
-		MaterialName = materialName;
+		this.materialId = materialId;
+		this.categoryId = categoryId;
+		this.materialName = materialName;
 	}
 
 	public String getMaterialId() {
-		return MaterialId;
+		return materialId;
 	}
 
 	public void setMaterialId(String materialId) {
-		MaterialId = materialId;
+		this.materialId = materialId;
 	}
 
 	public String getCategoryId() {
-		return CategoryId;
+		return categoryId;
 	}
 
 	public void setCategoryId(String categoryId) {
-		CategoryId = categoryId;
+		this.categoryId = categoryId;
 	}
 
 	public String getMaterialName() {
-		return MaterialName;
+		return materialName;
 	}
 
 	public void setMaterialName(String materialName) {
-		MaterialName = materialName;
+		this.materialName = materialName;
 	}
 	
 }

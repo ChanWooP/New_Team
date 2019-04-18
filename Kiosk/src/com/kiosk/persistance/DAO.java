@@ -103,11 +103,11 @@ public class DAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				String MaterialId = rs.getString("MaterialId");
-				String CategoryId = rs.getString("CategoryId");
-				String MaterialName = rs.getString("MaterialName");
+				String materialId = rs.getString("MaterialId");
+				String categoryId = rs.getString("CategoryId");
+				String materialName = rs.getString("MaterialName");
 				
-				result.add(new Material(MaterialId, CategoryId, MaterialName));
+				result.add(new Material(materialId, categoryId, materialName));
 			}
 			
 			rs.close();
@@ -149,10 +149,10 @@ public class DAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				String CategoryId = rs.getString("CategoryId");
-				String CategoryName = rs.getString("CategoryName");
+				String categoryId = rs.getString("CategoryId");
+				String categoryName = rs.getString("CategoryName");
 				
-				result.add(new Category_(CategoryId, CategoryName));
+				result.add(new Category_(categoryId, categoryName));
 			}
 			
 			rs.close();
@@ -894,12 +894,12 @@ public class DAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				String LastPaymentDate = rs.getString("LastPaymentDate");
+				String lastPaymentDate = rs.getString("LastPaymentDate");
 				String userphone = rs.getString("userphone");
-				int Point_ = rs.getInt("Point_");
-				String Gubun = rs.getString("Gubun");
+				int point_ = rs.getInt("Point_");
+				String gubun = rs.getString("Gubun");
 				
-				result.add(new Pointhistory(userphone, Point_,  Gubun, LastPaymentDate));
+				result.add(new Pointhistory(userphone, point_,  gubun, lastPaymentDate));
 			}
 			
 			rs.close();

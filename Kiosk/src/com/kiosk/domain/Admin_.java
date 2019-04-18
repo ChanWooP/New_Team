@@ -1,32 +1,32 @@
 package com.kiosk.domain;
 
 public class Admin_ {
-	private String AdminId;
-	private String AdminPw;
+	private String adminId;
+	private String adminPw;
 	
 	public Admin_() {
 		
 	}
 
 	public Admin_(String adminId, String adminPw) {
-		AdminId = adminId;
-		AdminPw = adminPw;
+		this.adminId = adminId;
+		this.adminPw = adminPw;
 	}
 
 	public String getAdminId() {
-		return AdminId;
+		return adminId;
 	}
 
 	public void setAdminId(String adminId) {
-		AdminId = adminId;
+		this.adminId = adminId;
 	}
 
 	public String getAdminPw() {
-		return AdminPw;
+		return adminPw;
 	}
 
 	public void setAdminPw(String adminPw) {
-		AdminPw = adminPw;
+		this.adminPw = adminPw;
 	}
 	
 }

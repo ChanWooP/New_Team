@@ -182,7 +182,7 @@ public class SandwitchService {
 	
 	private void print_item(List<Item> list) {
 		for(Item i : list) {
-			System.out.printf("%s %s %d%n",i.getItemId(), i.getItemName(), i.getItemPrice());
+			System.out.printf("%d %s %s %d%n",i.getItemId(), i.getItemName(), i.getItemPrice());
 		}
 	}
 	

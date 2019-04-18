@@ -1,32 +1,32 @@
 package com.kiosk.domain;
 
 public class Category_ {
-	private String CategoryId;
-	private String CategoryName;
+	private String categoryId;
+	private String categoryName;
 	
 	public Category_() {
 		
 	}
 
 	public Category_(String categoryId, String categoryName) {
-		CategoryId = categoryId;
-		CategoryName = categoryName;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 	}
 
 	public String getCategoryId() {
-		return CategoryId;
+		return categoryId;
 	}
 
 	public void setCategoryId(String categoryId) {
-		CategoryId = categoryId;
+		this.categoryId = categoryId;
 	}
 
 	public String getCategoryName() {
-		return CategoryName;
+		return categoryName;
 	}
 
 	public void setCategoryName(String categoryName) {
-		CategoryName = categoryName;
+		this.categoryName = categoryName;
 	}
 	
 	

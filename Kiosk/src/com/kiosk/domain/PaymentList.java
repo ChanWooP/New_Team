@@ -1,32 +1,32 @@
 package com.kiosk.domain;
 
 public class PaymentList {
-	private String PaymentListId;
-	private String PaymentListName;
+	private String paymentListId;
+	private String paymentListName;
 	
 	public PaymentList() {
 		
 	}
 
 	public PaymentList(String paymentListId, String paymentListName) {
-		PaymentListId = paymentListId;
-		PaymentListName = paymentListName;
+		this.paymentListId = paymentListId;
+		this.paymentListName = paymentListName;
 	}
 
 	public String getPaymentListId() {
-		return PaymentListId;
+		return paymentListId;
 	}
 
 	public void setPaymentListId(String paymentListId) {
-		PaymentListId = paymentListId;
+		this.paymentListId = paymentListId;
 	}
 
 	public String getPaymentListName() {
-		return PaymentListName;
+		return paymentListName;
 	}
 
 	public void setPaymentListName(String paymentListName) {
-		PaymentListName = paymentListName;
+		this.paymentListName = paymentListName;
 	}
 	
 	

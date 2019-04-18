@@ -6,7 +6,7 @@ public class DetailPayment {
 	private String itemId;
 	private int price;
 	private int cnt;
-	private String ItemName;
+	private String itemName;
 	private int price_;
 	private int cnt_;
 	
@@ -30,7 +30,7 @@ public class DetailPayment {
 	}
 
 	public DetailPayment(String itemName, int price_, int cnt_) {
-		ItemName = itemName;
+		this.itemName = itemName;
 		this.price_ = price_;
 		this.cnt_ = cnt_;
 	}
@@ -76,11 +76,11 @@ public class DetailPayment {
 	}
 
 	public String getItemName() {
-		return ItemName;
+		return itemName;
 	}
 
 	public void setItemName(String itemName) {
-		ItemName = itemName;
+		this.itemName = itemName;
 	}
 
 	public int getPrice_() {

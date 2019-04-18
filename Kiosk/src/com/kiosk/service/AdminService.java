@@ -85,6 +85,7 @@ public class AdminService {
 		List<Material> list3 = null;
 		
 		System.out.println("1. 품목 2. 재료");
+		System.out.print("선택>");
 		int subcategory = sc.nextInt();
 		sc.nextLine();
 		
@@ -116,7 +117,7 @@ public class AdminService {
 			
 			dao.new_Item(new Item(itemId, c1, itemName, price));
 		}else if(subcategory == 2) {
-			list3 = dao.list_Material("c1", "");
+			list3 = dao.list_Material(c1, "");
 			
 			if(list3.size() == 0) {
 				System.out.println("해당 카테고리는 재료가 아닙니다.");
@@ -142,6 +143,7 @@ public class AdminService {
 		int count_ = 0;
 		
 		System.out.println("1. 품목 2. 재료");
+		System.out.print("선택>");
 		int subcategory = sc.nextInt();
 		sc.nextLine();
 		

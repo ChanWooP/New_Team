@@ -1,42 +1,42 @@
 package com.kiosk.domain;
 
 public class Payment {
-	private String LastPaymentId; 
-	private String PaymentListId; 
-	private int PaymentMoney; 
+	private String lastPaymentId; 
+	private String paymentListId; 
+	private int paymentMoney; 
 	
 	public Payment() {
 		
 	}
 
 	public Payment(String lastPaymentId, String paymentListId, int paymentMoney) {
-		LastPaymentId = lastPaymentId;
-		PaymentListId = paymentListId;
-		PaymentMoney = paymentMoney;
+		this.lastPaymentId = lastPaymentId;
+		this.paymentListId = paymentListId;
+		this.paymentMoney = paymentMoney;
 	}
 
 	public String getLastPaymentId() {
-		return LastPaymentId;
+		return lastPaymentId;
 	}
 
 	public void setLastPaymentId(String lastPaymentId) {
-		LastPaymentId = lastPaymentId;
+		this.lastPaymentId = lastPaymentId;
 	}
 
 	public String getPaymentListId() {
-		return PaymentListId;
+		return paymentListId;
 	}
 
 	public void setPaymentListId(String paymentListId) {
-		PaymentListId = paymentListId;
+		this.paymentListId = paymentListId;
 	}
 
 	public int getPaymentMoney() {
-		return PaymentMoney;
+		return paymentMoney;
 	}
 
 	public void setPaymentMoney(int paymentMoney) {
-		PaymentMoney = paymentMoney;
+		this.paymentMoney = paymentMoney;
 	}
 	
 }

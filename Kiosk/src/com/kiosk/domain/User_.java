@@ -1,8 +1,8 @@
 package com.kiosk.domain;
 
 public class User_ {
-	private String UserPhone;
-	private int UserPoint;
+	private String userPhone;
+	private int userPoint;
 	
 	public User_() {
 		
@@ -10,24 +10,24 @@ public class User_ {
 
 	public User_(String userPhone, int userPoint) {
 		super();
-		UserPhone = userPhone;
-		UserPoint = userPoint;
+		this.userPhone = userPhone;
+		this.userPoint = userPoint;
 	}
 
 	public String getUserPhone() {
-		return UserPhone;
+		return userPhone;
 	}
 
 	public void setUserPhone(String userPhone) {
-		UserPhone = userPhone;
+		this.userPhone = userPhone;
 	}
 
 	public int getUserPoint() {
-		return UserPoint;
+		return userPoint;
 	}
 
 	public void setUserPoint(int userPoint) {
-		UserPoint = userPoint;
+		this.userPoint = userPoint;
 	}
 	
 }

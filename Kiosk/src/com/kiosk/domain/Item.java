@@ -1,52 +1,52 @@
 package com.kiosk.domain;
 
 public class Item {
-	private String ItemId;
-	private String CategoryId;
-	private String ItemName;
-	private int ItemPrice;
+	private String itemId;
+	private String categoryId;
+	private String itemName;
+	private int itemPrice;
 	
 	public Item() {
 		
 	}
 
 	public Item(String itemId, String categoryId, String itemName, int itemPrice) {
-		ItemId = itemId;
-		CategoryId = categoryId;
-		ItemName = itemName;
-		ItemPrice = itemPrice;
+		this.itemId = itemId;
+		this.categoryId = categoryId;
+		this.itemName = itemName;
+		this.itemPrice = itemPrice;
 	}
 
 	public String getItemId() {
-		return ItemId;
+		return itemId;
 	}
 
 	public void setItemId(String itemId) {
-		ItemId = itemId;
+		this.itemId = itemId;
 	}
 
 	public String getCategoryId() {
-		return CategoryId;
+		return categoryId;
 	}
 
 	public void setCategoryId(String categoryId) {
-		CategoryId = categoryId;
+		this.categoryId = categoryId;
 	}
 
 	public String getItemName() {
-		return ItemName;
+		return itemName;
 	}
 
 	public void setItemName(String itemName) {
-		ItemName = itemName;
+		this.itemName = itemName;
 	}
 
 	public int getItemPrice() {
-		return ItemPrice;
+		return itemPrice;
 	}
 
 	public void setItemPrice(int itemPrice) {
-		ItemPrice = itemPrice;
+		this.itemPrice = itemPrice;
 	}
 	
 }

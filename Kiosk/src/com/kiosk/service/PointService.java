@@ -59,7 +59,7 @@ public class PointService {
 				}
 				System.out.println("유효하지않는 번호입니다.");
 			}
-			List<Pointhistory> ph = dao.User_History("phone", phone);
+			List<Pointhistory> ph = dao.list_UserHistory("phone", phone);
 			if(ph.size() != 0) {
 				System.out.println("날짜 / 전화번호 / 사용금액 / 구분");
 				for(Pointhistory p : ph) {
@@ -89,7 +89,7 @@ public class PointService {
 				}
 				System.out.println("유효하지않는 번호입니다.");
 			}
-			int point = dao.User_List("phone", phone);
+			int point = dao.list_User("phone", phone);
 			if(point != -1) {
 				System.out.printf("현재 남은 잔액은 %d원 입니다", point);
 				break;

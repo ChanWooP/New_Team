@@ -18,7 +18,7 @@ public class SandwitchService {
 		this.dao = daos;
 		List<Item> item = new ArrayList<Item>();
 		List<Material> material = new ArrayList<Material>();
-		List<Category_> category = dao.Category_List("", "");
+		List<Category_> category = dao.list_Category("", "");
 		
 		Item temp = this.menu01_1(sc, category.get(0).getCategoryId());
 		if(temp == null) return;
@@ -51,7 +51,7 @@ public class SandwitchService {
 	}
 	
 	private Item menu01_1(Scanner sc, String category) {
-		List<Item> list = dao.itemList(category, "");
+		List<Item> list = dao.list_Item(category, "");
 		Item item = null;
 		System.out.println();
 		System.out.println("----------------------");
@@ -80,7 +80,7 @@ public class SandwitchService {
 	}
 	
 	private Material menu01_2(Scanner sc,String category) {
-		List<Material> list = dao.MaterialList(category, "");
+		List<Material> list = dao.list_Material(category, "");
 		Material material = null;
 		System.out.println();
 		System.out.println("----------------------");
@@ -109,7 +109,7 @@ public class SandwitchService {
 	}
 	
 	private List<Material> menu01_3(Scanner sc, String category) {
-		List<Material> list = dao.MaterialList(category, "");
+		List<Material> list = dao.list_Material(category, "");
 		String MaterialId = "";
 		List<Material> material = new ArrayList<Material>();
 		
@@ -145,7 +145,7 @@ public class SandwitchService {
 	}
 	
 	private List<Material> menu01_4(Scanner sc, String category) {
-		List<Material> list = dao.MaterialList(category, "");
+		List<Material> list = dao.list_Material(category, "");
 		String MaterialId = "";
 		List<Material> material = new ArrayList<Material>();
 		

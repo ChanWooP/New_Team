@@ -29,7 +29,7 @@ public class DAO {
 		return order;
 	}
 
-	public List<Item> itemList(String key, String value){
+	public List<Item> list_Item(String key, String value){
 
 		List<Item> result = new ArrayList<Item>();
 		
@@ -80,7 +80,7 @@ public class DAO {
 		return result;
 	}
 	
-	public List<Material> MaterialList(String key, String value){
+	public List<Material> list_Material(String key, String value){
 
 		List<Material> result = new ArrayList<Material>();
 		
@@ -130,7 +130,7 @@ public class DAO {
 		return result;
 	}
 	
-	public List<Category_> Category_List(String key, String value){
+	public List<Category_> list_Category(String key, String value){
 
 		List<Category_> result = new ArrayList<Category_>();
 		
@@ -175,7 +175,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String newLastPaymentid(){
+	public String new_LastPaymentid(){
 
 		String result = "";
 		
@@ -216,7 +216,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String adminpw(){
+	public String getAdminPw(){
 
 		String result = "";
 		
@@ -257,7 +257,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String newItemid(){
+	public String new_Itemid(){
 
 		String result = "";
 		
@@ -386,7 +386,7 @@ public class DAO {
 		return result;
 	}
 	
-	public List<LastPayment> Daytotal(String date){
+	public List<LastPayment> getDayTotal(String date){
 
 		List<LastPayment> result = new ArrayList<LastPayment>();
 		
@@ -589,7 +589,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int detailcount(String itemid){
+	public int getDetailCount(String itemid){
 
 		int result = -1;
 		
@@ -631,7 +631,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int DelItem(String itemId){
+	public int del_Item(String itemId){
 
 		int result = -1;
 		
@@ -669,7 +669,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int ChangeItem(String itemId, int newprice){
+	public int up_Item(String itemId, int newprice){
 
 		int result = -1;
 		
@@ -708,7 +708,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int DelMaterial(String itemId){
+	public int del_Material(String itemId){
 
 		int result = -1;
 		
@@ -746,7 +746,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String newItem(Item item){
+	public String new_Item(Item item){
 
 		String result = "";
 		
@@ -787,7 +787,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String newMaterial(Material item){
+	public String new_Material(Material item){
 
 		String result = "";
 		
@@ -827,7 +827,7 @@ public class DAO {
 		return result;
 	}
 	
-	public String newMaterialid(){
+	public String new_Materialid(){
 
 		String result = "";
 		
@@ -868,7 +868,7 @@ public class DAO {
 		return result;
 	}
 	
-	public List<Pointhistory> User_History(String key, String value){
+	public List<Pointhistory> list_UserHistory(String key, String value){
 
 		List<Pointhistory> result = new ArrayList<Pointhistory>();
 		
@@ -922,7 +922,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int User_List(String key, String value){
+	public int list_User(String key, String value){
 
 		int result = -1;
 		
@@ -967,7 +967,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int InUser(User_ user_){
+	public int in_User(User_ user_){
 
 		int result = -1;
 		
@@ -1006,7 +1006,7 @@ public class DAO {
 		return result;
 	}
 	
-	public int InPay(LastPayment l, List<DetailPayment> d, List<Payment> p, List<Pointhistory> ph, int point) {
+	public int in_Pay(LastPayment l, List<DetailPayment> d, List<Payment> p, List<Pointhistory> ph, int point) {
 		int result = -1;
 		
 		Connection conn = null;
@@ -1124,7 +1124,7 @@ public class DAO {
 		return result;
 	}
 	
-	public List<PaymentList> payment_List(String key, String value){
+	public List<PaymentList> list_Payment(String key, String value){
 
 		List<PaymentList> result = new ArrayList<PaymentList>();
 		

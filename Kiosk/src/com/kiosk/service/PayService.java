@@ -175,7 +175,7 @@ public class PayService {
 			}
 			System.out.println("유효하지않는 번호입니다.");
 		}
-		int point = dao.User_List("phone", phone);		
+		int point = dao.list_User("phone", phone);		
 		
 		this.print_Receipt(sub, pay, point, phone, 0);
 	}
@@ -205,7 +205,7 @@ public class PayService {
 				}
 				System.out.println("유효하지않는 번호입니다.");
 			}
-			point = dao.User_List("phone", phone);
+			point = dao.list_User("phone", phone);
 			if(phone.equals("0")) {
 				return;
 			}
@@ -248,36 +248,36 @@ public class PayService {
 		List<DetailPayment> d = new ArrayList<DetailPayment>();
 		List<Payment> p = new ArrayList<Payment>();
 		List<Pointhistory> ph = new ArrayList<Pointhistory>();
-		List<PaymentList> pl = dao.payment_List("", "");
+		List<PaymentList> pl = dao.list_Payment("", "");
 		
 		for(SubOrder s : sublist) {
 			total += s.getItem().get(0).getItemPrice() * s.getCount();
 			String itemId = dao.getOrder().getOrderList().get(0).getItem().get(0).getItemId();
 			int price = dao.getOrder().getOrderList().get(0).getItem().get(0).getItemPrice();
-			d.add(new DetailPayment(dao.newLastPaymentid(),itemId, price * s.getCount(), s.getCount()));
+			d.add(new DetailPayment(dao.new_LastPaymentid(),itemId, price * s.getCount(), s.getCount()));
 			
 		}
 		
 		if(point == -1) {
-			dao.InUser(new User_(phone, 0));
+			dao.in_User(new User_(phone, 0));
 			point = 0;
 		}
 		
 		if(pay.equals("카드")) {
-			p.add(new Payment(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), total));
+			p.add(new Payment(dao.new_LastPaymentid(), pl.get(0).getPaymentListId(), total));
 		}else if(pay.equals("포인트적립")){
-			p.add(new Payment(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), total));
-			ph.add(new Pointhistory(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), phone, total/10, "적립"));
+			p.add(new Payment(dao.new_LastPaymentid(), pl.get(0).getPaymentListId(), total));
+			ph.add(new Pointhistory(dao.new_LastPaymentid(), pl.get(0).getPaymentListId(), phone, total/10, "적립"));
 		}else if(pay.equals("포인트사용")) {
-			p.add(new Payment(dao.newLastPaymentid(), pl.get(1).getPaymentListId(), usepoint));
-			ph.add(new Pointhistory(dao.newLastPaymentid(), pl.get(1).getPaymentListId(), phone, usepoint, "사용"));
+			p.add(new Payment(dao.new_LastPaymentid(), pl.get(1).getPaymentListId(), usepoint));
+			ph.add(new Pointhistory(dao.new_LastPaymentid(), pl.get(1).getPaymentListId(), phone, usepoint, "사용"));
 			if((total - usepoint) > 0) {
-				p.add(new Payment(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), total - usepoint));
-				ph.add(new Pointhistory(dao.newLastPaymentid(), pl.get(0).getPaymentListId(), phone, (total - usepoint)/10, "적립"));
+				p.add(new Payment(dao.new_LastPaymentid(), pl.get(0).getPaymentListId(), total - usepoint));
+				ph.add(new Pointhistory(dao.new_LastPaymentid(), pl.get(0).getPaymentListId(), phone, (total - usepoint)/10, "적립"));
 			}
 		}	
 
-		dao.InPay(new LastPayment(dao.newLastPaymentid(),dao.getOrder().getDate_(),total), d, p, ph, point);
+		dao.in_Pay(new LastPayment(dao.new_LastPaymentid(),dao.getOrder().getDate_(),total), d, p, ph, point);
 		
 		if(pay.equals("포인트사용")) {
 			System.out.printf("총 %d원 결제되었습니다.%n", total-usepoint);

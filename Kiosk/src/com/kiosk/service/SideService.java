@@ -15,8 +15,8 @@ public class SideService {
 	
 	public void menu02(Scanner sc, DAO daos) {
 		this.dao = daos;
-		List<Category_> category = dao.Category_List("", "");
-		List<Item> list = dao.itemList(category.get(1).getCategoryId(), "");
+		List<Category_> category = dao.list_Category("", "");
+		List<Item> list = dao.list_Item(category.get(1).getCategoryId(), "");
 		List<Item> item = new ArrayList<Item>();
 		
 		System.out.println();

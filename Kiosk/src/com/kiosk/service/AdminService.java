@@ -19,7 +19,7 @@ public class AdminService {
 		this.dao = daos;
 		System.out.print("비밀번호>");
 		String pws = sc.nextLine();
-		String pw = dao.adminpw();
+		String pw = dao.getAdminPw();
 		if(pws.equals(pw)) {
 			this.menu99(sc, daos);
 		}else {
@@ -80,7 +80,7 @@ public class AdminService {
 	}
 	
 	private void menu99_1_1(Scanner sc) {
-		List<Category_> list = dao.Category_List("", "");
+		List<Category_> list = dao.list_Category("", "");
 		List<Item> list2 = null;
 		List<Material> list3 = null;
 		
@@ -96,7 +96,7 @@ public class AdminService {
 		String c1 = sc.nextLine();
 		
 		if(subcategory == 1) {
-			list2 = dao.itemList(c1, "");
+			list2 = dao.list_Item(c1, "");
 			
 			if(list2.size() == 0) {
 				System.out.println("해당 카테고리는 품목이 아닙니다.");
@@ -107,16 +107,16 @@ public class AdminService {
 				System.out.printf("%s %s%n", i.getItemId(), i.getItemName());
 			}
 			
-			String itemId = dao.newItemid();
+			String itemId = dao.new_Itemid();
 			System.out.print("추가할 메뉴 이름>");
 			String itemName = sc.nextLine();
 			System.out.print("가격>");
 			int price = sc.nextInt();
 			sc.nextLine();
 			
-			dao.newItem(new Item(itemId, c1, itemName, price));
+			dao.new_Item(new Item(itemId, c1, itemName, price));
 		}else if(subcategory == 2) {
-			list3 = dao.MaterialList("c1", "");
+			list3 = dao.list_Material("c1", "");
 			
 			if(list3.size() == 0) {
 				System.out.println("해당 카테고리는 재료가 아닙니다.");
@@ -126,17 +126,17 @@ public class AdminService {
 			for(Material m : list3) {
 				System.out.printf("%s %s%n", m.getMaterialId(), m.getMaterialName());
 			}
-			String itemId = dao.newMaterialid();
+			String itemId = dao.new_Materialid();
 			System.out.print("추가할 메뉴 이름>");
 			String itemName = sc.nextLine();
 			
-			dao.newMaterial(new Material(itemId, c1, itemName));
+			dao.new_Material(new Material(itemId, c1, itemName));
 		}
 		System.out.println("메뉴가 추가되었습니다");
 	}
 	
 	private void menu99_1_2(Scanner sc) {
-		List<Category_> list = dao.Category_List("", "");
+		List<Category_> list = dao.list_Category("", "");
 		List<Item> list2 = null;
 		List<Material> list3 = null;
 		int count_ = 0;
@@ -153,7 +153,7 @@ public class AdminService {
 		String c1 = sc.nextLine();
 		
 		if(subcategory == 1) {
-			list2 = dao.itemList(c1, "");
+			list2 = dao.list_Item(c1, "");
 			
 			if(list2.size() == 0) {
 				System.out.println("해당 카테고리는 품목이 아닙니다.");
@@ -166,20 +166,20 @@ public class AdminService {
 			System.out.print("선택>");
 			String itemId = sc.nextLine();
 			
-			count_ = dao.detailcount(itemId);
+			count_ = dao.getDetailCount(itemId);
 			
 			System.out.printf("정말삭제하시겠습니까?(0/1)>");
 			int a = sc.nextInt();
 			sc.nextLine();
 			if(a == 1) {
 				if(count_ == 0) {
-					dao.DelItem(itemId);
+					dao.del_Item(itemId);
 				}
 			}else {
 				count_ = -1;
 			}
 		}else if(subcategory == 2) {
-			list3 = dao.MaterialList(c1, "");
+			list3 = dao.list_Material(c1, "");
 			
 			if(list3.size() == 0) {
 				System.out.println("해당 카테고리는 재료가 아닙니다.");
@@ -196,7 +196,7 @@ public class AdminService {
 			sc.nextLine();
 			if(a == 1) {
 				if(count_ == 0) {
-					dao.DelMaterial(itemId);
+					dao.del_Material(itemId);
 				}
 			}else {
 				count_ = -1;
@@ -212,7 +212,7 @@ public class AdminService {
 	}
 	
 	private void menu99_1_3(Scanner sc) {
-		List<Category_> list = dao.Category_List("", "");
+		List<Category_> list = dao.list_Category("", "");
 		List<Item> list2 = null;
 
 		int newprice = 0;
@@ -224,7 +224,7 @@ public class AdminService {
 		System.out.print("선택>");
 		String c1 = sc.nextLine();
 		
-		list2 = dao.itemList(c1, "");
+		list2 = dao.list_Item(c1, "");
 
 		if(list2.size() == 0) {
 			System.out.println("해당 카테고리는 가격 변경이 불가능 합니다.");
@@ -246,7 +246,7 @@ public class AdminService {
 			newprice = sc.nextInt();
 			sc.nextLine();
 				
-			int result = dao.ChangeItem(itemId, newprice);
+			int result = dao.up_Item(itemId, newprice);
 			if(result <= 0) {
 				System.out.println("변경 실패");
 			}else {
@@ -347,7 +347,7 @@ public class AdminService {
 				}
 			}
 			System.out.println("-------------------------");
-			List<LastPayment> list2 = dao.Daytotal(month_);
+			List<LastPayment> list2 = dao.getDayTotal(month_);
 			for(LastPayment l : list2) {
 				System.out.printf("%s %d%n", l.getDay_(), l.getPrice_());
 			}

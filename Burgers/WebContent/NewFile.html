@@ -145,11 +145,11 @@
 			txt += "<table>";
 			txt += "<tr><th><input type='checkbox' id='ckall' value='all'></th>";
 			txt += "<th>상품이미지</th><th>상품명</th><th>수량</th><th>가격</th><th></th></tr>";
-			for ( var a in carts) {
+			for (var a=0; a<carts.length; ++a) {
 				var cart = carts[a];
 				total += carts[a].tprice();
 				txt += "<tr id='carttr'>";
-				txt += "<th width='10%'><input type='checkbox' class='cartcheck' value="+cart.burger.bid+"></th>";
+				txt += "<th width='10%'><input type='checkbox' class='cartcheck' value='"+cart.burger.bid+"/"+cart.burger.bname+"'></th>";
 				txt += "<th width='10%'><img src='img/"+ cart.burger.bimg +".png' width ='100' height = '75'></th>";
 				txt += "<th width='20%'>" + cart.burger.bname + "</th>";
 				txt += "<th width='20%'><input type='number' class='quantity' value="+cart.count+" min='1' max='99' readonly><button class='minus'>-</button><button class='plus'>+</button></th>";
@@ -226,14 +226,14 @@
 	function selectCheck() {
 		var cartcheck = document.getElementsByClassName("cartcheck");
 		var checklist  = [];
-		var objs;
-		
-		for ( var a in cartcheck) {
+
+		for (var a=0; a<cartcheck.length; ++a) {
 			if (cartcheck[a].checked) {
-				console.log(cartcheck[a].parentNode.parentNode.childNodes);
-				objs = cartcheck[a].parentNode.parentNode.childNodes;
-				
-				checklist.push([cartcheck[a].value,objs[2].textContent]);
+				var values = cartcheck[a].value;
+				console.log(carts[0]);
+				console.log(values);
+				var valuess = values.split("/");
+				checklist.push([valuess[0],valuess[1]]);
 			}
 		}
 		

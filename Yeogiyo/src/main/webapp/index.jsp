@@ -12,6 +12,6 @@
 	</head> 
 	<body>
 		<c:url value="/showMessage.html" var="messageUrl" />
-		<a href="${messageUrl}">Click to enter</a>sds
+		<a href="${messageUrl}">Click to enter</a>sdsDD
 	</body>
 </html>

@@ -3,11 +3,11 @@ package com.sp.test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller("test.testController")
 public class TestController {
 	
 	@RequestMapping(value="/main/test")
 	public String test() {
-		return ".mainLayout";
+		return ".test.test";
 	}
 }

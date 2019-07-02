@@ -1,13 +1,13 @@
-package com.sp.user.main;
+package com.sp.owner.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("user.mainController")
+@Controller("owner.mainController")
 public class MainController {
 	
-	@RequestMapping(value="/user/main")
+	@RequestMapping(value="/owner/main")
 	public String test() {
-		return ".userLayout"; 
+		return ".ownerLayout"; 
 	}
 }

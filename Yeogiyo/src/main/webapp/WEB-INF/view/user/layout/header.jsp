@@ -42,13 +42,14 @@
 .contents{
    clear:left;
 }
+
 </style>
 </head>
 <body style="margin:0;">
 <div class="container">
    <nav class="header">
       <div class="left-header">
-         <img style="width:85px; height:85px" src="https://yt3.ggpht.com/a/AGF-l7_6P2fu7GYM2w8ywTE2excqeixsZP8sbgud6Q=s900-mo-c-c0xffffffff-rj-k-no">
+         <img style="width:85px; height:85px;" src="https://yt3.ggpht.com/a/AGF-l7_6P2fu7GYM2w8ywTE2excqeixsZP8sbgud6Q=s900-mo-c-c0xffffffff-rj-k-no">
       </div>
       <div class="right-header">
          <ul>

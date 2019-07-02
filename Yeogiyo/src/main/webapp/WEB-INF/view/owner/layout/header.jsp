@@ -65,10 +65,6 @@
          </div>
       </div>
    </nav>
-
-   <div class="contents">
-   본문입니다.
-   </div>
 </div>
 
 </body>

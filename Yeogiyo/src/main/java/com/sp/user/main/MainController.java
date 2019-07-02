@@ -1,13 +1,13 @@
-package com.sp.test;
+package com.sp.user.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("test.testController")
-public class TestController {
+@Controller("mainController")
+public class MainController {
 	
-	@RequestMapping(value="/main/test")
+	@RequestMapping(value="/user/main")
 	public String test() {
-		return ".user.test.test";
+		return ".userLayout";
 	}
 }

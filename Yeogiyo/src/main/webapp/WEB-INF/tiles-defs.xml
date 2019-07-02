@@ -5,34 +5,29 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name=".mainLayout" template="/WEB-INF/view/layout/layout3.jsp">
-	    <put-attribute name="title" value="spring" />
-	  	<put-attribute name="header" value="/WEB-INF/view/layout/header.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/main/main.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp" />
-	</definition>
+
 	<!-- 사용자 -->
 	<definition name=".userLayout" template="/WEB-INF/view/user/layout/layout3.jsp">
-	    <put-attribute name="title" value="spring" />
+	    <put-attribute name="title" value="Yeogiyo" />
 	  	<put-attribute name="header" value="/WEB-INF/view/user/layout/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/user/main/main.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/user/layout/footer.jsp" />
 	</definition>
 	
 	<!-- 호텔오너 -->
 	<definition name=".ownerLayout" template="/WEB-INF/view/owner/layout/layout3.jsp">
-	    <put-attribute name="title" value="spring" />
+	    <put-attribute name="title" value="Yeogiyo" />
 	  	<put-attribute name="header" value="/WEB-INF/view/owner/layout/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/owner/main/main.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/owner/layout/footer.jsp" />
 	</definition>
 	
    <!-- 관리자 -->
 	<definition name=".adminLayout" template="/WEB-INF/view/admin/layout/layout3.jsp">
-	    <put-attribute name="title" value="spring" />
+	    <put-attribute name="title" value="Yeogiyo" />
 	  	<put-attribute name="header" value="/WEB-INF/view/admin/layout/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/admin/main/main.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/admin/layout/footer.jsp" />
 	</definition>
 	
 	<definition name=".user.*.*.*" extends=".userLayout">
@@ -65,14 +60,5 @@
     	<put-attribute name="body" value="/WEB-INF/view/admin/{1}.jsp" />
 	</definition>
 	
-	<definition name=".*.*.*" extends=".mainLayout">
-		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}.jsp"/>
-	</definition>
-	<definition name=".*.*" extends=".mainLayout">
-		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp"/>
-	</definition>
-	<definition name=".*" extends=".mainLayout">
-    	  <put-attribute name="body" value="/WEB-INF/view/{1}.jsp" />
-	</definition>
 
 </tiles-definitions>

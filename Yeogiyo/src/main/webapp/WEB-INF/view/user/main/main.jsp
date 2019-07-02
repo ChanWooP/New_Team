@@ -1,15 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+   String cp = request.getContextPath();
+%>
 
-<div class="container">
-	<div class="header">
-		<div class="left-header">
-		</div>
-		<div class="right-header">
-			<ul class="nav">
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			</ul>
-		</div>
-	</div>
+<div class="body-container" style="width: 700px;">
+    <div>
+        메인 화면 입니다.
+    </div>
 </div>

@@ -10,9 +10,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여기요</title>
+<title>Yeogiyo</title>
 </head>
 <body>
+<div class="header">
+    <tiles:insertAttribute name="header"/>
+</div>
+	
+<div class="container">
+    <tiles:insertAttribute name="body"/>
+</div>
+
+<div class="footer">
+    <tiles:insertAttribute name="footer"/>
+</div>
+
+
 
 </body>
 </html>

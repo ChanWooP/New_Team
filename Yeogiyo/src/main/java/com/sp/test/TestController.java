@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller("test.testController")
 public class TestController {
 	
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
+	@RequestMapping(value="/user/main", method=RequestMethod.GET)
 	public String test() {
 		return ".userLayout";
 	}

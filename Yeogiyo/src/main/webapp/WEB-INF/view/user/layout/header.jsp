@@ -7,7 +7,7 @@
 %>
 <script type="text/javascript">
 </script>
-<div class="header">
+<div class="header-top">
 	<div class="left-header">
 		<img src="<%=cp%>/resources/img/logo.jpg">
 	</div>

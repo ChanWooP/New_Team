@@ -5,6 +5,7 @@
 <%
    String cp=request.getContextPath();
 %>
+<<<<<<< HEAD
 
 <style>
 .header{
@@ -113,3 +114,19 @@
    </div>
 
 </div>
+=======
+<script type="text/javascript">
+</script>
+<div class="header-top">
+	<div class="left-header">
+		<img src="<%=cp%>/resources/img/logo.jpg">
+	</div>
+	<div class="right-header">
+		<ul class="nav">
+			<li><a href="#">커뮤니티관리</a></li>
+			<li><a href="#">커뮤니티관리</a></li>
+			<li><a href="#">커뮤니티관리</a></li>
+		</ul>
+	</div>
+</div>
+>>>>>>> refs/remotes/origin/master

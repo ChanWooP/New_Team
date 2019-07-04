@@ -11,6 +11,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Yeogiyo</title>
+
+<link rel="stylesheet" href="<%=cp%>/resource/css/lthstyle.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/layout3.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
+<link href="<%=cp%>/resource/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=cp%>/resource/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
+<script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
+<style>
+
+</style>
 </head>
 <body>
 <div class="header">
@@ -25,7 +39,8 @@
     <tiles:insertAttribute name="footer"/>
 </div>
 
-
+<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery.ui.datepicker-ko.js"></script>
 
 </body>
 </html>

@@ -9,67 +9,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style>
-.header{
-   width:100%;
-   border:solid 1px;
-   text-align:center;
-}
-
-.left-header{
-   float:left;
-   display:inline-block;
-   margin:3px;
-}
-
-.right-header{
-   text-align:right;
-}
-
-.navContent{
-   display:inline;
-   padding:7px;
-   text-align:center;
-}
-
-.container{
-   width:1080px;
-   margin: auto;
-}
-
-.contents{
-   clear:left;
-}
-
-</style>
+<title>여기요</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="<%=cp%>/resource/css" rel="stylesheet">
 </head>
-<body style="margin:0;">
-<div class="container">
-   <nav class="header">
-      <div class="left-header">
-         <img style="width:85px; height:85px;" src="https://yt3.ggpht.com/a/AGF-l7_6P2fu7GYM2w8ywTE2excqeixsZP8sbgud6Q=s900-mo-c-c0xffffffff-rj-k-no">
-      </div>
-      <div class="right-header">
-         <ul>
-            <li class="navContent"><a href="#">로그인</a></li>
-            <li class="navContent"><a href="#">회원가입</a></li>
-         </ul>
-         <div>
-            <ul>
-               <li class="navContent"><a href="#">커뮤니티관리</a></li>
-               <li class="navContent"><a href="#">커뮤니티관리</a></li>
-               <li class="navContent"><a href="#">커뮤니티관리</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<div class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">	
+					<span class="bar1"></span>
+					<span class="bar2"></span>
+					<span class="bar3"></span>
+			  </div>
+				<a class="navbar-brand top" href="#">
+					
+				</a>
 
-   <div class="contents">
-   본문입니다.
-   </div>
-</div>
+			</div>
 
+			<div class="collapse navbar-collapse" id="main-menu">
+			   <ul class="nav navbar-nav navbar-right">
+				<li><a href="#about">About</a></li>
+				<li><a href="#portfolio">Portfolio</a></li>
+				<li><a href="#press">Press</a></li>
+				<li><a href="#brand">Brand</a></li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
 </body>
 </html>

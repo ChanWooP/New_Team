@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="temp">
+
+<select id="selectList">
+	SELECT ownerId, ownerName, ownerPwd, ownerTel, ownerMail, hotelCreated, hotelModified, businessNum
+	FROM hotelOwner
+</select>
+
+<select id="selectOwner">
+	SELECT hotelId, ownerName, ownerPwd, ownerTel, ownerMail, hotelCreated, hotelModified, businessNum
+	FROM hotelOwner
+	WHERE hotelId=#{hotelId}
+</select>
+
+<insert id="insertOwner" parameterType="com.sp.owner.owner.Owner">
+	INSERT INTO hotelOwner(hotelId, ownerName, ownerPwd,ownerTel, ownerMail, created, modified, businessNum) 
+	VALUES(#{hotelId}, #{ownerName}, #{ownerPwd}, #{ownerTel}, #{ownerMail}, SYSDATE, SYSDATE, #{businessNum});
+</insert>
+
+<update id="updateOwner">
+	UPDATE hotelOwner SET(ownerName=#{ownerName}, ownerPwd=#{ownerPwd}, ownerTel=#{ownerTel}, ownerMail=#{ownerMail}, modified=SYSDATE)
+</update>
+
+<delete id="deleteOwner">
+	DELETE FROM hotelOwner WHERE hotelId=#{hotelId}
+</delete>
+</mapper>

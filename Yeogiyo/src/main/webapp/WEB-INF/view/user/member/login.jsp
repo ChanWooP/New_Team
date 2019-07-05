@@ -32,9 +32,9 @@ function sendLogin() {
 	f.submit();
 }
 </script>
-
+<div>
 <div class="body-container">
-	<div style="margin: 0px auto; padding-top: 120px; width: 400px;">
+	<div style="margin: 0px auto; padding-top: 120px;">
 		<div class="mainform">
 			<span style="font-weight: bold; font-size: 30px;">회원로그인</span>
 		</div>
@@ -73,5 +73,5 @@ function sendLogin() {
 		</div>
 		</form>
 	</div>
-
+</div>
 </div>

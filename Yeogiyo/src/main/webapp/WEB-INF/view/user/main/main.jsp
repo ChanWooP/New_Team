@@ -12,8 +12,8 @@ $(function() {
 });
 </script>
 
-<div class="body-container" style="">
-    <div id="mainsearch" style="margin-top:30px; height:500px; border:1px solid #fffccc; ">
+<div class="body-container">
+    <div id="mainsearch" style="margin-top:30px; border:1px solid #fffccc; ">
     	<div style="width:500px; margin:60px; margin-bottom:10px; min-height:330px; border:1px solid yellow; background-color:white;">
     		<form action="">
     		<div style="margin:20px;">

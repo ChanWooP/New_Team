@@ -7,5 +7,5 @@
 %>
 
 <div id="copyright">
-	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+	<p><b>&copy; Design by | Photos by | Coding by  |  LTH, KJH, PCW, KW | Made in Korea</b></p>
 </div>

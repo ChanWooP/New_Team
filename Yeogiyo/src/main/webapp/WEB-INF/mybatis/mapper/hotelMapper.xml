@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.hotel">
+	
+	<select id="hotelDetail" parameterType="map" resultType="com.sp.user.hotel.Hotel">
+		SELECT h.hotelId, h.hotelName,detail, hotelTel, addr1,addr2,checkin,checkout
+    FROM hotel h, hoteldetail hd
+    WHERE h.hotelId = hd.hotelid
+    AND hotel.hotelId=#{hotelId}
+	</select >
+		
+	<select id="hotelList" parameterType="map" resultType="com.sp.user.hotel.Hotel">
+		SELECT hotelName
+			FROM hotel
+	</select>
+</mapper>

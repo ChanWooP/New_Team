@@ -1,28 +1,18 @@
-<<<<<<< HEAD
-=======
 @charset "UTF-8";
-.header{
-	display:inline-block;
-	width:100%;
+/* header */
+.navbar{
+	background-color:gold;
 }
-
-.left-header{
-	display:inline-block;
-	width: 20%;
+.navbar-brand {
+	color:red;
 }
-
-.right-header{
-	display:inline-block;
-	width:80%;
+/* footer */
+.footer {
+    width:100%;
+    height:50px;
+    margin:5px auto;
+    text-align:center;
+    background-color: gold;
+    line-height: 50px;
+    border-top:1px solid #cccccc;
 }
-
-.nav{
-	dispaly:inline;
-	padding:7px;
-	text-align:center;
-}
-
-.container{
-	width:1080px;
-}
->>>>>>> refs/remotes/origin/master

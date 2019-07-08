@@ -1,105 +1,39 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-   String cp=request.getContextPath();
+   String cp = request.getContextPath();
 %>
-<<<<<<< HEAD
-
-<div id="wrapper">
-	<div id="header-wrapper">
-		<div id="menu" class="container">
-		
-			<ul class="nav">
-				<li><a class="sss" href="#" >Yeogiyo</a></li>
-				<li><a href="#">About</a>
-					<ul>
-						<li><a href="#">asfsa</a></li>
-						<li><a href="#">asfsa</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Blog</a>
-				<ul>
-						<li><a href="#">asfsa</a></li>
-						<li><a href="#">asfsa</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Portfolio</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	
-</div>
-=======
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style>
-.header{
-   width:100%;
-   border:solid 1px;
-   text-align:center;
-}
-
-.left-header{
-   float:left;
-   display:inline-block;
-   margin:3px;
-}
-
-.right-header{
-   text-align:right;
-}
-
-.navContent{
-   display:inline;
-   padding:7px;
-   text-align:center;
-}
-
-.container{
-   width:1080px;
-   margin: auto;
-}
-
-.contents{
-   clear:left;
-}
-
-</style>
-</head>
-<body style="margin:0;">
-<div class="container">
-   <nav class="header">
-      <div class="left-header">
-         <img style="width:85px; height:85px;" src="https://yt3.ggpht.com/a/AGF-l7_6P2fu7GYM2w8ywTE2excqeixsZP8sbgud6Q=s900-mo-c-c0xffffffff-rj-k-no">
-      </div>
-      <div class="right-header">
-         <ul>
-            <li class="navContent"><a href="#">로그인</a></li>
-            <li class="navContent"><a href="#">회원가입</a></li>
-         </ul>
-         <div>
-            <ul>
-               <li class="navContent"><a href="#">커뮤니티관리</a></li>
-               <li class="navContent"><a href="#">커뮤니티관리</a></li>
-               <li class="navContent"><a href="#">커뮤니티관리</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav>
-
-   <div class="contents">
-   본문입니다.
-   </div>
-</div>
-
-</body>
-</html>
->>>>>>> refs/remotes/origin/master
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%=cp%>/user/main">YEOGIYO</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">마이페이지
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">회원정보확인</a></li>
+          <li><a href="#">예약확인</a></li>
+          <li><a href="#">포인트정보</a></li>
+          <li><a href="#">위시리스트</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">고객센터
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="<%=cp%>/user/event/list">이벤트</a></li>
+          <li><a href="<%=cp%>/user/faq/list">FAQ</a></li>
+          <li><a href="<%=cp%>/user/qna/list">Q&A</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="<%=cp%>/user/member/join"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="<%=cp%>/user/member/join"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>

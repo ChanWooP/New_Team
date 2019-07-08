@@ -31,10 +31,6 @@ p
 	line-height: 190%;
 }
 
-strong
-{
-}
-
 a
 {
 	color: #171717;
@@ -285,7 +281,6 @@ ul.contact li a:before
 {
 	position: relative;
 	overflow: hidden;
-	text-align: center;
 }
 
 /*********************************************************************************/
@@ -707,7 +702,7 @@ ul.contact li a:before
 }
 
 #menu{
-	position: relative; left: 15%; 
+	position: relative; left: 20%; 
 }
 
 #menu ul{
@@ -738,4 +733,8 @@ z-index:200;
 
 #menu li:hover ul{
 	display:block;
+}
+
+a {
+	text-decoration:none
 }

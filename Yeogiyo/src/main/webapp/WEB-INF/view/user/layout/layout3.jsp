@@ -15,16 +15,16 @@
 <link rel="stylesheet" href="<%=cp%>/resource/css/lthstyle.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/css/layout3.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
-<link href="<%=cp%>/resource/css/default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="<%=cp%>/resource/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <script type="text/javascript" src="<%=cp%>/resource/jquery/js/jquery-1.12.4.min.js"></script>
 
 <script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
 <script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
-<style>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-</style>
 </head>
 <body>
 <div class="header">

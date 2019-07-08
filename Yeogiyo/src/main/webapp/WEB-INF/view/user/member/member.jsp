@@ -260,9 +260,9 @@ function userIdCheck() {
 			  <table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 			     <tr height="45"> 
 			      <td align="center" >
-			        <button type="button" name="sendButton" class="memberbtn" onclick="memberOk();">${mode=="join"?"회원가입":"정보수정"}</button>
-			        <button type="reset" class="memberbtn">다시입력</button>
-			        <button type="button" class="memberbtn" onclick="javascript:location.href='<%=cp%>/';">${mode=="join"?"가입취소":"수정취소"}</button>
+			        <button type="button" name="sendButton" class="btn btn-default" onclick="memberOk();">${mode=="join"?"회원가입":"정보수정"}</button>
+			        <button type="reset" class="btn btn-default">다시입력</button>
+			        <button type="button" class="btn btn-default" onclick="javascript:location.href='<%=cp%>/';">${mode=="join"?"가입취소":"수정취소"}</button>
 			      </td>
 			    </tr>
 			    <tr height="30">

@@ -5,7 +5,15 @@
 <%
    String cp = request.getContextPath();
 %>
+<footer class="container-fluid">
+<p>
+<a href="">YEOGIYO 정책 및 약관</a>&nbsp;&nbsp;&nbsp;
+<a href="">회사소개</a>&nbsp;&nbsp;&nbsp;
+<a href="">제휴제안</a>&nbsp;&nbsp;&nbsp;
+<a href="">이용약관</a>&nbsp;&nbsp;&nbsp;
+<a href="">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;
+<a href="">고객센터</a>&nbsp;&nbsp;&nbsp;
+© YEOGIYO Corp.
+</p>
+</footer>
 
-<div id="copyright">
-	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-</div>

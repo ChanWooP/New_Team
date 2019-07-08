@@ -27,6 +27,7 @@
 
 .selectField {
     border:1px solid #999999;
+    height:40px;
     padding:2px 5px 4px;
     border-radius:4px;
 }

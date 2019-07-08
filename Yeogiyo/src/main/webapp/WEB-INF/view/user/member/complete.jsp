@@ -5,73 +5,17 @@
 <%
 	String cp = request.getContextPath();
 %>
-<style type="text/css">
-.logintext {
-	width: 100%; 
-	height: 50px; 
-	border: 1px solid #ccc; 
-	border-radius: 4px;"
-}
-</style>
-<script type="text/javascript">
-function sendLogin() {
-	var f=document.loginForm;
-	var s=f.userId.value;
-	if(!s) {
-		alert("아이디를 입력하세요");
-		f.userId.focus();
-		return;
-	}
-	s=f.userPwd.value;
-	if(!s) {
-		alert("패스워드를 입력하세요");
-		f.userPwd.focus();
-		return;
-	}
-	f.action="<%=cp%>/user/member/login";
-	f.submit();
-}
-</script>
 
 <div class="body-container">
 	<div style="margin: 0px auto; padding-top: 120px; width: 400px;">
 		<div class="mainform">
-			<span style="font-weight: bold; font-size: 30px;">회원로그인</span>
-		</div>
-		<form name="loginForm" method="post" action="">
-		<div style="margin-top: 20px;">
-			<label>
-			<span style="font-weight: bold; font-size: 20px; ">아이디</span>
-			</label>
-			<div style="margin-top: 10px;">
-				<input type="text" name="userId" id="userId" tabindex="2"
-					class="logintext">
-			</div>
+			<span style="font-weight: bold; font-size: 30px;">회원 가입 완료</span>
 		</div>
 		<div style="margin-top: 15px;">
-			<label>
-			<span style="font-weight: bold; font-size: 20px; ">패스워드</span>
-			</label>
-			<div style="margin-top: 10px;">
-				<input type="password" name="userPwd" id="userPwd" tabindex="2"
-					class="logintext">
-			</div>
-			<div style="margin-top: 15px;">
-				<button type="button" onclick="sendLogin()" class="btnconfirm">
-			    	<span style="font-weight: bold; font-size: 25px;">로그인</span>
-			    </button>
-			</div>
-			<div style="margin-top: 10px;">
-			<span style="margin-right:65px"><a href="<%=cp%>/">아이디 찾기</a></span>
-			<span style="margin-right:65px"><a href="<%=cp%>/">비밀번호 찾기</a></span>
-			<span><a href="<%=cp%>/user/member/join">회원가입</a></span>
-			</div>
-			<div style="margin-top: 20px; margin-bottom:100px; text-align:center;">
-			<span style="color:blue;">${message }</span>
-			</div>
-			
+			<button type="button" onclick="javascript:location.href='<%=cp%>/user/main';" class="btnconfirm">
+				<span style="font-weight: bold; font-size: 25px;"> 
+				메인 페이지로 가기 </span>
+			</button>
 		</div>
-		</form>
 	</div>
-
 </div>

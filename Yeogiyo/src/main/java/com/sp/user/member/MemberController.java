@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller("user.member.memberController")
+@Controller("user.memberController")
 public class MemberController {
 	
 	@RequestMapping(value="/user/member/login", method=RequestMethod.GET)
@@ -18,5 +18,6 @@ public class MemberController {
 		model.addAttribute("mode", "join");
 		return ".user.member.member";
 	}
+	
 
 }

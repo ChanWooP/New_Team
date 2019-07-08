@@ -1,11 +1,13 @@
 @charset "UTF-8";
 /* header */
 .navbar{
-	background-color:gold;
+	margin: 0 auto;
+	margin-bottom: 0px !important;	
 }
 .navbar-brand {
 	color:red;
 }
+
 /* footer */
 .footer {
     width:100%;
@@ -14,5 +16,13 @@
     text-align:center;
     background-color: gold;
     line-height: 50px;
-    border-top:1px solid #cccccc;
+}
+
+.container-fluid{
+	width:1170px;
+}
+
+/* body */
+.bodyContainer{
+	background-color:#FFFFFF;
 }

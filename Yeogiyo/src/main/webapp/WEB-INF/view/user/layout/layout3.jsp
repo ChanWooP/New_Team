@@ -13,7 +13,7 @@
 <title>Yeogiyo</title>
 
 <link rel="stylesheet" href="<%=cp%>/resource/css/lthstyle.css" type="text/css">
-<link rel="stylesheet" href="<%=cp%>/resource/css/jh.css" type="text/css">
+<link rel="stylesheet" href="<%=cp%>/resource/css/layout3.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
 
 <link rel="stylesheet"
@@ -28,12 +28,12 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body style="background-color:gold">
 <div class="header">
     <tiles:insertAttribute name="header"/>
 </div>
 	
-<div class="container">
+<div class="bodyContainer">
     <tiles:insertAttribute name="body"/>
 </div>
 

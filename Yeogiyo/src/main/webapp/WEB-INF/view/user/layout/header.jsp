@@ -5,6 +5,7 @@
 <%
    String cp = request.getContextPath();
 %>
+
 <nav class="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -37,3 +38,4 @@
     </ul>
   </div>
 </nav>
+

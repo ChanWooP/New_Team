@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	String cp = request.getContextPath();
+   String cp = request.getContextPath();
 %>
 <script type="text/javascript">
 $(function() {
@@ -11,6 +11,7 @@ $(function() {
 	$("#form-eday").datepicker({showMonthAfterYear:true});
 });
 </script>
+
 <div id="header" class="container">
 	 <div id="mainsearch" style="margin-top:30px; height:500px;">
     	<div style="width:500px; margin:60px; margin-bottom:10px; min-height:330px; border:1px solid yellow; background-color:white;">
@@ -69,3 +70,4 @@ $(function() {
     	</div>
     </div>
 </div> 
+

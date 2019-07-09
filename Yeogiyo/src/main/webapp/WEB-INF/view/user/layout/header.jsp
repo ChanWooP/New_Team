@@ -25,7 +25,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/user/event/list">이벤트</a></li>
 					<li><a href="<%=cp%>/user/faq/list">FAQ</a></li>
-					<li><a href="<%=cp%>/user/qna/list">Q&A</a></li>
+					<li><a href="<%=cp%>/user/qna/list">Q&amp;A</a></li>
 				</ul></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owner.hotel">
+
+<select id="selectHotel" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
+SELECT hotelName, granted FROM hotel WHERE hotelId=#{hotelId}
+</select>
+
+<select id="selectHotelAddOpt" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
+SELECT optNum, optName, optPrice FROM hotelAddOpt WHERE hotelId=#{hotelId}
+</select>
+
+<select id="selectHotelDetail" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
+SELECT detail, mainPhoto, addr1, addr2, postCode, latitude, longitude FROM hotelDetail WHERE hotelId=#{hotelId}
+</select>
+
+<select id="selectHotelPhoto" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
+SELECT hotelPhotoNum, hotelPhotoName FROM hotelPhoto WHERE hotelId=#{hotelId}
+</select>
+
+<select id="selectHotelPrepare" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
+SELECT hotelPrepareNum, prepare FROM hotelPrepare WHERE hotelId=#{hotelId}
+</select>
+
+<select id="selectHotelType" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
+SELECT typeNum, type FROM hotelType WHERER hotelId=#{hotelId}
+</select>
+
+</mapper>

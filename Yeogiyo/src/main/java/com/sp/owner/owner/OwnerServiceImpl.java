@@ -44,6 +44,16 @@ public class OwnerServiceImpl implements OwnerService {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void insertAuthority(Owner owner) throws Exception {
+		try {
+			dao.insertData("insertAuthority", owner);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	@Override
 	public void updateOwner(Owner owner) throws Exception {

@@ -6,7 +6,7 @@
    String cp = request.getContextPath();
 %>
 <script type="text/javascript">
-function execDaumPostcode() {
+function execDaumPostcode() { 
 	new daum.Postcode({
 		oncomplete:function(data){
 			var fullRoadAddr = data.roadAddress;

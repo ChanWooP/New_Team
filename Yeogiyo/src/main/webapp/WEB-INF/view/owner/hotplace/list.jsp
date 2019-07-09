@@ -13,7 +13,7 @@ function hotAdd(){
 	<div class="container">
 		<div style="margin-top:10px;">
 			<strong style="font-size:30px">명소관리</strong>
-			<button type="button" class="btn" style="float:right;" onclick="hotAdd()">명소추가</button>
+			<button type="button" class="btn" style="float:right;" onclick="hotAdd()">명소추가</button> 
 			<hr style="width: 100%; color: black; height: 1px; background-color:black; margin-top:0px; margin-bottom:10px" />
 		</div>
 		<table style="width:100%">

@@ -2,14 +2,14 @@ package com.sp.owner.hotplace;
 
 public class Hotplace {
 	
-	int placeNum;
-	int placeDis;
-	String placeName;
-	String placePhoto;
-	String hotelId;
-	String hotplaceAddr1;
-	String hotplaceAddr2;
-	String hotplacePostcode;
+	private int placeNum;
+	private int placeDis;
+	private String placeName;
+	private String placePhoto;
+	private String hotelId;
+	private String placeAddr1;
+	private String placeAddr2;
+	private String placeZip;
 	
 	public int getPlaceNum() {
 		return placeNum;
@@ -41,24 +41,23 @@ public class Hotplace {
 	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
 	}
-	public String getHotplaceAddr1() {
-		return hotplaceAddr1;
+	public String getPlaceAddr1() {
+		return placeAddr1;
 	}
-	public void setHotplaceAddr1(String hotplaceAddr1) {
-		this.hotplaceAddr1 = hotplaceAddr1;
+	public void setPlaceAddr1(String placeAddr1) {
+		this.placeAddr1 = placeAddr1;
 	}
-	public String getHotplaceAddr2() {
-		return hotplaceAddr2;
+	public String getPlaceAddr2() {
+		return placeAddr2;
 	}
-	public void setHotplaceAddr2(String hotplaceAddr2) {
-		this.hotplaceAddr2 = hotplaceAddr2;
+	public void setPlaceAddr2(String placeAddr2) {
+		this.placeAddr2 = placeAddr2;
 	}
-	public String getHotplacePostcode() {
-		return hotplacePostcode;
+	public String getPlaceZip() {
+		return placeZip;
 	}
-	public void setHotplacePostcode(String hotplacePostcode) {
-		this.hotplacePostcode = hotplacePostcode;
+	public void setPlaceZip(String placeZip) {
+		this.placeZip = placeZip;
 	}
-	
 	
 }

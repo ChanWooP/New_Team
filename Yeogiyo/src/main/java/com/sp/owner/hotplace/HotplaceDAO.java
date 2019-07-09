@@ -1,5 +1,5 @@
 package com.sp.owner.hotplace;
 
-public class HotplaceDAO {
-
+public interface HotplaceDAO {
+	public void insertHotplace(Hotplace dto) throws Exception;
 }

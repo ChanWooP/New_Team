@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("owner.hotplaceController")
 public class HotplaceController {
+	
+	@Autowired
+	private HotplaceService service;
+	
 	@RequestMapping(value="/owner/hotplace/list")
 	public String list() {
 		return ".owner.hotplace.list";
@@ -30,11 +35,11 @@ public class HotplaceController {
 		
 		try {
 			String root = session.getServletContext().getRealPath("/");
-			String pathname = root + "uploads"+ File.separator + "hotplace";
+			String pathName = root + "uploads"+ File.separator + "hotplace";
 			
 			//세션 처리 해줘야함 호텔 아이디 나중에 수정
-			dto.setHotelId("hotel1");
-			
+			dto.setHotelId("loote");
+			service.insertHotplace(dto, pathName);
 			
 		} catch (Exception e) {
 			// TODO: handle exception

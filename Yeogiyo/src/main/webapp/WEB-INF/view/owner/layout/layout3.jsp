@@ -26,7 +26,7 @@
 <script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body style="background-color:gold">
 <div class="header">

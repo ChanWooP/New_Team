@@ -35,7 +35,7 @@
 		<!-- 기타 모든 페이지 -->
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 		
-		<!-- 로그인 폼 -->
+		<!-- 사용자 로그인 폼 -->
 		<form-login login-page="/user/member/login"
 				login-processing-url="/user/member/login"
 				username-parameter="userId"
@@ -60,23 +60,36 @@
 	<http auto-config="true">
 		<csrf disabled="true"/>
 		
-		<intercept-url pattern="/owner/login" access="permitAll"/>
-		<intercept-url pattern="/owner/find" access="permitAll"/>
-		<intercept-url pattern="/owner/register" access="permitAll"/>
+		<intercept-url pattern="/owner/owner/login" access="permitAll"/>
+		<intercept-url pattern="/owner/owner/find" access="permitAll"/>
+		<intercept-url pattern="/owner/owner/register" access="permitAll"/>
 		
-		<intercept-url pattern="/owner/changepwd" access="hasRole(ROLE_OWNER)"/>
-		<intercept-url pattern="/owner/editinfo" access="hasRole(ROLE_OWNER)"/>
-		<intercept-url pattern="/owner/exit" access="hasRole(ROLE_OWNER)"/>
-		<intercept-url pattern="/owner/find" access="hasRole(ROLE_OWNER)"/>
-		<intercept-url pattern="/owner/viewinfo" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/owner/changepwd" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/owner/editinfo" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/owner/exit" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/owner/find" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/owner/viewinfo" access="hasRole(ROLE_OWNER)"/>
 		
-		<form-login login-page="/owner/login"
-					login-processing-url="/owner/login_check"
+		<!-- 호텔 오너 로그인 폼 -->
+		<form-login login-page="/owner/owner/login"
+					login-processing-url="/owner/owner/login_check"
 					username-parameter="ownerId"
 					password-parameter="owernPwd"
-					authentication-failure-url="owner/login?login_error"
-					/>
-	</http>
+					authentication-failure-url="/owner/owner/login?login_error"
+					default-target-url="/"
+					always-use-default-target="false"
+					authentication-success-handler-ref="authenticationSuccessHandler"/>
+					
+		<logout	logout-url="/owner/owner/logout"
+				invalidate-session="true"
+				logout-success-url="/"/>
+				
+		<access-denied-handler error-page="/owner/owner/noAuthorized"/>
+		
+		<session-management>
+			<concurrency-control max-sessions="1" expired-url="/member/expired"/>
+		</session-management>
+	</http>		
     
     <beans:bean id="authenticationSuccessHandler" class="com.sp.user.member.MyAuthenticationSuccessHandler"/>
     

@@ -4,7 +4,7 @@
 <mapper namespace="owner.hotel">
 
 <select id="selectHotel" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
-SELECT hotelName, granted FROM hotel WHERE hotelId=#{hotelId}
+SELECT hotelId, hotelName, granted FROM hotel WHERE hotelId=#{hotelId}
 </select>
 
 <select id="selectHotelAddOpt" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
@@ -12,7 +12,7 @@ SELECT optNum, optName, optPrice FROM hotelAddOpt WHERE hotelId=#{hotelId}
 </select>
 
 <select id="selectHotelDetail" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">
-SELECT detail, mainPhoto, addr1, addr2, postCode, latitude, longitude FROM hotelDetail WHERE hotelId=#{hotelId}
+SELECT hotelId, detail, mainPhoto, addr1, addr2, postCode, latitude, longitude FROM hotelDetail WHERE hotelId=#{hotelId}
 </select>
 
 <select id="selectHotelPhoto" parameterType="com.sp.owner.hotel.Hotel" resultType="com.sp.owner.hotel.Hotel">

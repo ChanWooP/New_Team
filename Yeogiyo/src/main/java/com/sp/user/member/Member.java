@@ -1,8 +1,7 @@
 package com.sp.user.member;
 
 public class Member {
-	
-	private int membership;
+
 	private String userId, userName, userPwd, userCreated, userModified;
 	private String userEmail, email1, email2;
 	private String userTel, tel1, tel2, tel3;
@@ -10,12 +9,6 @@ public class Member {
 	private int enabled;
 	private String authority;
 	
-	public int getMembership() {
-		return membership;
-	}
-	public void setMembership(int membership) {
-		this.membership = membership;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -107,6 +100,4 @@ public class Member {
 		this.authority = authority;
 	}
 	
-	
-
 }

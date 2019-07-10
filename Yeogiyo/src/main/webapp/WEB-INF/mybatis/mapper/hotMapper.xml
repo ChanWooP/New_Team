@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Hotplace">	
-	<insert id="insertHotplace" parameterType="com.sp.owner.hotplace.Hotplace">
-		INSERT INTO hotplace(placeNum, placeName, placeDis, placePhoto, hotelId, placeAddr1, placeAddr2, placeZip)
-		VALUES(HOTPLACE_SEQ.NEXTVAL, #{placeName}, #{placeDis}, #{placePhoto}, #{hotelId}, #{placeAddr1}, #{placeAddr2}, #{placeZip})
-	</insert>
-</mapper>

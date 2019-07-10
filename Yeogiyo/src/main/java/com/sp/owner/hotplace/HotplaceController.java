@@ -1,10 +1,5 @@
 package com.sp.owner.hotplace;
 
-import java.io.File;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("owner.hotplaceController")
 public class HotplaceController {
-	
-	@Autowired
-	private HotplaceService service;
 	
 	@RequestMapping(value="/owner/hotplace/list")
 	public String list() {
@@ -27,7 +19,7 @@ public class HotplaceController {
 		model.addAttribute("subject","명소추가");
 		return ".owner.hotplace.created";
 	}
-	
+	/*
 	@RequestMapping(value="/owner/hotplace/created", method=RequestMethod.POST)
 	public String createSubmit(Hotplace dto, HttpSession session) throws Exception{
 		
@@ -47,4 +39,5 @@ public class HotplaceController {
 		
 		return "redirect:/owner/hotplace/list";
 	}
+	*/
 }

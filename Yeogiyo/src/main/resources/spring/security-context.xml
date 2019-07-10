@@ -56,6 +56,27 @@
 			<concurrency-control max-sessions="1" expired-url="/user/member/expired"/>
 		</session-management>				
 	</http>
+	
+	<http auto-config="true">
+		<csrf disabled="true"/>
+		
+		<intercept-url pattern="/owner/login" access="permitAll"/>
+		<intercept-url pattern="/owner/find" access="permitAll"/>
+		<intercept-url pattern="/owner/register" access="permitAll"/>
+		
+		<intercept-url pattern="/owner/changepwd" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/editinfo" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/exit" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/find" access="hasRole(ROLE_OWNER)"/>
+		<intercept-url pattern="/owner/viewinfo" access="hasRole(ROLE_OWNER)"/>
+		
+		<form-login login-page="/owner/login"
+					login-processing-url="/owner/login_check"
+					username-parameter="ownerId"
+					password-parameter="owernPwd"
+					authentication-failure-url="owner/login?login_error"
+					/>
+	</http>
     
     <beans:bean id="authenticationSuccessHandler" class="com.sp.user.member.MyAuthenticationSuccessHandler"/>
     

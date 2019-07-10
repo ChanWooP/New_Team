@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service("user.notice.noticeService")
 public class NoticeServiceImpl implements NoticeService {
 
-	private co
+	//private co
 	@Override
 	public void insertNotice(Notice dto) {
 		// TODO Auto-generated method stub

@@ -1,7 +1,7 @@
 package com.sp.user.member;
 
 public class Member {
-	
+
 	private String userId, userName, userPwd, userCreated, userModified;
 	private String userEmail, email1, email2;
 	private String userTel, tel1, tel2, tel3;

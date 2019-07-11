@@ -16,6 +16,42 @@ public class Hotel {
 	private String checkin;
 	private String checkout;
 	private String ownerName;
+	private String hotelphotoName;
+	private String roomtype;
+	private int roomprice;
+	private int maxpeople;
+	private String roomdetails;
+	
+	public String getRoomtype() {
+		return roomtype;
+	}
+	public void setRoomtype(String roomtype) {
+		this.roomtype = roomtype;
+	}
+	public int getRoomprice() {
+		return roomprice;
+	}
+	public void setRoomprice(int roomprice) {
+		this.roomprice = roomprice;
+	}
+	public int getMaxpeople() {
+		return maxpeople;
+	}
+	public void setMaxpeople(int maxpeople) {
+		this.maxpeople = maxpeople;
+	}
+	public String getRoomdetails() {
+		return roomdetails;
+	}
+	public void setRoomdetails(String roomdetails) {
+		this.roomdetails = roomdetails;
+	}
+	public String getHotelphotoName() {
+		return hotelphotoName;
+	}
+	public void setHotelphotoName(String hotelphotoName) {
+		this.hotelphotoName = hotelphotoName;
+	}
 	public String getHotelId() {
 		return hotelId;
 	}
@@ -105,7 +141,5 @@ public class Hotel {
 	}
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
-	}
-	
-	
+	}	
 }

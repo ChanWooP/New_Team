@@ -11,4 +11,9 @@ public class ReservationController {
 	public String reservate() {
 		return ".user.reservation.reservation";
 	}
+	
+	@RequestMapping(value="/user/reservation/complete")
+	public String complete() {
+		return ".user.reservation.reserveComplete";
+	}
 }

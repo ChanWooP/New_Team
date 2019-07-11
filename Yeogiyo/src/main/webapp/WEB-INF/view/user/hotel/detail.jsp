@@ -5,134 +5,182 @@
 <%
 	String cp = request.getContextPath();
 %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#form-sday").datepicker({showMonthAfterYear:true});
+	$("#form-eday").datepicker({showMonthAfterYear:true});
+});
+ 
+</script>
+
+
 <style type="text/css">
 
 .hoteldetail {
 	margin: 0px auto;
 	text-align: center;
 	width: 800px;
-	background: #ff0000;
+	background: #ffffaa;
 	border: 1px solid #000000;
 	padding-bottom: 20px;
 }	
 
-.hoteldetail img,textarea{
-	width:500px;
-}
-
-.roomtab {
+.room {
 	margin:15px auto;
 	width: 700px;
 	text-align: center;
 	border: 1px solid #000000;
-	background: #e4e4e4;
+	background: #ffffe6;
 }
 
-.roomtab img {
+.room img {
 	width: 200px;
 	height: 100px;
+	padding: 5px 5px auto;
 }
 
-.roomtab tr {
+.room tr {
 	border: 1px solid #000000;
+	
 }
 
-.roomtab tr td {
+.room tr td {
 	border: 1px solid #000000;
 	width:100px;
+	text-align: center;
 }
 
-.roomtab tr th {
+.room tr th {
 	border: 1px solid #000000;
+	text-align: center;
 }
 
 .hotelname {
 	margin:15px auto;
 	border: 1px solid #000000;
 	width:80%;
-	background: #e4e4e4;
+	background: #ffffe6;
 }
 
 .convenient {
 	margin:15px auto;
 	border: 1px solid #000000;
 	width:80%;
-	background: #e4e4e4;
+	background: #ffffe6;
 }
+
+.carousel-inner > .item > img {
+	margin:auto;
+	width:600px;
+	height:350px;
+	background:#ffffaa;
+}
+
+.right carousel-control{
+	background:#ffffaa;
+}
+
+.subSearch {
+	height:100px;
+	padding:10px 10px;
+	margin:20px 0px;
+	text-align: center;
+	background: #E9F0FA;
+}
+
+.subSearchWrapper {
+	height:50px;
+	margin:10px 10px;
+	padding:10px 10px;
+	text-align: center;
+	background: #E9F0FA;
+	border:1px solid black;
+	min-width: 1100px;
+}
+
+
 </style>
 
 <div class="body-container">
-	<div style="padding-top: 30px; padding-bottom: 30px;">
-		<div class="hoteldetail">
-			<div class="hotelname">
-				<h3>호텔 이름</h3>
-				<small>부산광역시 해운대구 해운대로570번길 46</small>
+	<div style="padding-top:5px; padding-bottom: 50px;">
+		<div class="subSearch">
+			<div class="subSearchWrapper">
+				<label>목적지</label>
+				<input type="text" name="place">
+				<label>체크인 날짜</label>
+				<input type="text" name="checkinday" id="form-sday" readonly="readonly"> 
+				<label>체크아웃 날짜</label>
+				<input type="text" name="checkoutday" id="form-eday" readonly="readonly"> 
+				<label>인원</label>
+				<input type="text" name="pnum">	
+				<label>인원</label>
+				<button>검색</button>		
 			</div>
-			<div>
-				<p>대표사진</p>
-				<img src="<%=cp%>/resource/img/logo.jpg">
-			</div>
-
-			<div class="convenient">
-				<p>편의시설</p>
-				<p>
+		</div>	
 		
-주요 편의 시설		| 가족 편의 시설/서비스	| 주변 명소
-407개의 금연 객실	| 냉장고				| 해운대에 위치
-해변 근처			| 전용 욕실			| 파라다이스 카지노(걸어서 8분 거리)
-레스토랑 및 바/라운지	| TV				| 부산 전시컨벤션센터(걸어서 40분 거리)
-루프탑 테라스		| 무료 세면용품			| 신세계 센텀 시티(걸어서 43분 거리)
-아침 식사 가능		| 정원				| 부산 아쿠아리움(걸어서 3분 거리)
-시즌별로 운영되는 야외 수영장 |  매일 하우스키핑	| 라듐 아트센터(걸어서 8분 거리)
-피트니스 센터		|					| 동백공원(걸어서 9분 거리)
-24시간 운영되는 비즈니스 센터				| 더베이101(걸어서 10분 거리)
-
-				</p>
-				</div>
-
-			<div class="roomtab">
-				<table class="room">
-					<thead><p>호텔이름</p></thead>
-					<tbody>
-						<tr>
-							<th>객실유형</th>
-							<th>선택사항</th>
-							<th>최대 수용인원</th>
-							<th>총가격</th>
-							<th></th>
-						</tr>
-
-						<tr>
-							<td><p>스탠다드 패밀리룸</p><img src="<%=cp%>/resource/img/logo.jpg"></td>
-							<td>아침식사 가능</td>
-							<td>3</td>
-							<td>80000</td>
-							<td><button>예약하기</button></td>
-						</tr>
-						<tr>
-							<td><p>디럭스 더블룸 바다전망</p><img src="<%=cp%>/resource/img/logo.jpg"></td>
-							<td>아침식사 가능</td>
-							<td>2</td>
-							<td>60000</td>
-							<td><button>예약하기</button></td>
-						</tr>
-						<tr>
-							<td><p>스탠다드 트윈룸 바다전망</p><img src="<%=cp%>/resource/img/logo.jpg"></td>
-							<td>아침식사 가능</td>
-							<td>2</td>
-							<td>100000</td>
-							<td><button>예약하기</button></td>
-						</tr>
-						<tr>
-							<td><p>디럭스 패밀리룸</p><img src="<%=cp%>/resource/img/logo.jpg"></td>
-							<td>아침식사 가능</td>
-							<td>3</td>
-							<td>150000</td>
-							<td><button>예약하기</button></td>
-						</tr>
-					</tbody>
-				</table>
+		
+		<div class="hoteldetail">
+			<c:forEach var="dto" items="${details}">
+			<div class="hotelname">
+			
+				<h3>${dto.hotelName}</h3>
+				<small>${dto.addr1}, ${dto.addr2}</small>
+			
 			</div>
+			<div class="imgshow">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators" >
+						<c:forEach var="dto" items="${plist}" varStatus="status">
+    						<li data-target="#myCarousel" data-slide-to="${status.index}" ${status.index==0?"class='active'":""}></li>
+    					</c:forEach>
+ 					 </ol>
+ 					 
+ 					<div class="carousel-inner">
+ 						<c:forEach var="dto" items="${plist}" varStatus="status">
+							<div class="item ${status.index==0?'active':''}">
+						    	<img src="<%=cp%>/resource/images/${dto.hotelphotoName}.jpg" alt="">
+						    </div>
+					    </c:forEach>
+					</div>
+					  
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>				  
+			</div>
+				
+				<div class="convenient">
+					<p>편의시설</p>
+					<p>${dto.detail}</p>
+				</div>
+			</c:forEach>
+			
+				<table class="room">
+					<tr>
+						<th>방유형</th>
+						<th>방 세부사항</th>
+						<th>최대 수용인원</th>
+						<th>총가격</th>
+						<th></th>
+					</tr>
+					
+					<c:forEach var="dto" items="${rlist}">
+						<tr>
+							<td><p>${dto.roomtype}</p><img src="<%=cp%>/resource/img/logo.jpg"></td>
+							<td>${dto.roomdetails}</td>
+							<td>${dto.maxpeople}</td>
+							<td>${dto.roomprice}</td>
+							<td><button>예약하기</button></td>
+						</tr>
+					</c:forEach>
+				</table>		
 		</div>
 	</div>
 </div>

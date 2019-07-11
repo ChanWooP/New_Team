@@ -21,6 +21,7 @@ public class Reservation {
 	private String checkout;
 	private int price;
 	private int roomnum;
+	
 	public int getReservationNum() {
 		return reservationNum;
 	}

@@ -5,22 +5,9 @@
 <%
 	String cp = request.getContextPath();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
 
-</style>
-</head>
-<body>
 <div class="body-container">
-	<div class="hotelList">
-		
-		asdaSDASDAF
-			
-	</div>	
+	<div class= "payment">
+		결제가 완료되었습니다.
+	</div>
 </div>
-</body>
-</html>

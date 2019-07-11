@@ -14,6 +14,8 @@ $(function() {
 });
  
 </script>
+
+
 <style type="text/css">
 
 .hoteldetail {
@@ -153,7 +155,7 @@ $(function() {
 					</a>
 				</div>				  
 			</div>
-
+				
 				<div class="convenient">
 					<p>편의시설</p>
 					<p>${dto.detail}</p>

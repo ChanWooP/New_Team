@@ -5,13 +5,34 @@
 <%
 	String cp = request.getContextPath();
 %>
+<script type="text/javascript">
+function sendOk() {
+	var f=document.noticeForm;
+	var s=f.noticeTitle.value;
+	if(! s) {
+		alert("공지사항 제목을 입력하세요.");
+		f.noticeTitle.focus();
+		return;
+	}
+	
+	s=f.noticeContent.value;
+	if(! s) {
+		alert("공지사항 내용을 입력하세요.");
+		f.noticeTitle.focus();
+		return;
+	}
+	
+	f.action="<%=cp%>/user/notice/${mode}";
+	f.submit();
+}
+</script>
 <div class="container">
 	<div style="margin: 0px auto; padding-top: 70px; width: 800px; margin-bottom:100px;">
 		<div class="mainform">
 			<span style="font-weight: bold; font-size: 30px;">Notice</span>
 		</div>
 		<div>
-			<form name="boardForm" method="post">
+			<form name="noticeForm" method="post">
 				<table
 					style="width: 100%; margin: 20px auto 0px; border-spacing: 0px;">
 					<tr>
@@ -20,8 +41,8 @@
 							style="font-weight: 900;">제목</label></td>
 						<td style="padding: 0 0 15px 15px;">
 							<p style="margin-bottom: 5px;">
-								<input type="text" name="" id="" value="" style="width: 95%;"
-									maxlength="15" class="boxTF">
+								<input type="text" name="noticeTitle" style="width: 95%;"
+									maxlength="100" class="boxTF" value="${dto.noticeTitle }">
 							</p>
 						</td>
 					</tr>
@@ -31,8 +52,8 @@
 							style="font-weight: 900;">내용</label></td>
 						<td style="padding: 0 0 15px 15px;">
 							<p style="margin-bottom: 10px;">
-								<textarea name="content" rows="12" class="boxTA"
-									style="width: 95%;"></textarea>
+								<textarea name="noticeContent" rows="12" class="boxTA"
+									style="width: 95%;">${dto.noticeContent }</textarea>
 							</p>
 						</td>
 					</tr>
@@ -51,7 +72,7 @@
 				<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 					<tr height="40">
 						<td align="center"><c:if test="${mode=='update'}">
-								<input type="hidden" name="boardNum" value="${dto.boardNum}">
+								<input type="hidden" name="noticeNum" value="${dto.noticeNum}">
 								<input type="hidden" name="page" value="${page}">
 							</c:if> 
 							<button type="button" class="btn btn-default" onclick="sendOk();">${mode=='update'?'수정완료':'등록하기'}</button>

@@ -19,28 +19,36 @@
 							style="width: 100%; margin: 5px auto 0px; border-spacing: 0px;">
 							<tr height="10">
 								<td align="left" width="50%">
-									${dataCount}개(${page}/${total_page} 페이지)</td>
+									${dataCount}개 (${page} / ${total_page}페이지)</td>
 								<td align="right">&nbsp;</td>
 							</tr>
 						</table>
 						<table class="table">
 							<thead>
 								<tr>
-									<th width="80">번호</th>
+									<th width="100">번호</th>
 									<th>제목</th>
-									<th width="100">작성일</th>
-									<th width="60">공지</th>
+									<th width="150">작성일</th>
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach var="dto" items="${toplist }">
+									<tr>
+										<td><span style="display: inline-block;padding:1px 3px; background: #ED4C00;color: #FFFFFF">공지</span></td>
+										<td>
+										<a href="${articleUrl }&noticeNum=${dto.noticeNum}">${dto.noticeTitle }</a>
+										</td>
+										<td>${dto.noticeCreated }</td>
+									</tr>
+								</c:forEach>
 								<c:forEach var="dto" items="${list }">
 									<tr>
 										<td>${dto.listNum }</td>
 										<td>
-										<a href="${articleUrl }&boardNum=${dto.boardNum}">${dto.subject }</a>
+										<a href="${articleUrl }&noticeNum=${dto.noticeNum}">${dto.noticeTitle }</a>
+										<c:if test="${dto.gap < 1 }"><img src='<%=cp%>/resource/images/new.gif'></c:if>
 										</td>
-										<td>${dto.userId }</td>
-										<td>${dto.created }</td>
+										<td>${dto.noticeCreated }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -53,7 +61,7 @@
 						</table>
 					</div>
 				</div>
-
+			<c:if test="${sessionScope.member.userId=='admin' }">
 				<table style="width: 100%; margin: 10px auto; border-spacing: 0px;">
 					<tr height="40">
 						<td align="right" width="100">
@@ -64,7 +72,7 @@
 						</td>
 					</tr>
 				</table>
-
+			</c:if>
 			</div>
 		</div>
 	</div>

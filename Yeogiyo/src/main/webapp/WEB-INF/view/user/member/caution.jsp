@@ -18,7 +18,7 @@
 			</button>
 		</div>
 		<div align=center style="line-height: 150%; padding-top: 35px; color:blue;">
-                       ${message}            
+         ${message }                          
         </div>
 	</div>
 </div>

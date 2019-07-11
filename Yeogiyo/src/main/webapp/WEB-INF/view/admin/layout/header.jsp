@@ -1,42 +1,52 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-   String cp=request.getContextPath();
+   String cp = request.getContextPath();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>여기요</title>
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="<%=cp%>/resource/css" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<div class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu">	
-					<span class="bar1"></span>
-					<span class="bar2"></span>
-					<span class="bar3"></span>
-			  </div>
-				<a class="navbar-brand top" href="#">
-					
-				</a>
 
-			</div>
+<nav class="navbar">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="<%=cp%>/user/main"><span
+					class="glyphicon glyphicon-map-marker"></span> YEOGIYO</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="#"><span
+					class="	glyphicon glyphicon-home"></span> 호텔승인</a></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">게시판 관리 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<%=cp%>/user/bbs/list">자유게시판</a></li>
+					<li><a href="<%=cp%>/user/bbs/list">신고 리뷰</a></li>
+				</ul></li>	
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">소식 관리<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<%=cp%>/user/notice/list">공지사항</a></li>
+					<li><a href="<%=cp%>/user/event/list">Event</a></li>
+				</ul></li>	
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">고객센터 관리<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<%=cp%>/user/faq/list">FAQ</a></li>
+					<li><a href="<%=cp%>/user/qna/list">Q&amp;A</a></li>
+				</ul></li>
+		</ul>
+		
+		<c:if test="${not empty sessionScope.member }">
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="<%=cp%>/user/member/memberInfo"><span
+					class="	glyphicon glyphicon-heart"></span> ${sessionScope.member.userId }</a></li>
+			<li><a href="<%=cp%>/user/member/logout"><span
+					class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			<c:if test="${sessionScope.member.userId=='admin' }">
+			<li><a href="<%=cp%>/admin/main"><span
+					class="	glyphicon glyphicon-user"></span> AdminPage</a></li>
+			</c:if>		
+		</ul>
+		</c:if>
+	</div>
+</nav>
 
-			<div class="collapse navbar-collapse" id="main-menu">
-			   <ul class="nav navbar-nav navbar-right">
-				<li><a href="#about">About</a></li>
-				<li><a href="#portfolio">Portfolio</a></li>
-				<li><a href="#press">Press</a></li>
-				<li><a href="#brand">Brand</a></li>
-			  </ul>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>
-</body>
-</html>

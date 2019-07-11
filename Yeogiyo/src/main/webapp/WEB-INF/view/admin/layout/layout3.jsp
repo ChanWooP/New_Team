@@ -15,8 +15,6 @@
 <link rel="stylesheet" href="<%=cp%>/resource/css/lthstyle.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/css/layout3.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/resource/jquery/css/smoothness/jquery-ui.min.css" type="text/css">
-<link href="<%=cp%>/resource/css/default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="<%=cp%>/resource/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,17 +24,16 @@
 
 <script type="text/javascript" src="<%=cp%>/resource/js/util-jquery.js"></script>
 <script type="text/javascript" src="<%=cp%>/resource/js/util.js"></script>
-
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body style="background-color:gold">
 <div class="header">
     <tiles:insertAttribute name="header"/>
 </div>
 	
-<div class="container">
+<div class="bodyContainer">
     <tiles:insertAttribute name="body"/>
 </div>
 

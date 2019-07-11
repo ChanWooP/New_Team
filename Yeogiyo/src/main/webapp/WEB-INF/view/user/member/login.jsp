@@ -33,8 +33,8 @@ function sendLogin() {
 }
 </script>
 
-<div class="body-container">
-	<div style="margin: 0px auto; padding-top: 120px;">
+<div class="container">
+	<div style="margin: 0px auto; padding-top: 120px; width: 400px;">
 		<div class="mainform">
 			<span style="font-weight: bold; font-size: 30px;">회원로그인</span>
 		</div>
@@ -62,8 +62,8 @@ function sendLogin() {
 			    </button>
 			</div>
 			<div style="margin-top: 10px;">
-			<span style="margin-right:65px"><a href="<%=cp%>/">아이디 찾기</a></span>
-			<span style="margin-right:65px"><a href="<%=cp%>/">비밀번호 찾기</a></span>
+			<span style="margin-right:85px;"><a href="<%=cp%>/">아이디 찾기</a></span>
+			<span style="margin-right:85px;"><a href="<%=cp%>/">비밀번호 찾기</a></span>
 			<span><a href="<%=cp%>/user/member/join">회원가입</a></span>
 			</div>
 			<div style="margin-top: 20px; margin-bottom:100px; text-align:center;">

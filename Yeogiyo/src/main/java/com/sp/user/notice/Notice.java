@@ -5,6 +5,7 @@ public class Notice {
 	private int listNum, noticeNum, notice;
 	private String noticeTitle, noticeContent;
 	private String noticeCreated;
+	private long gap;
 	
 	public int getListNum() {
 		return listNum;
@@ -41,6 +42,12 @@ public class Notice {
 	}
 	public void setNoticeCreated(String noticeCreated) {
 		this.noticeCreated = noticeCreated;
+	}
+	public long getGap() {
+		return gap;
+	}
+	public void setGap(long gap) {
+		this.gap = gap;
 	}
 	
 	

@@ -5,14 +5,15 @@ import java.util.Map;
 
 public interface NoticeService {
 
-	public void insertNotice(Notice dto);
+	public void insertNotice(Notice dto) throws Exception;
 	
-	public int dataCount(Map<String, Object> map);
+	public int dataCount();
 	public List<Notice> listNotice(Map<String, Object> map);
+	public List<Notice> listNoticeTop();
 	
 	public Notice readNotice(int noticeNum);
-	public Notice preReadNotice(Map<String, Object> map);
-	public Notice nextReadNotice(Map<String, Object> map);
+	public Notice preReadNotice(int noticeNum);
+	public Notice nextReadNotice(int noticeNum);
 	
 	public void updateNotice(Notice dto) throws Exception;
 	public void deleteNotice(int noticeNum) throws Exception;

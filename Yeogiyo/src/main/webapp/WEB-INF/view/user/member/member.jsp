@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
 function memberOk() {
-	var f=document.joinForm;
+	var f=document.memberForm;
 	var s=f.userId.value;
 	s=s.trim();
 	if(!s) {
@@ -110,11 +110,57 @@ function memberOk() {
 	}
 	
 	f.action="<%=cp%>/user/member/${mode}";
-	f.submit
+	f.submit();
+}
+
+function changeEmail() {
+    var f = document.memberForm;
+	    
+    var str = f.selectEmail.value;
+    if(str!="direct") {
+        f.email2.value=str; 
+        f.email2.readOnly = true;
+        f.email1.focus(); 
+    }
+    else {
+        f.email2.value="";
+        f.email2.readOnly = false;
+        f.email1.focus();
+    }
 }
 
 function userIdCheck() {
+	var userId = $("#userId").val();
+	userId = userId.trim();
+	if(!/^[a-z][a-z0-9_]{4,14}$/i.test(userId)) { 
+		$("#userId").focus();
+		return;
+	}
 	
+	var url="<%=cp%>/user/member/userIdCheck";
+	var q="userId="+userId;
+	
+	$.ajax({
+		type:"post"
+		,url:url
+		,data:q
+		,dataType:"json"
+		,success:function(data) {
+			var p=data.passed;
+			if(p=="true") {
+				var s="<span style='color:blue;font-weight:bold;'>"+str+"</span> 아이디는 사용 가능합니다.";
+				$("#userId").parent().next(".help-block").html(s);
+			} else {
+				var s="<span style='color:red;font-weight:bold;'>"+str+"</span> 아이디는 사용할 수 없습니다.";
+				$("#userId").parent().next(".help-block").html(s);
+				$("#userId").val("");
+				$("#userId").focus();
+			}
+		}
+	    ,error:function(e) {
+	    	console.log(e.responseText);
+	    }
+	});
 }
 
 </script>
@@ -131,7 +177,7 @@ function userIdCheck() {
 	여기요를 가입하시면 더욱 많은 혜택을 받을 수 있습니다.
 	</span> 
 	</div>
-	<form name="joinForm" method="post">
+	<form name="memberForm" method="post">
 	<div style="margin-top:15px;">
 	<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px;">
 	<tr>
@@ -155,7 +201,7 @@ function userIdCheck() {
 		     <td style="padding: 0 0 15px 15px;">
 		       <p style="margin-bottom: 5px;">
 		           <input type="password" name="userPwd" style="width: 95%;" 
-		           maxlength="15" class="boxTF" placeholder="아이디">
+		           maxlength="15" class="boxTF" placeholder="패스워드">
 		       </p>
 		       <p class="helpblock">패스워드는 5~10자 이내이며, 하나 이상의 숫자나 특수문자가 포함되어야 합니다.</p>
 		    </td>
@@ -203,7 +249,7 @@ function userIdCheck() {
 			      </td>
 			      <td style="padding: 0 0 15px 15px;">
 			        <p style="margin-top: 1px; margin-bottom: 5px;">
-			            <select name="selectEmail" onchange="changeEmail();" class="selectField">
+			            <select name="selectEmail" onchange="changeEmail();" class="selectField" style="height:30px">
 			                <option value="">선 택</option>
 			                <option value="naver.com" ${dto.email2=="naver.com" ? "selected='selected'" : ""}>네이버 메일</option>
 			                <option value="hanmail.net" ${dto.email2=="hanmail.net" ? "selected='selected'" : ""}>한 메일</option>
@@ -224,7 +270,7 @@ function userIdCheck() {
 		     </td>
 		     <td style="padding: 0 0 15px 15px;">
 		       <p style="margin-bottom: 5px;">
-		           <select class="selectField" id="tel1" name="tel1" >
+		           <select class="selectField" id="tel1" name="tel1" style="height:30px">
 		               <option value="">선 택</option>
 		               <option value="010" ${dto.tel1=="010" ? "selected='selected'" : ""}>010</option>
 		               <option value="011" ${dto.tel1=="011" ? "selected='selected'" : ""}>011</option>

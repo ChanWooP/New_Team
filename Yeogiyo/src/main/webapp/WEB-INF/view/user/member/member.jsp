@@ -6,7 +6,7 @@
    String cp = request.getContextPath();
 %>
 <style type="text/css">
-.helpblock {
+.help-block {
 	margin-bottom: 5px;
 }
 </style>
@@ -146,12 +146,12 @@ function userIdCheck() {
 		,data:q
 		,dataType:"json"
 		,success:function(data) {
-			var p=data.passed;
-			if(p=="true") {
-				var s="<span style='color:blue;font-weight:bold;'>"+str+"</span> 아이디는 사용 가능합니다.";
+			var state=data.state;
+			if(state=="true") {
+				var s="<span style='color:blue;font-weight:bold;'>"+userId+"</span> 아이디는 사용 가능합니다.";
 				$("#userId").parent().next(".help-block").html(s);
 			} else {
-				var s="<span style='color:red;font-weight:bold;'>"+str+"</span> 아이디는 사용할 수 없습니다.";
+				var s="<span style='color:red;font-weight:bold;'>"+userId+"</span> 아이디는 사용할 수 없습니다.";
 				$("#userId").parent().next(".help-block").html(s);
 				$("#userId").val("");
 				$("#userId").focus();
@@ -187,11 +187,11 @@ function userIdCheck() {
 		     <td style="padding: 0 0 15px 15px;">
 		       <p style="margin-bottom: 5px;">
 		           <input type="text" name="userId" id="userId" value="${dto.userId}"
-                         onchange="userIdCheck();" style="width: 95%;"
+                         onchange="userIdCheck()" style="width: 95%;"
                          ${mode=="update" ? "readonly='readonly' ":""}
                          maxlength="15" class="boxTF" placeholder="아이디">
 		       </p>
-		       <p class="helpblock">아이디는 5~15자 이내이며, 첫글자는 영문자로 시작해야 합니다.</p>
+		       <p class="help-block">아이디는 5~15자 이내이며, 첫글자는 영문자로 시작해야 합니다.</p>
 		    </td>
 	</tr>
 	<tr>
@@ -203,7 +203,7 @@ function userIdCheck() {
 		           <input type="password" name="userPwd" style="width: 95%;" 
 		           maxlength="15" class="boxTF" placeholder="패스워드">
 		       </p>
-		       <p class="helpblock">패스워드는 5~10자 이내이며, 하나 이상의 숫자나 특수문자가 포함되어야 합니다.</p>
+		       <p class="help-block">패스워드는 5~10자 이내이며, 하나 이상의 숫자나 특수문자가 포함되어야 합니다.</p>
 		    </td>
 	</tr>
 	 <tr>
@@ -215,7 +215,7 @@ function userIdCheck() {
 		           <input type="password" name="userPwdCheck" maxlength="15" class="boxTF"
 		                      style="width: 95%;" placeholder="패스워드 확인">
 		       </p>
-		       <p class="helpblock">패스워드를 한번 더 입력해주세요.</p>
+		       <p class="help-block">패스워드를 한번 더 입력해주세요.</p>
 		     </td>
 		 </tr>
 		 <tr>
@@ -239,7 +239,7 @@ function userIdCheck() {
 		           <input type="text" name="birth" maxlength="15" class="boxTF"
 		                      style="width: 95%;" placeholder="생년월일" value="${dto.birth }">
 		       </p>
-		       <p class="helpblock">생년월일은 2000-01-01형식으로 입력해 주세요.</p>
+		       <p class="help-block">생년월일은 2000-01-01형식으로 입력해 주세요.</p>
 		     </td>
 		 </tr>
 		 

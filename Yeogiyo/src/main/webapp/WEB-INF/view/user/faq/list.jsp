@@ -123,7 +123,7 @@ $(function() {
 							</tr>
 							<tr class="tr${dto.faqNum }">
 								<td>
-									<div style="width:700px; text-align: left; display: none;"  class="faqContent"></div>
+									<div style="width:700px; text-align: left; display: none; margin:10px; margin-top:0;"  class="faqContent"></div>
 								</td>
 							</tr>
 							

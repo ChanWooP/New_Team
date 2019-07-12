@@ -1,5 +1,7 @@
 package com.sp.owner.hotplace;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Hotplace {
 	
 	private int placeNum;
@@ -11,6 +13,14 @@ public class Hotplace {
 	private String placeAddr2;
 	private String placeZip;
 	
+	private MultipartFile upload;
+	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
 	public int getPlaceNum() {
 		return placeNum;
 	}

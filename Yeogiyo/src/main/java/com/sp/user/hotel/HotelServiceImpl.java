@@ -12,13 +12,13 @@ import com.sp.common.dao.CommonDAO;
 public class HotelServiceImpl implements HotelService{
 	
 	@Autowired
-	//private CommonDAO dao;
+	private CommonDAO dao;
 
 	@Override
 	public List<Hotel> detailHotel(Map<String, Object> map) {
 		List<Hotel> details = null;
 		try {
-			//details = dao.selectList("user.hotel.hotelDetail", map);
+			details = dao.selectList("user.hotel.hotelDetail", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -29,7 +29,7 @@ public class HotelServiceImpl implements HotelService{
 	public List<Hotel> listHotel(Map<String, Object> map) {
 		List<Hotel> list = null;
 		try {
-			//list=dao.selectList("user.hotel.hotelList", map);
+			list=dao.selectList("user.hotel.hotelList", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,7 +40,7 @@ public class HotelServiceImpl implements HotelService{
 	public List<Hotel> listPhoto(Map<String, Object> map) {
 		List<Hotel> plist = null;
 		try {
-			//plist=dao.selectList("user.hotel.hotelPhoto",map);
+			plist=dao.selectList("user.hotel.hotelPhoto",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class HotelServiceImpl implements HotelService{
 	public List<Hotel> listHotelRoom(Map<String, Object> map) {
 		List<Hotel> rlist = null;
 		try {
-			//rlist=dao.selectList("user.hotel.hotelRoomList", map);
+			rlist=dao.selectList("user.hotel.hotelRoomList", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

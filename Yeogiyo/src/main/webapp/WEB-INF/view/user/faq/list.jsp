@@ -56,33 +56,12 @@ $(function() {
 	$("body").on("click", ".faqTitle", function() {
 		
 		var $div = $(this).closest("tr").next().find("div");
-		var faqNum=$(this).attr("data-faqNum");
-		
+
 		var isVisible=$div.is(":visible");
 		if(isVisible) {
-			$div.hide();
+			$div.hide().delay(1000);
 		} else {
-			$div.show();
-			
-			var url="<%=cp%>/user/faq/content";
-			var query="faqNum="+faqNum;
-			
-			$.ajax({
-				type:"post"
-				,url:url
-				,data:query
-				,dataType:"json"
-				,success:function(data) {
-					var content=data.content;
-					$div.html(content);
-				}
-				,beforeSend:function() {
-					$(".faqContent").html("");
-				}
-				,error:function(e) {
-					console.log(e.responseText);
-				}
-			});
+			$div.show().delay(1000);
 		}
 	});
 	
@@ -104,14 +83,14 @@ $(function() {
 							<tr class="tr${dto.faqNum }">
 								<td>
 								<c:if test="${sessionScope.member.userId!='admin' }">
-									<button type="button" class="btn btn-default faqTitle" style="width:770px;" data-faqNum="${dto.faqNum }">
+									<button type="button" class="btn btn-default faqTitle" style="width:770px;">
 										<div align="left">
 											${dto.faqTitle }
 										</div>
 									</button>
 								</c:if>
 								<c:if test="${sessionScope.member.userId=='admin' }">
-									<button type="button" class="btn btn-default faqTitle" style="width:650px;" data-faqNum="${dto.faqNum }">
+									<button type="button" class="btn btn-default faqTitle" style="width:650px;">
 										<div align="left">
 											${dto.faqTitle }
 										</div>
@@ -123,7 +102,9 @@ $(function() {
 							</tr>
 							<tr class="tr${dto.faqNum }">
 								<td>
-									<div style="width:700px; text-align: left; display: none; margin:10px; margin-top:0;"  class="faqContent"></div>
+									<div style="width:700px; text-align: left; display: none; margin:10px; margin-top:0;"  class="faqContent">
+									${dto.faqContent }
+									</div>
 								</td>
 							</tr>
 							

@@ -18,6 +18,7 @@ public class FaqServiceImpl implements FaqService {
 		try {
 			int faqseq=dao.selectOne("user.faq.faqseq");
 			dto.setFaqNum(faqseq);
+			dto.setFaqContent(dto.getFaqContent().replaceAll("\n", "<br>"));
 			dao.insertData("user.faq.insertFaq", dto);
 		} catch (Exception e) {
 			e.printStackTrace();

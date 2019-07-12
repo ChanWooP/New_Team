@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="<%=cp%>/user/main"><span
-					class="glyphicon glyphicon-map-marker"></span> YEOGIYO</a>
+					class="glyphicon glyphicon-map-marker"></span>YEOGIYO</a>
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="dropdown"><a class="dropdown-toggle"

@@ -94,18 +94,4 @@ public class FaqController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/faq/content")
-	@ResponseBody
-	public Map<String, Object> faqContent(@RequestParam int faqNum) throws Exception {
-		Faq dto=service.readFaq(faqNum);
-		dto.setFaqContent(dto.getFaqContent().replaceAll("\n", "<br>"));
-		
-		String content=dto.getFaqContent();
-		
-		Map<String, Object> model=new HashMap<>();
-		model.put("content", content);
-		
-		return model;
-	}
-	
 }

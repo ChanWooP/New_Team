@@ -83,7 +83,7 @@
 				<td><a href="<%=cp%>/user/hotel/detail?hotelName=${dto.hotelName}">${dto.hotelName}</a></td>
 				<td>${dto.addr1},&nbsp;${dto.addr2}</td>
 				<td class="detail">${dto.detail}</td>
-				<td><img src="<%=cp%>/resource/images/${dto.mainphoto}.jpg"></td>
+				<td><img src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg"></td>
 			</c:forEach>
 			</tr>
 		</table>	

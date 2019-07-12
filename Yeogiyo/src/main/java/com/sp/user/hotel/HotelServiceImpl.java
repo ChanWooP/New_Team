@@ -15,14 +15,14 @@ public class HotelServiceImpl implements HotelService{
 	private CommonDAO dao;
 
 	@Override
-	public List<Hotel> detailHotel(Map<String, Object> map) {
-		List<Hotel> details = null;
+	public Hotel detailHotel(Map<String, Object> map) {
+		Hotel dto = null;
 		try {
-			details = dao.selectList("user.hotel.hotelDetail", map);
+			dto = dao.selectOne("user.hotel.hotelDetail", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return details;
+		return dto;
 	}
 
 	@Override

@@ -4,7 +4,7 @@
 <mapper namespace="user.hotel">
 
 	<select id="hotelDetail" parameterType="String" resultType="com.sp.user.hotel.Hotel">
-		SELECT h.hotelName, detail, addr1,addr2,hotelTel, hotelCreated, checkin, checkout
+		SELECT h.hotelName, detail, addr1,addr2,hotelTel, hotelCreated, checkin, checkout,latitude ,longitude
 		FROM hotel h JOIN hoteldetail d ON h.hotelId = d.hotelid 
             
 		WHERE hotelName = #{hotelName}

@@ -28,9 +28,9 @@ function execDaumPostcode() {
 				fullRoadAddr += extraRoadAddr;
 			}
 			
-			document.getElementById('zip').value = data.zonecode;
-			document.getElementById('addr1').value = fullRoadAddr;
-			document.getElementById('addr2').focus();
+			document.getElementById('placeZip').value = data.zonecode;
+			document.getElementById('placeAddr1').value = fullRoadAddr;
+			document.getElementById('placeAddr2').focus();
 		}
 	}).open();
 }
@@ -38,21 +38,21 @@ function execDaumPostcode() {
 function hotok(){
 var f = document.hotForm;
 	
-	var str = f.name.value;
+	var str = f.placeName.value;
 	if(!str){
 		alert("명소이름을 입력하세요");
 		f.name.focus();
 		return;
 	}
 	
-	str = f.km.value;
+	str = f.placeDis.value;
 	if(!str){
 		alert("명소거리를 입력하세요");
 		f.km.focus();
 		return;
 	}
 	
-	str = f.zip.value;
+	str = f.placeZip.value;
 	if(!str){
 		alert("명소주소를 입력하세요");
 		f.zip.focus();
@@ -73,11 +73,11 @@ var f = document.hotForm;
 function hotclear(){
 	var f = document.hotForm;
 	
-	f.name.value = "";
-	f.km.value = "";
-	f.zip.value = "";
-	f.addr1.value = "";
-	f.addr2.value = "";
+	f.placeName.value = "";
+	f.placeDis.value = "";
+	f.placeZip.value = "";
+	f.placeAddr1.value = "";
+	f.placeAddr2.value = "";
 	f.upload.value = "";
 }
 
@@ -92,23 +92,23 @@ function hotcancle(){
 		<div>
 		<form name="hotForm" method="post" enctype="multipart/form-data">
 			<div class="form-group">
-	  			<label for="name">명소이름:</label>
-	  			<input type="text" class="form-control" id="name" style="width:20%">
+	  			<label for="placeName">명소이름:</label>
+	  			<input type="text" class="form-control" name="placeName" style="width:20%">
 			</div>
 			<div class="form-group">
-	  			<label for="km">거리(Km):</label>
-	  			<input type="text" class="form-control" id="km" style="width:13%">
+	  			<label for="placeDis">거리(Km):</label>
+	  			<input type="text" class="form-control" name="placeDis" style="width:13%">
 			</div>
 			<div class="form-group">
 	  			<label for="addr">주소:</label>
-	  			<input type="text" class="form-control" id="zip" style="width:10%">
-	  			<input type="text" class="form-control" id="addr1" style="width:50%">
-	  			<input type="text" class="form-control" id="addr2" style="width:50%">
+	  			<input type="text" class="form-control" name="placeZip" style="width:10%">
+	  			<input type="text" class="form-control" name="placeAddr1" style="width:50%">
+	  			<input type="text" class="form-control" name="placeAddr2" style="width:50%">
 	  			<button type="button" class="btn" onclick="execDaumPostcode()">주소찾기</button>
 			</div>
 			<div class="form-group">
-	  			<label for="km">명소사진:</label>
-	  			<input type="file" class="form-control" id="upload" style="width:40%">
+	  			<label for="upload">명소사진:</label>
+	  			<input type="file" class="form-control" name="upload" style="width:40%">
 			</div>
 			<div style="margin-left:40%; margin-bottom:5%; margin-top:5%;">
 			<button type="button" class="btn" onclick="hotok()">확인</button>

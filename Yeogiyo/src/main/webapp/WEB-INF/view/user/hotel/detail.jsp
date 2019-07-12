@@ -82,6 +82,9 @@ $(function() {
 	background:#ffffaa;
 }
 
+.left carousel-control{
+	background: #ffffaa;
+}
 .subSearch {
 	height:100px;
 	padding:10px 10px;
@@ -185,8 +188,8 @@ $(function() {
 			</div>
 				
 				<div class="convenient">
-					<p>편의시설</p>
-					<p>${dto.detail}</p>
+					<h4><b>편의시설</b></h4>
+					<p>${detail.detail}</p>
 				</div>
 			
 			
@@ -196,7 +199,7 @@ $(function() {
 						<th>방 세부사항</th>
 						<th>최대 수용인원</th>
 						<th>총가격</th>
-						<th></th>
+						<th>임시의 칸</th>
 					</tr>
 					
 					<c:forEach var="dto" items="${rlist}">

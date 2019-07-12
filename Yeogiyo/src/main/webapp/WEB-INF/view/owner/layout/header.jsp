@@ -9,23 +9,25 @@
 <nav class="navbar">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="<%=cp%>/user/main">YEOGIYO</a>
+			<a class="navbar-brand" href="<%=cp%>/user/main"><span
+					class="glyphicon glyphicon-map-marker"></span> YEOGIYO</a>
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#">마이페이지 <span class="caret"></span></a>
+				data-toggle="dropdown" href="#">호텔관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">회원정보확인</a></li>
-					<li><a href="#">예약확인</a></li>
-					<li><a href="#">포인트정보</a></li>
-					<li><a href="#">위시리스트</a></li>
+					<li><a href="#">호텔 기본정보</a></li>
+					<li><a href="#">호텔 편의시설</a></li>
+					<li><a href="#">호텔 일정</a></li>
+					<li><a href="#">호텔 명소</a></li>
 				</ul></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">방관리 <span class="caret"></span></a></li>	
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="<%=cp%>/user/event/list">이벤트</a></li>
-					<li><a href="<%=cp%>/user/faq/list">FAQ</a></li>
-					<li><a href="<%=cp%>/user/qna/list">Q&A</a></li>
+					<li><a href="<%=cp%>/user/event/list">문의사항</a></li>
+					<li><a href="<%=cp%>/user/faq/list">리뷰</a></li>
 				</ul></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">

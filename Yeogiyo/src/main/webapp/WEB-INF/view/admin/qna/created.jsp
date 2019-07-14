@@ -20,7 +20,7 @@ function sendQna() {
 		f.qnaTitle.focus();
 		return;
 	}
-	f.action="<%=cp%>/user/qna/${mode}";
+	f.action="<%=cp%>/admin/qna/${mode}";
 	f.submit();
 }
 </script>
@@ -85,7 +85,7 @@ function sendQna() {
 									<button type="button" class="btn btn-default" onclick="sendQna();">${mode=='update'?'수정완료':(mode=='reply'? '답변완료':'등록하기')}</button>
 									<button type="reset" class="btn btn-default">다시입력</button>
 									<button type="button" class="btn btn-default"
-										onclick="javascript:location.href='<%=cp%>/user/qna/list';">${mode=='update'?'수정취소':(mode=='reply'? '답변취소':'등록취소')}</button>
+										onclick="javascript:location.href='<%=cp%>/admin/qna/list';">${mode=='update'?'수정취소':(mode=='reply'? '답변취소':'등록취소')}</button>
 								</td>
 							</tr>
 						</table>

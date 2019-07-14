@@ -66,10 +66,10 @@ function searchList() {
 							<tr height="40">
 								<td align="left" width="100">
 									<button type="button" class="btn btn-default btn-sm"
-										onclick="javascript:location.href='<%=cp%>/user/qna/list';">새로고침</button>
+										onclick="javascript:location.href='<%=cp%>/admin/qna/list';">새로고침</button>
 								</td>
 								<td align="center">
-									<form name="searchForm" action="<%=cp%>/user/qna/list"
+									<form name="searchForm" action="<%=cp%>/admin/qna/list"
 										method="post">
 										<select name="condition" class="selectField" style="height:30px;">
 											<option value="all"
@@ -92,7 +92,7 @@ function searchList() {
 								<td align="right" width="100">
 								<c:if test="${not empty sessionScope.member }">
 									<button type="button" class="btn btn-default btn-sm"
-										onclick="javascript:location.href='<%=cp%>/user/qna/created';">
+										onclick="javascript:location.href='<%=cp%>/admin/qna/created';">
 										Q&amp;A 작성
 									</button>
 								</c:if>

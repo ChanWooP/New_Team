@@ -18,20 +18,20 @@
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">게시판 관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="<%=cp%>/user/bbs/list">자유게시판</a></li>
-					<li><a href="<%=cp%>/user/bbs/list">신고 리뷰</a></li>
+					<li><a href="<%=cp%>/admin/bbs/list">자유게시판</a></li>
+					<li><a href="<%=cp%>/admin/bbs/list">신고 리뷰</a></li>
 				</ul></li>	
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">소식 관리<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="<%=cp%>/user/notice/list">공지사항</a></li>
-					<li><a href="<%=cp%>/user/event/list">Event</a></li>
+					<li><a href="<%=cp%>/admin/notice/list">공지사항</a></li>
+					<li><a href="<%=cp%>/admin/event/list">Event</a></li>
 				</ul></li>	
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">고객센터 관리<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="<%=cp%>/user/faq/list">FAQ</a></li>
-					<li><a href="<%=cp%>/user/qna/list">Q&amp;A</a></li>
+					<li><a href="<%=cp%>/admin/faq/list">FAQ</a></li>
+					<li><a href="<%=cp%>/admin/qna/list">Q&amp;A</a></li>
 				</ul></li>
 		</ul>
 		

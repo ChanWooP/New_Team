@@ -1,4 +1,4 @@
-package com.sp.user.qna;
+package com.sp.admin.manage;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.common.MyUtil;
 import com.sp.user.member.SessionInfo;
+import com.sp.user.qna.Qna;
+import com.sp.user.qna.QnaService;
 
-@Controller("user.qna.qnaController")
+@Controller("admin.qna.qnaController")
 public class QnaController {
 	
 	@Autowired
@@ -30,7 +32,7 @@ public class QnaController {
 	@Autowired
 	private MyUtil util;
 
-	@RequestMapping(value="/user/qna/list")
+	@RequestMapping(value="/admin/qna/list")
 	public String qnalist(@RequestParam(value="page", defaultValue="1") int current_page,
 						@RequestParam(defaultValue="all") String condition,
 						@RequestParam(defaultValue="") String keyword,
@@ -77,15 +79,15 @@ public class QnaController {
 		}
 		String cp=req.getContextPath();
 		String query="";
-		String listUrl=cp+"/user/qna/list";
-		String articleUrl=cp+"/user/qna/article?page="+current_page;
+		String listUrl=cp+"/admin/qna/list";
+		String articleUrl=cp+"/admin/qna/article?page="+current_page;
 		
 		if(keyword.length()!=0) {
 			query+="condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
 		}
 		 if(query.length()!=0) {
-	        	listUrl = cp+"/user/qna/list?" + query;
-	        	articleUrl = cp+"/user/qna/article?page=" + current_page + "&"+ query;
+	        	listUrl = cp+"/admin/qna/list?" + query;
+	        	articleUrl = cp+"/admin/qna/article?page=" + current_page + "&"+ query;
 	        }
 		
 		 String paging=util.paging(current_page, total_page, listUrl);
@@ -100,35 +102,35 @@ public class QnaController {
 		 model.addAttribute("condition", condition);
 		 model.addAttribute("keyword", keyword);
 		
-		return ".user.qna.list";
+		return ".admin.qna.list";
 	}
 	
 	
-	@RequestMapping(value="/user/qna/created", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/qna/created", method=RequestMethod.GET)
 	public String qnaCreatedForm(HttpSession session, Model model) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
-			return "redirect:/user/member/login";
+			return "redirect:/admin/member/login";
 		}
 		model.addAttribute("mode", "created");
-		return ".user.qna.created";
+		return ".admin.qna.created";
 	}
 	
-	@RequestMapping(value="/user/qna/created", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/qna/created", method=RequestMethod.POST)
 	public String qnaCreatedSubmit(Qna dto, HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
-			return "redirect:/user/member/login";
+			return "redirect:/admin/member/login";
 		}
 		try {
 			dto.setUserId(info.getUserId());
 			service.insertQna(dto, "created");
 		} catch (Exception e) {
 		}
-		return "redirect:/user/qna/list";
+		return "redirect:/admin/qna/list";
 	}
 	
-	@RequestMapping(value="/user/qna/article")
+	@RequestMapping(value="/admin/qna/article")
 	public String qnaArticle(@RequestParam int qnaNum,
 							@RequestParam String page,
 							@RequestParam(defaultValue="all") String condition,
@@ -145,7 +147,7 @@ public class QnaController {
 		Qna dto=service.readQna(qnaNum);
 		
 		if(dto==null) {
-			return "redirect:/user/qna/list?"+query;
+			return "redirect:/admin/qna/list?"+query;
 		}
 		
 		dto.setQnaContent(dto.getQnaContent().replaceAll("\n", "<br>"));
@@ -167,16 +169,16 @@ public class QnaController {
 		model.addAttribute("page", page);
 		model.addAttribute("listArticle", listArticle);
 		
-		return ".user.qna.article";
+		return ".admin.qna.article";
 	}
 	
-	@RequestMapping(value="/user/qna/reply", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/qna/reply", method=RequestMethod.GET)
 	public String qnaReplyForm(@RequestParam int qnaNum,
 							@RequestParam String page,
 							Model model) throws Exception {
 		Qna dto=service.readQna(qnaNum);
 		if(dto==null) {
-			return "redirect:/user/qna/list?page="+page;
+			return "redirect:/admin/qna/list?page="+page;
 		}
 		
 		dto.setQnaContent("["+dto.getQnaTitle()+"] 에 대한 답변입니다.");
@@ -184,10 +186,10 @@ public class QnaController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("mode", "reply");
-		return ".user.qna.created";
+		return ".admin.qna.created";
 	}
 	
-	@RequestMapping(value="/user/qna/reply", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/qna/reply", method=RequestMethod.POST)
 	public String qnaReplySubmit(Qna dto, @RequestParam String page,
 								HttpSession session) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -196,10 +198,10 @@ public class QnaController {
 			service.insertQna(dto, "reply");
 		} catch (Exception e) {
 		}
-		return "redirect:/user/qna/list?page="+page;
+		return "redirect:/admin/qna/list?page="+page;
 	}
 	
-	@RequestMapping(value="/user/qna/update", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/qna/update", method=RequestMethod.GET)
 	public String qnaUpdateForm(@RequestParam int qnaNum,
 								@RequestParam String page,
 								HttpSession session,
@@ -207,16 +209,16 @@ public class QnaController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		Qna dto=service.readQna(qnaNum);
 		if(dto==null || ! dto.getUserId().equals(info.getUserId())) {
-			return "redirect:/user/qna/list?page="+page;
+			return "redirect:/admin/qna/list?page="+page;
 		}
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("mode", "update");
 		
-		return ".user.qna.created";
+		return ".admin.qna.created";
 	}
 	
-	@RequestMapping(value="/user/qna/update", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/qna/update", method=RequestMethod.POST)
 	public String qnaUpdateSubmit(Qna dto, @RequestParam String page,
 								HttpSession session) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -225,10 +227,10 @@ public class QnaController {
 			service.updateQna(dto);
 		} catch (Exception e) {
 		}
-		return "redirect:/user/qna/list?page="+page;
+		return "redirect:/admin/qna/list?page="+page;
 	}
 	
-	@RequestMapping(value="/user/qna/delete")
+	@RequestMapping(value="/admin/qna/delete")
 	public String deleteQna(@RequestParam int qnaNum,
 							@RequestParam String page,
 							@RequestParam(defaultValue="all") String condition,
@@ -243,6 +245,6 @@ public class QnaController {
 			service.deleteQna(qnaNum, info.getUserId());
 		} catch (Exception e) {
 		}
-		return "redirect:/user/qna/list?"+query;
+		return "redirect:/admin/qna/list?"+query;
 	}
 }

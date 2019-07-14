@@ -60,7 +60,20 @@
 							</tr>
 						</table>
 					</div>
+					<c:if test="${sessionScope.member.userId=='admin' }">
+						<table style="width: 95%; margin: 10px auto; border-spacing: 0px;">
+							<tr height="40">
+								<td align="right" width="100">
+									<button type="button" class="btn btn-default btn-sm"
+										onclick="javascript:location.href='<%=cp%>/admin/notice/created';">
+										Notice 작성
+										</button>
+								</td>
+							</tr>
+						</table>
+					</c:if>
 				</div>
+			
 			</div>
 		</div>
 	</div>

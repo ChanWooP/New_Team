@@ -29,6 +29,7 @@
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/user/faq/list">FAQ</a></li>
 					<li><a href="<%=cp%>/user/qna/list">Q&amp;A</a></li>
+					
 				</ul></li>
 			<c:if test="${not empty sessionScope.member }">	
 			<li class="dropdown"><a class="dropdown-toggle"

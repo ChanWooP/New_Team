@@ -9,7 +9,7 @@
 <c:if test="${dto.userId==sessionScope.member.userId || sessionScope.member.userId=='admin'}">
 	function deleteQna(qnaNum) {
 		if(confirm("게시물을 삭제 하시겠습니까?")) {
-			var url="<%=cp%>/user/qna/delete?qnaNum="+qnaNum+"&${query}";
+			var url="<%=cp%>/admin/qna/delete?qnaNum="+qnaNum+"&${query}";
 			location.href=url;
 		}
 	}
@@ -43,7 +43,7 @@
 						<td colspan="2" align="left" style="padding-left: 5px;">
 							다음글:
 							<c:if test="${not empty ndto}">
-								<a href="<%=cp%>/user/qna/article?${query}&qnaNum=${ndto.qnaNum}">${ndto.qnaTitle}</a>
+								<a href="<%=cp%>/admin/qna/article?${query}&qnaNum=${ndto.qnaNum}">${ndto.qnaTitle}</a>
 							</c:if>
 							</td>
 					</tr>
@@ -51,7 +51,7 @@
 						<td colspan="2" align="left" style="padding-left: 5px;">
 							이전글:
 							<c:if test="${not empty pdto}">
-								<a href="<%=cp%>/user/qna/article?${query}&qnaNum=${pdto.qnaNum}">${pdto.qnaTitle}</a>
+								<a href="<%=cp%>/admin/qna/article?${query}&qnaNum=${pdto.qnaNum}">${pdto.qnaTitle}</a>
 							</c:if>
 							</td>
 					</tr>
@@ -63,11 +63,11 @@
 					<td width="300" align="left">
 					<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
 							<button type="button" class="btn btn-default"
-								onclick="javascript:location.href='<%=cp%>/user/qna/reply?qnaNum=${dto.qnaNum}&page=${page}';">답변</button>
+								onclick="javascript:location.href='<%=cp%>/admin/qna/reply?qnaNum=${dto.qnaNum}&page=${page}';">답변</button>
 					</c:if>
 						<c:if test="${sessionScope.member.userId == dto.userId}">
 							<button type="button" class="btn btn-default"
-								onclick="javascript:location.href='<%=cp%>/user/qna/update?qnaNum=${dto.qnaNum}&${query}';">수정</button>
+								onclick="javascript:location.href='<%=cp%>/admin/qna/update?qnaNum=${dto.qnaNum}&${query}';">수정</button>
 						</c:if><c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
 							<button type="button" class="btn btn-default"
 								onclick="deleteQna('${dto.qnaNum}');">삭제</button>
@@ -75,7 +75,7 @@
 
 					<td align="right">
 						<button type="button" class="btn btn-default"
-							onclick="javascript:location.href='<%=cp%>/user/qna/list?${query}';">리스트</button>
+							onclick="javascript:location.href='<%=cp%>/admin/qna/list?${query}';">리스트</button>
 					</td>
 				</tr>
 			</table>
@@ -101,7 +101,7 @@
 				           		${vo.qnaTitle }
 				           </c:if>
 				           <c:if test="${dto.qnaNum!=vo.qnaNum }">
-				           <a href="<%=cp%>/user/qna/article?${query }&qnaNum=${vo.qnaNum}">${vo.qnaTitle}</a>
+				           <a href="<%=cp%>/admin/qna/article?${query }&qnaNum=${vo.qnaNum}">${vo.qnaTitle}</a>
 	                       </c:if>
 							</td>
 							<td>${dto.userId }</td>

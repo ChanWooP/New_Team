@@ -7,11 +7,10 @@
 %>
 
 <div class="container">
-	<div style="margin: 0px auto; padding-top: 70px; width: 600px; margin-bottom:100px">
-		<div class="mainform">
-			<span style="font-weight: bold; font-size: 30px;">회원 정보 확인</span>
+	<div style="margin: 0px auto; padding-top: 40px; width: 600px; margin-bottom:100px">
+		<div class="page-header">
+		    <h1><span class="glyphicon glyphicon-heart"></span>&nbsp;<b>회원정보확인</b></h1>      
 		</div>
-
 		<div>
 			<div class="panel panel-default">
 				<div class="panel-body">

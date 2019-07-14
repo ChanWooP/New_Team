@@ -7,17 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.common.MyUtil;
-import com.sp.user.member.SessionInfo;
 
 @Controller("user.notice.noticeController")
 public class NoticeController {
@@ -84,28 +81,6 @@ public class NoticeController {
 		return ".user.notice.list";
 	}
 	
-	@RequestMapping(value="/user/notice/created", method=RequestMethod.GET)
-	public String createdForm(Model model, HttpSession session) {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin")) {
-			return "redirect:/user/notice/list";
-		}
-		
-		model.addAttribute("mode", "created");
-		return ".user.notice.created";
-	}
-	
-	@RequestMapping(value="/user/notice/created", method=RequestMethod.POST)
-	public String createdSubmit(Notice dto) {
-		
-		try {
-			service.insertNotice(dto);
-		} catch (Exception e) {
-		}
-		
-		return "redirect:/user/notice/list";
-	}
-	
 	@RequestMapping(value="/user/notice/article")
 	public String noticeArticle(@RequestParam int noticeNum,
 								@RequestParam String page, Model model) {
@@ -125,56 +100,6 @@ public class NoticeController {
 		model.addAttribute("page", page);
 		
 		return ".user.notice.article";
-	}
-	
-	@RequestMapping(value="/user/notice/update", method=RequestMethod.GET)
-	public String updateForm(@RequestParam int noticeNum,
-							@RequestParam String page,
-							HttpSession session, Model model) {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin"))
-			return "redirect:/user/notice/list?page="+page;
-		
-		Notice dto=service.readNotice(noticeNum);
-		if(dto==null) {
-			return "redirect:/user/notice/list?page="+page;
-		}
-		
-		model.addAttribute("mode", "update");
-		model.addAttribute("page", page);
-		model.addAttribute("dto", dto);
-		
-		return ".user.notice.created";
-	}
-	
-	@RequestMapping(value="/user/notice/update", method=RequestMethod.POST)
-	public String updateSubmit(Notice dto,
-							@RequestParam String page,
-							HttpSession session) throws Exception {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin"))
-			return "redirect:/user/notice/list?page="+page;
-		
-		try {
-			service.updateNotice(dto);
-		} catch (Exception e) {
-		}
-		
-		return "redirect:/user/notice/list?page="+page;
-	}
-	
-	@RequestMapping(value="/user/notice/delete")
-	public String deleteNotice(@RequestParam int noticeNum,
-								@RequestParam String page,
-								HttpSession session) {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin"))
-			return "redirect:/user/notice/list?page="+page;
-		try {
-			service.deleteNotice(noticeNum);
-		} catch (Exception e) {
-		}
-		return "redirect:/user/notice/list?page="+page;
 	}
 	
 }

@@ -66,7 +66,7 @@ $(function() {
 
 .convenient {
 	margin:15px auto;
-	border: 1px solid #000000;
+	border: 1px solid black;
 	width:80%;
 	background: #ffffe6;
 }
@@ -82,6 +82,9 @@ $(function() {
 	background:#ffffaa;
 }
 
+.left carousel-control{
+	background: #ffffaa;
+}
 .subSearch {
 	height:100px;
 	padding:10px 10px;
@@ -100,8 +103,18 @@ $(function() {
 	min-width: 1100px;
 }
 
+#map {
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 550px; 
+	height: 350px;
+}
 
 </style>
+<script type="text/javascript"	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36a2d6acf409cd1a8f5692734e8c365b">
+</script>
+
 
 <div class="body-container">
 	<div style="padding-top:5px; padding-bottom: 50px;">
@@ -122,13 +135,31 @@ $(function() {
 		
 		
 		<div class="hoteldetail">
-			<c:forEach var="dto" items="${details}">
+			
 			<div class="hotelname">
-			
-				<h3>${dto.hotelName}</h3>
-				<small>${dto.addr1}, ${dto.addr2}</small>
-			
+				<h3>${detail.hotelName}</h3>
+				<small>${detail.addr1}, ${detail.addr2}</small>
 			</div>
+			
+			<div id="map">
+				<script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					mapOption = {
+						center : new kakao.maps.LatLng(${detail.latitude},${detail.longitude}), 
+						level : 3
+					};
+				
+					var map = new kakao.maps.Map(mapContainer, mapOption); 
+					var markerPosition = kakao.maps.LatLng(${detail.latitude},${detail.longitude});
+
+					var marker = new kakao.maps.Marker({
+						position : markerPosition
+					});
+				
+					marker.setMap(map);
+				</script>
+			</div>
+			
 			<div class="imgshow">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators" >
@@ -140,7 +171,7 @@ $(function() {
  					<div class="carousel-inner">
  						<c:forEach var="dto" items="${plist}" varStatus="status">
 							<div class="item ${status.index==0?'active':''}">
-						    	<img src="<%=cp%>/resource/images/${dto.hotelphotoName}.jpg" alt="">
+						    	<img src="<%=cp%>/resource/images/hotel/${dto.hotelphotoName}.jpg" alt="">
 						    </div>
 					    </c:forEach>
 					</div>
@@ -157,10 +188,10 @@ $(function() {
 			</div>
 				
 				<div class="convenient">
-					<p>편의시설</p>
-					<p>${dto.detail}</p>
+					<h4><b>편의시설</b></h4>
+					<p>${detail.detail}</p>
 				</div>
-			</c:forEach>
+			
 			
 				<table class="room">
 					<tr>
@@ -168,7 +199,7 @@ $(function() {
 						<th>방 세부사항</th>
 						<th>최대 수용인원</th>
 						<th>총가격</th>
-						<th></th>
+						<th>임시의 칸</th>
 					</tr>
 					
 					<c:forEach var="dto" items="${rlist}">

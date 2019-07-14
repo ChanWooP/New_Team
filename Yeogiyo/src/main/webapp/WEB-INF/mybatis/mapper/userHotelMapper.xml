@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.hotel">
+
+	<select id="hotelDetail" parameterType="String" resultType="com.sp.user.hotel.Hotel">
+		SELECT h.hotelName, detail, addr1,addr2,hotelTel, hotelCreated, checkin, checkout,latitude ,longitude
+		FROM hotel h JOIN hoteldetail d ON h.hotelId = d.hotelid 
+            
+		WHERE hotelName = #{hotelName}
+	</select>
+
+	<select id="hotelList" parameterType="String" resultType="com.sp.user.hotel.Hotel">
+		SELECT h.hotelId, hotelname, detail, addr1, addr2, mainphoto
+		FROM hotel h JOIN hoteldetail d ON h.hotelId = d.hotelId
+		WHERE INSTR(addr1,#{addr1})>=1
+	</select>
+	
+	<select id="hotelPhoto" parameterType="String" resultType="com.sp.user.hotel.Hotel">
+		SELECT hotelphotoName 
+		FROM hotelphoto p 
+		JOIN hotel h ON p.hotelId=h.hotelid 
+		WHERE hotelName=#{hotelName}
+	</select>
+	
+	<select id="hotelRoomList" parameterType="String" resultType="com.sp.user.hotel.Hotel">
+		SELECT roomtype,roomprice,maxpeople,roomdetails FROM room r 
+		JOIN roomdetail rd ON r.roomnum = r.roomnum
+		JOIN hotel h ON r.hotelId=h.hotelId
+		WHERE hotelName=#{hotelName} 
+		AND r.roomnum=rd.roomnum
+		GROUP BY roomtype,roomprice,maxpeople,roomdetails 
+		ORDER BY roomprice
+	</select>
+</mapper>

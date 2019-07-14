@@ -36,21 +36,23 @@ public class HotelController {
 	// 호텔 상세보기
 	@RequestMapping(value="/user/hotel/detail")
 	public String article(@RequestParam String hotelName,Model model) {
+				
 		Map<String, Object> map = new HashMap<>();
 		Map<String, Object> maps = new HashMap<>();
 		Map<String, Object> rmap = new HashMap<>();
+		
 		map.put("hotelName", hotelName);
 		maps.put("hotelName", hotelName);
 		rmap.put("hotelName", hotelName);
 		
-		List<Hotel> details = service.detailHotel(map);
+		Hotel detail = service.detailHotel(map);
 		List<Hotel> plist = service.listPhoto(maps);
 		List<Hotel> rlist = service.listHotelRoom(rmap);
-		
-		model.addAttribute("details", details);
+					
+		model.addAttribute("detail", detail);
 		model.addAttribute("plist",plist);
 		model.addAttribute("rlist", rlist);
-		
+			
 		return ".user.hotel.detail";
 	}	
 }

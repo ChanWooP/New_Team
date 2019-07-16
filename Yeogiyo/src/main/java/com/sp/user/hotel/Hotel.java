@@ -21,7 +21,22 @@ public class Hotel {
 	private int roomprice;
 	private int maxpeople;
 	private String roomdetails;
+	private int roomnum;
+	private String roomname;
 	
+	
+	public String getRoomname() {
+		return roomname;
+	}
+	public void setRoomname(String roomname) {
+		this.roomname = roomname;
+	}
+	public int getRoomnum() {
+		return roomnum;
+	}
+	public void setRoomnum(int roomnum) {
+		this.roomnum = roomnum;
+	}
 	public String getRoomtype() {
 		return roomtype;
 	}

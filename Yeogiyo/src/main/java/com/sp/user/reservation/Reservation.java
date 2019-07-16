@@ -21,7 +21,60 @@ public class Reservation {
 	private String checkout;
 	private int price;
 	private int roomnum;
+	private String roomtype;
+	private int roomprice;
+	private int maxpeople;
+	private String roomdetails;
+	private String roomname;
+	private int stair;
+	private String roomstatus;
 	
+	
+	
+	
+	
+	public String getRoomstatus() {
+		return roomstatus;
+	}
+	public void setRoomstatus(String roomstatus) {
+		this.roomstatus = roomstatus;
+	}
+	public int getStair() {
+		return stair;
+	}
+	public void setStair(int stair) {
+		this.stair = stair;
+	}
+	public String getRoomname() {
+		return roomname;
+	}
+	public void setRoomname(String roomname) {
+		this.roomname = roomname;
+	}
+	public int getRoomprice() {
+		return roomprice;
+	}
+	public void setRoomprice(int roomprice) {
+		this.roomprice = roomprice;
+	}
+	public int getMaxpeople() {
+		return maxpeople;
+	}
+	public void setMaxpeople(int maxpeople) {
+		this.maxpeople = maxpeople;
+	}
+	public String getRoomdetails() {
+		return roomdetails;
+	}
+	public void setRoomdetails(String roomdetails) {
+		this.roomdetails = roomdetails;
+	}
+	public String getRoomtype() {
+		return roomtype;
+	}
+	public void setRoomtype(String roomtype) {
+		this.roomtype = roomtype;
+	}
 	public int getReservationNum() {
 		return reservationNum;
 	}

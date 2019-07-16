@@ -18,7 +18,7 @@ public class HotelController {
 	
 	// 호텔 리스트
 	@RequestMapping(value="/user/hotel/list")
-	public String hotelList( @RequestParam String checkinday,
+	public String hotelList(@RequestParam String checkinday,
 			@RequestParam String checkoutday, @RequestParam int pnum, @RequestParam String place,Model model) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("addr1", place);

@@ -11,6 +11,21 @@
 $(function() {
 	$("#form-sday").datepicker({showMonthAfterYear:true});
 	$("#form-eday").datepicker({showMonthAfterYear:true});
+	
+	$(".reservationBtn").click(function(){
+		var hotelId=$(this).attr("data-hotelId");
+		var roomdetails=$(this).attr("data-roomdetails");
+		var roomtype=$(this).attr("data-roomtype");
+		var roomprice=$(this).attr("data-roomprice");
+		var maxpeople=$(this).attr("data-maxpeople");
+		
+		$("form[name=reserForm] input[name=hotelId]").val(hotelId);
+		$("form[name=reserForm] input[name=roomdetails]").val(roomdetails);
+		$("form[name=reserForm] input[name=roomtype]").val(roomtype);
+		$("form[name=reserForm] input[name=roomprice]").val(roomprice);
+		$("form[name=reserForm] input[name=maxpeople]").val(maxpeople);
+		$("form[name=reserForm]").submit();
+	});
 });
  
 </script>
@@ -63,7 +78,12 @@ $(function() {
 	width:80%;
 	background: #ffffe6;
 }
-
+.detail {
+	margin:15px auto;
+	border: 1px solid black;
+	width:80%;
+	background: #ffffe6;
+}
 .convenient {
 	margin:15px auto;
 	border: 1px solid black;
@@ -141,6 +161,11 @@ $(function() {
 				<small>${detail.addr1}, ${detail.addr2}</small>
 			</div>
 			
+			<div class="detail">
+					<h4><b>소개</b></h4>
+					<p>${detail.detail}</p>
+			</div>
+			
 			<div id="map">
 				<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -196,22 +221,32 @@ $(function() {
 				<table class="room">
 					<tr>
 						<th>방유형</th>
-						<th>방 세부사항</th>
+						<th>세부사항</th>
 						<th>최대 수용인원</th>
 						<th>총가격</th>
 						<th>임시의 칸</th>
 					</tr>
 					
-					<c:forEach var="dto" items="${rlist}">
-						<tr>
-							<td><p>${dto.roomtype}</p><img src="<%=cp%>/resource/img/logo.jpg"></td>
-							<td>${dto.roomdetails}</td>
+					<c:forEach var="dto" items="${rlist}" varStatus="status">
+						<tr class="room${status.index}">
+							<td><p>${dto.roomtype}</p><img src="<%=cp%>/resource/images/hotel/L7main.jpg"></td>
+							<td style="width:80px;">${dto.roomdetails}</td>
 							<td>${dto.maxpeople}</td>
 							<td>${dto.roomprice}</td>
-							<td><button>예약하기</button></td>
+							<td><button type="button" class="reservationBtn" data-hotelId="${dto.hotelId}" data-maxpeople="${dto.maxpeople}" 
+							data-roomprice="${dto.roomprice}" data-roomtype="${dto.roomtype}" data-roomdetails="${dto.roomdetails}">예약하기</button></td>
 						</tr>
+						
 					</c:forEach>
 				</table>		
 		</div>
 	</div>
 </div>
+
+<form action="<%=cp%>/user/reservation/reservation" method="post" name="reserForm">
+	<input type="hidden" name="hotelId">
+	<input type="hidden" name="maxpeople">
+	<input type="hidden" name="roomdetails">
+	<input type="hidden" name="roomtype">
+	<input type="hidden" name="roomprice">
+</form>

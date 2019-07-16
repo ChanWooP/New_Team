@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.reservation">
+		<select id="getroomnum" parameterType="com.sp.user.reservation.Reservation" resultType="Integer">
+			SELECT MIN(r.roomnum) roomnum
+	        FROM room r 
+			JOIN roomdetail rd ON r.roomnum = rd.roomnum
+			JOIN hotel h ON h.hotelId=#{hotelId}
+	        WHERE roomtype=#{roomtype}
+	        AND roomprice=#{roomprice}
+	        AND maxpeople=#{maxpeople}
+	        AND roomdetails=#{roomdetails}
+	        AND roomstatus=#{roomstatus}
+		</select>
+		
+		<select id="showresdetail" parameterType="Integer" resultType="com.sp.user.reservation.Reservation">
+			SELECT roomname, stair, roomtype, maxpeople, roomstatus, roomprice,rd.roomdetails 
+			FROM room r
+			JOIN roomdetail rd ON rd.roomnum=r.roomnum
+			WHERE rd.roomnum=#{roomnum}
+		</select>
+		
+</mapper>

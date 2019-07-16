@@ -24,12 +24,12 @@
 	</select>
 	
 	<select id="hotelRoomList" parameterType="String" resultType="com.sp.user.hotel.Hotel">
-		SELECT roomtype,roomprice,maxpeople,roomdetails FROM room r 
+		SELECT r.hotelId,roomtype,roomprice,maxpeople,roomdetails FROM room r 
 		JOIN roomdetail rd ON r.roomnum = r.roomnum
 		JOIN hotel h ON r.hotelId=h.hotelId
 		WHERE hotelName=#{hotelName} 
 		AND r.roomnum=rd.roomnum
-		GROUP BY roomtype,roomprice,maxpeople,roomdetails 
+		GROUP BY r.hotelId,roomtype,roomprice,maxpeople,roomdetails 
 		ORDER BY roomprice
 	</select>
 </mapper>

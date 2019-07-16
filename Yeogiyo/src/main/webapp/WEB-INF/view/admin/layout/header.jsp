@@ -14,7 +14,7 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li><a href="#"><span
-					class="	glyphicon glyphicon-home"></span> 호텔승인</a></li>
+					class="glyphicon glyphicon-home"></span> 호텔승인</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">게시판 관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">

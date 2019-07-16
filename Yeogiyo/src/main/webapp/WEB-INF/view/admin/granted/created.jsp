@@ -185,80 +185,58 @@ function changeEmail() {
 <div class="container">
 	<div style="margin: 0px auto; padding-top: 40px; width: 700px;">
 		<div class="page-header">
-		<h1><span class="glyphicon glyphicon-user"></span>&nbsp;
-			<b>${mode=="join"?"회원 가입":"회원 정보 수정" }</b></h1>
+		<h1><span class="glyphicon glyphicon-home"></span>&nbsp;
+			<b>Hotel 승인 요청</b></h1>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-body">
-			<span style="font-family: Webdings; font-weight: 600;"> 여기요를
-				가입하시면 더욱 많은 혜택을 받을 수 있습니다. </span>	
+			<span style="font-family: Webdings; font-weight: 600;"> 
+			여기요에 호텔을 등록하시면 더욱 많은 혜택을 받을 수 있습니다. </span>	
 				<form name="memberForm" method="post">
 					<div style="margin-top: 15px;">
-						<table
-							style="width: 100%; margin: 20px auto 0px; border-spacing: 0px;">
+						<table style="width: 100%; margin: 20px auto 0px; border-spacing: 0px;">
 							<tr>
 								<td width="120" valign="top"
 									style="text-align: right; padding-top: 5px;"><label
-									style="font-weight: 900;">아이디</label></td>
+									style="font-weight: 900;">오너 아이디</label></td>
 								<td style="padding: 0 0 15px 15px;">
 									<p style="margin-bottom: 5px;">
-										<input type="text" name="userId" id="userId"
-											value="${dto.userId}" onchange="userIdCheck()"
-											style="width: 95%;"
-											${mode=="update" ? "readonly='readonly' ":""} maxlength="15"
-											class="boxTF" placeholder="아이디">
+										${sessionScope.member.userId }
 									</p>
-									<p class="help-block">아이디는 5~15자 이내이며, 첫글자는 영문자로 시작해야 합니다.</p>
 								</td>
 							</tr>
 							<tr>
 								<td width="120" valign="top"
 									style="text-align: right; padding-top: 5px;"><label
-									style="font-weight: 900;">패스워드</label></td>
+									style="font-weight: 900;">오너 아이디</label></td>
 								<td style="padding: 0 0 15px 15px;">
 									<p style="margin-bottom: 5px;">
-										<input type="password" name="userPwd" style="width: 95%;"
-											maxlength="15" class="boxTF" placeholder="패스워드">
+										${sessionScope.member.userName }
 									</p>
-									<p class="help-block">패스워드는 5~10자 이내이며, 하나 이상의 숫자나 특수문자가
-										포함되어야 합니다.</p>
 								</td>
 							</tr>
 							<tr>
 								<td width="120" valign="top"
 									style="text-align: right; padding-top: 5px;"><label
-									style="font-weight: 900;">패스워드 확인</label></td>
+									style="font-weight: 900;">호텔 아이디</label></td>
 								<td style="padding: 0 0 15px 15px;">
 									<p style="margin-bottom: 5px;">
-										<input type="password" name="userPwdCheck" maxlength="15"
-											class="boxTF" style="width: 95%;" placeholder="패스워드 확인">
+										<input type="text" name="hotelId" id="hotelId"
+											onchange="hotelIdCheck()" style="width: 95%;"
+											maxlength="15" class="boxTF" placeholder="호텔 아이디">
 									</p>
-									<p class="help-block">패스워드를 한번 더 입력해주세요.</p>
+									<p class="help-block">호텔 아이디는 5~15자 이내이며, 첫글자는 영문자로 시작해야 합니다.</p>
 								</td>
 							</tr>
 							<tr>
 								<td width="120" valign="top"
 									style="text-align: right; padding-top: 5px;"><label
-									style="font-weight: 900;">이름</label></td>
+									style="font-weight: 900;">호텔 이름</label></td>
 								<td style="padding: 0 0 15px 15px;">
 									<p style="margin-bottom: 10px;">
-										<input type="text" name="userName" value="${dto.userName}"
-											style="width: 95%;"
-											${mode=="update" ? "readonly='readonly' ":""} maxlength="15"
-											class="boxTF" placeholder="이름">
+										<input type="text" name="hotelName" style="width: 95%;"
+											maxlength="15" class="boxTF" placeholder="호텔 이름">
 									</p>
-								</td>
-							</tr>
-							<tr>
-								<td width="120" valign="top"
-									style="text-align: right; padding-top: 5px;"><label
-									style="font-weight: 900;">생년월일</label></td>
-								<td style="padding: 0 0 15px 15px;">
-									<p style="margin-bottom: 5px;">
-										<input type="text" name="birth" maxlength="15" class="boxTF"
-											style="width: 95%;" placeholder="생년월일" value="${dto.birth }">
-									</p>
-									<p class="help-block">생년월일은 2000-01-01형식으로 입력해 주세요.</p>
 								</td>
 							</tr>
 							<tr>
@@ -340,7 +318,7 @@ function changeEmail() {
 							<tr height="45">
 								<td align="center">
 									<button type="button" name="sendButton" class="btn btn-default"
-										onclick="memberOk();">${mode=="join"?"회원가입":"정보수정"}</button>
+										onclick="grantedOk();">승인요청</button>
 									<button type="reset" class="btn btn-default">다시입력</button>
 									<button type="button" class="btn btn-default"
 										onclick="javascript:location.href='<%=cp%>/';">${mode=="join"?"가입취소":"수정취소"}</button>

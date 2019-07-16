@@ -30,6 +30,12 @@
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">정산 <span class="caret"></span></a>
 		</li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">리뷰</a></li>
+				<li><a href="#">문의사항</a></li>
+			</ul></li>
 		</ul>
 		
 		<c:if test="${empty sessionScope.member }">

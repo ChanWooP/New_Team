@@ -19,7 +19,7 @@
 					<li><a href="#">호텔 기본정보</a></li>
 					<li><a href="#">호텔 편의시설</a></li>
 					<li><a href="#">호텔 일정</a></li>
-					<li><a href="#">호텔 명소</a></li>
+					<li><a href="<%=cp%>/owner/hotplace/list">호텔 명소</a></li>
 				</ul></li>	
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">방관리 <span class="caret"></span></a>
@@ -33,7 +33,7 @@
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">리뷰</a></li>
+				<li><a href="<%=cp%>/owner/review/list">리뷰</a></li>
 				<li><a href="#">문의사항</a></li>
 			</ul></li>
 		</ul>

@@ -53,4 +53,62 @@ public class HotplaceServiceImpl implements HotplaceService{
 		return list;
 	}
 
+	@Override
+	public int dataCount(Map<String, Object> map) {
+		int result = 0;
+		try {
+			result = dao.selectOne("owner.hotplace.dataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public void deleteHotplace(int placeNum, String placePhoto, String pathName) throws Exception {
+		try {
+			//파일 지우기
+			filemanager.doFileDelete(placePhoto,pathName);
+			
+			//디비의 파일정보 삭제
+			dao.deleteData("owner.hotplace.deleteHotplace", placeNum);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public Hotplace readHotplace(int placeNum) {
+		Hotplace dto = null;
+		try {
+			dto = dao.selectOne("owner.hotplace.readHotplace", placeNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public void updateHotplace(Hotplace dto, String pathname) throws Exception {
+		try {
+			
+			
+			if(! dto.getUpload().isEmpty()) {
+				filemanager.doFileDelete(dto.getPlacePhoto(),pathname);
+				MultipartFile mf = dto.getUpload();
+				String saveFilename = filemanager.doFileUpload(mf, pathname);
+				
+				if(saveFilename!=null) {
+					dto.setPlacePhoto(saveFilename);
+				}
+				
+			}
+			dao.updateData("owner.hotplace.updateHotplace",dto);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 }

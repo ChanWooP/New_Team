@@ -9,7 +9,7 @@
 </script>
 <div class="container">
 	<div style="margin-top:10px;">
-		<strong style="font-size:30px">리뷰</strong>
+		<strong style="font-size:30px">문의사항</strong>
 		<hr style="width: 100%; color: black; height: 1px; background-color:black; margin-top:0px; margin-bottom:10px" />
 	</div>
 	<table style="margin-bottom:10px; width:100%;">

@@ -1,5 +1,8 @@
 package com.sp.owner.hotel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +13,16 @@ public class HotelServiceImpl implements HotelService {
 
 	@Autowired
 	private CommonDAO dao;
-	
+
 	@Override
 	public Hotel selectAll(String hotelId) throws Exception {
 		Hotel dto = null;
 		try {
 			dto = dao.selectOne("selectAll", hotelId);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return dto;
 	}
 
@@ -67,10 +70,10 @@ public class HotelServiceImpl implements HotelService {
 	public void updateRequest(String hotelId) throws Exception {
 		try {
 			dao.updateData("owner.hotel.updateRequest", hotelId);
-		} catch(Exception e) {
-			
+		} catch (Exception e) {
+
 		}
-		
+
 	}
 
 	@Override
@@ -279,6 +282,120 @@ public class HotelServiceImpl implements HotelService {
 	public void deleteConvenient(String hotelId) throws Exception {
 		try {
 			dao.deleteData("owner.hotel.deleteConvenient", hotelId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Hotel> selectRoom(String hotelId) throws Exception {
+		List<Hotel> roomList = new ArrayList<>();
+		try {
+			dao.selectList("owner.hotel.selectRoom", hotelId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return roomList;
+	}
+
+	@Override
+	public void insertRoom(Hotel hotel) throws Exception {
+		try {
+			dao.insertData("owner.hotel.insertRoom", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateRoom(Hotel hotel) throws Exception {
+		try {
+			dao.updateData("owner.hotel.updateRoom", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteRoom(Hotel hotel) throws Exception {
+		try {
+			dao.deleteData("owner.hotel.deleteRoom", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Hotel> selectRoomDetail(String hotelId) throws Exception {
+		List<Hotel> roomDetailList = new ArrayList<>();
+		try {
+			dao.selectList("owner.hotel.selectRoomDetail", hotelId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return roomDetailList;
+	}
+
+	@Override
+	public void insertRoomDetail(Hotel hotel) throws Exception {
+		try {
+			dao.insertData("owner.hotel.insertRoomDetail", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateRoomDetail(Hotel hotel) throws Exception {
+		try {
+			dao.updateData("owner.hotel.updateRoomDetail", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteRoomDetail(Hotel hotel) throws Exception {
+		try {
+			dao.deleteData("owner.hotel.deleteRoomDetail", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Hotel> selectRoomPhoto(String hotelId) throws Exception {
+		List<Hotel> roomPhotoList = new ArrayList<>();
+		try {
+			dao.selectList("owner.hotel.selectRoomPhoto", hotelId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return roomPhotoList;
+	}
+
+	@Override
+	public void insertRoomPhoto(Hotel hotel) throws Exception {
+		try {
+			dao.insertData("owner.hotel.insertRoomPhoto", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateRoomPhoto(Hotel hotel) throws Exception {
+		try {
+			dao.updateData("owner.hotel.updateRoomPhoto", hotel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteRoomPhoto(Hotel hotel) throws Exception {
+		try {
+			dao.deleteData("owner.hotel.deleteRoomPhoto", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

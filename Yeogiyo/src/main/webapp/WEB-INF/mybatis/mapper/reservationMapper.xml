@@ -15,7 +15,7 @@
 		</select>
 		
 		<select id="showresdetail" parameterType="Integer" resultType="com.sp.user.reservation.Reservation">
-			SELECT roomname, stair, roomtype, maxpeople, roomstatus, roomprice,rd.roomdetails 
+			SELECT roomname, stair, roomtype, maxpeople, roomstatus, roomprice, rd.roomdetails 
 			FROM room r
 			JOIN roomdetail rd ON rd.roomnum=r.roomnum
 			WHERE rd.roomnum=#{roomnum}

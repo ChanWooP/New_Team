@@ -13,7 +13,7 @@
 <a href="">이용약관</a>&nbsp;&nbsp;&nbsp;
 <a href="">개인정보취급방침</a>&nbsp;&nbsp;&nbsp;
 <c:if test="${sessionScope.member.enabled!=2 }">
-<a href="<%=cp%>/user/granted/created"><span class="glyphicon glyphicon-home"></span> HotelOwner계정등록</a>&nbsp;&nbsp;&nbsp;
+<a href="<%=cp%>/owner/hotel/register"><span class="glyphicon glyphicon-home"></span> HotelOwner계정등록</a>&nbsp;&nbsp;&nbsp;
 </c:if>
 © YEOGIYO Corp.
 </p>

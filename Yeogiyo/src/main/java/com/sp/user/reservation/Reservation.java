@@ -17,8 +17,8 @@ public class Reservation {
 	private int optNum;
 	private int peopleCount;
 	private String resType;
-	private String checkin;
-	private String checkout;
+	private String checkinday;
+	private String checkoutday;
 	private int price;
 	private int roomnum;
 	private String roomtype;
@@ -165,18 +165,6 @@ public class Reservation {
 	public void setResType(String resType) {
 		this.resType = resType;
 	}
-	public String getCheckin() {
-		return checkin;
-	}
-	public void setCheckin(String checkin) {
-		this.checkin = checkin;
-	}
-	public String getCheckout() {
-		return checkout;
-	}
-	public void setCheckout(String checkout) {
-		this.checkout = checkout;
-	}
 	public int getPrice() {
 		return price;
 	}
@@ -188,6 +176,18 @@ public class Reservation {
 	}
 	public void setRoomnum(int roomnum) {
 		this.roomnum = roomnum;
+	}
+	public String getCheckinday() {
+		return checkinday;
+	}
+	public void setCheckinday(String checkinday) {
+		this.checkinday = checkinday;
+	}
+	public String getCheckoutday() {
+		return checkoutday;
+	}
+	public void setCheckoutday(String checkoutday) {
+		this.checkoutday = checkoutday;
 	}
 	
 	

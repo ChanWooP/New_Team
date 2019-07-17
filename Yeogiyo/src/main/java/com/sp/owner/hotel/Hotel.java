@@ -26,11 +26,18 @@ public class Hotel {
 
 	// hotelprepare 테이블
 	private int prepareNum;
-	private String prepare;
+	private String prepareContent;
 
 	// hoteltype 테이블
 	private int typeNum;
 	private String type;
+
+	// convenient 테이블
+	private int conNum;
+	private String conName;
+	private String conType;
+	private String conOpenTime;
+	private String conCloseTime;
 
 	public String getHotelId() {
 		return hotelId;
@@ -160,12 +167,12 @@ public class Hotel {
 		this.prepareNum = prepareNum;
 	}
 
-	public String getPrepare() {
-		return prepare;
+	public String getPrepareContent() {
+		return prepareContent;
 	}
 
-	public void setPrepare(String prepare) {
-		this.prepare = prepare;
+	public void setPrepareContent(String prepareContent) {
+		this.prepareContent = prepareContent;
 	}
 
 	public int getTypeNum() {
@@ -182,6 +189,46 @@ public class Hotel {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public int getConNum() {
+		return conNum;
+	}
+
+	public void setConId(int conNum) {
+		this.conNum = conNum;
+	}
+
+	public String getConName() {
+		return conName;
+	}
+
+	public void setConName(String conName) {
+		this.conName = conName;
+	}
+
+	public String getConType() {
+		return conType;
+	}
+
+	public void setConType(String conType) {
+		this.conType = conType;
+	}
+
+	public String getConOpenTime() {
+		return conOpenTime;
+	}
+
+	public void setConOpenTime(String conOpenTime) {
+		this.conOpenTime = conOpenTime;
+	}
+
+	public String getConCloseTime() {
+		return conCloseTime;
+	}
+
+	public void setConCloseTime(String conCloseTime) {
+		this.conCloseTime = conCloseTime;
 	}
 
 }

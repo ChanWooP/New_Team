@@ -23,12 +23,12 @@ public interface BbsService {
 	
 	public void insertReply(Reply dto) throws Exception;
 	public List<Reply> listReply(Map<String, Object> map);
-	public int replyCount(Map<String, Object> map);
+	public int replyCount(int num);
 	public void deleteReply(Map<String, Object> map) throws Exception;
 	
 	public List<Reply> listReplyAnswer(int answer);
 	public int replyAnswerCount(int answer);
 	
 	public void insertReplyLike(Map<String, Object> map) throws Exception;
-	public int replyLikeCount(Map<String, Object> map);
+	public int replyLikeCount(int replyNum);
 }

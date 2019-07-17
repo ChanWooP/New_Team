@@ -60,7 +60,7 @@
 							</tr>
 						</table>
 					</div>
-					<c:if test="${sessionScope.member.userId=='admin' }">
+					<c:if test="${sessionScope.member.enabled==3 }">
 						<table style="width: 95%; margin: 10px auto; border-spacing: 0px;">
 							<tr height="40">
 								<td align="right" width="100">

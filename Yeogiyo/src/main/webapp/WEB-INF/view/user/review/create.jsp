@@ -36,6 +36,7 @@
 			</div>
 		<div class="reviewCreate">
 			<div class="reviewCreateIn">
+				<h3>리뷰 작성하기</h3>	
 				<form action="<%=cp%>/user/review/create" name="reviewCreateForm" method="post">
 					<p>제목 </p>
 					<p><input type="text" name="reviewTitle" style="width:550px;"></p>

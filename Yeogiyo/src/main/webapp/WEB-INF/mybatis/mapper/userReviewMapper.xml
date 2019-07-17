@@ -23,8 +23,16 @@
          WHERE reviewNum=#{reviewNum}
 	</select>	
 	
-	<insert id="reviewInsert">
+	<insert id="reviewInsert" parameterType="com.sp.user.review.Review">
 		INSERT INTO review(reviewNum,reviewTitle,reviewContent,score,hitCount,userId,reservationNum, hotelId) 
 		VALUES(REVIEW_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{score}, 0, #{userId}, #{reservatioNum}, #{hotelId})
 	</insert>
+	
+	<update id="reviewUpdate" parameterType="com.sp.user.review.Review">
+		UPDATE review SET reviewTitle=#{reviewTitle} , reviewContent=#{reviewContent} WHERE reviewNum=#{reviewNum} AND userId=#{userId}
+	</update>
+	
+	<delete id="reviewDelete">
+		DELETE review WHERE reviewNum = #{reviewNum}
+	</delete>
 </mapper>

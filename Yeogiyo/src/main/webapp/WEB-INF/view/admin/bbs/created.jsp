@@ -22,7 +22,7 @@ function check() {
 		return;
 	}
 	
-	f.action="<%=cp%>/user/bbs/${mode}";
+	f.action="<%=cp%>/admin/bbs/${mode}";
 	return true;
 }
 </script>
@@ -80,7 +80,7 @@ function check() {
 									<button type="submit" class="btn btn-default">${mode=='update'?'수정완료':'등록하기'}</button>
 									<button type="reset" class="btn btn-default">다시입력</button>
 									<button type="button" class="btn btn-default"
-										onclick="javascript:location.href='<%=cp%>/user/bbs/list';">${mode=='update'?'수정취소':'등록취소'}</button>
+										onclick="javascript:location.href='<%=cp%>/admin/bbs/list';">${mode=='update'?'수정취소':'등록취소'}</button>
 								</td>
 							</tr>
 						</table>

@@ -17,7 +17,7 @@ function sendQna() {
 	s=f.qnaContent.value;
 	if(! s) {
 		alert("내용을 입력하세요");
-		f.qnaTitle.focus();
+		f.qnaContent.focus();
 		return;
 	}
 	f.action="<%=cp%>/user/qna/${mode}";

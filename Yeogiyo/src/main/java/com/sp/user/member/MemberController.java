@@ -44,7 +44,7 @@ public class MemberController {
 		}
 		return ".user.member.login";
 	}
-	
+
 	@RequestMapping(value="/user/member/join", method=RequestMethod.GET)
 	public String memberForm(Model model) {
 		model.addAttribute("mode", "join");

@@ -19,17 +19,26 @@
 					<li><a href="#">호텔 기본정보</a></li>
 					<li><a href="#">호텔 편의시설</a></li>
 					<li><a href="#">호텔 일정</a></li>
-					<li><a href="#">호텔 명소</a></li>
+					<li><a href="<%=cp%>/owner/hotplace/list">호텔 명소</a></li>
 				</ul></li>	
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">방관리 <span class="caret"></span></a>
 		</li>
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">예약관리 <span class="caret"></span></a>
-		</li>
+				<ul class="dropdown-menu">
+					<li><a href="<%=cp%>/owner/reservation/list">전체예약확인</a></li>
+					<li><a href="<%=cp%>/owner/offlineRes/main">오프라인예약</a></li>
+				</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">정산 <span class="caret"></span></a>
 		</li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="<%=cp%>/owner/review/list">리뷰</a></li>
+				<li><a href="<%=cp%>/owner/hotelqna/list">문의사항</a></li>
+			</ul></li>
 		</ul>
 		
 		<c:if test="${empty sessionScope.member }">

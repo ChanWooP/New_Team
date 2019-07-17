@@ -12,6 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+성공 화면입니다.
 </body>
 </html>

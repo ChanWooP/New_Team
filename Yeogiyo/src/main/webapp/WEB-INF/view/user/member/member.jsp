@@ -137,34 +137,49 @@ function userIdCheck() {
 		return;
 	}
 	
-	var url="<%=cp%>
-	/user/member/userIdCheck";
-		var q = "userId=" + userId;
+	var url="<%=cp%>/user/member/userIdCheck";
+	
+	var q = "userId=" + userId;
 
-		$.ajax({
-			type : "post",
-			url : url,
-			data : q,
-			dataType : "json",
-			success : function(data) {
-				var state = data.state;
-				if (state == "true") {
-					var s = "<span style='color:blue;font-weight:bold;'>"
-							+ userId + "</span> 아이디는 사용 가능합니다.";
-					$("#userId").parent().next(".help-block").html(s);
-				} else {
-					var s = "<span style='color:red;font-weight:bold;'>"
-							+ userId + "</span> 아이디는 사용할 수 없습니다.";
-					$("#userId").parent().next(".help-block").html(s);
-					$("#userId").val("");
-					$("#userId").focus();
-				}
-			},
-			error : function(e) {
-				console.log(e.responseText);
+	$.ajax({
+		type : "post",
+		url : url,
+		data : q,
+		dataType : "json",
+		success : function(data) {
+			var state = data.state;
+			if (state == "true") {
+				var s = "<span style='color:blue;font-weight:bold;'>"
+						+ userId + "</span> 아이디는 사용 가능합니다.";
+				$("#userId").parent().next(".help-block").html(s);
+			} else {
+				var s = "<span style='color:red;font-weight:bold;'>"
+						+ userId + "</span> 아이디는 사용할 수 없습니다.";
+				$("#userId").parent().next(".help-block").html(s);
+				$("#userId").val("");
+				$("#userId").focus();
 			}
-		});
-	}
+		},
+		error : function(e) {
+			console.log(e.responseText);
+		}
+	});
+}
+function changeEmail() {
+	 var f = document.memberForm;
+	    
+    var str = f.selectEmail.value;
+    if(str!="direct") {
+        f.email2.value=str; 
+        f.email2.readOnly = true;
+        f.email1.focus(); 
+    }
+    else {
+        f.email2.value="";
+        f.email2.readOnly = false;
+        f.email1.focus();
+    }
+}	
 </script>
 
 <div class="container">

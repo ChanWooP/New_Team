@@ -60,6 +60,10 @@
 			<c:if test="${sessionScope.member.userId=='admin' }">
 			<li><a href="<%=cp%>/admin/main"><span
 					class="	glyphicon glyphicon-user"></span> AdminPage</a></li>
+			</c:if>
+			<c:if test="${sessionScope.member.enabled==2 }">
+			<li><a href="<%=cp%>/owner/main"><span
+					class="	glyphicon glyphicon-user"></span> OwnerPage</a></li>
 			</c:if>		
 		</ul>
 		</c:if>

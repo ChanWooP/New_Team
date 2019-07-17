@@ -46,4 +46,37 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		return article;
 	}
+
+	@Override
+	public void createReview(Review dto) throws Exception {
+		try {
+			dao.insertData("reviewInsert",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public void updateReview(Review dto) throws Exception {
+		try {
+			dao.updateData("reviewUpdate",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public void deleteReview(int reviewNum) throws Exception {
+		try {
+			dao.deleteData("reviewDelete",reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 }

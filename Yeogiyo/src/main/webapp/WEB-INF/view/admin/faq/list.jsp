@@ -7,17 +7,17 @@
 %>
 <script type="text/javascript">
 function updateFaq(faqNum) {
-	<c:if test="${sessionScope.member.userId=='admin'}">
+	<c:if test="${sessionScope.member.enabled==3}">
 		var url="<%=cp%>/user/faq/update?faqNum="+faqNum;
 		location.href=url;
 	</c:if>
-	<c:if test="${sessionScope.member.userId!='admin'}">
+	<c:if test="${sessionScope.member.enabled!=3}">
 		alert("게시물을 수정할 수 없습니다.");
 	</c:if>
 }
 $(function() {
 	$("body").on("click", ".deleteFaq", function() {
-		<c:if test="${sessionScope.member.userId=='admin'}">
+		<c:if test="${sessionScope.member.enabled==3}">
 			if(! confirm("게시물을 삭제하시겠습니까?")) {
 				return false;
 			}
@@ -46,7 +46,7 @@ $(function() {
 				}
 			});
 		</c:if>
-		<c:if test="${sessionScope.member.userId!='admin'}">
+		<c:if test="${sessionScope.member.enabled!=3}">
 			alert("게시물을 삭제할 수 없습니다.");
 		</c:if>
 	});
@@ -82,7 +82,7 @@ $(function() {
 						<c:forEach var="dto" items="${list }">
 							<tr class="tr${dto.faqNum }">
 								<td>
-								<c:if test="${sessionScope.member.userId=='admin' }">
+								<c:if test="${sessionScope.member.enabled==3}">
 									<button type="button" class="btn btn-default faqTitle" style="width:900px; height: 50px; font-size: 15px;">
 										<div align="left">
 											${dto.faqTitle }
@@ -107,7 +107,7 @@ $(function() {
 						</tbody>
 					</table>
 					<div style="margin-top:20px;">
-					<c:if test="${sessionScope.member.userId=='admin' }">
+					<c:if test="${sessionScope.member.enabled==3 }">
 					<button type="button" class="btn btn-default btn-sm" 
 						onclick="javascript:location.href='<%=cp%>/admin/faq/created';">
 						FAQ 작성</button>

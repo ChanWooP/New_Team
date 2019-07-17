@@ -66,7 +66,134 @@
 		
 	</select>
 	
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE bbs SET hitCount = hitCount + 1 WHERE num=#{num} 
+	</update>
 	
+	<select id="readBbs" parameterType="Integer" resultType="com.sp.user.bbs.Bbs">
+		SELECT b.num, b.userId, subject, content, created, hitCount
+		,NVL(bbsLikeCount, 0) bbsLikeCount 
+		FROM bbs b
+		LEFT OUTER JOIN (
+				SELECT num, COUNT(*) bbsLikeCount FROM bbsLike
+				GROUP BY num
+		) bc ON b.num = bc.num
+		WHERE b.num = #{num}
+	</select>
 	
+	<select id="preReadBbs" parameterType="map" resultType="com.sp.user.bbs.Bbs">
+		SELECT * FROM (
+			SELECT num, subject FROM bbs
+				<where>
+	                <if test="keyword != null and keyword != ''">
+	                  <include refid="where-list"/>
+	                </if>
+	                AND (num &lt; #{num})
+	            </where>
+			ORDER BY num DESC
+		) tb WHERE ROWNUM=1	
+	</select>
 	
+	<select id="nextReadBbs" parameterType="map" resultType="com.sp.user.bbs.Bbs">
+		SELECT * FROM (
+			SELECT num, subject FROM bbs
+				<where>
+	                <if test="keyword != null and keyword != ''">
+	                  <include refid="where-list"/>
+	                </if>
+	                AND (num &gt; #{num})
+	            </where>
+			ORDER BY num ASC
+		) tb WHERE ROWNUM=1	
+	</select>
+	
+	<update id="updateBbs" parameterType="com.sp.user.bbs.Bbs">
+		UPDATE bbs SET subject=#{subject}, content=#{content} WHERE num=#{num}
+	</update>
+	
+	<delete id="deleteBbs" parameterType="Integer">
+		DELETE FROM bbs WHERE num=#{num}
+	</delete>
+	
+	<insert id="insertBbsLike" parameterType="map">
+		INSERT INTO bbsLike(num, userId)
+		VALUES(#{num}, #{userId})
+	</insert>
+	
+	<select id="bbsLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM bbsLike WHERE num=#{num}
+	</select>
+	
+	<select id="bbsReplySeq" resultType="Integer">
+		SELECT bbsReply_seq.NEXTVAL FROM dual
+	</select>
+	
+	<insert id="insertReply" parameterType="com.sp.user.bbs.Reply">
+		INSERT INTO bbsReply(replyNum, num, userId, content, answer)
+		VALUES(#{replyNum}, #{num}, #{userId}, #{content}, #{answer})
+	</insert>
+	
+	<select id="replyCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM bbsReply
+		WHERE num=#{num} AND answer=0
+	</select>
+		
+	<select id="listReply" parameterType="map" resultType="com.sp.user.bbs.Reply">
+		SELECT * FROM (
+			SELECT ROWNUM rnum, tb.* FROM (
+				SELECT r.replyNum, r.userId, num, content, r.created
+				            ,NVL(answerCount, 0) answerCount
+				            ,NVL(likeCount, 0) likeCount
+				FROM bbsReply r
+				LEFT OUTER JOIN (
+				     SELECT answer, NVL(COUNT(*), 0) answerCount
+				     FROM bbsReply WHERE answer!=0 GROUP BY answer
+				) a ON r.replyNum = a.answer
+				LEFT OUTER JOIN (
+				     SELECT replyNum, NVL(COUNT(*), 0) likeCount
+				     FROM bbsReplyLike GROUP BY replyNum
+				) c ON r.replyNum = c.replyNum
+				WHERE num=#{num}  AND r.answer=0
+				ORDER BY r.replyNum DESC
+<![CDATA[				
+			) tb WHERE ROWNUM <= #{end}
+		) WHERE rnum >= #{start}
+]]>		
+	</select>
+	
+	<delete id="deleteReply" parameterType="map">
+		DELETE bbsReply 
+		WHERE
+		<if test="mode=='reply'">
+			replyNum IN (
+				SELECT replyNum FROM bbsReply
+					START WITH replyNum=#{replyNum}
+					CONNECT BY PRIOR replyNum=answer
+			)
+		</if>
+		<if test="mode=='answer'">
+			replyNum=#{replyNum}
+		</if>
+	</delete>
+	
+	<insert id="insertReplyLike" parameterType="map">
+		INSERT INTO bbsReplyLike(replyNum, userId)
+		VALUES(#{replyNum}, #{userId})
+	</insert>
+	
+	<select id="replyLikeCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) likeCount FROM bbsReplyLike WHERE replyNum=#{replyNum}
+	</select>
+	
+	<select id="listReplyAnswer" parameterType="Integer" resultType="com.sp.user.bbs.Reply">
+		SELECT replyNum, num, userId, content, created, answer
+		FROM bbsReply
+		WHERE answer=#{answer}
+		ORDER BY replyNum DESC
+	</select>
+	
+	<select id="replyAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM bbsReply WHERE answer=#{answer}
+	</select>
 </mapper>

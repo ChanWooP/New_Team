@@ -9,13 +9,13 @@
 <c:if test="${dto.userId==sessionScope.member.userId || sessionScope.member.enabled==3}">
 	function deleteBbs(num) {
 		if(confirm("게시물을 삭제 하시겠습니까?")) {
-			var url="<%=cp%>/user/bbs/delete?num="+num+"&${query}";
+			var url="<%=cp%>/admin/bbs/delete?num="+num+"&${query}";
 			location.href=url;
 		}
 	}
 </c:if>
 function login() {
-	location.href="<%=cp%>/user/member/login";
+	location.href="<%=cp%>/admin/member/login";
 }
 $(function() {
 	$(".btnSendBbsLike").click(function() {
@@ -26,7 +26,7 @@ $(function() {
 		if(! confirm("좋아요 버튼을 눌르겠습니까?")) {
 			return false;
 		}
-		var url="<%=cp%>/user/bbs/insertBbsLike";
+		var url="<%=cp%>/admin/bbs/insertBbsLike";
 		var num="${dto.num}";
 		$.ajax({
 			type:"post"
@@ -60,7 +60,7 @@ $(function() {
 });
 
 function listPage(page) {
-	var url="<%=cp%>/user/bbs/listReply";
+	var url="<%=cp%>/admin/bbs/listReply";
 	var query="num=${dto.num}&pageNo="+page;
 	
 	$.ajax({
@@ -96,7 +96,7 @@ $(function() {
 		content=encodeURIComponent(content);
 		
 		var query="num="+num+"&content="+content+"&answer=0";
-		var url="<%=cp%>/user/bbs/insertReply";
+		var url="<%=cp%>/admin/bbs/insertReply";
 		$.ajax({
 			type:"post"
 			,url:url
@@ -132,7 +132,7 @@ $(function() {
 		var replyNum=$(this).attr("data-replyNum");
 		var page=$(this).attr("data-pageNo");
 		
-		var url="<%=cp%>/user/bbs/deleteReply";
+		var url="<%=cp%>/admin/bbs/deleteReply";
 		var query="replyNum="+replyNum+"&mode=reply";
 		
 		$.ajax({
@@ -173,7 +173,7 @@ $(function() {
 		var replyNum=$(this).attr("data-replyNum");
 		var $btn=$(this);
 		
-		var url="<%=cp%>/user/bbs/insertReplyLike";
+		var url="<%=cp%>/admin/bbs/insertReplyLike";
 		var query="replyNum="+replyNum;
 		
 		$.ajax({
@@ -234,7 +234,7 @@ $(function() {
 		}
 		content=encodeURIComponent(content);
 		
-		var url="<%=cp%>/user/bbs/insertReply";
+		var url="<%=cp%>/admin/bbs/insertReply";
 		var query="num="+num+"&content="+content+"&answer="+replyNum;
 		
 		$.ajax({
@@ -267,7 +267,7 @@ $(function() {
 });
 
 function listReplyAnswer(answer) {
-	var url="<%=cp%>/user/bbs/listReplyAnswer";
+	var url="<%=cp%>/admin/bbs/listReplyAnswer";
 	$.ajax({
 		type:"get"
 		,url:url
@@ -290,7 +290,7 @@ function listReplyAnswer(answer) {
 }
 
 function countReplyAnswer(answer) {
-	var url="<%=cp%>/user/bbs/countReplyAnswer";
+	var url="<%=cp%>/admin/bbs/countReplyAnswer";
 	$.ajax({
 		type:"post"
 		,url:url
@@ -323,7 +323,7 @@ $(function() {
 		var replyNum=$(this).attr("data-replyNum");
 		var answer=$(this).attr("data-answer");
 		
-		var url="<%=cp%>/user/bbs/deleteReply";
+		var url="<%=cp%>/admin/bbs/deleteReply";
 		var query="replyNum="+replyNum+"&mode=answer";
 		
 		$.ajax({
@@ -390,7 +390,7 @@ $(function() {
 						<td colspan="2" align="left" style="padding-left: 5px;">
 							다음글:
 							<c:if test="${not empty ndto}">
-								<a href="<%=cp%>/user/bbs/article?${query}&num=${ndto.num}">${ndto.subject}</a>
+								<a href="<%=cp%>/admin/bbs/article?${query}&num=${ndto.num}">${ndto.subject}</a>
 							</c:if>
 							</td>
 					</tr>
@@ -398,7 +398,7 @@ $(function() {
 						<td colspan="2" align="left" style="padding-left: 5px;">
 							이전글:
 							<c:if test="${not empty pdto}">
-								<a href="<%=cp%>/user/bbs/article?${query}&num=${pdto.num}">${pdto.subject}</a>
+								<a href="<%=cp%>/admin/bbs/article?${query}&num=${pdto.num}">${pdto.subject}</a>
 							</c:if>
 							</td>
 					</tr>
@@ -410,7 +410,7 @@ $(function() {
 					<td width="300" align="left">
 						<c:if test="${sessionScope.member.userId == dto.userId}">
 							<button type="button" class="btn btn-default"
-								onclick="javascript:location.href='<%=cp%>/user/bbs/update?num=${dto.num}&${query}';">수정</button>
+								onclick="javascript:location.href='<%=cp%>/admin/bbs/update?num=${dto.num}&${query}';">수정</button>
 						</c:if><c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.enabled==3}">
 							<button type="button" class="btn btn-default"
 								onclick="deleteBbs('${dto.num}');">삭제</button>
@@ -418,7 +418,7 @@ $(function() {
 
 					<td align="right">
 						<button type="button" class="btn btn-default"
-							onclick="javascript:location.href='<%=cp%>/user/bbs/list?${query}';">리스트</button>
+							onclick="javascript:location.href='<%=cp%>/admin/bbs/list?${query}';">리스트</button>
 					</td>
 				</tr>
 			</table>

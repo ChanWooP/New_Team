@@ -1,4 +1,4 @@
-package com.sp.user.bbs;
+package com.sp.admin.manage;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.common.MyUtil;
+import com.sp.user.bbs.Bbs;
+import com.sp.user.bbs.BbsService;
+import com.sp.user.bbs.Reply;
 import com.sp.user.member.SessionInfo;
 
-@Controller("user.bbs.bbsController")
+@Controller("admin.bbs.bbsController")
 public class BbsController {
 
 	@Autowired
@@ -30,7 +33,7 @@ public class BbsController {
 	@Autowired
 	private MyUtil util;
 	
-	@RequestMapping(value="/user/bbs/list")
+	@RequestMapping(value="/admin/bbs/list")
 	public String bbsList(@RequestParam(value="page", defaultValue="1") int current_page,
 						@RequestParam(defaultValue="all") String condition,
 						@RequestParam(defaultValue="") String keyword,
@@ -79,15 +82,15 @@ public class BbsController {
 		}
 		String cp=req.getContextPath();
 		String query="";
-		String listUrl=cp+"/user/bbs/list";
-		String articleUrl=cp+"/user/bbs/article?page="+current_page;
+		String listUrl=cp+"/admin/bbs/list";
+		String articleUrl=cp+"/admin/bbs/article?page="+current_page;
 		
 		if(keyword.length()!=0) {
 			query+="condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
 		}
 		if(query.length()!=0) {
-			listUrl=cp+"/user/bbs/list"+query;
-			articleUrl=cp+"/user/bbs/article?page="+current_page+"&"+query;
+			listUrl=cp+"/admin/bbs/list"+query;
+			articleUrl=cp+"/admin/bbs/article?page="+current_page+"&"+query;
 		}
 		String paging=util.paging(current_page, total_page, listUrl);
 		
@@ -101,16 +104,16 @@ public class BbsController {
 		model.addAttribute("condition", condition);
 		model.addAttribute("keyword", keyword);
 		
-		return ".user.bbs.list";
+		return ".admin.bbs.list";
 	}
 	
-	@RequestMapping(value="/user/bbs/created", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/bbs/created", method=RequestMethod.GET)
 	public String bbsCreatedForm(Model model) throws Exception {
 		model.addAttribute("mode", "created");
-		return ".user.bbs.created";
+		return ".admin.bbs.created";
 	}
 	
-	@RequestMapping(value="/user/bbs/created", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/created", method=RequestMethod.POST)
 	public String bbsCreatedSubmit(Bbs dto, HttpSession session) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		try {
@@ -118,10 +121,10 @@ public class BbsController {
 			service.insertBbs(dto);
 		} catch (Exception e) {
 		}
-		return "redirect:/user/bbs/list";
+		return "redirect:/admin/bbs/list";
 	}
 	
-	@RequestMapping(value="/user/bbs/article")
+	@RequestMapping(value="/admin/bbs/article")
 	public String bbsArticle(@RequestParam int num,
 							@RequestParam String page,
 							@RequestParam(defaultValue="all") String condition,
@@ -138,7 +141,7 @@ public class BbsController {
 		
 		Bbs dto=service.readBbs(num);
 		if(dto==null) {
-			return "redirect:/user/bbs/list?"+query;
+			return "redirect:/admin/bbs/list?"+query;
 		}
 		
 		//dto.setContent(util.htmlSymbols(dto.getContent()));
@@ -158,35 +161,35 @@ public class BbsController {
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
-		return ".user.bbs.article";
+		return ".admin.bbs.article";
 	}
 	
-	@RequestMapping(value="/user/bbs/update", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/bbs/update", method=RequestMethod.GET)
 	public String bbsUpdateForm(@RequestParam int num,
 								@RequestParam String page,
 								Model model) throws Exception {
 		Bbs dto=service.readBbs(num);
 		if(dto==null) {
-			return "redirect:/user/bbs/list?page="+page;
+			return "redirect:/admin/bbs/list?page="+page;
 		}
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("mode", "update");
 		model.addAttribute("page", page);
-		return ".user.bbs.created";
+		return ".admin.bbs.created";
 	}
 	
-	@RequestMapping(value="/user/bbs/update", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/update", method=RequestMethod.POST)
 	public String bbsUpdateSubmit(Bbs dto, @RequestParam String page,
 								HttpSession session) throws Exception {
 		try {
 			service.updataBbs(dto);
 		} catch (Exception e) {
 		}
-		return "redirect:/user/bbs/list?page="+page;
+		return "redirect:/admin/bbs/list?page="+page;
 	}
 	
-	@RequestMapping(value="/user/bbs/delete")
+	@RequestMapping(value="/admin/bbs/delete")
 	public String bbsDelete(@RequestParam int num,
 							@RequestParam String page,
 							@RequestParam(defaultValue="all") String condition,
@@ -200,9 +203,9 @@ public class BbsController {
 		} catch (Exception e) {
 		}
 		
-		return "redirect:/user/bbs/list?"+query;
+		return "redirect:/admin/bbs/list?"+query;
 	}
-	@RequestMapping(value="/user/bbs/insertBbsLike", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/insertBbsLike", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertBbsLike(@RequestParam int num,
 											HttpSession session) throws Exception {
@@ -228,7 +231,7 @@ public class BbsController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/bbs/listReply")
+	@RequestMapping(value="/admin/bbs/listReply")
 	public String listReply(@RequestParam int num,
 							@RequestParam(value="pageNo", defaultValue="1") int current_page,
 							Model model) throws Exception {
@@ -260,10 +263,10 @@ public class BbsController {
 		model.addAttribute("total_page", total_page);
 		model.addAttribute("paging", paging);
 		
-		return "user/bbs/listReply";
+		return "admin/bbs/listReply";
 	}
 	
-	@RequestMapping(value="/user/bbs/insertReply", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/insertReply", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertReply(Reply dto, HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -280,7 +283,7 @@ public class BbsController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/bbs/deleteReply", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/deleteReply", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deleteBbsReply(
 				@RequestParam int replyNum,
@@ -301,7 +304,7 @@ public class BbsController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/bbs/insertReplyLike", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/insertReplyLike", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertReplyLike(
 				@RequestParam int replyNum,
@@ -327,7 +330,7 @@ public class BbsController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/bbs/listReplyAnswer")
+	@RequestMapping(value="/admin/bbs/listReplyAnswer")
 	public String listReplyAnswer(@RequestParam(value="answer") int answer, 
 								Model model) throws Exception {
 		List<Reply> listReplyAnswer=service.listReplyAnswer(answer);
@@ -339,10 +342,10 @@ public class BbsController {
 		model.addAttribute("answerCount", answerCount);
 		model.addAttribute("listReplyAnswer", listReplyAnswer);
 		
-		return "/user/bbs/listReplyAnswer";
+		return "/admin/bbs/listReplyAnswer";
 	}
 	
-	@RequestMapping(value="/user/bbs/countReplyAnswer", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/bbs/countReplyAnswer", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> countReplyAnswer(@RequestParam(value="answer") int answer) {
 		int answerCount=service.replyAnswerCount(answer);

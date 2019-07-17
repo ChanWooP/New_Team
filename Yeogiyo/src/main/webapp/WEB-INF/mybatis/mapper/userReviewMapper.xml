@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.review">
+	<select id="reviewList" parameterType="map" resultType="com.sp.user.review.Review">
+		SELECT * FROM (
+        SELECT ROWNUM rnum, tb.* FROM (
+             SELECT reviewNum, reviewTitle, reviewContent, score, TO_CHAR(reviewCreated,'YYYY-MM-DD') reviewCreated, member.username
+                FROM review JOIN member ON review.userid=member.userid 
+                ORDER BY reviewNum DESC
+<![CDATA[
+	        ) tb WHERE ROWNUM <= ${end}
+	    ) WHERE rnum >= #{start}
+]]>
+	</select>
+	<select id="reviewCount" resultType="Integer">
+		SELECT NVL(COUNT(*),0) reviewCount FROM review
+	</select>
+	
+	<select id="reviewarticle" parameterType="Integer" resultType="com.sp.user.review.Review">
+		 SELECT reviewNum, reviewTitle ,reviewContent, reviewCreated, score, member.username
+                FROM review JOIN member ON review.userid=member.userid 
+         WHERE reviewNum=#{reviewNum}
+	</select>	
+	
+	<insert id="reviewInsert">
+		INSERT INTO review(reviewNum,reviewTitle,reviewContent,score,hitCount,userId,reservationNum, hotelId) 
+		VALUES(REVIEW_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{score}, 0, #{userId}, #{reservatioNum}, #{hotelId})
+	</insert>
+</mapper>

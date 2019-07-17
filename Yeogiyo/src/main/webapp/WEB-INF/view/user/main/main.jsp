@@ -16,9 +16,6 @@
 	});
 </script>
 
-
-
-
 <div class="container">
 	
 	<div id="mainsearch" style="margin-top: 30px; height: 500px;">

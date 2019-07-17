@@ -18,7 +18,7 @@ public class ReservationController {
 	
 	@RequestMapping(value="/user/reservation/reservation", method=RequestMethod.POST)
 	public String reservate(@RequestParam String hotelId, @RequestParam String roomtype, @RequestParam int roomprice,
-			@RequestParam int maxpeople, @RequestParam String roomdetails, Model model) {
+			@RequestParam int maxpeople, @RequestParam String roomdetails,@RequestParam String checkinday, @RequestParam String checkoutday, Model model) {
 		
 		Map<String, Object> map = new HashMap<>();
 		int roomnum=0;
@@ -35,6 +35,8 @@ public class ReservationController {
 		resdetail=service.reservationdetail(roomnum);
 		
 		model.addAttribute("resdetail",resdetail);
+		model.addAttribute("checkinday",checkinday);
+		model.addAttribute("checkoutday",checkoutday);	
 		
 		return ".user.reservation.reservation";
 	}

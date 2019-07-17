@@ -1,9 +1,11 @@
 package com.sp.owner.hotel;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.sp.common.dao.CommonDAO;
 
+@Service("owner.hotel.hotelService")
 public class HotelServiceImpl implements HotelService {
 
 	@Autowired

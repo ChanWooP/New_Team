@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("owner.hotel.hotelController")
 public class HotelController {
+	// 호텔테이블에 평점 컬럼 추가하기
 	// 트랜잭션 처리 예외처리 마저 해주기
 	// 세션에 개인정보 변경이나 호텔 삭제 등에는 세션에 저장해놓은 멤버와 비교하도록 만들기
-	// 호텔오너의 호텔 삭제 요청을 위한 requeset 컬럼 hotel 테이블에 추가했음! 관리자는 request가 1인 호텔목록을 볼 수 있고 승인해주는 방식
+	// 호텔오너의 호텔 삭제 요청을 위한 request 컬럼 hotel 테이블에 추가했음! 관리자는 request가 1인 호텔목록을 볼 수 있고 승인해주는 방식
 	// 호텔오너 페이지 시큐리티로 접근 제한하기
 	
 	@Autowired
@@ -28,8 +29,6 @@ public class HotelController {
 		return ".owner.hotel.viewInfo";
 	}
 	
-	// model 데이터를 jsp 페이지로 넘기는 데에 사용 다른 방법 뭐 있더라?
-	// get 방식으로 value의 주소로 접근시 return 문에 적힌 곳으로 연결시켜줌(웹 주소와 jsp의 주소가 같아도 필수?)
 	@RequestMapping(value="/owner/hotel/register", method=RequestMethod.GET)
 	public String hotelRegisterForm(Model model) throws Exception{
 		return ".owner.hotel.register";

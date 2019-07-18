@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.common.MyUtil;
+import com.sp.user.member.SessionInfo;
 
 @Controller("owner.hotplaceController")
 public class HotplaceController {
@@ -100,13 +101,14 @@ public class HotplaceController {
 	public String createSubmit(Hotplace dto, HttpSession session) throws Exception{
 		
 		//세션 처리 해줘야함 호텔 아이디 나중에 수정
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		try {
 			String root = session.getServletContext().getRealPath("/");
 			String pathName = root + "uploads"+ File.separator + "hotplace";
 			
 			//세션 처리 해줘야함 호텔 아이디 나중에 수정
-			dto.setHotelId("hotel1");
+			dto.setHotelId(info.getUserId());
 			service.insertHotplace(dto, pathName);
 			
 		} catch (Exception e) {

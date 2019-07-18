@@ -2,8 +2,6 @@ package com.sp.owner.hotelqna;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.common.MyUtil;
 
@@ -90,5 +89,17 @@ public class HotelQnaController {
 		model.addAttribute("keyword", keyword);
 		
 		return ".owner.hotelqna.list";
+	}
+	
+	@RequestMapping(value="/owner/hotelqna/lists")
+	@ResponseBody
+	public Map<String, List<HotelQna>> lists(int qnaNum){
+		Map<String, List<HotelQna>> model = new HashMap<>();
+		try {
+			List<HotelQna> list = service.listHotelQna(qnaNum);
+			model.put("list", list);
+		} catch (Exception e) {
+		}
+		return model;
 	}
 }

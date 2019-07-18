@@ -10,4 +10,5 @@ public interface HotelQnaService {
 	public void deleteHotelQna(int qnaNum) throws Exception;
 	public HotelQna readHotelQna(int qnaNum);
 	public void updateHotelQna(HotelQna dto) throws Exception;
+	public List<HotelQna> listHotelQna(int qnaNum);
 }

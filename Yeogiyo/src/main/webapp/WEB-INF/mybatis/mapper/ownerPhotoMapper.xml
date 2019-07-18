@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owner.photo">
+
+<select id="selectPhoto" parameterType="java.lang.String" resultType="com.sp.owner.photo.Photo">
+	SELECT hotelPhotoNum, hotelPhotoName, hotelId FROM hotelPhoto WHERE hotelNum=#{hotelNum}
+</select>
+
+<select id="selectPhoto" parameterType="java.lang.String" resultType="com.sp.owner.photo.Photo">
+	
+</select>
+
+<select id="selectPhoto" parameterType="java.lang.String" resultType="com.sp.owner.photo.Photo">
+
+</select>
+</mapper>

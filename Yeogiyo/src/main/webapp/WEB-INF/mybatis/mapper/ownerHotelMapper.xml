@@ -342,6 +342,8 @@
 		VALUES(roomPhoto_SEQ.NEXTVAL, #{roomPhotoName}, #{roomNum})
 	</insert>
 
+
+
 	<update id="updateRoomPhoto"
 		parameterType="com.sp.owner.hotel.Hotel">
 		UPDATE roomPhoto SET roomPhotoName=#{roomPhotoName}

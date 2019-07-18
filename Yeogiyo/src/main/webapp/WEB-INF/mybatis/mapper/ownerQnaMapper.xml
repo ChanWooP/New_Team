@@ -7,17 +7,24 @@
 	    	SELECT ROWNUM rnum, tb.* FROM(
 		        SELECT qnaNum, qnaTitle, qnaContent, userId, hotelId, qnaParent, qnaCreated
 		        FROM hotelqna
-	        	
-	        	<where>
-	        		<if test="keyword != null and keyword != '' ">
-	        			<include refid="where-list"/>
-	        		</if>
-	        	</where>
+		        WHERE qnaParent = 0
+
+	        	<if test="keyword != null and keyword != '' ">
+	        		AND <include refid="where-list"/>
+	        	</if>
+
 	        	ORDER BY qnaNum DESC
 <![CDATA[
 	        	)tb WHERE ROWNUM <= #{end}
 		)WHERE rnum >= #{start}
 ]]>
+	</select>
+	
+	<select id="selectHotelQnas" parameterType="Integer" resultType="com.sp.owner.hotelqna.HotelQna">
+		SELECT qnaNum, qnaTitle, qnaContent, userId, hotelId, qnaParent, qnaCreated
+		FROM hotelqna
+		WHERE qnaParent = #{qnaNum} 
+	    ORDER BY qnaNum DESC
 	</select>
 	
 	<select id="dataCount" parameterType="map" resultType="Integer">

@@ -168,14 +168,14 @@ $(function() {
 			
 			<div id="map">
 				<script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					var mapContainer = document.getElementById('map');// 지도를 표시할 div 
 					mapOption = {
 						center : new kakao.maps.LatLng(${detail.latitude},${detail.longitude}), 
 						level : 3
 					};
 				
 					var map = new kakao.maps.Map(mapContainer, mapOption); 
-					var markerPosition = kakao.maps.LatLng(${detail.latitude},${detail.longitude});
+					var markerPosition = new kakao.maps.LatLng(${detail.latitude},${detail.longitude});
 
 					var marker = new kakao.maps.Marker({
 						position : markerPosition
@@ -249,4 +249,6 @@ $(function() {
 	<input type="hidden" name="roomdetails">
 	<input type="hidden" name="roomtype">
 	<input type="hidden" name="roomprice">
+	<input type="hidden" value="${checkinday}" name="checkinday">
+	<input type="hidden" value="${checkoutday}" name="checkoutday">
 </form>

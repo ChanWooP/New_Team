@@ -6,7 +6,7 @@
    String cp = request.getContextPath();
 %>
 <script type="text/javascript">
-<c:if test="${dto.userId==sessionScope.member.userId || sessionScope.member.userId=='admin'}">
+<c:if test="${dto.userId==sessionScope.member.userId || sessionScope.member.enabled==3}">
 	function deleteQna(qnaNum) {
 		if(confirm("게시물을 삭제 하시겠습니까?")) {
 			var url="<%=cp%>/admin/qna/delete?qnaNum="+qnaNum+"&${query}";
@@ -61,7 +61,7 @@
 				style="width: 100%; margin: 0px auto 20px; border-spacing: 0px;">
 				<tr height="45">
 					<td width="300" align="left">
-					<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
+					<c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.enabled==3}">
 							<button type="button" class="btn btn-default"
 								onclick="javascript:location.href='<%=cp%>/admin/qna/reply?qnaNum=${dto.qnaNum}&page=${page}';">답변</button>
 					</c:if>
@@ -79,6 +79,7 @@
 					</td>
 				</tr>
 			</table>
+			<hr>
 			<table class="table">
 				<thead>
 					<tr>

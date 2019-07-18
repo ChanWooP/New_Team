@@ -19,7 +19,7 @@
 				data-toggle="dropdown" href="#">게시판 관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/admin/bbs/list">자유게시판</a></li>
-					<li><a href="<%=cp%>/admin/bbs/list">신고 리뷰</a></li>
+					<li><a href="<%=cp%>/">신고 리뷰</a></li>
 				</ul></li>	
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">소식 관리<span class="caret"></span></a>
@@ -41,7 +41,7 @@
 					class="	glyphicon glyphicon-heart"></span> ${sessionScope.member.userId }</a></li>
 			<li><a href="<%=cp%>/user/member/logout"><span
 					class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			<c:if test="${sessionScope.member.userId=='admin' }">
+			<c:if test="${sessionScope.member.enabled==3 }">
 			<li><a href="<%=cp%>/user/main"><span
 					class="	glyphicon glyphicon-user"></span> UserPage</a></li>
 			</c:if>		

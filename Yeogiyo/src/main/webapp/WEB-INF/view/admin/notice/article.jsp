@@ -7,22 +7,22 @@
 %>
 <script type="text/javascript">
 function updateNotice() {
-	<c:if test="${sessionScope.member.userId=='admin'}">
+	<c:if test="${sessionScope.member.enabled==3}">
 		var url="<%=cp%>/admin/notice/update?noticeNum=${dto.noticeNum}&page=${page}";
 		location.href=url;
 	</c:if>
-	<c:if test="${sessionScope.member.userId!='admin'}">
+	<c:if test="${sessionScope.member.enabled!=3}">
 		alert("게시물을 수정할 수 없습니다.");
 	</c:if>
 }
 function deleteNotice() {
-	<c:if test="${sessionScope.member.userId=='admin'}">
+	<c:if test="${sessionScope.member.enabled==3}">
 	var url="<%=cp%>/admin/notice/delete?noticeNum=${dto.noticeNum}&page=${page}";
 	if(confirm("이 공지사항을 삭제하시겠습니까?")) {
 		location.href=url;
 	}
 	</c:if>
-	<c:if test="${sessionScope.member.userId!='admin'}">
+	<c:if test="${sessionScope.member.enabled!=3}">
 	alert("게시물을 삭제할 수 없습니다.");
 </c:if>
 }
@@ -71,10 +71,10 @@ function deleteNotice() {
 					style="width: 100%; margin: 0px auto 10px; border-spacing: 0px;">
 					<tr height="45">
 						<td width="300" align="left">
-							<c:if test="${sessionScope.member.userId == 'admin'}">
+							<c:if test="${sessionScope.member.enabled==3}">
 								<button type="button" class="btn btn-default"
 									onclick="updateNotice();">수정</button>
-							</c:if><c:if test="${sessionScope.member.userId=='admin'}">
+							</c:if><c:if test="${sessionScope.member.enabled==3}">
 								<button type="button" class="btn btn-default"
 									onclick="deleteNotice();">삭제</button>
 							</c:if> </td>

@@ -26,11 +26,36 @@ public class Hotel {
 
 	// hotelprepare 테이블
 	private int prepareNum;
-	private String prepare;
+	private String prepareContent;
 
 	// hoteltype 테이블
 	private int typeNum;
 	private String type;
+
+	// convenient 테이블
+	private int conNum;
+	private String conName;
+	private String conType;
+	private String conOpenTime;
+	private String conCloseTime;
+
+	// room 테이블
+	private int roomNum;
+	private String roomName;
+	private int stair;
+	private String roomType;
+	private int maxPeople;
+	private String roomStatus;
+	private int roomPrice;
+	private int extraPrice;
+
+	// roomDetail 테이블
+	private int roomDetailNum;
+	private String roomDetails;
+
+	// roomPhoto 테이블
+	private int roomPhotoNum;
+	private String roomPhotoName;
 
 	public String getHotelId() {
 		return hotelId;
@@ -160,12 +185,12 @@ public class Hotel {
 		this.prepareNum = prepareNum;
 	}
 
-	public String getPrepare() {
-		return prepare;
+	public String getPrepareContent() {
+		return prepareContent;
 	}
 
-	public void setPrepare(String prepare) {
-		this.prepare = prepare;
+	public void setPrepareContent(String prepareContent) {
+		this.prepareContent = prepareContent;
 	}
 
 	public int getTypeNum() {
@@ -184,4 +209,139 @@ public class Hotel {
 		this.type = type;
 	}
 
+	public int getConNum() {
+		return conNum;
+	}
+
+	public void setConNum(int conNum) {
+		this.conNum = conNum;
+	}
+
+	public String getConName() {
+		return conName;
+	}
+
+	public void setConName(String conName) {
+		this.conName = conName;
+	}
+
+	public String getConType() {
+		return conType;
+	}
+
+	public void setConType(String conType) {
+		this.conType = conType;
+	}
+
+	public String getConOpenTime() {
+		return conOpenTime;
+	}
+
+	public void setConOpenTime(String conOpenTime) {
+		this.conOpenTime = conOpenTime;
+	}
+
+	public String getConCloseTime() {
+		return conCloseTime;
+	}
+
+	public void setConCloseTime(String conCloseTime) {
+		this.conCloseTime = conCloseTime;
+	}
+
+	public int getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
+	public int getStair() {
+		return stair;
+	}
+
+	public void setStair(int stair) {
+		this.stair = stair;
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+
+	public int getMaxPeople() {
+		return maxPeople;
+	}
+
+	public void setMaxPeople(int maxPeople) {
+		this.maxPeople = maxPeople;
+	}
+
+	public String getRoomStatus() {
+		return roomStatus;
+	}
+
+	public void setRoomStatus(String roomStatus) {
+		this.roomStatus = roomStatus;
+	}
+
+	public int getRoomPrice() {
+		return roomPrice;
+	}
+
+	public void setRoomPrice(int roomPrice) {
+		this.roomPrice = roomPrice;
+	}
+
+	public int getExtraPrice() {
+		return extraPrice;
+	}
+
+	public void setExtraPrice(int extraPrice) {
+		this.extraPrice = extraPrice;
+	}
+
+	public int getRoomDetailNum() {
+		return roomDetailNum;
+	}
+
+	public void setRoomDetailNum(int roomDetailNum) {
+		this.roomDetailNum = roomDetailNum;
+	}
+
+	public String getRoomDetails() {
+		return roomDetails;
+	}
+
+	public void setRoomDetails(String roomDetails) {
+		this.roomDetails = roomDetails;
+	}
+
+	public int getRoomPhotoNum() {
+		return roomPhotoNum;
+	}
+
+	public void setRoomPhotoNum(int roomPhotoNum) {
+		this.roomPhotoNum = roomPhotoNum;
+	}
+
+	public String getRoomPhotoName() {
+		return roomPhotoName;
+	}
+
+	public void setRoomPhotoName(String roomPhotoName) {
+		this.roomPhotoName = roomPhotoName;
+	}
 }

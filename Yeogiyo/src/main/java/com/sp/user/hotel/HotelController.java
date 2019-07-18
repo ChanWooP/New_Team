@@ -29,13 +29,15 @@ public class HotelController {
 		List<Hotel> list = service.listHotel(map);
 		
 		model.addAttribute("list",list);
+		model.addAttribute("checkinday",checkinday);
+		model.addAttribute("checkoutday",checkoutday);	
 		return ".user.hotel.list";
 	}
 	
 	
 	// 호텔 상세보기
 	@RequestMapping(value="/user/hotel/detail")
-	public String article(@RequestParam String hotelName,Model model) {
+	public String article(@RequestParam String hotelName, @RequestParam String checkinday, @RequestParam String checkoutday, Model model) {
 				
 		Map<String, Object> map = new HashMap<>();
 		Map<String, Object> maps = new HashMap<>();
@@ -52,7 +54,8 @@ public class HotelController {
 		model.addAttribute("detail", detail);
 		model.addAttribute("plist",plist);
 		model.addAttribute("rlist", rlist);
-			
+		model.addAttribute("checkinday",checkinday);
+		model.addAttribute("checkoutday",checkoutday);	
 		return ".user.hotel.detail";
 	}	
 }

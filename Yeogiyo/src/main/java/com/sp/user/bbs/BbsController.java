@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.common.MyUtil;
 import com.sp.user.member.SessionInfo;
@@ -118,5 +119,236 @@ public class BbsController {
 		} catch (Exception e) {
 		}
 		return "redirect:/user/bbs/list";
+	}
+	
+	@RequestMapping(value="/user/bbs/article")
+	public String bbsArticle(@RequestParam int num,
+							@RequestParam String page,
+							@RequestParam(defaultValue="all") String condition,
+							@RequestParam(defaultValue="") String keyword,
+							Model model) throws Exception {
+		keyword=URLDecoder.decode(keyword, "UTF-8");
+		
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		
+		service.updateHitCount(num);
+		
+		Bbs dto=service.readBbs(num);
+		if(dto==null) {
+			return "redirect:/user/bbs/list?"+query;
+		}
+		
+		//dto.setContent(util.htmlSymbols(dto.getContent()));
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("num", num);
+		
+		Bbs pdto=service.preReadBbs(map);
+		Bbs ndto=service.nextReadBbs(map);
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("pdto", pdto);
+		model.addAttribute("ndto", ndto);
+		
+		model.addAttribute("page", page);
+		model.addAttribute("query", query);
+		
+		return ".user.bbs.article";
+	}
+	
+	@RequestMapping(value="/user/bbs/update", method=RequestMethod.GET)
+	public String bbsUpdateForm(@RequestParam int num,
+								@RequestParam String page,
+								Model model) throws Exception {
+		Bbs dto=service.readBbs(num);
+		if(dto==null) {
+			return "redirect:/user/bbs/list?page="+page;
+		}
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("mode", "update");
+		model.addAttribute("page", page);
+		return ".user.bbs.created";
+	}
+	
+	@RequestMapping(value="/user/bbs/update", method=RequestMethod.POST)
+	public String bbsUpdateSubmit(Bbs dto, @RequestParam String page,
+								HttpSession session) throws Exception {
+		try {
+			service.updataBbs(dto);
+		} catch (Exception e) {
+		}
+		return "redirect:/user/bbs/list?page="+page;
+	}
+	
+	@RequestMapping(value="/user/bbs/delete")
+	public String bbsDelete(@RequestParam int num,
+							@RequestParam String page,
+							@RequestParam(defaultValue="all") String condition,
+							@RequestParam(defaultValue="") String keyword) throws Exception {
+		String query="page="+page;
+		if(keyword.length()!=0) {
+			query+="&condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
+		}
+		try {
+			service.deleteBbs(num);
+		} catch (Exception e) {
+		}
+		
+		return "redirect:/user/bbs/list?"+query;
+	}
+	@RequestMapping(value="/user/bbs/insertBbsLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertBbsLike(@RequestParam int num,
+											HttpSession session) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		String state="true";
+		int bbsLikeCount=0;
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("num", num);
+		map.put("userId", info.getUserId());
+		
+		try {
+			service.insertBbsLike(map);
+		} catch (Exception e) {
+			state="false";
+		}
+		bbsLikeCount=service.bbsLikeCount(num);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("bbsLikeCount", bbsLikeCount);
+		
+		return model;
+	}
+	
+	@RequestMapping(value="/user/bbs/listReply")
+	public String listReply(@RequestParam int num,
+							@RequestParam(value="pageNo", defaultValue="1") int current_page,
+							Model model) throws Exception {
+		int rows=5;
+		int total_page=0;
+		int dataCount=service.replyCount(num);
+		total_page=util.pageCount(rows, dataCount);
+		if(current_page > total_page)
+			current_page=total_page;
+		
+		int start=(current_page-1)*rows+1;
+		int end=current_page*rows;
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("num", num);
+		map.put("start", start);
+		map.put("end", end);
+		List<Reply> listReply=service.listReply(map);
+		
+		for(Reply dto:listReply) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		
+		String paging=util.pagingMethod(current_page, total_page, "listPage");
+		
+		model.addAttribute("listReply", listReply);
+		model.addAttribute("pageNo", current_page);
+		model.addAttribute("replyCount", dataCount);
+		model.addAttribute("total_page", total_page);
+		model.addAttribute("paging", paging);
+		
+		return "user/bbs/listReply";
+	}
+	
+	@RequestMapping(value="/user/bbs/insertReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReply(Reply dto, HttpSession session) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		String state="true";
+		try {
+			dto.setUserId(info.getUserId());
+			service.insertReply(dto);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
+	}
+	
+	@RequestMapping(value="/user/bbs/deleteReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteBbsReply(
+				@RequestParam int replyNum,
+				@RequestParam String mode) throws Exception {
+		String state="true";
+		Map<String, Object> map=new HashMap<>();
+		map.put("replyNum", replyNum);
+		map.put("mode", mode);
+		
+		try {
+			service.deleteReply(map);
+		} catch (Exception e) {
+			state="false";
+		}
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
+	}
+	
+	@RequestMapping(value="/user/bbs/insertReplyLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReplyLike(
+				@RequestParam int replyNum,
+				HttpSession session) throws Exception {
+		
+		String state="true";
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("replyNum", replyNum);
+		map.put("userId", info.getUserId());
+		try {
+			service.insertReplyLike(map);
+		} catch (Exception e) {
+			state="false";
+		}
+		int likeCount=service.replyLikeCount(replyNum);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("likeCount", likeCount);
+		
+		return model;
+	}
+	
+	@RequestMapping(value="/user/bbs/listReplyAnswer")
+	public String listReplyAnswer(@RequestParam(value="answer") int answer, 
+								Model model) throws Exception {
+		List<Reply> listReplyAnswer=service.listReplyAnswer(answer);
+		for(Reply dto:listReplyAnswer) {
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		int answerCount=service.replyAnswerCount(answer);
+		
+		model.addAttribute("answerCount", answerCount);
+		model.addAttribute("listReplyAnswer", listReplyAnswer);
+		
+		return "/user/bbs/listReplyAnswer";
+	}
+	
+	@RequestMapping(value="/user/bbs/countReplyAnswer", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> countReplyAnswer(@RequestParam(value="answer") int answer) {
+		int answerCount=service.replyAnswerCount(answer);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("answerCount", answerCount);
+		return model;
 	}
 }

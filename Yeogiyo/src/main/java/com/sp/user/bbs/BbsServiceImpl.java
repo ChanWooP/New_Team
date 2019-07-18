@@ -136,6 +136,8 @@ public class BbsServiceImpl implements BbsService {
 	@Override
 	public void insertReply(Reply dto) throws Exception {
 		try {
+			int bbsReplySeq=dao.selectOne("user.bbs.bbsReplySeq");
+			dto.setReplyNum(bbsReplySeq);
 			dao.insertData("user.bbs.insertReply", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,10 +157,10 @@ public class BbsServiceImpl implements BbsService {
 	}
 
 	@Override
-	public int replyCount(Map<String, Object> map) {
+	public int replyCount(int num) {
 		int result=0;
 		try {
-			result=dao.selectOne("user.bbs.replyCount", map);
+			result=dao.selectOne("user.bbs.replyCount", num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -208,10 +210,10 @@ public class BbsServiceImpl implements BbsService {
 	}
 
 	@Override
-	public int replyLikeCount(Map<String, Object> map) {
+	public int replyLikeCount(int replyNum) {
 		int result=0;
 		try {
-			result=dao.selectOne("user.bbs.replyLikeCount", map);
+			result=dao.selectOne("user.bbs.replyLikeCount", replyNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

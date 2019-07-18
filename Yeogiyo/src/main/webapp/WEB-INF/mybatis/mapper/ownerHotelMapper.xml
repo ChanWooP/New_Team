@@ -290,18 +290,18 @@
 	
 	
 	<!-- roomDetail table query -->
-	<select id="selectRoomDetail" parameterType="String" resultType="com.sp.owner.hotel.Hote">
+	<select id="selectRoomDetail" parameterType="String" resultType="com.sp.owner.hotel.Hotel">
 		SELECT roomDetailNum, roomNum, roomDetails 
 		FROM roomDetail 
 		WHERE roomNum=#{roomNum}
 	</select>
 	
-	<insert id="insertRoomDetail" parameterType="com.sp.owner.hotel.Hote">
+	<insert id="insertRoomDetail" parameterType="com.sp.owner.hotel.Hotel">
 		INSERT INTO roomDetail(roomDetailNum, roomNum, roomDetails)
 		VALUES(#{roomDetailNum}, #{roomNum}, #{roomDetails})
 	</insert>
 	
-	<update id="updateRoomDetail" parameterType="com.sp.owner.hotel.Hote">
+	<update id="updateRoomDetail" parameterType="com.sp.owner.hotel.Hotel">
 		UPDATE roomDetail 
 		SET roomDetails=#{roomDetails}
 	</update>
@@ -324,7 +324,7 @@
 		VALUES(#{roomPhotoNum}, #{roomPhotoName}, #{roomNum})
 	</insert>
 	
-	<update id="updateRoomPhoto" parameterType="com.sp.owner.hotel.Hote">
+	<update id="updateRoomPhoto" parameterType="com.sp.owner.hotel.Hotel">
 		UPDATE roomPhoto SET roomPhotoName=#{roomPhotoName}
 	</update>
 	

@@ -1,5 +1,7 @@
 package com.sp.owner.hotel;
 
+import java.util.List;
+
 public interface HotelService {
 	
 	public Hotel selectAll(String hotelId) throws Exception;
@@ -41,4 +43,23 @@ public interface HotelService {
 	public void insertConvenient(Hotel hotel) throws Exception;
 	public void updateConvenient(Hotel hotel) throws Exception;
 	public void deleteConvenient(String hotelId) throws Exception;
+	
+	// room 테이블
+	public List<Hotel> selectRoom(String hotelId) throws Exception;
+	public void insertRoom(Hotel hotel) throws Exception;
+	public void updateRoom(Hotel hotel) throws Exception;
+	public void  deleteRoom(Hotel hotel) throws Exception;
+	
+	// roomDetail 테이블
+	public List<Hotel> selectRoomDetail(String hotelId) throws Exception;
+	public void insertRoomDetail(Hotel hotel) throws Exception;
+	public void updateRoomDetail(Hotel hotel) throws Exception;
+	public void deleteRoomDetail(Hotel hotel) throws Exception;
+	
+	// roomPhoto 테이블
+	public List<Hotel> selectRoomPhoto(String hotelId) throws Exception;
+	public void insertRoomPhoto(Hotel hotel) throws Exception;
+	public void updateRoomPhoto(Hotel hotel) throws Exception;
+	public void deleteRoomPhoto(Hotel hotel) throws Exception;
+	
 }

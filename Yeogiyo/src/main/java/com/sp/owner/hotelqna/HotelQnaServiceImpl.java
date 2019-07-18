@@ -62,6 +62,18 @@ public class HotelQnaServiceImpl implements HotelQnaService{
 		
 	}
 
+	@Override
+	public List<HotelQna> listHotelQna(int qnaNum) {
+		List<HotelQna> list = null;
+		
+		try {
+			list = dao.selectList("owner.hotelqna.selectHotelQnas", qnaNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	
 
 }

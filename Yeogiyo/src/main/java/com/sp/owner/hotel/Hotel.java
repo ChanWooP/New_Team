@@ -39,6 +39,24 @@ public class Hotel {
 	private String conOpenTime;
 	private String conCloseTime;
 
+	// room 테이블
+	private int roomNum;
+	private String roomName;
+	private int stair;
+	private String roomType;
+	private int maxPeople;
+	private String roomStatus;
+	private int roomPrice;
+	private int extraPrice;
+
+	// roomDetail 테이블
+	private int roomDetailNum;
+	private String roomDetails;
+
+	// roomPhoto 테이블
+	private int roomPhotoNum;
+	private String roomPhotoName;
+
 	public String getHotelId() {
 		return hotelId;
 	}
@@ -195,7 +213,7 @@ public class Hotel {
 		return conNum;
 	}
 
-	public void setConId(int conNum) {
+	public void setConNum(int conNum) {
 		this.conNum = conNum;
 	}
 
@@ -231,4 +249,99 @@ public class Hotel {
 		this.conCloseTime = conCloseTime;
 	}
 
+	public int getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
+	public int getStair() {
+		return stair;
+	}
+
+	public void setStair(int stair) {
+		this.stair = stair;
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+
+	public int getMaxPeople() {
+		return maxPeople;
+	}
+
+	public void setMaxPeople(int maxPeople) {
+		this.maxPeople = maxPeople;
+	}
+
+	public String getRoomStatus() {
+		return roomStatus;
+	}
+
+	public void setRoomStatus(String roomStatus) {
+		this.roomStatus = roomStatus;
+	}
+
+	public int getRoomPrice() {
+		return roomPrice;
+	}
+
+	public void setRoomPrice(int roomPrice) {
+		this.roomPrice = roomPrice;
+	}
+
+	public int getExtraPrice() {
+		return extraPrice;
+	}
+
+	public void setExtraPrice(int extraPrice) {
+		this.extraPrice = extraPrice;
+	}
+
+	public int getRoomDetailNum() {
+		return roomDetailNum;
+	}
+
+	public void setRoomDetailNum(int roomDetailNum) {
+		this.roomDetailNum = roomDetailNum;
+	}
+
+	public String getRoomDetails() {
+		return roomDetails;
+	}
+
+	public void setRoomDetails(String roomDetails) {
+		this.roomDetails = roomDetails;
+	}
+
+	public int getRoomPhotoNum() {
+		return roomPhotoNum;
+	}
+
+	public void setRoomPhotoNum(int roomPhotoNum) {
+		this.roomPhotoNum = roomPhotoNum;
+	}
+
+	public String getRoomPhotoName() {
+		return roomPhotoName;
+	}
+
+	public void setRoomPhotoName(String roomPhotoName) {
+		this.roomPhotoName = roomPhotoName;
+	}
 }

@@ -7,19 +7,55 @@
 %>
 
 <script type="text/javascript">
-function reviewDeleteBtn(){
-	var reviewNum=$(this).attr("data-reviewNum");
-	
-}
+$(function(){
+	$(".reviewCreateBtn").click(function(){
+		var userId="${sessionScope.member.userId}";
+		if(! userId){
+			location.href ="<%=cp%>/user/member/login";
+			return false;
+		}
+		var hotelId = $(this).attr("data-hotelId");
+		var userId=userId;
+		var reviewNum = $(this).attr("data-reviewNum");	
+		var $tb = $(this).closest("div");
+		var replyContent=$tb.find("textarea").val().trim();
+		if(! replyContent) {
+			$tb.find("textarea").focus();
+			return false;
+		}
+		content = encodeURIComponent(content);
+		
+		var query="reviewNum="+reviewNum+"&replyContent="+replyContent;
+		var url="<%=cp%>/user/review/replycreate";
+		$.ajax({
+			type:"post"
+			,url:url
+			,data:query
+			,dataType:"json"
+			,success:function(data) {
+				$tb.find("textarea").val("");
+				
+				var state=data.state;
+				if(state=="true") {
+					alert("댓글을 추가 하였습니다.");
+				} else if(state=="false") {
+					alert("댓글을 추가 하지 못했습니다.");
+				}
+			}
+			,beforeSend : function(jqXHR) {
+		        jqXHR.setRequestHeader("AJAX", true);
+			}
+		});
+		
+	});
+});
 
-function reviewUpdateBtn(){
-	var reviewNum=$(this).attr("data-reviewNum");
-	$("button[name=reviewUpdateBtn]").val(reviewNum);
-	$("button[name=reviewUpdateBtn]").submit();
-}
 </script>
 <style type="text/css">
 
+.reviewarticle{
+	margin: 0 auto;
+}
 .reviewBtn {
 	padding-bottom : 10px;
 	float:right;
@@ -30,7 +66,7 @@ function reviewUpdateBtn(){
 	text-align:center;
 	width: 100%;
 	height: 200px;
-	padding: 11px 20px auto;
+	padding: 11px 10px auto;
 	margin-top:50px;
 	background: #f7f7f7;
 	margin-bo
@@ -38,7 +74,9 @@ function reviewUpdateBtn(){
 .reviewReply > button {
  	float:right;
 }
-
+.reviewReply >textarea {
+	padding-top:10px;
+}
 .reviewReplytext{
 	resize: none;
 }
@@ -47,7 +85,7 @@ function reviewUpdateBtn(){
 	border-top:2px solid #eeeeee;
 	text-align:center;
 	width: 100%;
-	height: 200px;
+	height: 150px;
 	padding: 11px 26px auto;
 	margin-top:50px;
 	background: #f7f7f7;
@@ -85,21 +123,26 @@ function reviewUpdateBtn(){
 		</div>	
 			
 		<div class="reviewBtn">
-			<button type="button" onclick="reviewDeleteBtn()" data-reviewNum="${article.reviewNum}" name="reviewDeleteBtn">리뷰삭제</button>&nbsp;
-			<button type="button" onclick="reviewUpdateBtn()" data-reviewNum="${article.reviewNum}" name="reviewUpdateBtn">리뷰수정</button>
-			<button type="button" onclick="">답변하기</button>
+			<button type="button" class="reviewDeleteBtn" data-reviewNum="${article.reviewNum}" name="reviewDeleteBtn">리뷰삭제</button>&nbsp;
+			<button type="button" class="reviewUpdateBtn" data-reviewNum="${article.reviewNum}" name="reviewUpdateBtn">리뷰수정</button>
 		</div>
 		
 		<div class="reviewReplyList">
-			<p>글쓴이</p>
-			<p><textarea cols="80" rows="5" readonly="readonly" class="reviewReplytext">ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</textarea></p>
-			<button>등록</button>
+			<table class="reviewReplyListtable">
+				<tr>
+					<td>글쓴이</td>
+					<td>ㅁㅁㅁ</td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><textarea cols="70" rows="5">굿굿굿</textarea></td>
+				</tr>
+			</table>
+			
+			<div class="reviewReply">
+				<p><textarea cols="50" rows="5" class="reviewReplytext"></textarea></p>
+				<button type="button" class="reviewCreateBtn" data-reviewNum="${article.reviewNum}">댓글등록</button>
+			</div>
 		</div>
-		<div class="reviewReply">
-			<p>글쓴이</p>
-			<p><textarea cols="80" rows="5" class="reviewReplytext"></textarea></p>
-			<button>등록</button>
-		</div>
-	
 	</div>
 </div>

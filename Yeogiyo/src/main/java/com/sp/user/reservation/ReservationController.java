@@ -34,15 +34,27 @@ public class ReservationController {
 		
 		resdetail=service.reservationdetail(roomnum);
 		
+		model.addAttribute("hotelId",hotelId);
 		model.addAttribute("resdetail",resdetail);
 		model.addAttribute("checkinday",checkinday);
 		model.addAttribute("checkoutday",checkoutday);	
-		
+		model.addAttribute("roomnum", roomnum);
 		return ".user.reservation.reservation";
 	}
 	
 	@RequestMapping(value="/user/reservation/complete")
-	public String complete() {
+	public String complete(@RequestParam Map<String, Object> map, @RequestParam int roomnum,
+			@RequestParam String checkinday, @RequestParam String checkoutday,
+			Model model) {
+		try {
+			service.insertReservation(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("roomnum",roomnum);
+		model.addAttribute("checkinday",checkinday);
+		model.addAttribute("checkoutday",checkoutday);
+		
 		return ".user.reservation.reserveComplete";
 	}
 }

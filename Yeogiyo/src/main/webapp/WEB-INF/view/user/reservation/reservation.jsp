@@ -58,22 +58,35 @@
 			</div>
 			
 			<div class="reservationLeft">
-				<form  method="post" class="checkUser">
-					<p>예약자 이름을 입력하세요<br><input type="text" id="name" name="name"></p><br> 
-					<p>예약자 전화번호를 입력하세요<br><input type="text" id="tel" name="tel"></p><br>
-					<p>예약자 이메일을 입력하세요<br><input type="text" id="email" name="email"></p><br>
-					<p>카드 종류 <br><select class="card">
-						<option value="">카드선택</option>
-						<option value="">신한카드</option>
-						<option value="">농협카드</option>
-						<option value="">신한카드</option>
-						<option value="">현대카드</option>
-						<option value="">롯데카드</option>
-					</select></p><br>
+				<form  method="post" class="checkUser" action="<%=cp%>/user/reservation/complete">
+					<p>예약자 이름을 입력하세요<br><input type="text" id="name" name="userName"></p><br> 
+					<p>예약자 전화번호를 입력하세요<br><input type="text" id="tel" name="userTel"></p><br>
+					<p>예약자 이메일을 입력하세요<br><input type="text" id="email" name="userEmail"></p><br>
+					<p>카드 종류 <br>
+						<select class="card">
+							<option value="">카드선택</option>
+							<option value="신한">신한카드</option>
+							<option value="농협">농협카드</option>
+							<option value="LG">LG카드</option>
+							<option value="현대">현대카드</option>
+							<option value="롯데">롯데카드</option>
+						</select>
+					</p>
+					<br>
 					<p>카드번호<br><input type="text" id="cardNum" name="cardNum"></p><br>
 					<p>만료일자<br><input type="text" id="endedyear" name="endedyear" style="width:30px"placeholder="년"> / <input type="text" id="endedmonth" name="endedmonth" style="width:30px" placeholder="월"></p><br>
 					<p>보안코드<br><input type="password" id="secureNum" name="secureNum"></p><br>
-					<button type="submit" style="background-color:green">예약하기</button>
+					<input type="hidden" name="roomname" value="${resdetail.roomname}">
+					<input type="hidden" name="checkinday" value="${checkinday}">
+					<input type="hidden" name="checkoutday" value="${checkoutday}">
+					<input type="hidden" name="stair" value="${resdetail.stair}">
+					<input type="hidden" name="roomtype" value="${resdetail.roomtype}">
+					<input type="hidden" name="roomdetails" value="${resdetail.roomdetails}">
+					<input type="hidden" name="roomprice" value="${resdetail.roomprice}">
+					<input type="hidden" name="roomprice" value="${resdetail.roomprice}">
+					<input type="hidden" name="hotelId" value="${hotelId}">
+					<input type="hidden" name="roomnum" value="${roomnum}">
+					<button type="submit">예약하기</button>
 				</form>
 			</div>
 				

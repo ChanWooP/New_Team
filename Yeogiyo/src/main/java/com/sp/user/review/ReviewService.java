@@ -11,6 +11,11 @@ public interface ReviewService {
 	
 	public Review reviewArticle(int reviewNum);
 	
-	public void updateReview(Review dto) throws Exception;
 	public void deleteReview(int reviewNum) throws Exception;
+	public void updateReview(Review dto) throws Exception;
+
+	// --------------------------------------------댓글
+	
+	public List<Review> ListReply(int reviewNum); 
+	public void insertReply(Map<String, Object> map) throws Exception;
 }

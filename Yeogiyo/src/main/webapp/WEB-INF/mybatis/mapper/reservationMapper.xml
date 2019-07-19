@@ -21,4 +21,15 @@
 			WHERE rd.roomnum=#{roomnum}
 		</select>
 		
+		<select id="getReservationNum" parameterType="Integer">
+			SELECT reservation_seq.CURRVAL FROM dual;
+		</select>
+		
+		<update id="insertReservation" parameterType="map">
+			INSERT ALL
+				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
+				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, 1,'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
+			SELECT * FROM DUAL	 
+		</update>
+		
 </mapper>

@@ -5,14 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.common.MyUtil;
+import com.sp.user.member.SessionInfo;
 
 @Controller("user.review.reviewController")
 public class ReviewController {
@@ -78,16 +82,26 @@ public class ReviewController {
 		return ".user.review.article";
 	}
 	
-	@RequestMapping(value="/user/review/create")
-	public String reviewCreate() {
-		
-		
-		return ".user.review.create";
-	}
-	
 	@RequestMapping(value="/user/review/complete")
 	public String reviewCreateComplete() {
 		return ".user.review.list";
 	}
+	
+	//----------------------------------------------------------------댓글
+	
+	@RequestMapping(value="/user/review/replycreate", method=RequestMethod.POST)
+	@ResponseBody
+	public void replyCreate(@RequestParam Map<String, Object> map, Review dto,HttpSession session) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");	
+		
+		try {
+			dto.setUserId(info.getUserId());
+			service.insertReply(map);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	
 	
 }

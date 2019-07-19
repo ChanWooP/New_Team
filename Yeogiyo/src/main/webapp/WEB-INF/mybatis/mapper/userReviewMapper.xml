@@ -35,4 +35,14 @@
 	<delete id="reviewDelete">
 		DELETE review WHERE reviewNum = #{reviewNum}
 	</delete>
+
+	<!-- ////////////////////////////////리플 ////////////////////////////////////////////////////////////-->
+
+	<select id="replyList" parameterType="Integer">
+		SELECT replyNum, reviewNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum};
+	</select>
+
+	<insert id="replyInsert" parameterType="map">
+		INSERT INTO reply(replyNum, reviewNum, userId, replyContent) VALUES (reply_seq.nextval, #{reviewNum}, #{userId}, #{replyContent});
+	</insert>
 </mapper>

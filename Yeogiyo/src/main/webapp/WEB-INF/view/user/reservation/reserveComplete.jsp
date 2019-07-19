@@ -36,20 +36,19 @@
 			    <div class="panel-heading">호텔이름</div>
 			    <div class="panel-body">
 				    <p>방유형</p>
-					
 				</div>
 			</div>
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">체크인</div>
 			    <div class="panel-body">
-				    <p>체크인 시간</p>
+				    <p>${checkinday}</p>
 				</div>
 			</div>
 			
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">체크아웃</div>
 			    <div class="panel-body">
-				    <p>체크아웃 시간</p>
+				    <p>${checkoutday}</p>
 				</div>
 			</div>
 			

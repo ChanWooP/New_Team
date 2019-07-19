@@ -15,10 +15,8 @@ public class Reservation {
 	private int resoptusercount;
 	private int resoptprice;
 	private int optNum;
-	private int peopleCount;
+	private int peoplecount;
 	private String resType;
-	private String checkinday;
-	private String checkoutday;
 	private int price;
 	private int roomnum;
 	private String roomtype;
@@ -28,11 +26,49 @@ public class Reservation {
 	private String roomname;
 	private int stair;
 	private String roomstatus;
+	private String card;
+	private String cardNum;
+	private String checkin;
+	private String checkout;
+	private String checkinday;
+	private String checkoutday;	
 	
-	
-	
-	
-	
+	public String getCheckinday() {
+		return checkinday;
+	}
+	public void setCheckinday(String checkinday) {
+		this.checkinday = checkinday;
+	}
+	public String getCheckoutday() {
+		return checkoutday;
+	}
+	public void setCheckoutday(String checkoutday) {
+		this.checkoutday = checkoutday;
+	}
+	public String getCheckin() {
+		return checkin;
+	}
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
+	}
+	public String getCheckout() {
+		return checkout;
+	}
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
+	}
+	public String getCard() {
+		return card;
+	}
+	public void setCard(String card) {
+		this.card = card;
+	}
+	public String getCardNum() {
+		return cardNum;
+	}
+	public void setCardNum(String cardNum) {
+		this.cardNum = cardNum;
+	}
 	public String getRoomstatus() {
 		return roomstatus;
 	}
@@ -153,11 +189,11 @@ public class Reservation {
 	public void setOptNum(int optNum) {
 		this.optNum = optNum;
 	}
-	public int getPeopleCount() {
-		return peopleCount;
+	public int getPeoplecount() {
+		return peoplecount;
 	}
-	public void setPeopleCount(int peopleCount) {
-		this.peopleCount = peopleCount;
+	public void setPeoplecount(int peoplecount) {
+		this.peoplecount = peoplecount;
 	}
 	public String getResType() {
 		return resType;
@@ -177,18 +213,7 @@ public class Reservation {
 	public void setRoomnum(int roomnum) {
 		this.roomnum = roomnum;
 	}
-	public String getCheckinday() {
-		return checkinday;
-	}
-	public void setCheckinday(String checkinday) {
-		this.checkinday = checkinday;
-	}
-	public String getCheckoutday() {
-		return checkoutday;
-	}
-	public void setCheckoutday(String checkoutday) {
-		this.checkoutday = checkoutday;
-	}
+
 	
 	
 }

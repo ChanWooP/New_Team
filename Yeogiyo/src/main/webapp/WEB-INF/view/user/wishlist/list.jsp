@@ -6,10 +6,19 @@
 	String cp = request.getContextPath();
 %>
 <script type="text/javascript">
-function wishDeleteBtn(){
-	
-	
-	}
+
+$(function(){
+	$(".wishDeleteBtn").click(function(){
+		var userId="${sessionScope.member.userId}";
+		if(! userId){
+			location.href ="<%=cp%>/user/member/login";
+			return false;
+		}
+		var hotelId = $(this).attr("data-hotelId");
+		var userId=userId;
+		location.href ="<%=cp%>/user/wishlist/delete?hotelId="+hotelId+"&userId="+userId;
+	});
+});
 </script>
 
 <style type="text/css">
@@ -40,6 +49,9 @@ function wishDeleteBtn(){
 	<div style="padding-top: 10px; padding-bottom: 20px;">
 		<h1> 위시리스트</h1>
 		<div class="wish">
+			<div>
+				총 ${wishlistCount} 개  ${current_page}/ ${total_page}
+			</div>
 			<table class="wishList">
 				<tr>
 					<th>호텔명</th>
@@ -48,14 +60,17 @@ function wishDeleteBtn(){
 					<th>대표사진</th>
 					<th></th>
 				</tr>
-				<tr>
-					<td>안양호텔</td>
-					<td>경기도 안양</td>
-					<td>않조음12ㅁㄴㅇ3121ㅇ1ㅇㅁ나ㅓ마ㅓㄴ이마ㅓㅜ피뭠눠ㅏㅍ무나ㅓ문아ㅓ루나어루미ㅏ저 ㅜㅈ더ㅜㄹㅈㄷㄹㄷㄹㅈㄷㄹㅈㄷㄹㅈㄷㅈㄷㄹㅁㄴㅇ</td>
-					<td>ㅋ</td>
-					<td><button type="button" onclick="wishDeleteBtn()" data-hotelId="">삭제하기</button></td>
-				</tr>
+				<c:forEach var="dto" items="${list}">
+					<tr>
+						<td><a>${dto.hotelName}</a></td>
+						<td>${dto.addr1}, ${dto.addr2}</td>
+						<td>${dto.detail}</td>
+						<td>${dto.mainphoto}</td>
+						<td><button type="button" class="wishDeleteBtn" data-hotelId="${dto.hotelId}">삭제하기</button></td>
+					</tr>
+				</c:forEach>
 			</table>
+			${paging}
 		</div>
 	</div>
 </div>

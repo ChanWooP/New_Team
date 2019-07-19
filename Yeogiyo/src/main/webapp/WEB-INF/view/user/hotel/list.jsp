@@ -5,6 +5,48 @@
 <%
 	String cp = request.getContextPath();
 %>
+<script type="text/javascript">
+$(function(){
+	$(".wishlistChange").click(function(){
+		var userId="${sessionScope.member.userId}";
+		if(! userId){
+			location.href ="<%=cp%>/user/member/login";
+			return false;
+		}
+		
+		var $btn=$(this);
+		
+		var hotelId = $(this).attr("data-hotelId");
+		var addr1 = $(this).attr("data-addr1");
+		var url ="<%=cp%>/user/wishlist/add";
+		var userId=userId;
+		
+		$.ajax({
+			type:"post"
+			, url:url
+			, data:{hotelId:hotelId, addr1:addr1, userId:userId}
+			, dataType:"json"
+			, success:function(data){
+				var result=data.result;
+				if(result==1) {
+					$btn.find("span").removeClass("glyphicon-star-empty");
+					$btn.find("span").addClass("glyphicon-star");
+				} else if (result==0) {
+					$btn.find("span").removeClass("glyphicon-star");
+					$btn.find("span").addClass("glyphicon-star-empty");
+				}
+			}, beforeSend : function(jqXHR) {
+		        jqXHR.setRequestHeader("AJAX", true);
+		    }
+		});
+		
+		
+	});
+});
+
+</script>
+
+
 <style type="text/css">
 
 .showHotelList {
@@ -77,15 +119,35 @@
 		</div>	
 
 		<table class="showHotelList">
-			<tr>
 			<c:forEach var="dto" items="${list}">
-				<td><button>찜하기</button></td>
+			<tr>
+				<td>
+				   <c:set var="chk" value="0"/>	
+				   <c:if test="${not empty idlist}">
+				   		<c:forEach var="vo" items="${idlist}">
+				        	<c:if test="${vo.hotelId==dto.hotelId}">
+				        		<c:set var="chk" value="1"/>
+				        	</c:if>
+				        </c:forEach>
+				   </c:if>
+	
+				   <c:choose>
+				   		<c:when test="${chk==1}">
+				   		   <button type="button" data-hotelId="${dto.hotelId}" data-addr1="${dto.addr1}" class="wishlistChange"><span class="glyphicon glyphicon-star"></span></button>
+				   		</c:when>
+				   		<c:otherwise>
+				   		   <button type="button" data-hotelId="${dto.hotelId}" data-addr1="${dto.addr1}" class="wishlistChange"><span class="glyphicon glyphicon-star-empty"></span></button>
+				   		</c:otherwise>
+				   </c:choose>
+				   
+				    
+				 </td>
 				<td><a href="<%=cp%>/user/hotel/detail?hotelName=${dto.hotelName}&checkinday=${checkinday}&checkoutday=${checkoutday}">${dto.hotelName}</a></td>
 				<td>${dto.addr1},&nbsp;${dto.addr2}</td>
 				<td class="detail">${dto.detail}</td>
 				<td><img src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg"></td>
-			</c:forEach>
 			</tr>
+			</c:forEach>
 		</table>	
 		<div class="msg">
 			<p> 더많은 정보를 보실려면 원하시는 호텔을 선택하세요.</p>

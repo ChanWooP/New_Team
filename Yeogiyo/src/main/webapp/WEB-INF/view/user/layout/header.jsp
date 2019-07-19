@@ -39,7 +39,7 @@
 					<li><a href="#">예약확인</a></li>
 					<li><a href="#">포인트정보</a></li>
 				</ul></li>
-			<li><a href="#"><span
+			<li><a href="<%=cp%>/user/wishlist/list"><span
 					class="glyphicon glyphicon-star"></span> 위시리스트</a></li>
 			</c:if>		
 		</ul>

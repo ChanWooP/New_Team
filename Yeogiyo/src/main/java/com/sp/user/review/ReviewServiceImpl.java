@@ -79,4 +79,26 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		
 	}
+
+	@Override
+	public void insertReply(Map<String, Object> map) throws Exception{
+		try {
+			dao.insertData("replyInsert",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public List<Review> ListReply(int reviewNum) {
+		List<Review> replylist = null;
+		try {
+			replylist=dao.selectList("replyList", reviewNum);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return replylist;
+	}
 }

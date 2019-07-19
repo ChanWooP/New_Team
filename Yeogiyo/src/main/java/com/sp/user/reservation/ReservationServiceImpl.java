@@ -19,7 +19,7 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		try {
 			
-			dto = dao.selectOne("showresdetail",roomnum);
+			dto = dao.selectOne("user.reservation.showresdetail",roomnum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,11 +31,33 @@ public class ReservationServiceImpl implements ReservationService{
 		int roomnum=0;
 		
 		try {
-			roomnum = dao.selectOne("getroomnum",map);
+			roomnum = dao.selectOne("user.reservation.getroomnum",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return roomnum;
+	}
+
+	@Override
+	public void insertReservation(Map<String, Object> map) throws Exception {
+		try {
+			dao.updateData("user.reservation.insertReservation", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public int reservationNum() {
+		int num=0;
+		try {
+			num=dao.selectOne("user.reservation.getReservationNum");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return num;
 	}
 
 }

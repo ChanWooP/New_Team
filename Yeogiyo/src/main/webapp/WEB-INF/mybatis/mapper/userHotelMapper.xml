@@ -32,4 +32,6 @@
 		GROUP BY r.hotelId,roomtype,roomprice,maxpeople,roomdetails 
 		ORDER BY roomprice
 	</select>
+	
+
 </mapper>

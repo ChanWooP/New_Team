@@ -15,6 +15,8 @@ public class Hotel {
 	private String hotelcreated;
 	private String checkin;
 	private String checkout;
+	private String checkinday;
+	private String checkoutday;	
 	private String ownerName;
 	private String hotelphotoName;
 	private String roomtype;
@@ -23,8 +25,26 @@ public class Hotel {
 	private String roomdetails;
 	private int roomnum;
 	private String roomname;
+	private String userId;
 	
-	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getCheckinday() {
+		return checkinday;
+	}
+	public void setCheckinday(String checkinday) {
+		this.checkinday = checkinday;
+	}
+	public String getCheckoutday() {
+		return checkoutday;
+	}
+	public void setCheckoutday(String checkoutday) {
+		this.checkoutday = checkoutday;
+	}
 	public String getRoomname() {
 		return roomname;
 	}

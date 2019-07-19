@@ -1,5 +1,7 @@
 package com.sp.owner.hotel;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Hotel {
 	// hotel 테이블
 	private String hotelId;
@@ -19,6 +21,13 @@ public class Hotel {
 	private String postCode;
 	private String latitude;
 	private String longitude;
+	private String hotelSize;
+	private String hotelTel;
+	private String hotelCreated;
+	private String checkIn;
+	private String checkOut;
+	private String businessNum;
+	private int grade;
 
 	// hotelphoto 테이블
 	private int hotelPhotoNum;
@@ -56,6 +65,9 @@ public class Hotel {
 	// roomPhoto 테이블
 	private int roomPhotoNum;
 	private String roomPhotoName;
+
+	// 이미지 업로드를 위한 MultipartFile 자료형
+	private MultipartFile upload;
 
 	public String getHotelId() {
 		return hotelId;
@@ -159,6 +171,62 @@ public class Hotel {
 
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+
+	public String getHotelSize() {
+		return hotelSize;
+	}
+
+	public void setHotelSize(String hotelSize) {
+		this.hotelSize = hotelSize;
+	}
+
+	public String getHotelTel() {
+		return hotelTel;
+	}
+
+	public void setHotelTel(String hotelTel) {
+		this.hotelTel = hotelTel;
+	}
+
+	public String getHotelCreated() {
+		return hotelCreated;
+	}
+
+	public void setHotelCreated(String hotelCreated) {
+		this.hotelCreated = hotelCreated;
+	}
+
+	public String getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public String getCheckOut() {
+		return checkOut;
+	}
+
+	public void setCheckOut(String checkOut) {
+		this.checkOut = checkOut;
+	}
+
+	public String getBusinessNum() {
+		return businessNum;
+	}
+
+	public void setBusinessNum(String businessNum) {
+		this.businessNum = businessNum;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 	public int getHotelPhotoNum() {
@@ -343,5 +411,13 @@ public class Hotel {
 
 	public void setRoomPhotoName(String roomPhotoName) {
 		this.roomPhotoName = roomPhotoName;
+	}
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
 	}
 }

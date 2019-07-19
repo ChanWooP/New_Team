@@ -28,9 +28,9 @@ public interface HotelService {
 	
 	// hotelPhoto 테이블
 	public Hotel selectHotelPhoto(String hotelId) throws Exception;
-	public void insertHotelPhoto(Hotel hotel) throws Exception;
-	public void updateHotelPhoto(Hotel hotel) throws Exception;
-	public void deleteHotelPhoto(String hotelId) throws Exception;
+	public void insertHotelPhoto(Hotel hotel, String pathname) throws Exception;
+	public void updateHotelPhoto(Hotel hotel, String pathname) throws Exception;
+	public void deleteHotelPhoto(String hotelId, String pathname) throws Exception;
 	
 	// hotelPrepare 테이블
 	public Hotel selectHotelPrepare(String hotelId) throws Exception;
@@ -58,8 +58,8 @@ public interface HotelService {
 	
 	// roomPhoto 테이블
 	public List<Hotel> selectRoomPhoto(String hotelId) throws Exception;
-	public void insertRoomPhoto(Hotel hotel) throws Exception;
-	public void updateRoomPhoto(Hotel hotel) throws Exception;
-	public void deleteRoomPhoto(Hotel hotel) throws Exception;
+	public void insertRoomPhoto(Hotel hotel, String pathname) throws Exception;
+	public void updateRoomPhoto(Hotel hotel, String pathname) throws Exception;
+	public void deleteRoomPhoto(Hotel hotel, String pathname) throws Exception;
 	
 }

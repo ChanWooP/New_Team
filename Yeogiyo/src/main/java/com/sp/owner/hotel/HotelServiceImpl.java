@@ -6,13 +6,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sp.common.FileManager;
 import com.sp.common.dao.CommonDAO;
 
 @Service("owner.hotel.hotelService")
 public class HotelServiceImpl implements HotelService {
 
+	// hotelAddOpt와 관련된 메소드에 String pathname 매개변수로 추가했음 이것까지 사용하도록 메소드 수정
+	// mainPhoto 컬럼 그냥 photo 테이블로 옮겨서 처리하기!
 	@Autowired
 	private CommonDAO dao;
+
+	@Autowired
+	private FileManager fileManager;
 
 	@Override
 	public Hotel selectAll(String hotelId) throws Exception {
@@ -21,6 +27,7 @@ public class HotelServiceImpl implements HotelService {
 			dto = dao.selectOne("selectAll", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 		return dto;
@@ -33,6 +40,7 @@ public class HotelServiceImpl implements HotelService {
 			dto = dao.selectOne("owner.hotel.selectHotel", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return dto;
 	}
@@ -43,6 +51,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertHotel", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -53,6 +62,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateHotel", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -63,6 +73,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateGranted", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -71,7 +82,8 @@ public class HotelServiceImpl implements HotelService {
 		try {
 			dao.updateData("owner.hotel.updateRequest", hotelId);
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -82,6 +94,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteHotel", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -93,6 +106,7 @@ public class HotelServiceImpl implements HotelService {
 			dto = dao.selectOne("owner.hotel.selectHotelAddOpt", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return dto;
 	}
@@ -103,6 +117,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertHotelAddOpt", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -112,6 +127,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updatehotelAddOpt", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -121,6 +137,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteHotelAddOpt", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -131,6 +148,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectOne("owner.hotel.selectHotelDetail", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return dto;
 	}
@@ -141,6 +159,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertHotelDetail", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -151,6 +170,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateHotelDetail", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -161,6 +181,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteHotelDetail", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -172,36 +193,43 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectOne("owner.hotel.selectHotelPhoto", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return dto;
 	}
 
 	@Override
-	public void insertHotelPhoto(Hotel hotel) throws Exception {
+	public void insertHotelPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
-			dao.insertData("owner.hotel.insertHotelPhoto", hotel);
+			String savefileName = fileManager.doFileUpload(hotel.getUpload(), pathname);
+			if (savefileName != null) {
+				dao.insertData("owner.hotel.insertHotelPhoto", hotel);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
 
 	@Override
-	public void updateHotelPhoto(Hotel hotel) throws Exception {
+	public void updateHotelPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
 			dao.updateData("owner.hotel.updateHotelPhoto", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
 
 	@Override
-	public void deleteHotelPhoto(String hotelId) throws Exception {
+	public void deleteHotelPhoto(String hotelId, String pathname) throws Exception {
 		try {
 			dao.deleteData("owner.hotel.deleteHotelPhoto", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -213,6 +241,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectOne("owner.hotel.selectHotelPrepare", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return dto;
 	}
@@ -223,6 +252,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertHotelPrepare", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -233,6 +263,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateHotelPrepare", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -243,6 +274,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteHotelPrepare", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -254,6 +286,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectOne("owner.hotel.selectConvenient", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return dto;
 	}
@@ -264,6 +297,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertConvenient", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -274,6 +308,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateConvenient", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -284,6 +319,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteConvenient", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -294,6 +330,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectList("owner.hotel.selectRoom", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return roomList;
 	}
@@ -304,6 +341,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertRoom", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -313,6 +351,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateRoom", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -322,6 +361,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteRoom", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -332,6 +372,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectList("owner.hotel.selectRoomDetail", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return roomDetailList;
 	}
@@ -342,6 +383,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.insertData("owner.hotel.insertRoomDetail", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -351,6 +393,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.updateData("owner.hotel.updateRoomDetail", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -360,6 +403,7 @@ public class HotelServiceImpl implements HotelService {
 			dao.deleteData("owner.hotel.deleteRoomDetail", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -370,34 +414,39 @@ public class HotelServiceImpl implements HotelService {
 			dao.selectList("owner.hotel.selectRoomPhoto", hotelId);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return roomPhotoList;
 	}
 
 	@Override
-	public void insertRoomPhoto(Hotel hotel) throws Exception {
+	public void insertRoomPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
+			String saveFilename = fileManager.doFileUpload(hotel.getUpload(), pathname);
 			dao.insertData("owner.hotel.insertRoomPhoto", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
 	@Override
-	public void updateRoomPhoto(Hotel hotel) throws Exception {
+	public void updateRoomPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
 			dao.updateData("owner.hotel.updateRoomPhoto", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
 	@Override
-	public void deleteRoomPhoto(Hotel hotel) throws Exception {
+	public void deleteRoomPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
 			dao.deleteData("owner.hotel.deleteRoomPhoto", hotel);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 

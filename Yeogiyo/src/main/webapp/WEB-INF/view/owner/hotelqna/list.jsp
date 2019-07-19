@@ -11,6 +11,11 @@ function hotSearch(){
 	f.submit();
 }
 
+function replaceAll(str, searchStr, replaceStr) {
+	  return str.split(searchStr).join(replaceStr);
+}
+
+
 $(function(){
 	$("body").on("click",".qnalist", function(){
 		var qnaNum = $(this).next().val();
@@ -34,7 +39,8 @@ $(function(){
 					out += "<div>" + parentContent + "</div></div>";
 					$.each(data.list, function(index, item){
 						count++;
-						out += "<div style='background-color:#FAFAFA; margin-top:5px;'><span class='glyphicon glyphicon-info-sign'></span>&nbsp;<strong>답변</strong>";
+						out += "<div style='background-color:#FAFAFA; margin-top:5px;'><span class='glyphicon glyphicon-info-sign'></span>&nbsp;";
+						out += "<strong>답변</strong>&nbsp;(<a class='deleteQna' style='cursor:pointer;'>삭제</a>|<a class='updateQna' style='cursor:pointer;'>수정</a>)";
 						out += "<div>"+item.qnaContent+"</div></div>";
 					});
 					if(count == 0){
@@ -51,6 +57,112 @@ $(function(){
 			$(this).next().next().hide();
 		}
 		
+	});
+	
+	$("body").on("click",".writeQna", function(){
+		var HotelQna = {};
+		HotelQna.qnaParent = $(this).parent().parent().prev().val();
+		HotelQna.qnaContent = $(this).prev().val();
+		var url = "<%=cp%>/owner/hotelqna/insert";
+		var $list = $(this).parent().parent();
+		$.ajax({
+			type:"post"
+			,url:url
+			,data:HotelQna
+			,dataType:"json"
+			,success:function(data){
+				var state = data.state;
+				if(state=="false"){
+					alert("데이터를 추가하지 못했습니다.");
+					return false;
+				}
+				$list.hide();
+			}
+			,error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		
+	});
+	
+	$("body").on("click",".deleteQna", function(){
+		var qnaNum = $(this).parent().parent().prev().val();
+		var url = "<%=cp%>/owner/hotelqna/delete";
+		var query = "qnaNum="+qnaNum;
+		var $list = $(this).parent().parent();
+		if(! confirm("정말 삭제하시겠습니까?")){
+			return false;
+		}
+		$.ajax({
+			type:"post"
+			,url:url
+			,data:query
+			,dataType:"json"
+			,success:function(data){
+				var state = data.state;
+				if(state=="false"){
+					alert("데이터를 삭제하지 못했습니다.");
+					return false;
+				}
+				$list.hide();
+			}
+			,error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		
+	});
+	
+	$("body").on("click",".updateQna", function(){
+		var qnaContent = $(this).parent().children().last().html();
+		qnaContent = replaceAll(qnaContent, "<br>", "\n");
+		var $content = $(this).parent().children().last();
+		
+		var out = "<textarea name='qnaContent' cols='85'>"+qnaContent+"</textarea>&nbsp;";
+		out += "<button type='button' style='float:right; margin-right:15px;' class='btn btn-sm updateCon'>수정</button>";
+		out += "<button type='button' style='float:right; margin-right:15px;' class='btn btn-sm updateCan'>취소</button>"
+		
+		$content.empty();
+		$content.html(out);
+		
+	});
+	
+	$("body").on("click",".updateCon", function(){
+		var hotelQna = {};
+		var qnaNum = $(this).parent().parent().parent().prev().val();
+		var qnaContent = $(this).parent().children().first().val();
+		hotelQna.qnaNum = qnaNum;
+		hotelQna.qnaContent = qnaContent;
+		
+		var url = "<%=cp%>/owner/hotelqna/update";
+		var $list = $(this).parent().parent().parent();
+		
+		$.ajax({
+			type:"post"
+			,url:url
+			,data:hotelQna
+			,dataType:"json"
+			,success:function(data){
+				var state = data.state;
+				if(state=="false"){
+					alert("데이터를 수정하지 못했습니다.");
+					return false;
+				}
+				$list.hide();
+			}
+			,error:function(e){
+				console.log(e.responseText);
+			}
+		});
+	});
+	
+	$("body").on("click",".updateCan", function(){
+		var qnaContent = $(this).parent().children().first().val();
+		qnaContent = replaceAll(qnaContent, "\n", "<br>");
+		var $content = $(this).parent().parent().children().last();
+		
+		$content.empty();
+		$content.html(qnaContent);
 	});
 });
 </script>

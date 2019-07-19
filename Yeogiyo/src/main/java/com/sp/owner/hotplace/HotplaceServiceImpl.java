@@ -74,7 +74,7 @@ public class HotplaceServiceImpl implements HotplaceService{
 			dao.deleteData("owner.hotplace.deleteHotplace", placeNum);
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 

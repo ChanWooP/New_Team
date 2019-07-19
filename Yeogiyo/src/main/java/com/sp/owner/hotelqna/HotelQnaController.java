@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,7 +65,9 @@ public class HotelQnaController {
 		map.put("end", end);
 		
 		List<HotelQna> list = service.listHotelQna(map);
-		
+		for(HotelQna h : list) {
+			h.setQnaContent(h.getQnaContent().replaceAll("\n", "<br>"));
+		}
         for(HotelQna dto : list) {
         	dto.setQnaCreated(dto.getQnaCreated().substring(0, 10));
         }
@@ -103,8 +104,57 @@ public class HotelQnaController {
 		Map<String, List<HotelQna>> model = new HashMap<>();
 		try {
 			List<HotelQna> list = service.listHotelQna(qnaNum);
+			for(HotelQna h : list) {
+				h.setQnaContent(h.getQnaContent().replaceAll("\n", "<br>"));
+			}
 			model.put("list", list);
 		} catch (Exception e) {
+		}
+		return model;
+	}
+	
+	@RequestMapping(value="/owner/hotelqna/insert")
+	@ResponseBody
+	public Map<String, Object> insert(HotelQna dto, HttpSession session){
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		dto.setHotelId(info.getUserId());
+		dto.setUserId(info.getUserId());
+		dto.setQnaTitle("답변");
+		
+		Map<String, Object> model = new HashMap<>();
+		try {
+			service.insertHotelQna(dto);
+			model.put("state", "true");
+		} catch (Exception e) {
+			model.put("state", "false");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value="/owner/hotelqna/delete")
+	@ResponseBody
+	public Map<String, Object> delete(int qnaNum){
+
+		Map<String, Object> model = new HashMap<>();
+		try {
+			service.deleteHotelQna(qnaNum);
+			model.put("state", "true");
+		} catch (Exception e) {
+			model.put("state", "false");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value="/owner/hotelqna/update")
+	@ResponseBody
+	public Map<String, Object> update(HotelQna dto){
+
+		Map<String, Object> model = new HashMap<>();
+		try {
+			service.updateHotelQna(dto);
+			model.put("state", "true");
+		} catch (Exception e) {
+			model.put("state", "false");
 		}
 		return model;
 	}

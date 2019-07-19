@@ -2,6 +2,11 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="owner.hotelqna">
+
+	<select id="seq" resultType="Integer">
+		SELECT hotelqna_seq.NEXTVAL FROM dual
+	</select>
+
 	<select id="selectHotelQna" parameterType="map" resultType="com.sp.owner.hotelqna.HotelQna">
 		SELECT * FROM(
 	    	SELECT ROWNUM rnum, tb.* FROM(
@@ -37,6 +42,19 @@
        	</if>
 		
 	</select>
+	
+	<insert id="insertHotelQna" parameterType="com.sp.owner.hotelqna.HotelQna">
+		INSERT INTO hotelqna(qnaNum, qnaTitle, qnaContent, userId, hotelId, qnaParent)
+		VALUES(#{qnaNum}, #{qnaTitle}, #{qnaContent}, #{userId}, #{hotelId}, #{qnaParent})
+	</insert>
+	
+	<delete id="deleteHotelQna" parameterType="Integer">
+		DELETE FROM hotelqna WHERE qnaParent = #{qnaNum}
+	</delete>
+	
+	<update id="updateHotelQna" parameterType="com.sp.owner.hotelqna.HotelQna">
+		UPDATE hotelqna SET qnaContent=#{qnaContent} WHERE qnaParent=#{qnaNum} 
+	</update>
 	
 	<sql id="where-list">
 		<if test="condition=='qnaTitle' ">

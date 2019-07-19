@@ -51,7 +51,7 @@ function hotSearch(){
 		<c:forEach var="dto" items="${list }">
 			<tr style="border:1px solid gray;">
 				<td style="padding:5px;" width="30%"><img src="<%=cp%>/uploads/hotplace/${dto.placePhoto}" width="300px" height="200px"></td>
-				<td style="padding:5px; padding-left:10px; font-size:20px;" width="70%" align="left">
+				<td style="padding:5px; padding-left:10px; font-size:15px;" width="70%" align="left">
 					<strong>장소명 :</strong>${dto.placeName }<br><br>
 					<strong>숙소와의 거리 :</strong> ${dto.placeDis }Km<br><br>
 					<strong>주소 :</strong>(${dto.placeZip })&nbsp;${dto.placeAddr1 }&nbsp;${dto.placeAddr2 }<br>

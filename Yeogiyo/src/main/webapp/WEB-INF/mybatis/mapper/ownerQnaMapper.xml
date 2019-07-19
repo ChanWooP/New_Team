@@ -5,9 +5,9 @@
 	<select id="selectHotelQna" parameterType="map" resultType="com.sp.owner.hotelqna.HotelQna">
 		SELECT * FROM(
 	    	SELECT ROWNUM rnum, tb.* FROM(
-		        SELECT qnaNum, qnaTitle, qnaContent, userId, hotelId, qnaParent, qnaCreated
-		        FROM hotelqna
-		        WHERE qnaParent = 0
+		        SELECT qnaNum, qnaTitle, qnaContent, h.userId, userName, hotelId, qnaParent, qnaCreated
+		        FROM hotelqna h JOIN member m ON h.userId = m.userId
+		        WHERE qnaParent = 0 AND hotelId = #{hotelId}
 
 	        	<if test="keyword != null and keyword != '' ">
 	        		AND <include refid="where-list"/>
@@ -21,8 +21,8 @@
 	</select>
 	
 	<select id="selectHotelQnas" parameterType="Integer" resultType="com.sp.owner.hotelqna.HotelQna">
-		SELECT qnaNum, qnaTitle, qnaContent, userId, hotelId, qnaParent, qnaCreated
-		FROM hotelqna
+		SELECT qnaNum, qnaTitle, qnaContent, h.userId, userName, hotelId, qnaParent, qnaCreated
+		FROM hotelqna h JOIN member m ON h.userId = m.userId
 		WHERE qnaParent = #{qnaNum} 
 	    ORDER BY qnaNum DESC
 	</select>
@@ -30,11 +30,12 @@
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
 		FROM hotelqna
-		<where>
-			<if test="keyword != null and keyword!='' ">
-				<include refid="where-list"/>
-			</if>
-		</where>
+		WHERE qnaParent = 0 AND hotelId = #{hotelId}
+	
+       	<if test="keyword != null and keyword != '' ">
+       		AND <include refid="where-list"/>
+       	</if>
+		
 	</select>
 	
 	<sql id="where-list">

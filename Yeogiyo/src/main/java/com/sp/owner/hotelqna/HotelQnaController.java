@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.common.MyUtil;
+import com.sp.user.member.SessionInfo;
 
 @Controller("owner.hotelqna.hotelQnaServiec")
 public class HotelQnaController {
@@ -31,6 +33,7 @@ public class HotelQnaController {
 			@RequestParam(defaultValue="all")String condition,
 			@RequestParam(defaultValue="") String keyword,
 			HttpServletRequest req,
+			HttpSession session,
 			Model model) throws Exception{
 		
 		int rows = 10;
@@ -44,6 +47,9 @@ public class HotelQnaController {
 		Map<String, Object> map = new HashMap<>();
 		map.put("condition", condition);
 		map.put("keyword", keyword);
+		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		map.put("hotelId", info.getUserId());
 		
 		dataCount = service.dataCount(map);
 		if(dataCount != 0) {

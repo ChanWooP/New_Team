@@ -29,11 +29,18 @@ $(function(){
 				,dataType:"json"
 				,success:function(data){
 					$list.empty();
-					
-					var out = "<p>└<strong>&nbsp;문의</strong></p>";
+					var count = 0;
+					var out = "<div style='background-color:#FAFAFA;'><span class='glyphicon glyphicon-question-sign'></span>&nbsp;<strong>질문</strong>";
+					out += "<div>" + parentContent + "</div></div>";
 					$.each(data.list, function(index, item){
-						out += "<p>└<strong>답변&nbsp;</strong>"+ item.qnaContent + "</p>"
+						count++;
+						out += "<div style='background-color:#FAFAFA; margin-top:5px;'><span class='glyphicon glyphicon-info-sign'></span>&nbsp;<strong>답변</strong>";
+						out += "<div>"+item.qnaContent+"</div></div>";
 					});
+					if(count == 0){
+						out += "<div><textarea name='qnaContent' cols='85'></textarea>&nbsp;<button type='button' style='float:right; margin-right:15px;' class='btn btn-sm writeQna'>답변하기</button></div>";
+					}
+				
 					$list.html(out);
 				}
 				,error:function(e){

@@ -34,6 +34,7 @@ public class HotplaceController {
 			@RequestParam(defaultValue="placeName")String condition,
 			@RequestParam(defaultValue="") String keyword,
 			HttpServletRequest req,
+			HttpSession session,
 			Model model) throws Exception{
 		
 		int rows = 10;
@@ -48,6 +49,9 @@ public class HotplaceController {
 		map.put("condition", condition);
 		map.put("keyword", keyword);
 		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		map.put("hotelId", info.getUserId());
+		
 		dataCount = service.dataCount(map);
 		if(dataCount != 0) {
 			total_page = myUtil.pageCount(rows, dataCount);
@@ -61,6 +65,8 @@ public class HotplaceController {
 		int end = current_page * rows;
 		map.put("start", start);
 		map.put("end", end);
+		
+
 		
 		List<Hotplace> list = service.listHotplace(map);
 		
@@ -99,15 +105,13 @@ public class HotplaceController {
 	
 	@RequestMapping(value="/owner/hotplace/created", method=RequestMethod.POST)
 	public String createSubmit(Hotplace dto, HttpSession session) throws Exception{
-		
-		//세션 처리 해줘야함 호텔 아이디 나중에 수정
+
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
 		try {
 			String root = session.getServletContext().getRealPath("/");
 			String pathName = root + "uploads"+ File.separator + "hotplace";
-			
-			//세션 처리 해줘야함 호텔 아이디 나중에 수정
+
 			dto.setHotelId(info.getUserId());
 			service.insertHotplace(dto, pathName);
 			
@@ -158,13 +162,13 @@ public class HotplaceController {
 		if(keyword.length()!=0) {
 			query += "&condition"+condition+"&keyword="+URLEncoder.encode(keyword, "utf-8");
 		}
-		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		try {
 			String root = session.getServletContext().getRealPath("/");
 			String pathName = root + "uploads"+ File.separator + "hotplace";
 
 			//세션처리 해야됨
-			dto.setHotelId("hotel1");
+			dto.setHotelId(info.getUserId());
 			
 			service.updateHotplace(dto, pathName);
 		} catch (Exception e) {

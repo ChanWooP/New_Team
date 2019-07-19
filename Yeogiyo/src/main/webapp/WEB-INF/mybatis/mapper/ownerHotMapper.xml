@@ -17,12 +17,10 @@
 	    	SELECT ROWNUM rnum, tb.* FROM(
 	        	SELECT placenum, placename, placedis, placephoto, placezip, placeaddr1, placeaddr2, hotelid 
 	        	FROM hotplace
-	        	
-	        	<where>
-	        		<if test="keyword != null and keyword != '' ">
-	        			<include refid="where-list"/>
-	        		</if>
-	        	</where>
+	        	WHERE hotelid = #{hotelId}
+        		<if test="keyword != null and keyword != '' ">
+        			AND <include refid="where-list"/>
+        		</if>
 	        	ORDER BY placenum DESC
 <![CDATA[
 	        	)tb WHERE ROWNUM <= #{end}
@@ -33,11 +31,10 @@
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0)
 		FROM hotplace
-		<where>
-			<if test="keyword != null and keyword!='' ">
-				<include refid="where-list"/>
-			</if>
-		</where>
+       	WHERE hotelid = #{hotelId}
+    		<if test="keyword != null and keyword != '' ">
+    			AND <include refid="where-list"/>
+    		</if>
 	</select>
 	
 	<delete id="deleteHotplace" parameterType="integer">

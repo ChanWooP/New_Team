@@ -9,7 +9,14 @@ public class HotelQna {
 	private String userId;
 	private String hotelId;
 	private String qnaCreated;
+	private String userName;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getRnum() {
 		return rnum;
 	}

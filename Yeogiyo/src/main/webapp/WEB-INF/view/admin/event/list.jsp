@@ -58,10 +58,10 @@ function searchList() {
 							<tr height="40">
 								<td align="left" width="100">
 									<button type="button" class="btn btn-default btn-sm"
-										onclick="javascript:location.href='<%=cp%>/user/event/list';">새로고침</button>
+										onclick="javascript:location.href='<%=cp%>/admin/event/list';">새로고침</button>
 								</td>
 								<td align="center">
-									<form name="searchForm" action="<%=cp%>/user/event/list"
+									<form name="searchForm" action="<%=cp%>/admin/event/list"
 										method="post">
 										<input type="text" name="keyword" class="boxTF"
 											value="${keyword}">
@@ -73,7 +73,7 @@ function searchList() {
 								<td align="right" width="100">
 								
 									<button type="button" class="btn btn-default btn-sm"
-										onclick="javascript:location.href='<%=cp%>/user/event/created';">
+										onclick="javascript:location.href='<%=cp%>/admin/event/created';">
 										이벤트 작성
 									</button>
 								</td>
@@ -81,7 +81,7 @@ function searchList() {
 								
 								<td align="right" width="80">
 									<button type="button" class="btn btn-default btn-sm"
-										onclick="javascript:location.href='<%=cp%>/user/event/list?status=진행중';">
+										onclick="javascript:location.href='<%=cp%>/admin/event/list?status=진행중';">
 										진행중
 									</button>
 								</td>

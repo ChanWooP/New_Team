@@ -110,7 +110,7 @@ public class QnaController {
 	public String qnaCreatedForm(HttpSession session, Model model) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
-			return "redirect:/admin/member/login";
+			return "redirect:/user/member/login";
 		}
 		model.addAttribute("mode", "created");
 		return ".admin.qna.created";
@@ -120,7 +120,7 @@ public class QnaController {
 	public String qnaCreatedSubmit(Qna dto, HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
-			return "redirect:/admin/member/login";
+			return "redirect:/user/member/login";
 		}
 		try {
 			dto.setUserId(info.getUserId());

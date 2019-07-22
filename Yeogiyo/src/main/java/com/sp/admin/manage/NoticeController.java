@@ -89,7 +89,7 @@ public class NoticeController {
 	@RequestMapping(value="/admin/notice/created", method=RequestMethod.GET)
 	public String createdForm(Model model, HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin")) {
+		if(info.getEnabled()!=3) {
 			return "redirect:/admin/notice/list";
 		}
 		
@@ -134,7 +134,7 @@ public class NoticeController {
 							@RequestParam String page,
 							HttpSession session, Model model) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin"))
+		if(info.getEnabled()!=3)
 			return "redirect:/admin/notice/list?page="+page;
 		
 		Notice dto=service.readNotice(noticeNum);
@@ -154,7 +154,7 @@ public class NoticeController {
 							@RequestParam String page,
 							HttpSession session) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin"))
+		if(info.getEnabled()!=3)
 			return "redirect:/admin/notice/list?page="+page;
 		
 		try {
@@ -170,7 +170,7 @@ public class NoticeController {
 								@RequestParam String page,
 								HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin"))
+		if(info.getEnabled()!=3)
 			return "redirect:/admin/notice/list?page="+page;
 		try {
 			service.deleteNotice(noticeNum);

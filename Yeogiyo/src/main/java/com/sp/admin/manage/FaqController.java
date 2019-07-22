@@ -35,7 +35,7 @@ public class FaqController {
 	@RequestMapping(value="/admin/faq/created", method=RequestMethod.GET)
 	public String faqcreatedForm(HttpSession session, Model model) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin")) {
+		if(info.getEnabled()!=3) {
 			return "redirect:/admin/faq/list";
 		}
 		model.addAttribute("mode", "created");
@@ -55,7 +55,7 @@ public class FaqController {
 	public String faqupdateForm(@RequestParam int faqNum,
 								HttpSession session, Model model) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin")) {
+		if(info.getEnabled()!=3) {
 			return "redirect:/admin/faq/list";
 		}
 		
@@ -73,7 +73,7 @@ public class FaqController {
 	@RequestMapping(value="/admin/faq/update", method=RequestMethod.POST)
 	public String faqupdateSubmit(Faq dto, HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(! info.getUserId().equals("admin")) {
+		if(info.getEnabled()!=3) {
 			return "redirect:/admin/faq/list";
 		}
 		try {

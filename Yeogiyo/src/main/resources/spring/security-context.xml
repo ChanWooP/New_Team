@@ -28,7 +28,7 @@
       <intercept-url pattern="/index.jsp" access="permitAll"/>
       <intercept-url pattern="/user/**" access="permitAll"/>
       <intercept-url pattern="/resource/**" access="permitAll"/>
-      
+      <intercept-url pattern="/uploads/**" access="permitAll"/>
       <!-- admin -->
       <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
       

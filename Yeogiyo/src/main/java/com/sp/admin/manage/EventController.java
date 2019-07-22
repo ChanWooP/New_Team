@@ -1,4 +1,4 @@
-package com.sp.user.event;
+package com.sp.admin.manage;
 
 import java.io.File;
 import java.net.URLDecoder;
@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sp.common.MyUtil;
+import com.sp.user.event.Event;
+import com.sp.user.event.EventReply;
+import com.sp.user.event.EventService;
 import com.sp.user.member.SessionInfo;
 
-@Controller("user.eventController")
+@Controller("admin.event.eventController")
 public class EventController {
 
 	@Autowired
@@ -31,7 +34,7 @@ public class EventController {
 	@Autowired
 	private MyUtil util;
 	
-	@RequestMapping(value="/user/event/list")
+	@RequestMapping(value="/admin/event/list")
 	public String eventlist(
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(defaultValue="") String keyword,
@@ -84,8 +87,8 @@ public class EventController {
 		
 		String cp=req.getContextPath();
 		String query="";
-		String listUrl=cp+"/user/event/list";
-		String articleUrl=cp+"/user/event/article?page="+current_page;
+		String listUrl=cp+"/admin/event/list";
+		String articleUrl=cp+"/admin/event/article?page="+current_page;
 		
 		if(keyword.length()!=0) {
 			query="keyword="+URLEncoder.encode(keyword, "UTF-8");
@@ -93,8 +96,8 @@ public class EventController {
 			query="status="+URLEncoder.encode(status, "UTF-8");;
 		}
 		if(query.length()!=0) {
-        	listUrl = cp+"/user/event/list?" + query;
-        	articleUrl = cp+"/user/event/article?page=" + current_page + "&"+ query;
+        	listUrl = cp+"/admin/event/list?" + query;
+        	articleUrl = cp+"/admin/event/article?page=" + current_page + "&"+ query;
         }
 		
 		String paging=util.paging(current_page, total_page, listUrl);
@@ -108,10 +111,10 @@ public class EventController {
 		
 		model.addAttribute("keyword", keyword);
 		
-		return ".user.event.list";
+		return ".admin.event.list";
 	}
 	
-	@RequestMapping(value="/user/event/created", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/event/created", method=RequestMethod.GET)
 	public String eventcreatedForm(Model model, HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null || info.getEnabled()!=3) {
@@ -119,10 +122,10 @@ public class EventController {
 		}
 		
 		model.addAttribute("mode", "created");
-		return ".user.event.created";
+		return ".admin.event.created";
 	}
 	
-	@RequestMapping(value="/user/event/created", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/event/created", method=RequestMethod.POST)
 	public String eventCreatedSubmit(Event dto,
 								HttpSession session) throws Exception {
 		String root=session.getServletContext().getRealPath("/");
@@ -131,10 +134,10 @@ public class EventController {
 			service.insertEvent(dto, pathname);
 		} catch (Exception e) {
 		}
-		return "redirect:/user/event/list";
+		return "redirect:/admin/event/list";
 	}
 	
-	@RequestMapping(value="/user/event/article", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/event/article", method=RequestMethod.GET)
 	public String eventArticle(@RequestParam int eventNum,
 								@RequestParam String page,
 								@RequestParam(defaultValue="") String keyword,
@@ -152,7 +155,7 @@ public class EventController {
 		
 		Event dto=service.readEvent(eventNum);
 		if(dto==null) {
-			return "redirect:/user/event/list?"+query;
+			return "redirect:/admin/event/list?"+query;
 		}
 		
 		dto.setEventContent(dto.getEventContent().replaceAll("\n", "<br>"));
@@ -172,32 +175,32 @@ public class EventController {
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
 		
-		return ".user.event.article";
+		return ".admin.event.article";
 	}
 	
-	@RequestMapping(value="/user/event/update", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/event/update", method=RequestMethod.GET)
 	public String eventUpdateForm(@RequestParam int eventNum,
 								@RequestParam String page,
 								HttpSession session,
 								Model model) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info.getEnabled()!=3) {
-			return "redirect:/user/event/list?page="+page;
+			return "redirect:/admin/event/list?page="+page;
 		}
 		
 		Event dto=service.readEvent(eventNum);
 		if(dto==null) {
-			return "redirect:/user/event/list?page="+page;
+			return "redirect:/admin/event/list?page="+page;
 		}
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("page", page);
 		model.addAttribute("mode", "update");
 		
-		return ".user.event.created";
+		return ".admin.event.created";
 	}
 	
-	@RequestMapping(value="/user/event/update", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/event/update", method=RequestMethod.POST)
 	public String eventUpdateSubmit(Event dto,
 							@RequestParam String page,
 							HttpSession session) throws Exception {
@@ -207,10 +210,10 @@ public class EventController {
 			service.updateEvent(dto, pathname);
 		} catch (Exception e) {
 		}
-		return "redirect:/user/event/article?eventNum="+dto.getEventNum()+"&page="+page;
+		return "redirect:/admin/event/article?eventNum="+dto.getEventNum()+"&page="+page;
 	}
 	
-	@RequestMapping(value="/user/event/delete")
+	@RequestMapping(value="/admin/event/delete")
 	public String eventDelete(@RequestParam int eventNum,
 							@RequestParam String page,
 							@RequestParam(defaultValue="") String keyword,
@@ -218,7 +221,7 @@ public class EventController {
 							HttpSession session) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info.getEnabled()!=3) {
-			return "redirect:/user/event/list?page="+page;
+			return "redirect:/admin/event/list?page="+page;
 		}
 		
 		String query="page="+page;
@@ -234,10 +237,10 @@ public class EventController {
 			service.deleteEvent(eventNum, pathname);
 		} catch (Exception e) {
 		}
-		return "redirect:/user/event/list?"+query;
+		return "redirect:/admin/event/list?"+query;
 	}
 	
-	@RequestMapping(value="/user/event/insertEventLike", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/event/insertEventLike", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertEventLike(@RequestParam int eventNum,
 									HttpSession session) throws Exception {
@@ -260,7 +263,7 @@ public class EventController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/event/listReply")
+	@RequestMapping(value="/admin/event/listReply")
 	public String listEventReply(@RequestParam int eventNum,
 							@RequestParam(value="pageNo", defaultValue="1") int current_page,
 							Model model) {
@@ -293,10 +296,10 @@ public class EventController {
 		model.addAttribute("paging", paging);
 		
 		
-		return "user/event/listReply";
+		return "admin/event/listReply";
 	}
 	
-	@RequestMapping(value="/user/event/insertReply", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/event/insertReply", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertEventReply(EventReply dto, 
 						HttpSession session) throws Exception {
@@ -313,7 +316,7 @@ public class EventController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/event/deleteReply", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/event/deleteReply", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deleteEventReply(@RequestParam int eventreplyNum,
 												@RequestParam String mode) throws Exception {
@@ -331,7 +334,7 @@ public class EventController {
 		return model;
 	}
 	
-	@RequestMapping(value="/user/event/listReplyAnswer")
+	@RequestMapping(value="/admin/event/listReplyAnswer")
 	public String listReplyAnswer(@RequestParam int eventreplyAnswer,
 								Model model) throws Exception {
 		List<EventReply> listReplyAnswer=service.listEventReplyAnswer(eventreplyAnswer);
@@ -342,10 +345,10 @@ public class EventController {
 		
 		model.addAttribute("listReplyAnswer", listReplyAnswer);
 		model.addAttribute("answerCount", answerCount);
-		return "user/event/listReplyAnswer";
+		return "admin/event/listReplyAnswer";
 	}
 	
-	@RequestMapping(value="/user/event/countReplyAnswer", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/event/countReplyAnswer", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> countReplyAnswer(@RequestParam int eventreplyAnswer) {
 		int answerCount=service.eventReplyAnswerCount(eventreplyAnswer);

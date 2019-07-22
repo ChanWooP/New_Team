@@ -108,7 +108,12 @@ public class BbsController {
 	}
 	
 	@RequestMapping(value="/admin/bbs/created", method=RequestMethod.GET)
-	public String bbsCreatedForm(Model model) throws Exception {
+	public String bbsCreatedForm(Model model, HttpSession session) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null) {
+			return "redirect:/user/member/login";
+		}
+		
 		model.addAttribute("mode", "created");
 		return ".admin.bbs.created";
 	}

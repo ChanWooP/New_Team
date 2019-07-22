@@ -215,7 +215,7 @@ $(function(){
 		<tr>
 			<td align="center">
 				<c:if test="${dataCount==0 }">
-					등록된 호텔 명소가 없습니다.
+					등록된 호텔 문의사항이 없습니다.
 				</c:if>
 				<c:if test="${dataCount!=0 }">
 					${paging }

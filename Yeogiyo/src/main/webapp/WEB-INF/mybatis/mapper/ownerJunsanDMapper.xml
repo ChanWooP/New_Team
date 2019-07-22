@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owner.jungsanD">
+	<update id="insertJungsan" parameterType="map">
+		INSERT INTO jungsand (jungsanNum, hotelId, paydate, paytype, roomnum, roomname, peopleCount, checkinDay, checkoutDay, price)
+		SELECT jungsanD_seq.NEXTVAL jungsanNum ,r.hotelId, p.paydate, p.paytype, d.roomnum, m.roomname, d.peopleCount, d.checkinDay, d.checkoutDay, d.price
+		FROM reserdetail d JOIN reservation r 
+		    ON d.reservationnum = r.reservationnum
+		    JOIN pay p
+		    ON p.reservationnum = r.reservationnum
+		    JOIN room m
+		    ON m.roomnum = d.roomnum
+		WHERE r.hotelId = #{hotelId} AND TO_CHAR(paydate, 'YYYY-MM-DD') = #{day}
+	</update>
+	
+	<delete id="deleteJungsan" parameterType="map">
+		DELETE FROM jungsand WHERE hotelId = #{hotelId} AND TO_CHAR(paydate, 'YYYY-MM-DD') = #{day}
+	</delete>
+	
+	<select id="selectJunsan" parameterType="map" resultType="com.sp.owner.jungsanD.JungsanD">
+		SELECT jungsanNum, hotelId, payType, roomNum, roomName, peopleCount, price
+		        ,TO_CHAR(jungsanCreated,'YYYY-MM-DD') jungsanCreated
+		        ,TO_CHAR(payDate,'YYYY-MM-DD') payDate
+		        ,TO_CHAR(checkinDay,'YYYY-MM-DD') checkinDay
+		        ,TO_CHAR(checkoutDay,'YYYY-MM-DD') checkoutDay
+		FROM jungsand
+		WHERE hotelId = #{hotelId} AND TO_CHAR(paydate, 'YYYY-MM-DD') = #{day}
+	</select>
+</mapper>

@@ -38,9 +38,19 @@
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.contentsBox div input{
+	width: 43px;
+	height: 43px;
+}
+
+.contentsBox div button{
+	width: 43px;
+	height: 43px;
+}
+
 .buildingIconBox{
-	padding:15px;
-	text-align:center;
+	padding: 15px;
+	text-align: center;
 	width: 135px;
 	height: 90px;
 	border: solid 1px grey;
@@ -52,13 +62,18 @@
 }
 
 .bigTitle{
-	font-size:30px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
 .smallTitle{
-	font-size:20px;
+	font-size: 20px;
 	font-weight: bold;
+}
+
+.btnPreNext{
+	width: 210px;
+	height: 46px;
 }
 </style>
 </head>
@@ -125,15 +140,17 @@
 			<!-- rooname에 호수 저장  -->			
 			<div class="bigTitle">1층</div>
 			<div class="contentsBox">
-				<!-- 객실 수에 따라 contentsBox 추가 -->
-				<div class="smallTitle">객실 수</div>
-				<span>
-					<button type="button">+</button>
-				</span>
-					<input type="text">
-				<span>
-					<button type="button">-</button>
-				</span>
+				<div>
+					<!-- 객실 수에 따라 contentsBox 추가 -->
+					<div class="smallTitle">객실 수</div>
+					<span>
+						<button type="button">+</button>
+					</span>
+						<input type="text">
+					<span>
+						<button type="button">-</button>
+					</span>
+				</div>
 			</div>
 			
 			<div class="bigTitle">방이름(호수): <input type="text"></div>
@@ -188,8 +205,7 @@
 					</div>
 				</div>
 			</div>
-				<button type="button">이전</button>
-				<button type="button">다음</button>
+				<button type="button" class="btnPreNext">다음</button>
 			</form>
 		</div>
 	</div>

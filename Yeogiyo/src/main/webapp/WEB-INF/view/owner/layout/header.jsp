@@ -34,8 +34,7 @@
 				data-toggle="dropdown" href="#">정산 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/owner/jungsanD/list">일일정산</a></li>
-					<li><a href="#">월말정산</a></li>
-					<li><a href="#">연말정산</a></li>
+					<li><a href="<%=cp%>/owner/jungsanM/list">월말정산</a></li>
 				</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>

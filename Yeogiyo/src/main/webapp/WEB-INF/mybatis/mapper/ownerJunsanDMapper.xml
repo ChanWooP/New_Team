@@ -12,6 +12,7 @@
 		    JOIN room m
 		    ON m.roomnum = d.roomnum
 		WHERE r.hotelId = #{hotelId} AND TO_CHAR(paydate, 'YYYY-MM-DD') = #{day}
+		AND TO_CHAR(paydate, 'YYYY-MM-DD') = TO_CHAR(checkinDay, 'YYYY-MM-DD')
 	</update>
 	
 	<delete id="deleteJungsan" parameterType="map">
@@ -26,5 +27,23 @@
 		        ,TO_CHAR(checkoutDay,'YYYY-MM-DD') checkoutDay
 		FROM jungsand
 		WHERE hotelId = #{hotelId} AND TO_CHAR(paydate, 'YYYY-MM-DD') = #{day}
+	</select>
+	
+	<select id="selectDay" parameterType="map" resultType="com.sp.owner.jungsanD.JungsanD">
+		SELECT a1.dates payDate, NVL(price,0) price, NVL(peopleCount,0) peopleCount FROM
+		(
+		    SELECT LEVEL dates
+		    FROM dual CONNECT BY LEVEL <![CDATA[ <= ]]> (LAST_DAY(#{day}) - TRUNC(to_date(#{day}),'MM') + 1)
+		)a1
+		LEFT OUTER JOIN 
+		(
+		    select TO_CHAR(payDate,'DD')dates,payDate, SUM(price) price, SUM(peoplecount) peopleCount from jungsanD
+		    where paydate between TRUNC(to_date(#{day}),'MM') AND LAST_DAY(#{day})
+		    AND hotelId = #{hotelId}
+		    group by paydate
+		    order by paydate
+		)a2
+		ON a1.dates = a2.dates
+		ORDER BY a1.dates
 	</select>
 </mapper>

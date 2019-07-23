@@ -1,6 +1,7 @@
 package com.sp.owner.jungsanD;
 
 public class JungsanD {
+	private int num;
 	private int jungsanNum;
 	private String jungsanCreated;
 	private String hotelId;
@@ -12,6 +13,14 @@ public class JungsanD {
 	private String checkinDay;
 	private String checkoutDay;
 	private int price;
+	
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getJungsanNum() {
 		return jungsanNum;
 	}

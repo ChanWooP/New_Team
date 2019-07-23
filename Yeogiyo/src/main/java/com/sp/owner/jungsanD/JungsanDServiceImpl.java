@@ -36,4 +36,15 @@ public class JungsanDServiceImpl implements JungsanDService{
 		return list;
 	}
 
+	@Override
+	public List<JungsanD> selectDay(Map<String, Object> map) {
+		List<JungsanD> list = null;
+		try {
+			list =  dao.selectList("owner.jungsanD.selectDay", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

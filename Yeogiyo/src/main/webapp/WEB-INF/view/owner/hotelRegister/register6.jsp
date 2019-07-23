@@ -1,49 +1,197 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	String cp=request.getContextPath();
+	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://kit.fontawesome.com/12328aec17.js"></script>
 <title>Insert title here</title>
 <style>
+.leftNav {
+	float: left;
+	height: 100%;
+	width: 150px;
+	margin: 20px;
+	border-radius: 2px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
 
+.leftNav ul li {
+	list-style-type: none;
+	padding: 10px;
+}
+
+.contentsContainer {
+	float: left;
+	height: 100%;
+	width: 70%;
+	margin: 20px;
+}
+
+.contentsBox {
+	border-radius: 2px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.buildingIconBox{
+	padding:15px;
+	text-align:center;
+	width: 135px;
+	height: 90px;
+	border: solid 1px grey;
+	display: inline-block;
+}
+
+.bulidingBox{
+	padding:
+}
+
+.bigTitle{
+	font-size:30px;
+	font-weight: bold;
+}
+
+.smallTitle{
+	font-size:20px;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
-<div class="container">
-hotelOwner 가입을 위한 화면입니다.
-<form>
-	테스트용 입력 폼입니다. 아직 방과 관련된 부분 제작이 덜 됐으니 마무리 짓고 와서 테스트 제대로 해보기
-	지도 API 어떻게 써야하는지 찾아보고 모르겠으면 강사님께 여쭤보기
-	<input type="text" id="hotelName"><br>
-	<input type="text" id="granted"><br>
-	<input type="text" id="optNum"><br>
-	<input type="text" id="optName"><br>
-	<input type="text" id="optPrice"><br>
-	<input type="text" id="detail"><br>
-	<input type="text" id="mainPhoto"><br>
-	<input type="text" id="addr1"><br>
-	<input type="text" id="addr2"><br>
-	<input type="text" id="postCode"><br>
-	<input type="text" id="latitude"><br>
-	<input type="text" id="longitude"><br>
-	<input type="text" id="hotelPhotoNum"><br>
-	<input type="text" id="hotelPhotoName"><br>
-	<input type="text" id="prepareNum"><br>
-	<input type="text" id="prepareContent"><br>
-	<input type="text" id="typeNum"><br>
-	<input type="text" id="type"><br>
-	<input type="text" id="conNum"><br>
-	<input type="text" id="conName"><br>
-	<input type="text" id="conType"><br>
-	<input type="text" id="conOpenTime"><br>
-	<input type="text" id="conCloseTime"><br>
-</form>
-</div>
+	<div class="container">
+		<div class="leftNav">
+			<ul>
+				<li><i class="fas fa-check"></i>기본 정보</li>
+				<li><i class="fas fa-check"></i>위치</li>
+				<li><i class="fas fa-check"></i>소개</li>
+				<li><i class="fas fa-check"></i>편의 시설/서비스</li>
+				<li><i class="fas fa-check"></i>요금 설정</li>
+				<li><i class="fas fa-check"></i>예약 설정 관리</li>
+				<li><i class="fas fa-check"></i>사진</li>
+				<li><i class="fas fa-check"></i>프로필</li>
+				<li><i class="fas fa-check"></i>숙소 판매</li>
+			</ul>
+		</div>
+
+		<div class="contentsContainer">
+			<form>
+			<div class="bigTitle">숙소</div>
+			<div class="contentsBox">
+				<div class="bulidingBox">
+				<div class="smallTitle">숙소 종류</div>
+					<div class="buildingIconBox">
+						<i class="fas fa-building" style="font-size: 45px;"></i><br>
+						모텔
+					</div>
+					
+					<div class="buildingIconBox">
+						<i class="fas fa-hotel" style="font-size: 45px;"></i><br>
+						호텔
+					</div>
+					
+					<div class="buildingIconBox">
+					<i class="fas fa-home" style="font-size: 45px;"></i><br>
+						홈스테이
+					</div>
+					
+					<div class="buildingIconBox">
+						<i class="fas fa-campground" style="font-size: 45px;"></i><br>
+						캠핑장
+					</div>
+				</div>
+				<div class="smallTitle">숙소 크기</div>
+				<input type="text">㎡
+			</div>
+			
+			<div class="bigTitle">객실 및 세부 정보</div>
+			<div class="contentsBox">
+				<div>
+					<div class="smallTitle">층 수</div>
+					<span>
+						<button type="button">+</button>
+					</span>
+						<input type="text">
+					<span>
+						<button type="button">-</button>
+					</span>
+				</div>
+			</div>			
+			
+			<!-- rooname에 호수 저장  -->			
+			<div class="bigTitle">1층</div>
+			<div class="contentsBox">
+				<!-- 객실 수에 따라 contentsBox 추가 -->
+				<div class="smallTitle">객실 수</div>
+				<span>
+					<button type="button">+</button>
+				</span>
+					<input type="text">
+				<span>
+					<button type="button">-</button>
+				</span>
+			</div>
+			
+			<div class="bigTitle">방이름(호수): <input type="text"></div>
+			<div class="contentsBox">
+				<div class="smallTitle">숙박 가능 인원</div>
+				<div>총 침대 공간과 소파를 고려해 볼 때 편안하게 숙박할 수 있는 최대 인원 수</div>
+				<div>
+					<div>
+						<span>
+							<button type="button">+</button>
+						</span>
+							<input type="text">
+						<span>
+							<button type="button">-</button>
+						</span>
+					</div>
+					
+					<div>
+						<div class="smallTitle">침대</div>
+						<select>
+							<option value="">싱글베드</option>
+							<option value="">더블베드</option>
+							<option value="">퀸베드</option>						
+							<option value="">킹베드</option>
+							<option value="">슈퍼 킹베드</option>
+							<option value="">벙크베드</option>
+							<option value="">소파베드</option>
+							<option value="">요이불 세트</option>
+						</select>
+						<span>
+							<button type="button">+</button>
+						</span>
+							<input type="text">
+						<span>
+							<button type="button">-</button>
+						</span>
+					</div>
+					<div>
+						<button type="button">침대 추가</button>
+					</div>
+					
+					<div class="smallTitle">욕실 수</div>
+					<div>숙소 건물/빌딩 혹은 단지에 있는 공용/공동 욕실이 아닌, 해당 숙소에 있는 욕실만을 세어 설정하세요.</div>
+					<div>
+						<span>
+							<button type="button">+</button>
+						</span>
+							<input type="text">
+						<span>
+							<button type="button">-</button>
+						</span>
+					</div>
+				</div>
+			</div>
+				<button type="button">이전</button>
+				<button type="button">다음</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

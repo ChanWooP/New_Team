@@ -31,13 +31,13 @@
 <div class="body-container">
 	<div style="padding-top:5px; padding-bottom: 50px; text-align:center;">
 		<div class="reviewAbout">
-				<h2> 호텔 이름 </h2>
-				<h4> 방이름 </h4>
+				<h2>${review.hotelName}</h2>
+				<h4>${review.roomName}</h4>
 			</div>
 		<div class="reviewCreate">
 			<div class="reviewCreateIn">
 				<h3>리뷰 작성하기</h3>	
-				<form action="<%=cp%>/user/review/create" name="reviewCreateForm" method="post">
+				<form action="<%=cp%>/user/review/complete" name="reviewCreateForm" method="post">
 					<p>제목</p>
 					<p><input type="text" name="reviewTitle" style="width:550px;"></p>
 					<p>내용</p>
@@ -46,10 +46,15 @@
 					<p>
 						<select name="score">
 							<c:forEach varStatus="s" begin="1" end="10">
-								<option value="${s}">${s.index}</option>
+								<option value="${s.count}">${s.count}</option>
 							</c:forEach>
 						</select>
 					</p>
+					<input type="hidden" name="hotelName" value="${review.hotelName}">
+					<input type="hidden" name="hotelId" value="${review.hotelId}">
+					<input type="hidden" name="roomName" value="${review.roomName}">
+					<input type="hidden" name="reservationNum" value="${reservationNum}">
+					
 					<p><button type="submit">글 작성하기</button></p>
 				</form>
 			</div>

@@ -28,26 +28,35 @@
 		INSERT INTO reviewreport(reviewNum, reportContent, hotelId) VALUES(#{reviewNum}, #{reportContent}, #{hotelId})
 	</insert>
 	
-	<insert id="reviewInsert" parameterType="com.sp.user.review.Review">
+	<select id="beforeCreateReview" parameterType="Integer" resultType="com.sp.user.review.Review">
+		SELECT h.hotelId, hotelName, roomName
+		FROM reservation res
+		JOIN reserdetail rd ON rd.reservationNum=res.reservationnum
+		JOIN room r ON r.roomnum=rd.roomnum
+		JOIN hotel h ON h.hotelId=r.hotelId
+		WHERE res.reservationNum=#{reservationNum}
+	</select>
+	
+	<insert id="reviewInsert" parameterType="map">
 		INSERT INTO review(reviewNum,reviewTitle,reviewContent,score,hitCount,userId,reservationNum, hotelId) 
-		VALUES(REVIEW_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{score}, 0, #{userId}, #{reservatioNum}, #{hotelId})
+		VALUES(REVIEW_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{score}, 0, #{userId}, #{reservationNum}, #{hotelId})
 	</insert>
 	
-	<update id="reviewUpdate" parameterType="com.sp.user.review.Review">
+	<update id="reviewUpdate" parameterType="map">
 		UPDATE review SET reviewTitle=#{reviewTitle} , reviewContent=#{reviewContent} WHERE reviewNum=#{reviewNum} AND userId=#{userId}
 	</update>
 	
-	<delete id="reviewDelete">
+	<delete id="reviewDelete" parameterType="Integer">
 		DELETE review WHERE reviewNum = #{reviewNum}
 	</delete>
 
 	<!-- ////////////////////////////////리플 ////////////////////////////////////////////////////////////-->
 
 	<select id="replyList" parameterType="Integer">
-		SELECT replyNum, reviewNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum};
+		SELECT replyNum, reviewNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum}
 	</select>
 
 	<insert id="replyInsert" parameterType="map">
-		INSERT INTO reply(replyNum, reviewNum, userId, replyContent) VALUES (reply_seq.nextval, #{reviewNum}, #{userId}, #{replyContent});
+		INSERT INTO reply(replyNum, reviewNum, userId, replyContent) VALUES (reply_seq.nextval, #{reviewNum}, #{userId}, #{replyContent})
 	</insert>
 </mapper>

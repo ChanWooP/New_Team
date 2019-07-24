@@ -36,7 +36,7 @@
 				data-toggle="dropdown" href="#">마이페이지 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/user/member/memberInfo">회원정보확인</a></li>
-					<li><a href="#">예약확인</a></li>
+					<li><a href="<%=cp%>/user/confirm/list">예약확인</a></li>
 					<li><a href="#">포인트정보</a></li>
 				</ul></li>
 			<li><a href="<%=cp%>/user/wishlist/list"><span

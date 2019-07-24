@@ -62,8 +62,8 @@ function sendLogin() {
 			    </button>
 			</div>
 			<div style="margin-top: 10px;">
-			<span style="margin-right:85px;"><a href="<%=cp%>/">아이디 찾기</a></span>
-			<span style="margin-right:85px;"><a href="<%=cp%>/">비밀번호 찾기</a></span>
+			<span style="margin-right:85px;"><a href="<%=cp%>/user/mail/findId">아이디 찾기</a></span>
+			<span style="margin-right:85px;"><a href="<%=cp%>/user/mail/findPwd">비밀번호 찾기</a></span>
 			<span><a href="<%=cp%>/user/member/join">회원가입</a></span>
 			</div>
 			<div style="margin-top: 20px; margin-bottom:100px; text-align:center;">

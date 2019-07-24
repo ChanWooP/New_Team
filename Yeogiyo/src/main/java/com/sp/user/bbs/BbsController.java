@@ -86,7 +86,7 @@ public class BbsController {
 			query+="condition="+condition+"&keyword="+URLEncoder.encode(keyword, "UTF-8");
 		}
 		if(query.length()!=0) {
-			listUrl=cp+"/user/bbs/list"+query;
+			listUrl=cp+"/user/bbs/list?"+query;
 			articleUrl=cp+"/user/bbs/article?page="+current_page+"&"+query;
 		}
 		String paging=util.paging(current_page, total_page, listUrl);

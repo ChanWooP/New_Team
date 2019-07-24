@@ -35,7 +35,7 @@ function searchList() {
 								<div class="col-md-3">
 									<div class="thumbnail">
 								        <a href="${articleUrl}&eventNum=${dto.eventNum}">
-								          <img src="<%=cp%>/uploads/eventPhoto/${dto.eventPhoto}" alt="eventPhoto" style="width:100%">
+								          <img src="<%=cp%>/uploads/eventPhoto/${dto.eventPhoto}" alt="eventPhoto" style="width:100%"> 
 								          <div class="caption">
 								            <p style="text-align: center;">${dto.eventTitle }</p>
 								            <p style="text-align: center; margin-bottom:0px;"><b>${dto.eventStatus }</b></p>

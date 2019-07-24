@@ -28,7 +28,6 @@
 				data-toggle="dropdown" href="#">예약관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/owner/reservation/list">전체예약확인</a></li>
-					<li><a href="<%=cp%>/owner/offlineRes/main">오프라인예약</a></li>
 				</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">정산 <span class="caret"></span></a>

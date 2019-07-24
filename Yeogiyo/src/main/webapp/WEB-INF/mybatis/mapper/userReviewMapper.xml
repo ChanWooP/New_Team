@@ -18,10 +18,15 @@
 	</select>
 	
 	<select id="reviewarticle" parameterType="Integer" resultType="com.sp.user.review.Review">
-		 SELECT reviewNum, reviewTitle ,reviewContent, reviewCreated, score, member.username
-                FROM review JOIN member ON review.userid=member.userid 
+		 SELECT reviewNum, reviewTitle ,reviewContent, reviewCreated, score, m.username, h.hotelId
+         FROM review r JOIN member m ON r.userid=m.userid 
+         JOIN hotel h ON h.hotelId = r.hotelId
          WHERE reviewNum=#{reviewNum}
 	</select>	
+	
+	<insert id="reviewReport" parameterType="map">
+		INSERT INTO reviewreport(reviewNum, reportContent, hotelId) VALUES(#{reviewNum}, #{reportContent}, #{hotelId})
+	</insert>
 	
 	<insert id="reviewInsert" parameterType="com.sp.user.review.Review">
 		INSERT INTO review(reviewNum,reviewTitle,reviewContent,score,hitCount,userId,reservationNum, hotelId) 

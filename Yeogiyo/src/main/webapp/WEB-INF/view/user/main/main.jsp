@@ -7,11 +7,22 @@
 %>
 <script type="text/javascript">
 	$(function() {
+		var minDate1 = new Date();
+		var minDate2 = new Date();
 		$("#form-sday").datepicker({
-			showMonthAfterYear : true
+			showMonthAfterYear : true,
+			minDate : minDate1,
+			onSelect : function(dateText, inst){
+				var s= dateText.split("-");
+		
+				minDate2 = new Date(parseInt(s[0]), parseInt(s[1])-1, parseInt(s[2])+1);
+				$( "#form-eday" ).datepicker( "option", "minDate", minDate2);
+			}
 		});
+		
 		$("#form-eday").datepicker({
-			showMonthAfterYear : true
+			showMonthAfterYear : true,
+			minDate : minDate2
 		});
 	});
 </script>
@@ -21,16 +32,13 @@
 	<div id="mainsearch" style="margin-top: 30px; height: 500px;">
 		<div
 			style="width: 500px; margin: 60px; margin-bottom: 10px; min-height: 330px; border: 1px solid yellow; background-color: white;">
-			<form action="<%=cp%>/user/hotel/list" method="post"
-				name="searchForm">
+			<form action="<%=cp%>/user/hotel/list" method="post" name="searchForm">
 				<div style="margin: 20px;">
 					<div>
 						<label><b>여행지</b></label>
 					</div>
 					<div style="margin-top: 10px;">
-						<input
-							style="width: 430px; height: 40px; border: 1px solid #ccc; border-radius: 4px;"
-							type="text" placeholder="가고싶은 여행지를 입력해주세요" name="place"
+						<input style="width: 430px; height: 40px; border: 1px solid #ccc; border-radius: 4px; padding: 5px;" type="text" placeholder="가고싶은 여행지를 입력해주세요" name="place"
 							required="required">
 					</div>
 				</div>
@@ -42,11 +50,11 @@
 					<div style="margin-top: 10px;">
 						<input type="text" name="checkinday" id="form-sday"
 							readonly="readonly"
-							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px;">
+							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; padding: 5px;">
 
 						<span style="margin-right: 20px;"></span> <input type="text"
 							name="checkoutday" id="form-eday" readonly="readonly"
-							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px;">
+							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; padding: 5px;">
 					</div>
 				</div>
 
@@ -56,13 +64,12 @@
 					</div>
 					<div style="margin-top: 10px;">
 						<select
-							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px;"
-							name="pnum">
+							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px;" name="peoplecount">
 							<option>인원수 선택</option>
-							<option value="1">성인1명</option>
-							<option value="2">성인2명</option>
-							<option value="4">성인4명</option>
-							<option value="0">4명이상</option>
+							<option value=1>성인1명</option>
+							<option value=2>성인2명</option>
+							<option value=4>성인4명</option>
+							<option value=0>4명이상</option>
 						</select> <span style="margin-right: 30px;"></span>
 						<button type="submit"
 							style="width: 200px; height: 40px; background-color: #4CAF50; border: none; border-radius: 4px;">

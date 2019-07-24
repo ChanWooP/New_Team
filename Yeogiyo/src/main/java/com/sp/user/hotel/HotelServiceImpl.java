@@ -58,4 +58,18 @@ public class HotelServiceImpl implements HotelService{
 		return rlist;
 	}
 
+	@Override
+	public String getHotelId(String hotelName) {
+		String hotelId = null;
+		
+		try {
+			hotelId=dao.selectOne("hotelId",hotelName);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return hotelId;
+	}
+
 }

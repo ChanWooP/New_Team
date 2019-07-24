@@ -23,7 +23,7 @@ $(function(){
 			$tb.find("textarea").focus();
 			return false;
 		}
-		content = encodeURIComponent(content);
+		replyContent = encodeURIComponent(replyContent);
 		
 		var query="reviewNum="+reviewNum+"&replyContent="+replyContent;
 		var url="<%=cp%>/user/review/replycreate";
@@ -46,6 +46,19 @@ $(function(){
 		        jqXHR.setRequestHeader("AJAX", true);
 			}
 		});
+		
+	});
+	
+	$(".reviewReportBtn").click(function(){
+		var reviewNum = $(this).attr("data-reviewNum");	
+		var hotelId = $(this).attr("data-hotelId");
+		
+		if(confirm("위 자료를 신고 하시겠습니까 ? ")) {
+		
+			$("form[name=reportForm] input[name=hotelId]").val(hotelId);
+			$("form[name=reportForm] input[name=reviewNum]").val(reviewNum);
+			$("form[name=reportForm]").submit();
+		}
 		
 	});
 });
@@ -125,6 +138,9 @@ $(function(){
 		<div class="reviewBtn">
 			<button type="button" class="reviewDeleteBtn" data-reviewNum="${article.reviewNum}" name="reviewDeleteBtn">리뷰삭제</button>&nbsp;
 			<button type="button" class="reviewUpdateBtn" data-reviewNum="${article.reviewNum}" name="reviewUpdateBtn">리뷰수정</button>
+			<c:if test="${sessionScope.member.enabled==2}">
+				<button type="button" class="reviewReportBtn" data-reviewNum="${article.reviewNum}" data-hotelId="${article.hotelId}" name="reviewReportBtn">리뷰신고</button>
+			</c:if>
 		</div>
 		
 		<div class="reviewReplyList">
@@ -146,3 +162,8 @@ $(function(){
 		</div>
 	</div>
 </div>
+
+<form action="<%=cp%>/user/review/report" method="post" name="reportForm">
+	<input type="hidden" name="reviewNum">
+	<input type="hidden" name="hotelId">
+</form>

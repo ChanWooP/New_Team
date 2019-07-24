@@ -18,12 +18,15 @@ $(function() {
 		var roomtype=$(this).attr("data-roomtype");
 		var roomprice=$(this).attr("data-roomprice");
 		var maxpeople=$(this).attr("data-maxpeople");
+		var userId="${sessionScope.member.userId}";
+		
 		
 		$("form[name=reserForm] input[name=hotelId]").val(hotelId);
 		$("form[name=reserForm] input[name=roomdetails]").val(roomdetails);
 		$("form[name=reserForm] input[name=roomtype]").val(roomtype);
 		$("form[name=reserForm] input[name=roomprice]").val(roomprice);
 		$("form[name=reserForm] input[name=maxpeople]").val(maxpeople);
+		$("form[name=reserForm] input[name=userId]").val(userId);
 		$("form[name=reserForm]").submit();
 	});
 });
@@ -193,7 +196,7 @@ $(function() {
     					</c:forEach>
  					 </ol>
  					 
- 					<div class="carousel-inner">
+ 				<div class="carousel-inner">
  						<c:forEach var="dto" items="${plist}" varStatus="status">
 							<div class="item ${status.index==0?'active':''}">
 						    	<img src="<%=cp%>/resource/images/hotel/${dto.hotelphotoName}.jpg" alt="">
@@ -229,11 +232,11 @@ $(function() {
 					
 					<c:forEach var="dto" items="${rlist}" varStatus="status">
 						<tr class="room${status.index}">
-							<td><p>${dto.roomtype}</p><img src="<%=cp%>/resource/images/hotel/L7main.jpg"></td>
+							<td><p>${dto.roomtype}</p><img src="<%=cp%>/resource/images/hotel/${dto.roomphotoName}"></td>
 							<td style="width:80px;">${dto.roomdetails}</td>
 							<td>${dto.maxpeople}</td>
 							<td>${dto.roomprice}</td>
-							<td><button type="button" class="reservationBtn" data-hotelId="${dto.hotelId}" data-maxpeople="${dto.maxpeople}" 
+							<td><button type="button" class="reservationBtn" data-hotelId="${hotelId}" data-maxpeople="${dto.maxpeople}" 
 							data-roomprice="${dto.roomprice}" data-roomtype="${dto.roomtype}" data-roomdetails="${dto.roomdetails}">예약하기</button></td>
 						</tr>
 						
@@ -249,6 +252,8 @@ $(function() {
 	<input type="hidden" name="roomdetails">
 	<input type="hidden" name="roomtype">
 	<input type="hidden" name="roomprice">
+	<input type="hidden" name="userId">
 	<input type="hidden" value="${checkinday}" name="checkinday">
 	<input type="hidden" value="${checkoutday}" name="checkoutday">
+	<input type="hidden" value="${peoplecount}" name="peoplecount">
 </form>

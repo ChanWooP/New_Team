@@ -2,37 +2,51 @@ package com.sp.user.reservation;
 
 public class Reservation {
 	
-	private int reservationNum;
+	private int price;
 	private int totprice;
-	private String reservated;
 	private int checkmember;
+	private String hotelId;
+	private String userId;
 	private String userName;
 	private String userTel;
 	private String userEmail;
+	private int reservationNum;
 	private int resdetailnum;
-	private String hotelId;
 	private int resoptNum;
 	private int resoptusercount;
 	private int resoptprice;
-	private int optNum;
-	private int peoplecount;
+	private String reservated;
 	private String resType;
-	private int price;
+	private int optNum;
 	private int roomnum;
-	private String roomtype;
 	private int roomprice;
-	private int maxpeople;
+	private String roomtype;
+	private String roomstatus;
 	private String roomdetails;
 	private String roomname;
+	private int peoplecount;
+	private int maxpeople;
 	private int stair;
-	private String roomstatus;
 	private String card;
 	private String cardNum;
 	private String checkin;
 	private String checkout;
 	private String checkinday;
 	private String checkoutday;	
+	private String hotelName;
 	
+	public String getHotelName() {
+		return hotelName;
+	}
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getCheckinday() {
 		return checkinday;
 	}

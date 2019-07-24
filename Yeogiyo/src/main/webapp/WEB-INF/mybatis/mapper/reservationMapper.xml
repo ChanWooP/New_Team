@@ -2,33 +2,44 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user.reservation">
-		<select id="getroomnum" parameterType="com.sp.user.reservation.Reservation" resultType="Integer">
-			SELECT MIN(r.roomnum) roomnum
-	        FROM room r 
-			JOIN roomdetail rd ON r.roomnum = rd.roomnum
-			JOIN hotel h ON h.hotelId=#{hotelId}
-	        WHERE roomtype=#{roomtype}
+		
+		<select id="getroomnum" parameterType="map" resultType="Integer">
+			SELECT MIN(r.roomnum) roomnum FROM room r JOIN roomdetail ro ON r.roomnum=ro.roomnum
+			WHERE r.roomnum NOT IN (select roomnum FROM reserdetail
+<![CDATA[      		WHERE (TO_DATE(#{checkoutday}) > TO_DATE(TO_CHAR(checkinday, 'YYYY-MM-DD')) AND TO_DATE(#{checkoutday}) <= TO_DATE(TO_CHAR(checkoutday, 'YYYY-MM-DD')))
+      		OR (TO_DATE(#{checkinday}) >= TO_DATE(TO_CHAR(checkinday, 'YYYY-MM-DD')) AND TO_DATE(#{checkoutday}) <= TO_DATE(TO_CHAR(checkoutday, 'YYYY-MM-DD')))
+      		OR (TO_DATE(#{checkoutday}) >= TO_DATE(TO_CHAR(checkoutday, 'YYYY-MM-DD')) AND TO_DATE(#{checkinday}) < TO_DATE(TO_CHAR(checkoutday, 'YYYY-MM-DD')))
+]]>
+      		)
+      		AND roomtype=#{roomtype}
 	        AND roomprice=#{roomprice}
 	        AND maxpeople=#{maxpeople}
 	        AND roomdetails=#{roomdetails}
 	        AND roomstatus=#{roomstatus}
 		</select>
-		
+		<select id="selectHotelName" parameterType="map" resultType="String">
+			SELECT hotelName FROM hotel WHERE hotelId=#{hotelId}
+		</select>
 		<select id="showresdetail" parameterType="Integer" resultType="com.sp.user.reservation.Reservation">
-			SELECT roomname, stair, roomtype, maxpeople, roomstatus, roomprice, rd.roomdetails 
+			SELECT h.hotelName,roomname, stair, roomtype, maxpeople, roomstatus, roomprice, rd.roomdetails 
 			FROM room r
 			JOIN roomdetail rd ON rd.roomnum=r.roomnum
+			JOIN hotel h ON h.hotelId = r.hotelId
 			WHERE rd.roomnum=#{roomnum}
-		</select>
-		
-		<select id="getReservationNum" parameterType="Integer">
-			SELECT reservation_seq.CURRVAL FROM dual;
 		</select>
 		
 		<update id="insertReservation" parameterType="map">
 			INSERT ALL
 				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
-				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, 1,'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
+				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
+				INTO memberreser(reservationNum, userid) VALUES (reservation_seq.CURRVAL,#{userId})
+			SELECT * FROM DUAL	 
+		</update>
+		
+		<update id="noMemberinsertReservation" parameterType="map">
+			INSERT ALL
+				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
+				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
 			SELECT * FROM DUAL	 
 		</update>
 		

@@ -8,10 +8,25 @@ public class Review {
 	private int score;
 	private int hitCount;
 	private String userId;
+	private String hotelId;
 	private int reservationNum;
 	private int listNum;
 	private String userName;
+	private String reportContent;
 	
+	
+	public String getHotelId() {
+		return hotelId;
+	}
+	public void setHotelId(String hotelId) {
+		this.hotelId = hotelId;
+	}
+	public String getReportContent() {
+		return reportContent;
+	}
+	public void setReportContent(String reportContent) {
+		this.reportContent = reportContent;
+	}
 	public String getUserName() {
 		return userName;
 	}

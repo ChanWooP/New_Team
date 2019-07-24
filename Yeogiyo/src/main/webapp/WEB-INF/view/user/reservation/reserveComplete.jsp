@@ -33,22 +33,22 @@
 		<div class="bills">
 			<h1>결제 내역</h1>
 			<div class="panel panel-warning class">
-			    <div class="panel-heading">호텔이름</div>
+			    <div class="panel-heading">${hotelName}</div>
 			    <div class="panel-body">
-				    <p>방유형</p>
+				    <p>${map.roomtype}</p>
 				</div>
 			</div>
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">체크인</div>
 			    <div class="panel-body">
-				    <p>${checkinday}</p>
+				    <p>${map.checkinday}</p>
 				</div>
 			</div>
 			
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">체크아웃</div>
 			    <div class="panel-body">
-				    <p>${checkoutday}</p>
+				    <p>${map.checkoutday}</p>
 				</div>
 			</div>
 			
@@ -61,17 +61,17 @@
 				
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">방가격</div>
-			    <div class="panel-body">100,200</div>
+			    <div class="panel-body">${map.roomprice}</div>
 			</div>
 			
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">옵션 가격</div>
-			    <div class="panel-body"><p>옵션 내용</p>100,200</div>
+			    <div class="panel-body"><p></p></div>
 			</div>
 			
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">결제 금액</div>
-			    <div class="panel-body">100,200</div>
+			    <div class="panel-body">${map.roomprice}</div>
 			</div>
 			
 			<p>이용해 주셔서 감사합니다.</p>

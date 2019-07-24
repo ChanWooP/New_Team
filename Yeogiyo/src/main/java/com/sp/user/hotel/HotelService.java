@@ -8,4 +8,5 @@ public interface HotelService {
 	public List<Hotel> listHotel(Map<String, Object> map);
 	public List<Hotel> listPhoto(Map<String, Object> map);
 	public List<Hotel> listHotelRoom(Map<String, Object> map);
+	public String getHotelId(String hotelName); 
 }

@@ -40,7 +40,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public Review reviewArticle(int reviewNum) {
 		Review article = null;
 		try {
-			article=dao.selectOne("reviewarticle",reviewNum);
+			article=dao.selectOne("user.review.reviewarticle",reviewNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,9 +48,9 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void createReview(Review dto) throws Exception {
+	public void createReview(Map<String, Object> map) throws Exception {
 		try {
-			dao.insertData("reviewInsert",dto);
+			dao.insertData("user.review.reviewInsert",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -61,7 +61,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void updateReview(Review dto) throws Exception {
 		try {
-			dao.updateData("reviewUpdate",dto);
+			dao.updateData("user.review.reviewUpdate",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -72,7 +72,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void deleteReview(int reviewNum) throws Exception {
 		try {
-			dao.deleteData("reviewDelete",reviewNum);
+			dao.deleteData("user.review.reviewDelete",reviewNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -83,7 +83,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void insertReply(Map<String, Object> map) throws Exception{
 		try {
-			dao.insertData("replyInsert",map);
+			dao.insertData("user.review.replyInsert",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -95,10 +95,20 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<Review> ListReply(int reviewNum) {
 		List<Review> replylist = null;
 		try {
-			replylist=dao.selectList("replyList", reviewNum);
+			replylist=dao.selectList("user.review.replyList", reviewNum);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return replylist;
+	}
+
+	@Override
+	public void report(Map<String, Object> map) throws Exception {
+		try {
+			dao.insertData("user.review.reviewReport",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 }

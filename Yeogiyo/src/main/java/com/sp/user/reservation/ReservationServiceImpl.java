@@ -60,4 +60,24 @@ public class ReservationServiceImpl implements ReservationService{
 		return num;
 	}
 
+	@Override
+	public void nomeminsertReservation(Map<String, Object> map) throws Exception {
+		try {
+			dao.updateData("user.reservation.noMemberinsertReservation",map);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}		
+	}
+
+	@Override
+	public String gethotelname(Map<String, Object> map) {
+		String hotelName = null;
+		try {
+			hotelName=dao.selectOne("selectHotelName",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hotelName;
+	}
 }

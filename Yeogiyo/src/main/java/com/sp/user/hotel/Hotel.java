@@ -26,7 +26,16 @@ public class Hotel {
 	private int roomnum;
 	private String roomname;
 	private String userId;
+	private String roomphotoName;
 	
+	
+	
+	public String getRoomphotoName() {
+		return roomphotoName;
+	}
+	public void setRoomphotoName(String roomphotoName) {
+		this.roomphotoName = roomphotoName;
+	}
 	public String getUserId() {
 		return userId;
 	}

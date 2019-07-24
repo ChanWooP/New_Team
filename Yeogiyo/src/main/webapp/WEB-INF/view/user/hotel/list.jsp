@@ -142,7 +142,7 @@ $(function(){
 				   
 				    
 				 </td>
-				<td><a href="<%=cp%>/user/hotel/detail?hotelName=${dto.hotelName}&checkinday=${checkinday}&checkoutday=${checkoutday}">${dto.hotelName}</a></td>
+				<td><a href="<%=cp%>/user/hotel/detail?hotelName=${dto.hotelName}&checkinday=${checkinday}&checkoutday=${checkoutday}&peoplecount=${peoplecount}">${dto.hotelName}</a></td>
 				<td>${dto.addr1},&nbsp;${dto.addr2}</td>
 				<td class="detail">${dto.detail}</td>
 				<td><img src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg"></td>

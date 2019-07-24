@@ -86,7 +86,10 @@
 					<input type="hidden" name="roomprice" value="${resdetail.roomprice}">
 					<input type="hidden" name="hotelId" value="${hotelId}">
 					<input type="hidden" name="roomnum" value="${roomnum}">
+					<input type="hidden" name="peoplecount" value="${peoplecount}">
 					<button type="submit">예약하기</button>
+					
+					
 				</form>
 			</div>
 				

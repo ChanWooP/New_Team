@@ -8,4 +8,7 @@ public interface ReservationService {
 	public int reservationNum();
 	
 	public void insertReservation(Map<String, Object> map) throws Exception;
+	public void nomeminsertReservation(Map<String, Object> map) throws Exception;
+	
+	public String gethotelname(Map<String, Object> map);
 }

@@ -66,15 +66,17 @@ public class EventController {
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<Event> list=service.listEvent(map);
+		List<Event> plist=service.listEvent(map);
 		
-		for(Event dto:list) {
+		for(Event dto:plist) {
 			SimpleDateFormat sdfm=new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c1=Calendar.getInstance();
 			String today=sdfm.format(c1.getTime());
 		
 			Map<String, Object> smap=new HashMap<>();
 			smap.put("eventNum", dto.getEventNum());
+			
+			smap.put("eventStatus", "진행예정");
 			
 			if(today.compareTo(dto.getEventStart()) > 0) {
 				smap.put("eventStatus", "진행중");
@@ -84,6 +86,8 @@ public class EventController {
 			}
 			service.updateEventStatus(smap);
 		}
+		
+		List<Event> list=service.listEvent(map);
 		
 		String cp=req.getContextPath();
 		String query="";

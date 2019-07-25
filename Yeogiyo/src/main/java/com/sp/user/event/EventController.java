@@ -1,6 +1,5 @@
 package com.sp.user.event;
 
-import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -63,15 +62,16 @@ public class EventController {
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<Event> list=service.listEvent(map);
+		List<Event> plist=service.listEvent(map);
 		
-		for(Event dto:list) {
+		for(Event dto:plist) {
 			SimpleDateFormat sdfm=new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c1=Calendar.getInstance();
 			String today=sdfm.format(c1.getTime());
 		
 			Map<String, Object> smap=new HashMap<>();
 			smap.put("eventNum", dto.getEventNum());
+			smap.put("eventStatus", "진행예정");
 			
 			if(today.compareTo(dto.getEventStart()) > 0) {
 				smap.put("eventStatus", "진행중");
@@ -81,6 +81,8 @@ public class EventController {
 			}
 			service.updateEventStatus(smap);
 		}
+		
+		List<Event> list=service.listEvent(map);
 		
 		String cp=req.getContextPath();
 		String query="";
@@ -109,29 +111,6 @@ public class EventController {
 		model.addAttribute("keyword", keyword);
 		
 		return ".user.event.list";
-	}
-	
-	@RequestMapping(value="/user/event/created", method=RequestMethod.GET)
-	public String eventcreatedForm(Model model, HttpSession session) {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(info==null || info.getEnabled()!=3) {
-			return "redirect:/user/member/login";
-		}
-		
-		model.addAttribute("mode", "created");
-		return ".user.event.created";
-	}
-	
-	@RequestMapping(value="/user/event/created", method=RequestMethod.POST)
-	public String eventCreatedSubmit(Event dto,
-								HttpSession session) throws Exception {
-		String root=session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"eventPhoto";
-		try {
-			service.insertEvent(dto, pathname);
-		} catch (Exception e) {
-		}
-		return "redirect:/user/event/list";
 	}
 	
 	@RequestMapping(value="/user/event/article", method=RequestMethod.GET)
@@ -173,68 +152,6 @@ public class EventController {
 		model.addAttribute("query", query);
 		
 		return ".user.event.article";
-	}
-	
-	@RequestMapping(value="/user/event/update", method=RequestMethod.GET)
-	public String eventUpdateForm(@RequestParam int eventNum,
-								@RequestParam String page,
-								HttpSession session,
-								Model model) throws Exception {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(info.getEnabled()!=3) {
-			return "redirect:/user/event/list?page="+page;
-		}
-		
-		Event dto=service.readEvent(eventNum);
-		if(dto==null) {
-			return "redirect:/user/event/list?page="+page;
-		}
-		
-		model.addAttribute("dto", dto);
-		model.addAttribute("page", page);
-		model.addAttribute("mode", "update");
-		
-		return ".user.event.created";
-	}
-	
-	@RequestMapping(value="/user/event/update", method=RequestMethod.POST)
-	public String eventUpdateSubmit(Event dto,
-							@RequestParam String page,
-							HttpSession session) throws Exception {
-		String root=session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"eventPhoto";
-		try {
-			service.updateEvent(dto, pathname);
-		} catch (Exception e) {
-		}
-		return "redirect:/user/event/article?eventNum="+dto.getEventNum()+"&page="+page;
-	}
-	
-	@RequestMapping(value="/user/event/delete")
-	public String eventDelete(@RequestParam int eventNum,
-							@RequestParam String page,
-							@RequestParam(defaultValue="") String keyword,
-							@RequestParam(defaultValue="") String status,
-							HttpSession session) throws Exception {
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(info.getEnabled()!=3) {
-			return "redirect:/user/event/list?page="+page;
-		}
-		
-		String query="page="+page;
-		if(keyword.length()!=0) {
-			query+="keyword="+URLEncoder.encode(keyword, "UTF-8");
-		} else if(status.length()!=0) {
-			query+="status="+URLEncoder.encode(status, "UTF-8");
-		}
-		
-		String root=session.getServletContext().getRealPath("/");
-		String pathname=root+"uploads"+File.separator+"eventPhoto";
-		try {
-			service.deleteEvent(eventNum, pathname);
-		} catch (Exception e) {
-		}
-		return "redirect:/user/event/list?"+query;
 	}
 	
 	@RequestMapping(value="/user/event/insertEventLike", method=RequestMethod.POST)

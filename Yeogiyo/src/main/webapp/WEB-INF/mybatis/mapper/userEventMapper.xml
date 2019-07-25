@@ -33,7 +33,7 @@
 						OR INSTR(eventContent, #{keyword}) &gt; 0)
 				</if>
 				<if test="status!=null and status!=''">
-					eventStatus='진행중'
+					eventStatus=#{status}
 				</if>
 			</where>
 			ORDER BY eventNum DESC
@@ -71,7 +71,7 @@
 						OR INSTR(eventContent, #{keyword}) &gt; 0)
 				</if>
 				<if test="status!=null and status!=''">
-					eventStatus='진행중'
+					eventStatus=#{status}
 				</if>
 				AND (eventNum &lt; #{eventNum})
 			</where>
@@ -88,7 +88,7 @@
 						OR INSTR(eventContent, #{keyword}) &gt; 0)
 				</if>
 				<if test="status!=null and status!=''">
-					eventStatus='진행중'
+					eventStatus=#{status}
 				</if>
 				AND (eventNum &gt; #{eventNum})
 			</where>

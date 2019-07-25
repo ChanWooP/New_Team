@@ -69,16 +69,6 @@ function searchList() {
 											onclick="searchList()">검색</button>
 									</form>
 								</td>
-								<c:if test="${sessionScope.member.enabled==3 }">
-								<td align="right" width="100">
-								
-									<button type="button" class="btn btn-default btn-sm"
-										onclick="javascript:location.href='<%=cp%>/user/event/created';">
-										이벤트 작성
-									</button>
-								</td>
-								</c:if>
-								
 								<td align="right" width="80">
 									<button type="button" class="btn btn-default btn-sm"
 										onclick="javascript:location.href='<%=cp%>/user/event/list?status=진행중';">

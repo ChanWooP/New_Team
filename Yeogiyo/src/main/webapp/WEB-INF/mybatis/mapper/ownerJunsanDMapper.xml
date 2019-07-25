@@ -29,6 +29,7 @@
 		FROM jungsand
 		WHERE hotelId = #{hotelId}
         AND jungsanCreated = #{day} 
+        ORDER BY paydate
 	</select>
 	
 	<select id="selectDay" parameterType="map" resultType="com.sp.owner.jungsanD.JungsanD">

@@ -7,7 +7,6 @@
 %>
 <style>
 table.ui-datepicker-calendar { display:none; }
-table.ui-datepicker-button { display:none; }
 </style>
 <script type="text/javascript">
 	$(document).ready(function () {

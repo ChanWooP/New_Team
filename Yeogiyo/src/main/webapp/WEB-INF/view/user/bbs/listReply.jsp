@@ -29,9 +29,6 @@
 	           <c:if test="${vo.userId == sessionScope.member.userId ||  sessionScope.member.enabled==3 }">
 	                <span class="deleteReply" style="cursor: pointer;" data-replyNum='${vo.replyNum}' data-pageNo='${pageNo}'>삭제</span>
 	           	</c:if>
-	           <c:if test="${vo.userId != sessionScope.member.userId &&  sessionScope.member.enabled!=3 }">
-	           		<span class="notifyReply">신고</span>
-	           	</c:if>
 	        </td>
 	    </tr>
 	    <tr>

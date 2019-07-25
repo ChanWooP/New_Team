@@ -1,4 +1,4 @@
-package com.sp.owner.jungsanD;
+package com.sp.owner.jungsanM;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -21,16 +21,16 @@ import org.springframework.web.servlet.View;
 import com.sp.user.member.SessionInfo;
 
 
-@Controller("owner.jungsanD.jungsanDController")
-public class JungsanDController {
+@Controller("owner.jungsanM.jungsanMController")
+public class JungsanMController {
 	
 	@Autowired
-	private JungsanDService service;
+	private JungsanMService service;
 	
 	@Autowired
 	private View excelView;
 	
-	@RequestMapping("/owner/jungsanD/list")
+	@RequestMapping("/owner/jungsanM/list")
 	public String list(@RequestParam(defaultValue="")String day
 						,@RequestParam(defaultValue="")String msg
 						,HttpSession session
@@ -43,18 +43,19 @@ public class JungsanDController {
 		
 		
 		if(day.equals("") || day==null) {
-			SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd");		
+			SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM");		
 			Date time = new Date();		
 			String time1 = format1.format(time);
 			day = time1;
 		}
+		
 		map.put("day", day);
 		
-		List<JungsanD> list = service.select(map);
+		List<JungsanM> list = service.select(map);
 		
 		int sum = 0;
 		int num = 0;
-		for(JungsanD j : list) {
+		for(JungsanM j : list) {
 			sum += j.getPrice();
 			j.setNum(++num);
 		}
@@ -64,10 +65,10 @@ public class JungsanDController {
 		model.addAttribute("day", day);
 		model.addAttribute("msg",msg);
 		
-		return ".owner.jungsanD.list";
+		return ".owner.jungsanM.list";
 	}
 	
-	@RequestMapping("/owner/jungsanD/insert")
+	@RequestMapping("/owner/jungsanM/insert")
 	public String insert(String day, HttpSession session, Model model) throws Exception {
 	
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
@@ -86,10 +87,10 @@ public class JungsanDController {
 		
 		String query = "day="+day+"&msg="+URLEncoder.encode(msg, "utf-8");
 
-		return "redirect:/owner/jungsanD/list?"+query;
+		return "redirect:/owner/jungsanM/list?"+query;
 	}
 	
-	@RequestMapping("/owner/jungsanD/bar")
+	@RequestMapping("/owner/jungsanM/bar")
 	@ResponseBody
 	public Map<String, Object> bar(String day, HttpSession session) throws Exception{
 		Map<String, Object> model = new HashMap<>();
@@ -102,29 +103,29 @@ public class JungsanDController {
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		data.put("hotelId", info.getUserId());
 		
-		List<JungsanD> datas = service.selectDay(data);
+		List<JungsanM> datas = service.selectDay(data);
 		
-		String days[] = new String[datas.size()];
+		String months[] = new String[datas.size()];
 		int pays[] = new int[datas.size()];
 		int index = 0;
 		
-		for(JungsanD j : datas) {
-			days[index] = j.getPayDate()+"일";
+		for(JungsanM j : datas) {
+			months[index] = j.getPayDate()+"월";
 			pays[index++] = j.getPrice();
 		}
 		
-		String month = day.substring(0,7);
+		String year = day.substring(0,4);
 		
-		map.put("name", month);
+		map.put("name", year);
 		map.put("data", pays);
 		list.add(map);
 		
-		model.put("list", days);
+		model.put("list", months);
 		model.put("series", list);
 		return model;
 	}
 	
-	@RequestMapping("/owner/jungsanD/bar2")
+	@RequestMapping("/owner/jungsanM/bar2")
 	@ResponseBody
 	public Map<String, Object> bar2(String day, HttpSession session) throws Exception{
 		Map<String, Object> model = new HashMap<>();
@@ -137,29 +138,29 @@ public class JungsanDController {
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		data.put("hotelId", info.getUserId());
 		
-		List<JungsanD> datas = service.selectDay(data);
+		List<JungsanM> datas = service.selectDay(data);
 		
-		String days[] = new String[datas.size()];
+		String months[] = new String[datas.size()];
 		int people[] = new int[datas.size()];
 		int index = 0;
 		
-		for(JungsanD j : datas) {
-			days[index] = j.getPayDate()+"일";
+		for(JungsanM j : datas) {
+			months[index] = j.getPayDate()+"일";
 			people[index++] = j.getPeopleCount();
 		}
 		
-		String month = day.substring(0,7);
+		String year = day.substring(0,4);
 		
-		map.put("name", month);
+		map.put("name", year);
 		map.put("data", people);
 		list.add(map);
 		
-		model.put("list", days);
+		model.put("list", months);
 		model.put("series", list);
 		return model;
 	}
 	
-	@RequestMapping("/owner/jungsanD/excel")
+	@RequestMapping("/owner/jungsanM/excel")
 	public View excel(String day, Map<String, Object> model, HttpSession session) throws Exception{
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		
@@ -167,7 +168,7 @@ public class JungsanDController {
 		map.put("hotelId", info.getUserId());
 		map.put("day", day);
 		
-		List<JungsanD> list = service.select(map);
+		List<JungsanM> list = service.select(map);
 		String sheetName = day+"정산";
 		List<String> labels = new ArrayList<>();
 
@@ -181,7 +182,7 @@ public class JungsanDController {
 		
 		List<Object[]> values = new ArrayList<>();
 		
-		for(JungsanD dto:list) {
+		for(JungsanM dto:list) {
 			values.add(new Object[] {dto.getPayDate(), dto.getRoomName(), dto.getPayType()
 			,dto.getPeopleCount(), dto.getCheckinDay(), dto.getCheckoutDay(), dto.getPrice()});
 		}

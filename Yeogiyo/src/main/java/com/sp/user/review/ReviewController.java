@@ -82,22 +82,31 @@ public class ReviewController {
 		return ".user.review.article";
 	}
 	
-	@RequestMapping(value="/user/review/complete")
-	public String reviewCreateComplete() {
-		return ".user.review.list";
+	@RequestMapping(value="/user/review/create")
+	public String reviewCreate(@RequestParam int reservationNum,Model model) {
+		
+		Review review = service.beforeCreate(reservationNum);
+		
+		
+		model.addAttribute("reservationNum",reservationNum);
+		model.addAttribute("review",review);
+		return ".user.review.create";
 	}
 	
-	@RequestMapping(value="/user/review/create")
-	public String reviewCreate(@RequestParam Map<String, Object> map) {
+	@RequestMapping(value="/user/review/complete")
+	public String reviewCreateComplete(@RequestParam Map<String, Object> map, HttpSession session) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		String userId = info.getUserId();
+		map.put("userId", userId);
 		try {
 			service.createReview(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return ".user.review.create";
+		return "redirect:/user/review/list";
 	}
-	
+		
 	@RequestMapping(value="/user/review/report")
 	public String reviewReport(@RequestParam String hotelId, @RequestParam int reviewNum, Model model){
 		model.addAttribute("hotelId",hotelId);
@@ -112,8 +121,8 @@ public class ReviewController {
 			service.report(map);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
-		
 		return "redirect:/user/review/list";
 	}
 	//----------------------------------------------------------------댓글

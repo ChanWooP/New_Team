@@ -13,8 +13,21 @@ public class Review {
 	private int listNum;
 	private String userName;
 	private String reportContent;
+	private String hotelName;
+	private String roomName;
 	
-	
+	public String getRoomName() {
+		return roomName;
+	}
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+	public String getHotelName() {
+		return hotelName;
+	}
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
 	public String getHotelId() {
 		return hotelId;
 	}

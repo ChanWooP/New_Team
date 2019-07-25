@@ -40,13 +40,24 @@ public class ReviewServiceImpl implements ReviewService{
 	public Review reviewArticle(int reviewNum) {
 		Review article = null;
 		try {
-			article=dao.selectOne("user.review.reviewarticle",reviewNum);
+			article=dao.selectOne("user.review.reviewarticle", reviewNum);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return article;
 	}
 
+	@Override
+	public Review beforeCreate(int reservationNum) {
+		Review before = null;
+		try {
+			before=dao.selectOne("user.review.beforeCreateReview", reservationNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return before;
+	}
+	
 	@Override
 	public void createReview(Map<String, Object> map) throws Exception {
 		try {
@@ -55,7 +66,6 @@ public class ReviewServiceImpl implements ReviewService{
 			e.printStackTrace();
 			throw e;
 		}
-		
 	}
 
 	@Override
@@ -111,4 +121,5 @@ public class ReviewServiceImpl implements ReviewService{
 			throw e;
 		}
 	}
+
 }

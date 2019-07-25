@@ -29,9 +29,10 @@ public class ReviewController {
 	
 	@RequestMapping(value="/user/review/list")
 	public String reviewList(@RequestParam(value="page", defaultValue="1") int current_page,
-			HttpServletRequest req, Model model) throws Exception {
+			HttpServletRequest req, HttpSession session, Model model) throws Exception {
 		String cp = req.getContextPath();
-		
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String userId = info.getUserId();
 		int rows=10;
 		int total_page=0;
 		int reviewCount=service.reviewCount();
@@ -46,7 +47,8 @@ public class ReviewController {
 		int end=current_page*rows;
 		Map<String, Object> map=new HashMap<>();
 		map.put("start", start);
-		map.put("end", end);
+		map.put("end", end);		
+		map.put("userId", userId);
 		
 		List<Review> reviewlist=service.reviewList(map);
 		
@@ -74,11 +76,13 @@ public class ReviewController {
 	@RequestMapping(value="/user/review/article")
 	public String reviewArticle(@RequestParam int reviewNum, Model model) {
 		Review article = null;
+		List<Review> replylist = null;
 		
 		article=service.reviewArticle(reviewNum);
+		replylist=service.ListReply(reviewNum);
 		
 		model.addAttribute("article", article);
-		
+		model.addAttribute("replylist", replylist);
 		return ".user.review.article";
 	}
 	
@@ -106,7 +110,17 @@ public class ReviewController {
 		
 		return "redirect:/user/review/list";
 	}
-		
+	
+	@RequestMapping(value="/user/review/delete")
+	public String reviewDelete(@RequestParam int reviewNum) {
+		try {
+			service.deleteReview(reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/user/review/list";
+	}
+	
 	@RequestMapping(value="/user/review/report")
 	public String reviewReport(@RequestParam String hotelId, @RequestParam int reviewNum, Model model){
 		model.addAttribute("hotelId",hotelId);
@@ -129,17 +143,18 @@ public class ReviewController {
 	
 	@RequestMapping(value="/user/review/replycreate", method=RequestMethod.POST)
 	@ResponseBody
-	public void replyCreate(@RequestParam Map<String, Object> map, Review dto,HttpSession session) {
+	public Map<String, Object> replyCreate(@RequestParam Map<String, Object> paramap, Review dto,HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");	
-		
+		String state="true";
 		try {
 			dto.setUserId(info.getUserId());
-			service.insertReply(map);
+			service.insertReply(paramap);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-	}
-	
-
+		Map<String, Object> map = new HashMap<>();	
+		map.put("state",state);
+		return map;
+	}	
 	
 }

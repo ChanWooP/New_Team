@@ -7,6 +7,7 @@
         SELECT ROWNUM rnum, tb.* FROM (
              SELECT reviewNum, reviewTitle, reviewContent, score, TO_CHAR(reviewCreated,'YYYY-MM-DD') reviewCreated, member.username
                 FROM review JOIN member ON review.userid=member.userid 
+                WHERE member.userId=#{userId}
                 ORDER BY reviewNum DESC
 <![CDATA[
 	        ) tb WHERE ROWNUM <= ${end}
@@ -18,7 +19,7 @@
 	</select>
 	
 	<select id="reviewarticle" parameterType="Integer" resultType="com.sp.user.review.Review">
-		 SELECT reviewNum, reviewTitle ,reviewContent, reviewCreated, score, m.username, h.hotelId
+		 SELECT reviewNum, reviewTitle ,reviewContent, reviewCreated, score, m.username, h.hotelId, m.userId
          FROM review r JOIN member m ON r.userid=m.userid 
          JOIN hotel h ON h.hotelId = r.hotelId
          WHERE reviewNum=#{reviewNum}
@@ -52,8 +53,8 @@
 
 	<!-- ////////////////////////////////리플 ////////////////////////////////////////////////////////////-->
 
-	<select id="replyList" parameterType="Integer">
-		SELECT replyNum, reviewNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum}
+	<select id="replyList" parameterType="Integer" resultType="com.sp.user.review.Review">
+		SELECT replyNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum} ORDER BY replyNum DESC
 	</select>
 
 	<insert id="replyInsert" parameterType="map">

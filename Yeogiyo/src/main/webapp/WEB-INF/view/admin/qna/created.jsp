@@ -78,7 +78,7 @@ function sendQna() {
 										<input type="hidden" name="qnaGroupNum" value="${dto.qnaGroupNum }">
 										<input type="hidden" name="qnaOrderNo" value="${dto.qnaOrderNo }">
 										<input type="hidden" name="qnaDepth" value="${dto.qnaDepth }">
-										<input type="hidden" name="qnaParent" value="${dto.qnaParent }">
+										<input type="hidden" name="qnaParent" value="${dto.qnaNum }">
 										<input type="hidden" name="page" value="${page}">
 									</c:if>
 		

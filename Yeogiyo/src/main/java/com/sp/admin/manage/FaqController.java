@@ -77,6 +77,7 @@ public class FaqController {
 			return "redirect:/admin/faq/list";
 		}
 		try {
+			dto.setFaqContent(dto.getFaqContent().replaceAll("\n", "<br>"));
 			service.updateFaq(dto);
 		} catch (Exception e) {
 		}

@@ -65,6 +65,8 @@ $(function(){
 		HotelQna.qnaContent = $(this).prev().val();
 		var url = "<%=cp%>/owner/hotelqna/insert";
 		var $list = $(this).parent().parent();
+		var $no = $(this).parent().parent().parent().prev().children().first();
+	
 		$.ajax({
 			type:"post"
 			,url:url
@@ -76,6 +78,9 @@ $(function(){
 					alert("데이터를 추가하지 못했습니다.");
 					return false;
 				}
+				$no.empty();
+				$no.css("color","blue");
+				$no.html("답변완료");
 				$list.hide();
 			}
 			,error:function(e){
@@ -90,6 +95,7 @@ $(function(){
 		var url = "<%=cp%>/owner/hotelqna/delete";
 		var query = "qnaNum="+qnaNum;
 		var $list = $(this).parent().parent();
+		var $yes = $(this).parent().parent().parent().prev().children().first();
 		if(! confirm("정말 삭제하시겠습니까?")){
 			return false;
 		}
@@ -104,6 +110,9 @@ $(function(){
 					alert("데이터를 삭제하지 못했습니다.");
 					return false;
 				}
+				$yes.empty();
+				$yes.css("color","red");
+				$yes.html("답변미완료");
 				$list.hide();
 			}
 			,error:function(e){
@@ -167,11 +176,11 @@ $(function(){
 });
 </script>
 <div class="container">
-	<div style="width:100%; margin:0 auto; padding-top:10px;">
-		<strong style="font-size:30px">문의사항</strong>
-		<hr style="width: 100%; color: black; height: 1px; background-color:black; margin-top:0px; margin-bottom:10px" />
+	<div style="width:100%; margin:0 auto; padding-top:30px;">
+		 <h1><span class="glyphicon glyphicon-question-sign"></span>&nbsp;<b>Q&amp;A</b></h1>
 	</div>
-	<table style="margin-bottom:10px; width:80%; margin:auto;">
+	<div style="border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
+	<table style="margin-bottom:10px; width:100%; margin:auto;">
 		<tr>
 			<td>${dataCount }개(${page}/${total_page } 페이지)</td>
 			<td align="right">
@@ -188,17 +197,26 @@ $(function(){
 			</td>
 		</tr>
 	</table>
-	<div style="width:80%; margin:0 auto;" >
+	<div style="width:100%; margin:0 auto; padding:10px; margin-top:10px;" >
 		<table style="width:100%; margin-left:auto; margin-right:auto;" >
 			<tr style="border-bottom: 2px solid gray;">
 				<th style="width:10%">번호</th>
-				<th style="width:70%">제목</th>
+				<th style="width:10%">상태</th>
+				<th style="width:60%">제목</th>
 				<th style="width:10%">작성자</th>
 				<th style="width:10%">작성일</th>
 			</tr>
 			<c:forEach var="dto" items="${list }" >
 			<tr style="border-bottom: 1px solid gray;">
 				<td style="padding:3px;">${dto.rnum }</td>
+				<td style="padding:3px;">
+					<c:if test="${dto.count == 0}">
+						<b class="no" style="color:red">답변미완료</b>
+					</c:if>
+					<c:if test="${dto.count == 1}">
+						<b class="yes" style="color:blue">답변완료</b>
+					</c:if>
+				</td>
 				<td style="padding:3px;">
 					<a style="cursor:pointer" class="qnalist">${dto.qnaTitle }</a>
 					<input type="hidden" value="${dto.qnaNum }">
@@ -223,4 +241,5 @@ $(function(){
 			</td>
 		</tr>
 	</table>
+	</div>
 </div>

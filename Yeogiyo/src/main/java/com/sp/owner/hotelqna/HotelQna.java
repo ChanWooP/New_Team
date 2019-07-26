@@ -10,7 +10,14 @@ public class HotelQna {
 	private String hotelId;
 	private String qnaCreated;
 	private String userName;
+	private int count;
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getUserName() {
 		return userName;
 	}

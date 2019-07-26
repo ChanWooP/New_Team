@@ -33,9 +33,10 @@ public class ReviewController {
 		String cp = req.getContextPath();
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
 		String userId = info.getUserId();
+		
 		int rows=10;
 		int total_page=0;
-		int reviewCount=service.reviewCount();
+		int reviewCount=service.reviewCount(userId);
 		
 		if(reviewCount!=0)
 			total_page=util.pageCount(rows, reviewCount);
@@ -49,13 +50,16 @@ public class ReviewController {
 		map.put("start", start);
 		map.put("end", end);		
 		map.put("userId", userId);
+		List<Review> reviewlist=null;
 		
-		List<Review> reviewlist=service.reviewList(map);
+		
+		reviewlist=service.reviewList(map);
 		
 		int listNum, n=0;
 		for(Review dto:reviewlist) {
 			listNum=reviewCount-(start+n-1);
 			dto.setListNum(listNum);
+			n++;
 		}
 		
 		String listUrl= cp+"/user/review/list";
@@ -150,11 +154,26 @@ public class ReviewController {
 			dto.setUserId(info.getUserId());
 			service.insertReply(paramap);
 		} catch (Exception e) {
-			// TODO: handle exception
+			state="false";
 		}
 		Map<String, Object> map = new HashMap<>();	
 		map.put("state",state);
 		return map;
 	}	
 	
+	@RequestMapping(value="/user/review/replydelete")
+	@ResponseBody
+	public Map<String, Object> replyDelete(@RequestParam int reviewNum,@RequestParam int replyNum) {
+		Map<String, Object> map = new HashMap<>();	
+		String state="true";
+		try {
+			service.deleteReply(replyNum);
+		} catch (Exception e) {
+			state="false";
+		}
+		map.put("reviewNum",reviewNum);
+		map.put("replyNum",replyNum);
+		map.put("state",state);
+		return map;
+	}
 }

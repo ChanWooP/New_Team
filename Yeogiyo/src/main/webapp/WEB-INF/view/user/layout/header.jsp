@@ -38,6 +38,7 @@
 					<li><a href="<%=cp%>/user/member/memberInfo">회원정보확인</a></li>
 					<li><a href="<%=cp%>/user/confirm/list">예약확인</a></li>
 					<li><a href="#">포인트정보</a></li>
+					<li><a href="<%=cp%>/user/review/list">나의 리뷰</a></li>
 				</ul></li>
 			<li><a href="<%=cp%>/user/wishlist/list"><span
 					class="glyphicon glyphicon-star"></span> 위시리스트</a></li>

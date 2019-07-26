@@ -10,12 +10,13 @@
                 WHERE member.userId=#{userId}
                 ORDER BY reviewNum DESC
 <![CDATA[
-	        ) tb WHERE ROWNUM <= ${end}
+	        ) tb WHERE ROWNUM <= #{end}
 	    ) WHERE rnum >= #{start}
 ]]>
 	</select>
-	<select id="reviewCount" resultType="Integer">
-		SELECT NVL(COUNT(*),0) reviewCount FROM review
+	
+	<select id="reviewCount" resultType="Integer" parameterType="String">
+		SELECT NVL(COUNT(*),0) reviewCount FROM review JOIN member ON review.userid=member.userid WHERE member.userId=#{userId}
 	</select>
 	
 	<select id="reviewarticle" parameterType="Integer" resultType="com.sp.user.review.Review">
@@ -54,10 +55,14 @@
 	<!-- ////////////////////////////////리플 ////////////////////////////////////////////////////////////-->
 
 	<select id="replyList" parameterType="Integer" resultType="com.sp.user.review.Review">
-		SELECT replyNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum} ORDER BY replyNum DESC
+		SELECT reviewNum, replyNum, userId, replyContent, replyCreated FROM reply WHERE reviewNum=#{reviewNum} ORDER BY replyNum DESC
 	</select>
 
 	<insert id="replyInsert" parameterType="map">
 		INSERT INTO reply(replyNum, reviewNum, userId, replyContent) VALUES (reply_seq.nextval, #{reviewNum}, #{userId}, #{replyContent})
 	</insert>
+	
+	<delete id="replyDelete" parameterType="Integer">
+		DELETE reply WHERE replyNum=#{replyNum}
+	</delete>
 </mapper>

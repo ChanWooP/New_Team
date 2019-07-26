@@ -17,7 +17,7 @@ $(function(){
 		var hotelId = $(this).attr("data-hotelId");
 		var userId=userId;
 		var reviewNum = $(this).attr("data-reviewNum");	
-		var $tb = $(this).closest("div");
+		var $tb = $(this).closest("tr");
 		var replyContent=$tb.find("textarea").val().trim();
 		if(! replyContent) {
 			$tb.find("textarea").focus();
@@ -68,6 +68,32 @@ $(function(){
 		if(confirm("이 글을 삭제 하시겠습니까 ? ")) {
 			location.href="<%=cp%>/user/review/delete?" + query;
 		}
+	});
+	
+	$(".replyDelete").click(function(){
+		var replyNum = $(this).attr("data-replyNum");	
+		var reviewNum = $(this).attr("data-reviewNum");
+		var query ="replyNum="+replyNum+"&reviewNum="+reviewNum;
+		var url="<%=cp%>/user/review/replydelete";
+		
+		$.ajax({
+			type:"post"
+			,url:url
+			,data:query
+			,dataType:"json"
+			,success:function(data) {
+				var state=data.state;
+				if(state=="true") {
+					location.href="<%=cp%>/user/review/article?reviewNum="+reviewNum;
+				} else if(state=="false") {
+					alert("댓글을 삭제 하지 못했습니다.");
+				}
+			}
+			,beforeSend : function(jqXHR) {
+		        jqXHR.setRequestHeader("AJAX", true);
+			}
+		});
+		
 	});
 });
 
@@ -137,7 +163,7 @@ $(function(){
 						<button type="button" class="reviewUpdateBtn" data-reviewNum="${article.reviewNum}" name="reviewUpdateBtn">리뷰수정</button>
 					</c:if>
 					<c:if test="${sessionScope.member.enabled==2}">
-						<button type="button" class="reviewReportBtn" data-reviewNum="${article.reviewNum}" data-hotelId="${article.hotelId}" name="reviewReportBtn">리뷰신고</button>
+						<button type="button" class="reviewReportBtn" data-reviewNum="${article.reviewNum}" data-hotelId="${article.hotelId}" name="reviewReportBtn">리뷰신고</button>						
 					</c:if>
 				</div>
 					
@@ -161,7 +187,7 @@ $(function(){
 								</div>
 							</td>
 							<td style="padding-left:10px;">
-								<button class="replyDelete">삭제</button>
+								<button type="button" class="replyDelete" data-replyNum="${dto.replyNum}" data-reviewNum="${dto.reviewNum}">삭제</button>
 							</td>
 						</tr>
 						

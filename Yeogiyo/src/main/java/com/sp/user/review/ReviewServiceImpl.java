@@ -26,15 +26,16 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int reviewCount() {
+	public int reviewCount(String userId) {
 		int count=0;
 		try {
-			count=dao.selectOne("user.review.reviewCount");
+			count=dao.selectOne("user.review.reviewCount",userId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
+	
 
 	@Override
 	public Review reviewArticle(int reviewNum) {
@@ -121,5 +122,19 @@ public class ReviewServiceImpl implements ReviewService{
 			throw e;
 		}
 	}
+
+	@Override
+	public void deleteReply(int replyNum) throws Exception {
+		try {
+			dao.deleteData("user.review.replyDelete", replyNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+	
+	
 
 }

@@ -16,8 +16,16 @@ public class Review {
 	private String hotelName;
 	private String roomName;
 	private String replyContent;
+	private int replyNum;
 	
 	
+	
+	public int getReplyNum() {
+		return replyNum;
+	}
+	public void setReplyNum(int replyNum) {
+		this.replyNum = replyNum;
+	}
 	public String getReplyContent() {
 		return replyContent;
 	}

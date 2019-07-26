@@ -7,7 +7,9 @@ public interface ReviewService {
 	public void createReview(Map<String, Object> map) throws Exception;
 	public Review beforeCreate(int reservationNum);
 	public List<Review> reviewList(Map<String, Object> map);
-	public int reviewCount();
+	
+	public int reviewCount(String userId);
+
 	
 	public Review reviewArticle(int reviewNum);
 	
@@ -20,4 +22,5 @@ public interface ReviewService {
 	
 	public List<Review> ListReply(int reviewNum); 
 	public void insertReply(Map<String, Object> map) throws Exception;
+	public void deleteReply(int replyNum) throws Exception;
 }

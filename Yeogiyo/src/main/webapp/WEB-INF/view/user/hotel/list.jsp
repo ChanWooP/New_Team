@@ -50,7 +50,6 @@ $(function(){
 <style type="text/css">
 
 .showHotelList {
-	border: 1px solid black;
 	margin : 0 auto;
 	text-align: center;
 }
@@ -60,21 +59,16 @@ $(function(){
 }
 
 .showHotelList td {
-	padding :10px;
-	border: 1px solid black;
-	margin:10px;	
+	padding :30px;
+	
+	margin:30px;	
 }
 .showHotelList .detail{
-	width:350px;
+	width:550px;
 }
 .showHotelList img {
 	width:300px; 
 	height:150px;
-}
-
-.showsearch {
-	width:300px; 
-	height:50px;
 }
 
 .msg {
@@ -82,43 +76,17 @@ $(function(){
 	text-align: center;
 }
 
-.subSearch {
-	height:100px;
-	padding:10px 10px;
-	margin:20px 0px;
-	text-align: center;
-	background: #E9F0FA;
-}
-
-.subSearchWrapper {
-	height:50px;
-	margin:10px 10px;
-	padding:10px 10px;
-	text-align: center;
-	background: #efefef;
-	border:1px solid black;
-}
 </style>
 
 <div class="body-container">
-	<div style="padding-top: 10px; padding-bottom: 20px;">
-		<h2>호텔 정보 확인하기</h2>
-		<div class="subSearch">
-			<div class="subSearchWrapper">
-				<label>목적지</label>
-				<input type="text">
-				<label>체크인 날짜</label>
-				<input type="text">
-				<label>체크아웃 날짜</label>
-				<input type="text">
-				<label>인원</label>
-				<input type="text">	
-				<label>인원</label>
-				<button>검색</button>		
-			</div>
-		</div>	
-
-		<table class="showHotelList">
+	<div style="padding-top: 30px; padding-bottom: 20px;">
+		<div class="panel panel-warning">
+		<div class="panel-heading">
+				<h2>호텔 정보 확인하기</h2> 검색 결과 : ${hotelCount} 개
+		</div>
+		
+		<div class="panel-body">
+			<table class="showHotelList">
 			<c:forEach var="dto" items="${list}">
 			<tr>
 				<td>
@@ -140,17 +108,21 @@ $(function(){
 				   		</c:otherwise>
 				   </c:choose>
 				   
-				    
-				 </td>
+				</td>
 				<td><a href="<%=cp%>/user/hotel/detail?hotelName=${dto.hotelName}&checkinday=${checkinday}&checkoutday=${checkoutday}&peoplecount=${peoplecount}">${dto.hotelName}</a></td>
 				<td>${dto.addr1},&nbsp;${dto.addr2}</td>
 				<td class="detail">${dto.detail}</td>
 				<td><img src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg"></td>
 			</tr>
 			</c:forEach>
-		</table>	
+		</table>
+			${paging}	
+		</div>
+		
+	
 		<div class="msg">
 			<p> 더많은 정보를 보실려면 원하시는 호텔을 선택하세요.</p>
 		</div>
 	</div>
+</div>
 </div>

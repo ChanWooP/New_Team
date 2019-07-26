@@ -50,25 +50,7 @@
 			    <div class="panel-body">
 				    <p>${map.checkoutday}</p>
 				</div>
-			</div>
-			
-			<div class="panel panel-warning class">
-			    <div class="panel-heading">선택옵션</div>
-			    <div class="panel-body">
-				    <p>옵션내용</p>
-				</div>
-			</div>
-				
-			<div class="panel panel-warning class">
-			    <div class="panel-heading">방가격</div>
-			    <div class="panel-body">${map.roomprice}</div>
-			</div>
-			
-			<div class="panel panel-warning class">
-			    <div class="panel-heading">옵션 가격</div>
-			    <div class="panel-body"><p></p></div>
-			</div>
-			
+			</div>					
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">결제 금액</div>
 			    <div class="panel-body">${map.roomprice}</div>

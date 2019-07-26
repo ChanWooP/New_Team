@@ -59,6 +59,7 @@ public class WishListController {
 		for (WishList dto:list){
 			listNum=wishlistCount-(start+n-1);
 			dto.setListNum(listNum);
+			n++;
 		}
 
 		String listUrl= cp+"/user/wishlist/list";

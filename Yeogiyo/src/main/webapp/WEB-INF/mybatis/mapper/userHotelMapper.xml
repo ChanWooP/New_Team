@@ -3,10 +3,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user.hotel">
 
-	<select id="hotelList" parameterType="String" resultType="com.sp.user.hotel.Hotel">
-		SELECT h.hotelId, hotelname, detail, addr1, addr2, mainphoto
+	<select id="hotelList" parameterType="map" resultType="com.sp.user.hotel.Hotel">
+		SELECT * FROM (
+      	  SELECT ROWNUM rnum, tb.* FROM (
+           	 SELECT h.hotelId, hotelname, detail, addr1, addr2, mainphoto
+                FROM hotel h JOIN hoteldetail d ON h.hotelId = d.hotelId
+<![CDATA[			
+					WHERE INSTR(addr1,#{addr1})>=1    
+	        ) tb WHERE ROWNUM <= #{end}
+	    ) WHERE rnum >= #{start}
+]]>
+	</select>
+	
+	<select id="hotelCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) hotelCount 
 		FROM hotel h JOIN hoteldetail d ON h.hotelId = d.hotelId
-		WHERE INSTR(addr1,#{addr1})>=1
+<![CDATA[			
+			WHERE INSTR(addr1,#{addr1})>=1   
+]]>  
 	</select>
 
 	<select id="hotelDetail" parameterType="map" resultType="com.sp.user.hotel.Hotel">
@@ -34,5 +48,19 @@
   		WHERE hotelId=#{hotelId}
 	</select>
 	
+	<select id="addoptList" parameterType="String" resultType="com.sp.user.hotel.Hotel">
+		SELECT optNum, optName, optPrice, hotelId FROM hoteladdopt WHERE hotelId=#{hotelId}
+	</select>
+
+	<select id="showReview" parameterType="map" resultType="com.sp.user.hotel.Hotel">
+		SELECT * FROM (
+			SELECT ROWNUM rnum, tb.* FROM (
+				SELECT reviewNum, reviewTitle, reviewContent, score FROM review
+					WHERE hotelId=#{hotelId}
+<![CDATA[
+	        ) tb WHERE ROWNUM <= 4
+	    ) WHERE rnum >= 1
+]]>
+	</select>
 
 </mapper>

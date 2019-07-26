@@ -13,7 +13,20 @@ public class HotelServiceImpl implements HotelService{
 	
 	@Autowired
 	private CommonDAO dao;
-
+	
+	@Override
+	public int HotelCount(Map<String, Object> map) {
+		int count = 0;
+		
+		try {
+			count=dao.selectOne("user.hotel.hotelCount",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	
 	@Override
 	public Hotel detailHotel(Map<String, Object> map) {
 		Hotel dto = null;
@@ -63,13 +76,38 @@ public class HotelServiceImpl implements HotelService{
 		String hotelId = null;
 		
 		try {
-			hotelId=dao.selectOne("hotelId",hotelName);
-		} catch (Exception e) {
-			// TODO: handle exception
+			hotelId=dao.selectOne("user.hotel.hotelId",hotelName);
+		} catch (Exception e) {	
+			e.printStackTrace();
 		}
 		
 		
 		return hotelId;
 	}
+
+	@Override
+	public List<Hotel> listaddopt(Map<String, Object> map) {
+		List<Hotel> optlist = null;
+			try {
+				optlist=dao.selectList("user.hotel.showReview", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		return optlist;
+	}
+
+
+	@Override
+	public List<Hotel> listReview(Map<String, Object> map) {
+		List<Hotel> reviewlist= null;
+		try {
+			reviewlist=dao.selectList("user.hotel.showReview", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewlist;
+	}
+
+
 
 }

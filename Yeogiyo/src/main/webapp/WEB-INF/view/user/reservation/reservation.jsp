@@ -107,14 +107,8 @@
 				    <div class="panel-heading">가격</div>
 				    <div class="panel-body">${resdetail.roomprice}</div>
 			   	</div>
-			   	<div class="panel panel-warning class">
-				    <div class="panel-heading">옵션가격</div>
-				    <div class="panel-body">${resdetail.roomprice}</div>
-			   	</div>
-			   	<div class="panel panel-warning class">
-				    <div class="panel-heading">총가격</div>
-				    <div class="panel-body">${resdetail.roomprice+resdetail.roomprice}</div>
-			   	</div>
+			   	
+			   	
 			</div>
 		</div>
 	</div>

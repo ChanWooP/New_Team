@@ -11,7 +11,7 @@
                 JOIN hotel ON hotel.hotelId=wishlist.hotelId
                 WHERE member.userId=#{userId}
 <![CDATA[
-	        ) tb WHERE ROWNUM <= ${end}
+	        ) tb WHERE ROWNUM <= #{end}
 	    ) WHERE rnum >= #{start}
 ]]>
 	</select>

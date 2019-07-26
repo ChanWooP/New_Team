@@ -1,6 +1,7 @@
 package com.sp.user.hotel;
 
 public class Hotel {
+	private int listNum;
 	private String hotelId;
 	private String hotelName;
 	private String detail;
@@ -27,9 +28,62 @@ public class Hotel {
 	private String roomname;
 	private String userId;
 	private String roomphotoName;
+	private int optNum;
+	private String optNmae;
+	private int optPrice;
+	private String reviewNum;
+	private String reviewTitle;
+	private String reviewContent;
+	private int score;
 	
-	
-	
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
+	public String getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(String reviewNum) {
+		this.reviewNum = reviewNum;
+	}
+	public String getReviewTitle() {
+		return reviewTitle;
+	}
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
+	}
+	public String getReviewContent() {
+		return reviewContent;
+	}
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public int getOptNum() {
+		return optNum;
+	}
+	public void setOptNum(int optNum) {
+		this.optNum = optNum;
+	}
+	public String getOptNmae() {
+		return optNmae;
+	}
+	public void setOptNmae(String optNmae) {
+		this.optNmae = optNmae;
+	}
+	public int getOptPrice() {
+		return optPrice;
+	}
+	public void setOptPrice(int optPrice) {
+		this.optPrice = optPrice;
+	}
 	public String getRoomphotoName() {
 		return roomphotoName;
 	}

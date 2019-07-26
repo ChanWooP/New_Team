@@ -8,7 +8,7 @@
 <script type="text/javascript">
 function updateFaq(faqNum) {
 	<c:if test="${sessionScope.member.enabled==3}">
-		var url="<%=cp%>/user/faq/update?faqNum="+faqNum;
+		var url="<%=cp%>/admin/faq/update?faqNum="+faqNum;
 		location.href=url;
 	</c:if>
 	<c:if test="${sessionScope.member.enabled!=3}">
@@ -59,9 +59,9 @@ $(function() {
 
 		var isVisible=$div.is(":visible");
 		if(isVisible) {
-			$div.hide().delay(1000);
+			$div.hide();
 		} else {
-			$div.show().delay(1000);
+			$div.show();
 		}
 	});
 	

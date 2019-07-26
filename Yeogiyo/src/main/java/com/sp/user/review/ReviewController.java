@@ -29,12 +29,14 @@ public class ReviewController {
 	
 	@RequestMapping(value="/user/review/list")
 	public String reviewList(@RequestParam(value="page", defaultValue="1") int current_page,
-			HttpServletRequest req, Model model) throws Exception {
+			HttpServletRequest req, HttpSession session, Model model) throws Exception {
 		String cp = req.getContextPath();
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String userId = info.getUserId();
 		
 		int rows=10;
 		int total_page=0;
-		int reviewCount=service.reviewCount();
+		int reviewCount=service.reviewCount(userId);
 		
 		if(reviewCount!=0)
 			total_page=util.pageCount(rows, reviewCount);
@@ -46,14 +48,18 @@ public class ReviewController {
 		int end=current_page*rows;
 		Map<String, Object> map=new HashMap<>();
 		map.put("start", start);
-		map.put("end", end);
+		map.put("end", end);		
+		map.put("userId", userId);
+		List<Review> reviewlist=null;
 		
-		List<Review> reviewlist=service.reviewList(map);
+		
+		reviewlist=service.reviewList(map);
 		
 		int listNum, n=0;
 		for(Review dto:reviewlist) {
 			listNum=reviewCount-(start+n-1);
 			dto.setListNum(listNum);
+			n++;
 		}
 		
 		String listUrl= cp+"/user/review/list";
@@ -74,21 +80,37 @@ public class ReviewController {
 	@RequestMapping(value="/user/review/article")
 	public String reviewArticle(@RequestParam int reviewNum, Model model) {
 		Review article = null;
+		List<Review> replylist = null;
 		
 		article=service.reviewArticle(reviewNum);
+		replylist=service.ListReply(reviewNum);
 		
 		model.addAttribute("article", article);
-		
+		model.addAttribute("replylist", replylist);
 		return ".user.review.article";
 	}
 	
 	@RequestMapping(value="/user/review/create")
-	public String reviewCreate(@RequestParam int reservationNum,Model model) {
+	public String reviewCreate(@RequestParam int reservationNum, HttpSession session, Model model) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		String userId = info.getUserId();
 		
+		Map<String, Object> map = new HashMap<>();
 		Review review = service.beforeCreate(reservationNum);
+		String hotelId = review.getHotelId();
 		
-		
+		map.put("hotelId", hotelId);
+		map.put("userId", userId);
+		map.put("reservationNum", reservationNum);
+		int check =0;
+		check=service.check(map);
 		model.addAttribute("reservationNum",reservationNum);
+		
+		if(check !=0) {
+			return "redirect:/user/review/list";
+		}
+		
+		
 		model.addAttribute("review",review);
 		return ".user.review.create";
 	}
@@ -106,7 +128,19 @@ public class ReviewController {
 		
 		return "redirect:/user/review/list";
 	}
-		
+	
+	@RequestMapping(value="/user/review/delete")
+	public String reviewDelete(@RequestParam int reviewNum) {
+		try {
+			service.deleteReportReview(reviewNum);
+			service.deleteAllReply(reviewNum);
+			service.deleteReview(reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/user/review/list";
+	}
+	
 	@RequestMapping(value="/user/review/report")
 	public String reviewReport(@RequestParam String hotelId, @RequestParam int reviewNum, Model model){
 		model.addAttribute("hotelId",hotelId);
@@ -129,17 +163,33 @@ public class ReviewController {
 	
 	@RequestMapping(value="/user/review/replycreate", method=RequestMethod.POST)
 	@ResponseBody
-	public void replyCreate(@RequestParam Map<String, Object> map, Review dto,HttpSession session) {
+	public Map<String, Object> replyCreate(@RequestParam Map<String, Object> paramap, Review dto,HttpSession session) {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");	
-		
+		String state="true";
 		try {
 			dto.setUserId(info.getUserId());
-			service.insertReply(map);
+			service.insertReply(paramap);
 		} catch (Exception e) {
-			// TODO: handle exception
+			state="false";
 		}
+		Map<String, Object> map = new HashMap<>();	
+		map.put("state",state);
+		return map;
+	}	
+	
+	@RequestMapping(value="/user/review/replydelete")
+	@ResponseBody
+	public Map<String, Object> replyDelete(@RequestParam int reviewNum,@RequestParam int replyNum) {
+		Map<String, Object> map = new HashMap<>();	
+		String state="true";
+		try {
+			service.deleteReply(replyNum);
+		} catch (Exception e) {
+			state="false";
+		}
+		map.put("reviewNum",reviewNum);
+		map.put("replyNum",replyNum);
+		map.put("state",state);
+		return map;
 	}
-	
-
-	
 }

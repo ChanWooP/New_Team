@@ -16,10 +16,7 @@
 	text-align : center;
 	border-bottom:1px solid #DEC750;
 }
-.reviewCreateBtn{
-	float:right;
-	color:black;
-}
+
 </style>
 
 <div class="container">
@@ -29,10 +26,8 @@
 		</div>
 		<div class="reviewBody">
 			<div class="panel panel-warning">
-			<div class="panel-heading">리뷰 ${reviewCount}개 / 평균 평점 : 0.0점
-				<div class="reviewCreateBtn">
-					<button>글 작성하기</button>
-				</div>
+			<div class="panel-heading">리뷰 ${reviewCount}개
+				
 			</div>
 			<div class="panel-body">
 			    <table class="reviewList">		
@@ -44,7 +39,7 @@
 					</tr>
 					<c:forEach var="dto" items="${reviewlist}">
 						<tr class="reviews">
-							<td>${dto.reviewNum}</td>
+							<td>${dto.listNum}</td>
 							<td><a href="<%=cp%>/user/review/article?reviewNum=${dto.reviewNum}">${dto.reviewTitle}</a></td>
 							<td>${dto.userName}</td>
 							<td>${dto.reviewCreated}</td>

@@ -6,22 +6,6 @@
    String cp = request.getContextPath();
 %>
 <script type="text/javascript">
-<c:if test="${sessionScope.member.enabled==3}">
-	function deleteEvent(eventNum) {
-		if(confirm("게시물을 삭제 하시겠습니까?")) {
-			var url="<%=cp%>/user/event/delete?eventNum="+eventNum+"&${query}";
-			location.href=url;
-		}
-	}
-
-	function updateEvent(eventNum) {
-		if(confirm("게시물을 수정 하시겠습니까?")) {
-			var url="<%=cp%>/user/event/update?eventNum="+eventNum+"&${query}";
-			location.href=url;
-		}
-	}
-</c:if>
-
 function login() {
 	location.href="<%=cp%>/user/member/login";
 }
@@ -379,15 +363,6 @@ $(function() {
 			<table
 				style="width: 100%; margin: 0px auto 20px; border-spacing: 0px;">
 				<tr height="45">
-					<td width="300" align="left">
-						<c:if test="${sessionScope.member.enabled==3}">
-							<button type="button" class="btn btn-default"
-								onclick="updateEvent('${dto.eventNum}');">수정</button>
-						</c:if><c:if test="${sessionScope.member.enabled==3}">
-							<button type="button" class="btn btn-default"
-								onclick="deleteEvent('${dto.eventNum}');">삭제</button>
-						</c:if> </td>
-
 					<td align="right">
 						<button type="button" class="btn btn-default"
 							onclick="javascript:location.href='<%=cp%>/user/event/list?${query}';">리스트</button>

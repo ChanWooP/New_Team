@@ -133,11 +133,11 @@
 			<strong>총금액 : ￦${sum }</strong>
 		</div>
 	</c:if>
-	<div style="clear: both;">
+	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
 		<div id="barContainer"
 			style="width: 100%; height: 300px; margin: 10px;"></div>
 	</div>
-	<div style="clear: both;">
+	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
 		<div id="barContainer2"
 			style="width: 100%; height: 300px; margin: 10px;"></div>
 	</div>

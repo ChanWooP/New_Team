@@ -30,12 +30,11 @@ function hotSearch(){
 }
 </script>
 	<div class="container">
-		<div style="width:100%; margin:0 auto; padding-top:10px;">
-			<strong style="font-size:30px">호텔 명소</strong>
-			<button type="button" class="btn" style="float:right;" onclick="hotAdd()">명소추가</button> 
-			<hr style="width: 100%; color: black; height: 1px; background-color:black; margin-top:0px; margin-bottom:10px" />
+		<div style="width:100%; margin:0 auto; padding-top:30px;">
+			<h1><span class="glyphicon glyphicon-camera"></span>&nbsp;<b>호텔 명소</b></h1>
 		</div>
-		<table style="margin-bottom:10px; width:80%; margin:auto;">
+		<div style="border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
+		<table style="margin-bottom:10px; width:100%; margin:auto;">
 			<tr>
 				<td>${dataCount }개(${page}/${total_page } 페이지)</td>
 				<td align="right">
@@ -47,7 +46,8 @@ function hotSearch(){
 				</td>
 			</tr>
 		</table>
-		<table style="width:80%; margin:auto;">
+		<br>
+		<table style="width:100%; margin:auto;">
 		<c:forEach var="dto" items="${list }">
 			<tr style="border:1px solid gray;">
 				<td style="padding:5px;" width="30%"><img src="<%=cp%>/uploads/hotplace/${dto.placePhoto}" width="300px" height="200px"></td>
@@ -76,4 +76,12 @@ function hotSearch(){
 				</td>
 			</tr>
 		</table>
+		<table style="width:100%">
+			<tr>
+				<td>
+					<button type="button" class="btn" style="float:right;" onclick="hotAdd()">명소추가</button> 
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

@@ -38,6 +38,9 @@
 					<li><a href="<%=cp%>/user/member/memberInfo">회원정보확인</a></li>
 					<li><a href="<%=cp%>/user/confirm/list">예약확인</a></li>
 					<li><a href="#">포인트정보</a></li>
+					<c:if test="${sessionScope.member.enabled==1}">
+						<li><a href="<%=cp%>/user/review/list">내가 쓴 리뷰 확인</a></li>
+					</c:if>
 				</ul></li>
 			<li><a href="<%=cp%>/user/wishlist/list"><span
 					class="glyphicon glyphicon-star"></span> 위시리스트</a></li>

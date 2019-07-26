@@ -15,7 +15,23 @@ public class Review {
 	private String reportContent;
 	private String hotelName;
 	private String roomName;
+	private String replyContent;
+	private int replyNum;
 	
+	
+	
+	public int getReplyNum() {
+		return replyNum;
+	}
+	public void setReplyNum(int replyNum) {
+		this.replyNum = replyNum;
+	}
+	public String getReplyContent() {
+		return replyContent;
+	}
+	public void setReplyContent(String replyContent) {
+		this.replyContent = replyContent;
+	}
 	public String getRoomName() {
 		return roomName;
 	}

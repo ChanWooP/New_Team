@@ -9,9 +9,6 @@ public interface BbsService {
 	public int dataCount(Map<String, Object> map);
 	public Bbs readBbs(int num);
 	
-	public Bbs updateReadBbs(int num);
-	public Bbs deleteReadBbs(int num);
-	
 	public void updateHitCount(int num) throws Exception;
 	public Bbs preReadBbs(Map<String, Object> map);
 	public Bbs nextReadBbs(Map<String, Object> map);

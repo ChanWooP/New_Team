@@ -13,13 +13,13 @@
 					class="glyphicon glyphicon-map-marker"></span> YEOGIYO</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="#"><span
+			<li><a href="<%=cp%>/admin/main"><span
 					class="glyphicon glyphicon-home"></span> 호텔승인</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">게시판 관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/admin/bbs/list">자유게시판</a></li>
-					<li><a href="<%=cp%>/">신고 리뷰</a></li>
+					<li><a href="<%=cp%>/admin/report/list">신고 리뷰</a></li>
 				</ul></li>	
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">소식 관리<span class="caret"></span></a>

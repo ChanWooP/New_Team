@@ -10,9 +10,13 @@
 	<select id="selectHotelQna" parameterType="map" resultType="com.sp.owner.hotelqna.HotelQna">
 		SELECT * FROM(
 	    	SELECT ROWNUM rnum, tb.* FROM(
-		        SELECT qnaNum, qnaTitle, qnaContent, h.userId, userName, hotelId, qnaParent, qnaCreated
+		        SELECT qnaNum, qnaTitle, qnaContent, h.userId, userName, hotelId, h.qnaParent, qnaCreated
+                ,DECODE(a1.qnaParent,NULL, 0, 1) count
 		        FROM hotelqna h JOIN member m ON h.userId = m.userId
-		        WHERE qnaParent = 0 AND hotelId = #{hotelId}
+                LEFT OUTER JOIN (
+                    SELECT qnaParent FROM hotelqna WHERE qnaParent != 0 AND hotelId = 'hotel1'
+                )a1 ON h.qnaNum = a1.qnaParent
+		        WHERE h.qnaParent = 0 AND hotelId = #{hotelId}
 
 	        	<if test="keyword != null and keyword != '' ">
 	        		AND <include refid="where-list"/>

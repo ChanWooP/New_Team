@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.sp.common.dao.CommonDAO;
@@ -219,29 +218,4 @@ public class BbsServiceImpl implements BbsService {
 		}
 		return result;
 	}
-	
-	@PostAuthorize("returnObject.userId==principal.Username")
-	@Override
-	public Bbs updateReadBbs(int num) {
-		Bbs dto=null;
-		try {
-			dto=dao.selectOne("user.bbs.updateReadBbs", num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return dto;
-	}
-
-	@PostAuthorize("hasRole('ROLE_ADMIN') or (returnObject.userId==principal.Username)")
-	@Override
-	public Bbs deleteReadBbs(int num) {
-		Bbs dto=null;
-		try {
-			dto=dao.selectOne("user.bbs.deleteReadBbs", num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return dto;
-	}
-
 }

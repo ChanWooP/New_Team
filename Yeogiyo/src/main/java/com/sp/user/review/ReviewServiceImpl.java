@@ -26,15 +26,16 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int reviewCount() {
+	public int reviewCount(String userId) {
 		int count=0;
 		try {
-			count=dao.selectOne("user.review.reviewCount");
+			count=dao.selectOne("user.review.reviewCount",userId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return count;
 	}
+	
 
 	@Override
 	public Review reviewArticle(int reviewNum) {
@@ -56,6 +57,17 @@ public class ReviewServiceImpl implements ReviewService{
 			e.printStackTrace();
 		}
 		return before;
+	}
+	
+	@Override
+	public int check(Map<String, Object> map) {
+		int check = 0;
+		try {
+			check = dao.selectOne("user.review.checkReview",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
 	}
 	
 	@Override
@@ -91,6 +103,17 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
+	public void deleteReportReview(int reviewNum) throws Exception {
+		try {
+			dao.deleteData("user.review.reviewReportDelete",reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+	
+	@Override
 	public void insertReply(Map<String, Object> map) throws Exception{
 		try {
 			dao.insertData("user.review.replyInsert",map);
@@ -122,4 +145,24 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 	}
 
+	@Override
+	public void deleteReply(int replyNum) throws Exception {
+		try {
+			dao.deleteData("user.review.replyDelete", replyNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	@Override
+	public void deleteAllReply(int reviewNum) throws Exception {
+		try {
+			dao.deleteData("user.review.replyAllDelete", reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
 }

@@ -147,20 +147,21 @@ $(function(){
 						<td>${article.userName}</td>
 					</tr>
 					<tr>
-						<td>내용 :<td>
-						<td>${article.reviewContent}</td>
-					</tr>
-					<tr>
 						<td>평점 :<td>
 						<td>${article.score}점</td>
 					</tr>
+					<tr>
+						<td>내용 :<td>
+						<td>${article.reviewContent}</td>
+					</tr>
+				
 				</table>
 				
 				<div class="reviewBtn">
 					<button type="button" onclick="location.href='<%=cp%>/user/review/list';">리스트</button>
 					<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId==article.userId}">
 						<button type="button" class="reviewDeleteBtn" data-reviewNum="${article.reviewNum}" name="reviewDeleteBtn">리뷰삭제</button>&nbsp;
-						<button type="button" class="reviewUpdateBtn" data-reviewNum="${article.reviewNum}" name="reviewUpdateBtn">리뷰수정</button>
+						
 					</c:if>
 					<c:if test="${sessionScope.member.enabled==2}">
 						<button type="button" class="reviewReportBtn" data-reviewNum="${article.reviewNum}" data-hotelId="${article.hotelId}" name="reviewReportBtn">리뷰신고</button>						

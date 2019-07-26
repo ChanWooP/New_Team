@@ -30,6 +30,15 @@
 		INSERT INTO reviewreport(reviewNum, reportContent, hotelId) VALUES(#{reviewNum}, #{reportContent}, #{hotelId})
 	</insert>
 	
+	<select id="checkReview" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) reviewCount 
+		FROM review r JOIN member m ON r.userid=m.userid
+		JOIN hotel h ON r.hotelid = h.hotelId
+		WHERE m.userId= #{userId}
+		AND h.hotelId= #{hotelId}
+		AND r.reservationNum=#{reservationNum}
+	</select>
+	
 	<select id="beforeCreateReview" parameterType="Integer" resultType="com.sp.user.review.Review">
 		SELECT h.hotelId, hotelName, roomName
 		FROM reservation res
@@ -51,6 +60,10 @@
 	<delete id="reviewDelete" parameterType="Integer">
 		DELETE review WHERE reviewNum = #{reviewNum}
 	</delete>
+	
+	<delete id="reviewReportDelete" parameterType="Integer">
+		DELETE reviewreport WHERE reviewNum=#{reviewNum}
+	</delete>
 
 	<!-- ////////////////////////////////리플 ////////////////////////////////////////////////////////////-->
 
@@ -65,4 +78,10 @@
 	<delete id="replyDelete" parameterType="Integer">
 		DELETE reply WHERE replyNum=#{replyNum}
 	</delete>
+	
+	<delete id="replyAllDelete" parameterType="Integer">
+		DELETE reply WHERE reviewNum=#{reviewNum}
+	</delete>
+	
+	
 </mapper>

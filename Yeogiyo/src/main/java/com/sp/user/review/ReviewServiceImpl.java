@@ -60,6 +60,17 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
+	public int check(Map<String, Object> map) {
+		int check = 0;
+		try {
+			check = dao.selectOne("user.review.checkReview",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+	
+	@Override
 	public void createReview(Map<String, Object> map) throws Exception {
 		try {
 			dao.insertData("user.review.reviewInsert",map);
@@ -91,6 +102,17 @@ public class ReviewServiceImpl implements ReviewService{
 		
 	}
 
+	@Override
+	public void deleteReportReview(int reviewNum) throws Exception {
+		try {
+			dao.deleteData("user.review.reviewReportDelete",reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+	
 	@Override
 	public void insertReply(Map<String, Object> map) throws Exception{
 		try {
@@ -131,10 +153,16 @@ public class ReviewServiceImpl implements ReviewService{
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	
+	@Override
+	public void deleteAllReply(int reviewNum) throws Exception {
+		try {
+			dao.deleteData("user.review.replyAllDelete", reviewNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
-
-	
-	
-
 }

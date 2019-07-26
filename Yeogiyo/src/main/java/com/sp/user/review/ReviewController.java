@@ -91,12 +91,26 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="/user/review/create")
-	public String reviewCreate(@RequestParam int reservationNum,Model model) {
+	public String reviewCreate(@RequestParam int reservationNum, HttpSession session, Model model) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		String userId = info.getUserId();
 		
+		Map<String, Object> map = new HashMap<>();
 		Review review = service.beforeCreate(reservationNum);
+		String hotelId = review.getHotelId();
 		
-		
+		map.put("hotelId", hotelId);
+		map.put("userId", userId);
+		map.put("reservationNum", reservationNum);
+		int check =0;
+		check=service.check(map);
 		model.addAttribute("reservationNum",reservationNum);
+		
+		if(check !=0) {
+			return "redirect:/user/review/list";
+		}
+		
+		
 		model.addAttribute("review",review);
 		return ".user.review.create";
 	}
@@ -118,6 +132,8 @@ public class ReviewController {
 	@RequestMapping(value="/user/review/delete")
 	public String reviewDelete(@RequestParam int reviewNum) {
 		try {
+			service.deleteReportReview(reviewNum);
+			service.deleteAllReply(reviewNum);
 			service.deleteReview(reviewNum);
 		} catch (Exception e) {
 			e.printStackTrace();

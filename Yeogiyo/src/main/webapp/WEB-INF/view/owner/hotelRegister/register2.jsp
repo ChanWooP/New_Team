@@ -10,219 +10,228 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://kit.fontawesome.com/12328aec17.js"></script>
-<title>Insert title here</title>
+<title>호텔등록 및 회원가입</title>
 <style>
-.leftNav {
+.left-nav {
 	float: left;
 	height: 100%;
 	width: 150px;
-	margin: 20px;
+	margin: 35px;
 	border-radius: 2px;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.leftNav ul li {
+.left-nav ul li {
 	list-style-type: none;
 	padding: 10px;
 }
 
-.contentsContainer {
+.left-nav ul li a{
+	color: #3B1E1E;
+}
+
+.contents-container {
 	float: left;
 	height: 100%;
 	width: 70%;
 	margin: 20px;
 }
 
-.contentsBox {
+.big-contents-box {
 	margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 2px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-.contentsBox div input{
-	width: 43px;
-	height: 43px;
-	margin-left: -1px; 
-	margin-right: -1px;
-	vertical-align: middle;
-}
-
-.formRow{
-	display: table-row;
-}
-
-.formRow button{
-	width: 43px;
-	height: 43px;
-	background: gold;
-	color: white;
-	font-size: 20pt;
-	border-radius: 2px;
-	text-align: center;
-	display: table-cell;
- 	vertical-align: middle;
- 	cursor: pointer;
- 	border: solid 1px gold;
-}
-
-.buildingIconBox{
 	padding: 15px;
-	text-align: center;
-	width: 135px;
-	height: 90px;
-	border: solid 1px #A9A9A9;
-	display: inline-block;
 }
 
-.bigTitle{
-	font-size: 25px;
+.small-contents-box {
+	margin-bottom: 25px;
+}
+
+.big-title {
+	font-size: 20px;
 	font-weight: bold;
 }
 
-.smallTitle{
+.small-title {
 	font-size: 15px;
 	font-weight: bold;
+	margin-bottom: 7px;
+	margin-bottom: 7px;
 }
 
-.btnPreNext{
+.description {
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+.btn-box {
+	text-align: right;
+}
+
+.pre-btn {
 	width: 210px;
 	height: 46px;
+	background: white;
+	color: gold;
+	font-size: 15pt;
+	text-align: center;
+	border: solid 1px gold;
+	border-radius: 2px;
+}
+
+.next-btn {
+	width: 210px;
+	height: 46px;
+	background: gold;
+	color: white;
+	font-size: 15pt;
+	text-align: center;
+	border: solid 1px gold;
+	border-radius: 2px;
+}
+
+.small-form{
+	width: 300px;
+	height: 23px;
+	border: solid 1px #A9A9A9;
+	border-radius: 2px;
+	margin-bottom: 10px;
+}
+
+.submit-form{
+	width:100px;
+	height: 23px;
+	border: none;
+	color: #3B1E1E;;
+	background: gold;
 }
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="leftNav">
+	<div class="container">	
+		<div class="left-nav">
 			<ul>
-				<li><i class="fas fa-check"></i>기본 정보</li>
-				<li><i class="fas fa-check"></i>위치</li>
-				<li><i class="fas fa-check"></i>소개</li>
-				<li><i class="fas fa-check"></i>편의 시설/서비스</li>
-				<li><i class="fas fa-check"></i>요금 설정</li>
-				<li><i class="fas fa-check"></i>예약 설정 관리</li>
-				<li><i class="fas fa-check"></i>사진</li>
-				<li><i class="fas fa-check"></i>프로필</li>
-				<li><i class="fas fa-check"></i>숙소 판매</li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">기본 정보</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">위치</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">소개</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">편의 시설/서비스</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">요금 설정</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">예약 설정 관리</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">사진</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">프로필</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">숙소 판매</a></li>
 			</ul>
 		</div>
 
-		<div class="contentsContainer">
-			<form action="<%=cp%>/owner/hotelRegister/register2" method="get" name="registerForm">
-			<div class="contentsBox">
-				<div class="bigTitle">숙소</div>
-				<div class="bulidingBox">
-				<!-- 숙소 종류 전송 히든폼으로 처리하기 -->
-				<div class="smallTitle">숙소 종류</div>
-					<div class="buildingIconBox">
-						<i class="fas fa-building" style="font-size: 45px;"></i><br>
-						모텔
-					</div>
-					
-					<div class="buildingIconBox">
-						<i class="fas fa-hotel" style="font-size: 45px;"></i><br>
-						호텔
-					</div>
-					
-					<div class="buildingIconBox">
-					<i class="fas fa-home" style="font-size: 45px;"></i><br>
-						홈스테이
-					</div>
-					
-					<div class="buildingIconBox">
-						<i class="fas fa-campground" style="font-size: 45px;"></i><br>
-						캠핑장
+		<div class="contents-container">
+			<form action="<%=cp%>/owner/hotelRegister/register3" method="post"
+				name="registerForm">
+				<div class="big-contents-box">
+					<div class="big-contents-box">
+						<div class="big-title">위치</div>
+							<div>
+								<input type="text" name="zip" id="zip" readonly="readonly" class="small-form">
+								<button type="button" onclick="daumPostcode();" class="submit-form">우편번호</button>
+							</div>
+							
+							<div>
+								<input type="text" name="addr1" id="addr1" maxlength="50" placeholder="기본 주소" readonly="readonly" class="small-form"> 
+							</div>
+							
+							<div>
+								<input type="text" name="addr2" id="addr2" maxlength="50" placeholder="나머지 주소" class="small-form">
+							</div>
+						<div id="map" style="width: 800px; height: 400px;"></div>
 					</div>
 				</div>
-				<div class="smallTitle">숙소 크기</div>
-				<input type="text">㎡
-			</div>
-			
-			
-			<div class="contentsBox">
-			<div class="bigTitle">객실 및 세부 정보</div>
-				<div class="smallTitle">층 수</div>
-					<div class="formRow">				
-						<button type="button" class="plusBtn">+</button>
-						<input type="text">
-						<button type="button" class="minusBtn">-</button>		
-					</div>
-			</div>			
-			
-			<!-- rooname에 호수 저장  -->			
-			
-			<div class="contentsBox">
-			<div class="bigTitle">1층</div>
-				<!-- 객실 수에 따라 contentsBox 추가 -->
-				<div class="smallTitle">객실 수</div>
-				<div class="formRow">				
-					<button type="button" class="plusBtn">+</button>
-					<input type="text">
-					<button type="button" class="minusBtn">-</button>		
-				</div>
-			</div>
-			
-			
-			<div class="contentsBox">
-			<div class="bigTitle">방이름(호수): <input type="text"></div>
-				<div class="smallTitle">숙박 가능 인원</div>
-				<div>총 침대 공간과 소파를 고려해 볼 때 편안하게 숙박할 수 있는 최대 인원 수</div>
-				<div>
-					<div class="formRow">				
-						<button type="button" class="plusBtn">+</button>
-						<input type="text">
-						<button type="button" class="minusBtn">-</button>		
-					</div>
-					
-					<div>
-						<div class="smallTitle">침대</div>
-						<select>
-							<option value="">싱글베드</option>
-							<option value="">더블베드</option>
-							<option value="">퀸베드</option>						
-							<option value="">킹베드</option>
-							<option value="">슈퍼 킹베드</option>
-							<option value="">벙크베드</option>
-							<option value="">소파베드</option>
-							<option value="">요이불 세트</option>
-						</select>
-						<div class="formRow">				
-							<button type="button" class="plusBtn">+</button>
-							<input type="text">
-							<button type="button" class="minusBtn">-</button>		
-						</div>
-					</div>
-					<div>
-						<button type="button">침대 추가</button>
-					</div>
-					
-					<div class="smallTitle">욕실 수</div>
-					<div>숙소 건물/빌딩 혹은 단지에 있는 공용/공동 욕실이 아닌, 해당 숙소에 있는 욕실만을 세어 설정하세요.</div>
-					<div class="formRow">				
-						<button type="button" class="plusBtn">+</button>
-						<input type="text">
-						<button type="button" class="minusBtn">-</button>		
-					</div>
-				</div>
-			</div>
-				<button type="button" class="btnPreNext" id="nextBtn">다음</button>
 			</form>
 		</div>
 	</div>
-	
+
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930c81a75d189ec6485debe0c7598cc9&libraries=services"></script>
 	<script>
-		var nextBtn = document.registerForm;
-		
-		nextBtn.addEventListener("", function(){
-		
-			var str = f.userId.value;
-		    if(!str) {
-		        alert("아이디를 입력하세요. ");
-		        f.userId.focus();
-		        return;
-		    }
-		});
-		
+		function daumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var fullAddr = ''; // 최종 주소 변수
+					var extraAddr = ''; // 조합형 주소 변수
+
+					// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						fullAddr = data.roadAddress;
+
+					} else { // 사용자가 지번 주소를 선택했을 경우(J)
+						fullAddr = data.jibunAddress;
+					}
+
+					// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+					if (data.userSelectedType === 'R') {
+						//법정동명이 있을 경우 추가한다.
+						if (data.bname !== '') {
+							extraAddr += data.bname;
+						}
+						// 건물명이 있을 경우 추가한다.
+						if (data.buildingName !== '') {
+							extraAddr += (extraAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+						fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')'
+								: '');
+					}
+
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('zip').value = data.zonecode; //5자리 새우편번호 사용
+					document.getElementById('addr1').value = fullAddr;
+
+					// 커서를 상세주소 필드로 이동한다.
+					document.getElementById('addr2').focus();
+				}
+			}).open();
+		}
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('서울 강남구 강남대로 238', function(result, status) {
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y,
+										result[0].x);
+
+								// 결과값으로 받은 위치를 마커로 표시합니다
+								var marker = new kakao.maps.Marker({
+									map : map,
+									position : coords
+								});
+
+								// 인포윈도우로 장소에 대한 설명을 표시합니다
+								var infowindow = new kakao.maps.InfoWindow(
+										{
+											content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+										});
+								infowindow.open(map, marker);
+
+								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								map.setCenter(coords);
+							}
+						});
 	</script>
 </body>
 </html>

@@ -41,11 +41,12 @@ public class HotelController {
 	// 데이터 그대로 나오도록 만들기
 	// mapping할 페이지 여러 개 만들고 정보 전부 session에 저장하고 가져와서 쿼리 실행하게 만들기 @RequestParam?
 	// @SessionAttribute?, @ModelAttribute?
+	// 배열을 필드로 갖는 자료형 클래스를 만들고 사본 배열을 만들어서 데이터를 저장 후 set으로 저장 데이터는 어떻게 넘겨받아야 하지? 배열?
 	@RequestMapping(value = "/owner/hotelRegister/register1", method = RequestMethod.POST)
-	public String hotelRegisterSession1(Hotel hotel, Model model, HttpSession session) throws Exception {
+	public String hotelRegisterSession1(SessionInfo info, Model model, HttpSession session) throws Exception {
 		try {
 			session.setMaxInactiveInterval(30 * 60);
-			session.setAttribute("basicInfo", hotel);
+			session.setAttribute("basicInfo", info);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -62,7 +63,7 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register2", method = RequestMethod.POST)
 	public String hotelRegisterSession2(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			session.setMaxInactiveInterval(30 * 60);
+			
 			session.setAttribute("location", hotel);
 			model.addAttribute("basicInfo", hotel);
 		} catch (Exception e) {
@@ -82,7 +83,6 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register3", method = RequestMethod.POST)
 	public String hotelRegisterSession3(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			session.setMaxInactiveInterval(30 * 60);
 			session.setAttribute("description", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
@@ -100,7 +100,7 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register4", method = RequestMethod.POST)
 	public String hotelRegisterSession4(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			session.setMaxInactiveInterval(30 * 60);
+			
 			session.setAttribute("convenient", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
@@ -118,7 +118,7 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register5", method = RequestMethod.POST)
 	public String hotelRegisterSession5(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			session.setMaxInactiveInterval(30 * 60);
+			
 			session.setAttribute("fee", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
@@ -127,7 +127,7 @@ public class HotelController {
 		}
 		return ".owner.hotelRegister.register6";
 	}
-
+	
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.GET)
 	public String hotelRegisterForm6(Model model) throws Exception {
 		return ".owner.hotelRegister.register6";
@@ -136,8 +136,8 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.POST)
 	public String hotelRegisterSession6(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			session.setMaxInactiveInterval(30 * 60);
-			session.setAttribute("reservationOption", hotel);
+			
+			session.setAttribute("convenient", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -145,49 +145,13 @@ public class HotelController {
 		}
 		return ".owner.hotelRegister.register7";
 	}
-	
+
 	@RequestMapping(value = "/owner/hotelRegister/register7", method = RequestMethod.GET)
 	public String hotelRegisterForm7(Model model) throws Exception {
-		return ".owner.hotelRegister.register7";
+		return ".owner.hotelRegister.register6";
 	}
-
+	
 	@RequestMapping(value = "/owner/hotelRegister/register7", method = RequestMethod.POST)
-	public String hotelRegisterSession7(Hotel hotel, Model model, HttpSession session) throws Exception {
-		try {
-			session.setMaxInactiveInterval(30 * 60);
-			session.setAttribute("photo", hotel);
-		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
-			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
-			return ".owner.errorSuccess.error";
-		}
-		return ".owner.hotelRegister.register8";
-	}
-
-	@RequestMapping(value = "/owner/hotelRegister/register8", method = RequestMethod.GET)
-	public String hotelRegisterForm8(Model model) throws Exception {
-		return ".owner.hotelRegister.register8";
-	}
-	
-	@RequestMapping(value = "/owner/hotelRegister/register8", method = RequestMethod.POST)
-	public String hotelRegisterSession8(Hotel hotel, Model model, HttpSession session) throws Exception {
-		try {
-			session.setMaxInactiveInterval(30 * 60);
-			session.setAttribute("profile", hotel);
-		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
-			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
-			return ".owner.errorSuccess.error";
-		}
-		return ".owner.hotelRegister.register9";
-	}
-	
-	@RequestMapping(value = "/owner/hotelRegister/register9", method = RequestMethod.GET)
-	public String hotelRegisterForm9(Model model) throws Exception {
-		return ".owner.hotelRegister.register9";
-	}
-
-	@RequestMapping(value = "/owner/hotelRegister/register9", method = RequestMethod.POST)
 	public String hotelRegisterSubmit(Model model, HttpSession session) throws Exception {
 		try {
 			Hotel hotel = new Hotel();
@@ -215,6 +179,8 @@ public class HotelController {
 			
 			// 
 			Hotel profile = (Hotel) session.getAttribute("profile");
+			
+			// 세션 삭제하기
 			
 			service.insertHotel(hotel);
 			service.insertHotelAddOpt(hotel);

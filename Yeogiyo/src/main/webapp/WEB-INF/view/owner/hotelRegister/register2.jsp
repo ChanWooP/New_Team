@@ -26,7 +26,7 @@
 	padding: 10px;
 }
 
-.left-nav ul li a{
+.left-nav ul li a {
 	color: #3B1E1E;
 }
 
@@ -44,6 +44,15 @@
 
 .small-contents-box {
 	margin-bottom: 25px;
+}
+
+.title-box{
+	padding: 15px;
+}
+
+.title{
+	font-size: 25px;
+	font-weight: bold;
 }
 
 .big-title {
@@ -71,10 +80,10 @@
 	width: 210px;
 	height: 46px;
 	background: white;
-	color: gold;
+	color: #3B1E1E;
 	font-size: 15pt;
 	text-align: center;
-	border: solid 1px gold;
+	border: solid 1px #3B1E1E;
 	border-radius: 2px;
 }
 
@@ -82,66 +91,93 @@
 	width: 210px;
 	height: 46px;
 	background: gold;
-	color: white;
+	color: #3B1E1E;
 	font-size: 15pt;
 	text-align: center;
 	border: solid 1px gold;
 	border-radius: 2px;
 }
 
-.small-form{
+.post-form {
 	width: 300px;
-	height: 23px;
+	height: 30px;
 	border: solid 1px #A9A9A9;
 	border-radius: 2px;
 	margin-bottom: 10px;
 }
 
-.submit-form{
-	width:100px;
-	height: 23px;
+.small-form{
+	height: 30px;
+	border: solid 1px #A9A9A9;
+	border-radius: 2px;
+}
+
+.submit-btn {
+	width: 100px;
+	height: 30px;
 	border: none;
 	color: #3B1E1E;;
 	background: gold;
+	border-radius: 2px;
 }
 </style>
 </head>
 <body>
-	<div class="container">	
+	<div class="container">
 		<div class="left-nav">
 			<ul>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">기본 정보</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">위치</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">소개</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">편의 시설/서비스</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">요금 설정</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">예약 설정 관리</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">사진</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">프로필</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">숙소 판매</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">기본 정보</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">위치</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">소개</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">편의 시설/서비스</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">요금 설정</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">예약 설정 관리</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">사진</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">프로필</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">숙소 판매</a></li>
 			</ul>
 		</div>
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register3" method="post"
-				name="registerForm">
+			${sessionScope.basicInfo.stair}
+			<form method="post" name="register2Form">
+				<div class="title-box">
+					<div class="title">지도상의 숙소 위치 표시/설정하기</div>
+					<div class="description">투숙객이 머무르게 되는 곳이 어디인지 알려 주세요.</div>
+				</div>
 				<div class="big-contents-box">
-					<div class="big-contents-box">
-						<div class="big-title">위치</div>
-							<div>
-								<input type="text" name="zip" id="zip" readonly="readonly" class="small-form">
-								<button type="button" onclick="daumPostcode();" class="submit-form">우편번호</button>
-							</div>
-							
-							<div>
-								<input type="text" name="addr1" id="addr1" maxlength="50" placeholder="기본 주소" readonly="readonly" class="small-form"> 
-							</div>
-							
-							<div>
-								<input type="text" name="addr2" id="addr2" maxlength="50" placeholder="나머지 주소" class="small-form">
-							</div>
-						<div id="map" style="width: 800px; height: 400px;"></div>
+					<div class="big-title">위치</div>
+					<div>
+						<input type="text" name="zip" id="zip" readonly="readonly"
+							class="post-form">
+						<button type="button" onclick="daumPostcode();"
+							class="submit-btn">우편번호</button>
 					</div>
+
+					<div>
+						<input type="text" name="addr1" id="addr1" maxlength="50"
+							placeholder="기본 주소" readonly="readonly" class="post-form">
+					</div>
+
+					<div>
+						<input type="text" name="addr2" id="addr2" maxlength="50"
+							placeholder="나머지 주소" class="post-form">
+					</div>
+					<div id="map" style="width: 782px; height: 400px;"></div>
+				</div>
+
+				<div class="btn-box">
+					<button type="button" class="pre-btn" id="next-btn">이전</button>
+					<button type="button" class="next-btn" id="next-btn" onclick="register2Ok();">다음</button>
 				</div>
 			</form>
 		</div>
@@ -208,7 +244,10 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울 강남구 강남대로 238', function(result, status) {
+		geocoder
+				.addressSearch(
+						'서울 강남구 강남대로 238',
+						function(result, status) {
 							// 정상적으로 검색이 완료됐으면 
 							if (status === kakao.maps.services.Status.OK) {
 
@@ -232,6 +271,26 @@
 								map.setCenter(coords);
 							}
 						});
+		
+		function register2Ok() {
+			var f=document.register2Form;
+			var s=f.zip.value;
+			if(!s) {
+				alert("우편번호를 입력해주세요.");
+				f.zip.focus();
+				return;
+			}
+			
+			s=f.addr1.value;
+			if(!s) {
+				alert("기본 주소를 입력해주세요.");
+				f.addr1.focus();
+				return;
+			}
+			
+			f.action="<%=cp%>/owner/hotelRegister/register2";
+			f.submit();
+		}
 	</script>
 </body>
 </html>

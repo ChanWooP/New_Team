@@ -21,13 +21,12 @@
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.left-nav ul li{
+.left-nav ul li {
 	list-style-type: none;
 	padding: 10px;
-	
 }
 
-.left-nav ul li a{
+.left-nav ul li a {
 	color: #3B1E1E;
 }
 
@@ -43,11 +42,11 @@
 	padding: 15px;
 }
 
-.small-contents-box{
+.small-contents-box {
 	margin-bottom: 25px;
 }
 
-.plus-minus-input{
+.plus-minus-input {
 	width: 43px;
 	height: 43px;
 	margin-left: -1px;
@@ -58,7 +57,7 @@
 	border-top: gold solid 1px;
 	border-bottom: gold solid 1px;
 	outline: none;
-	text-align:center;
+	text-align: center;
 }
 
 .plus-btn {
@@ -105,6 +104,15 @@
 	background: gold;
 }
 
+.title-box {
+	padding: 15px;
+}
+
+.title {
+	font-size: 25px;
+	font-weight: bold;
+}
+
 .big-title {
 	font-size: 20px;
 	font-weight: bold;
@@ -117,7 +125,7 @@
 	margin-bottom: 7px;
 }
 
-.description{
+.description {
 	margin-top: 7px;
 	margin-bottom: 7px;
 }
@@ -154,29 +162,49 @@
 	border: solid 1px #A9A9A9;
 	border-radius: 2px;
 }
+
+.small-form {
+	height: 30px;
+	border: solid 1px #A9A9A9;
+	border-radius: 2px;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="left-nav">
 			<ul>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">기본 정보</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">위치</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">소개</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">편의 시설/서비스</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">요금 설정</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">예약 설정 관리</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">사진</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">프로필</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a href="#">숙소 판매</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">기본 정보</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">위치</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">소개</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">편의 시설/서비스</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">요금 설정</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">예약 설정 관리</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">사진</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">프로필</a></li>
+				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
+					href="#">숙소 판매</a></li>
 			</ul>
 		</div>
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register1" method="post" name="registerForm">
+			<form method="post" name="register1Form">
+				<div class="title-box">
+					<div class="title">숙소를 찾고 있는 여행객들을 정확히 사로잡아보세요!</div>
+					<div class="description">선택 사항 표시가 없는 한 모든 정보는 필수 항목입니다.</div>
+				</div>
 				<div class="big-contents-box">
-					<div class="big-title ">숙소</div>
-						<!-- 숙소 종류 전송 히든폼으로 처리하기 -->
+					<div class="big-title">숙소</div>
+					<!-- 숙소 종류 전송 히든폼으로 처리하기 -->
+					<div class="small-contents-box">
 						<div class="small-title">숙소 종류</div>
 						<div class="building-iconBox">
 							<div>
@@ -196,7 +224,7 @@
 							<div>
 								<i class="fas fa-home" style="font-size: 45px;"></i>
 							</div>
-							<div>홈스테이</div>
+							<div>홈스테이</div>					
 						</div>
 
 						<div class="building-iconBox">
@@ -205,8 +233,12 @@
 							</div>
 							<div>캠핑장</div>
 						</div>
-					<div class="small-title">숙소 크기</div>
-					<input type="text" name="hotelSize">㎡
+						<input type="hidden" name="hotelType" value="">
+					</div>
+					<div class="small-contents-box">
+						<div class="small-title">숙소 크기</div>
+						<input type="text" class="small-form" name="hotelSize">㎡
+					</div>
 				</div>
 
 
@@ -223,7 +255,7 @@
 				<!-- roomname에 호수 저장  -->
 				<!-- 방이나 옵션 등은 하나가 아니라 여러번 인서트 해야함 해당 부분 컨트롤러에서 어떻게 처리? roomCount만큼 돌려서 insert?-->
 				<!-- hotelType과 stair hiddenForm으로 데아터 넣어놓고 보내도록 하고 스크립트로 추가 구현하기 -->
-				
+				<!-- 방마다 요금 압력 받도록 폼 추가하기-->
 				<div class="big-contents-box">
 					<div class="big-title ">1층</div>
 					<!-- 객실 수에 따라 big- 추가 -->
@@ -237,11 +269,31 @@
 
 				<div class="big-contents-box">
 					<div class="big-title ">
-						방이름(호수): <input type="text" id="big-form">
+						방이름(호수): <input type="text" id="big-form" name="roomName">
 					</div>
+
+					<div class="small-contents-box">
+						<div class="small-title">방 사진</div>
+						<div class="description">방사진을 업로드해주세요.</div>
+					</div>
+
+					<div class="small-contents-box">
+						<div class="small-title">방 크기</div>
+						<div class="description">방의 평수를 입력해주세요.</div>
+						<input type="text" class="small-form" name="roomSize">㎡
+					</div>
+
+					<div class="small-contents-box">
+						<div class="small-title">요금</div>
+						<div class="description">방의 기본 요금을 입력해주세요.</div>
+						<input type="text" class="small-form" name="roomPrice">원
+						<!-- 옵션변동에 따른 요금 추가 넣어줘야하나? -->
+					</div>
+
 					<div class="small-contents-box">
 						<div class="small-title">숙박 가능 인원</div>
-						<div class="description">총 침대 공간과 소파를 고려해 볼 때 편안하게 숙박할 수 있는 최대 인원 수</div>
+						<div class="description">총 침대 공간과 소파를 고려해 볼 때 편안하게 숙박할 수 있는
+							최대 인원 수를 입력해주세요.</div>
 
 						<div class="form-row">
 							<button type="button" class="plus-btn">+</button>
@@ -264,7 +316,7 @@
 						</select>
 						<div class="form-row">
 							<button type="button" class="plus-btn">+</button>
-							<input type="text" class="plus-minus-input">
+							<input type="text" class="plus-minus-input" name="bedCount">
 							<button type="button" class="minus-btn">-</button>
 						</div>
 						<div>
@@ -274,26 +326,106 @@
 
 					<div class="small-contents-box">
 						<div class="small-title">욕실 수</div>
-						<div class="description">숙소 건물/빌딩 혹은 단지에 있는 공용/공동 욕실이 아닌, 해당 숙소에 있는 욕실만을 세어
-							설정하세요.</div>
+						<div class="description">숙소 건물/빌딩 혹은 단지에 있는 공용/공동 욕실이 아닌, 해당
+							숙소에 있는 욕실만을 세어 입력하세요.</div>
 						<div class="form-row">
 							<button type="button" class="plus-btn">+</button>
-							<input type="text" class="plus-minus-input">
+							<input type="text" class="plus-minus-input" name="bathRoomCount">
 							<button type="button" class="minus-btn">-</button>
 						</div>
 					</div>
 
 					<div class="btn-box">
-						<button type="button" class="pre-btn" id="next-btn">이전</button>
-						<button type="submit" class="next-btn" id="next-btn">다음</button>
+						<!-- 양식 다시 제출 확인 어떻게 해결? redirect해야하나? 강사님께 여쭤보기 -->
+						<button type="button" class="next-btn" id="next-btn" onclick="register1Ok();">다음</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	<script>
+	<script type="text/javascript">
+	//next-btn에 register1Ok 이벤트 등록하기
+	
+	function hotelType(){
+		return;
+	}
+	
+	function register1Ok() {
+		var f=document.register1Form;
+		var s=f.hotelType.value;
+		if(!s) {
+			alert("숙박업소의 종류를 선택해주세요.");
+			return;
+		}
 		
+		s=f.hotelSize.value;
+		if(!s) {
+			alert("숙박업소 크기를 입력해주세요.");
+			f.hotelSize.focus();
+			return;
+		}
+		
+		s=f.stair.value;
+		if(!s) {
+			alert("몇층까지 있는지 입력해주세요");
+			f.stair.focus();
+			return;
+		}
+		
+		s=f.roomCount.value;
+		if(!s) {
+			alert("객실 수를 입력해주세요");
+			f.roomCount.focus();
+			return;
+		}
+		
+		s=f.roomName.value;
+		if(!s) {
+			alert("방이름 혹은 방 호수를 입력해주세요.");
+			f.roomName.focus();
+			return;
+		}
+		
+		s=f.roomSize.value;
+		if(!s) {
+			alert("방의 크기를 입력해주세요.");
+			f.roomSize.focus();
+			return;
+		}
+		
+		s=f.roomPrice.value;
+		if(!s) {
+			alert("방 가격을 입력해주세요.");
+			f.roomPrice.focus();
+			return;
+		}
+		
+		s=f.maxPeople.value;
+		if(!s) {
+			alert("최대 몇 명까지 숙박이 가능한지 입력해주세요.");
+			f.maxPeople.focus();
+			return;
+		}
+		
+		s=f.bedCount.value;
+		if(!s) {
+			alert("침대의 개수를 입력해주세요");
+			f.bedCount.focus();
+			return;
+		}	
+		
+		s=f.bathroomCount.value;
+		if(!s) {
+			alert("욕실의 개수를 입력해주세요");
+			f.bathRoomCount.focus();
+			return;
+		}	
+		
+		f.action="<%=cp%>/owner/hotelRegister/register1";
+		f.submit();
+	}
+
 	</script>
 </body>
 </html>

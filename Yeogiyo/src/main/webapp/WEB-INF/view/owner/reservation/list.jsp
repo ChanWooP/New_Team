@@ -221,9 +221,8 @@ $(document).ready(function () {
 });
 </script>
 <div class="container">
-	<div style="width: 100%; margin: 0 auto; padding-top: 10px;">
-		<strong style="font-size: 30px">전체예약확인</strong>
-		<hr style="width: 100%; color: black; height: 1px; background-color: black; margin-top: 0px; margin-bottom: 10px" />
+	<div style="width:100%; margin:0 auto; padding-top:30px;">
+		 <h1><span class="glyphicon glyphicon-calendar"></span>&nbsp;<b>전체예약확인</b></h1>
 	</div>
 	<div style="width: 100%; margin: 0 auto; padding-top: 10px; font-size:25px; text-align:center;">
 		${day }월&nbsp;예약현황
@@ -236,7 +235,7 @@ $(document).ready(function () {
 			<button type="button" class="btn btn-sm" onclick="view()">보기</button>
 		</form>
 	</div>
-	<table style="width: 100%; margin-left: auto; margin-right: auto; margin-bottom:10px;" border="1">
+	<table style="width: 100%; margin-left: auto; margin-right: auto; margin-bottom:10px;" border="3">
 		<thead style="text-align:center;">
 			<tr>
 				<td>일</td>

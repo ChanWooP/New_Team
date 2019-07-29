@@ -184,7 +184,7 @@ $(function(){
 		<tr>
 			<td>${dataCount }개(${page}/${total_page } 페이지)</td>
 			<td align="right">
-			<form name="searchForm" action="<%=cp%>/owner/hotelqna/list" method="post">
+			<form name="searchForm" action="" method="post">
 				<select name="condition" style="height:30px;">
 					<option value="all" ${condition=="all"?"selected='selected'":"" }>모두</option>
 					<option value="qnaTitle" ${condition=="qnaTitle"?"selected='selected'":"" }>제목</option>

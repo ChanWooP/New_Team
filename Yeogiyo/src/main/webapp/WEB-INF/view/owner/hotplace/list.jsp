@@ -50,7 +50,7 @@ function hotSearch(){
 		<table style="width:100%; margin:auto;">
 		<c:forEach var="dto" items="${list }">
 			<tr style="border:1px solid gray;">
-				<td style="padding:5px;" width="30%"><img src="<%=cp%>/uploads/hotplace/${dto.placePhoto}" width="300px" height="200px"></td>
+				<td style="padding:5px;" width="30%" align="center"><img src="<%=cp%>/uploads/hotplace/${dto.placePhoto}" width="200px" height="150px"></td>
 				<td style="padding:5px; padding-left:10px; font-size:15px;" width="70%" align="left">
 					<strong>장소명 :</strong>${dto.placeName }<br><br>
 					<strong>숙소와의 거리 :</strong> ${dto.placeDis }Km<br><br>

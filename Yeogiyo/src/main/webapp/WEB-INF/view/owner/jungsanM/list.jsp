@@ -134,13 +134,11 @@ table.ui-datepicker-calendar { display:none; }
 	});
 </script>
 <div class="container">
-	<div style="width: 100%; margin: 0 auto; padding-top: 10px;">
-		<strong style="font-size: 30px">월말정산</strong>
-		<hr
-			style="width: 100%; color: black; height: 1px; background-color: black; margin-top: 0px; margin-bottom: 10px" />
+	<div style="width:100%; margin:0 auto; padding-top:30px;">
+		 <h1><span class="glyphicon glyphicon-usd"></span>&nbsp;<b>월말정산</b></h1>
 	</div>
 	<div style="width: 100%; margin: 0 auto;">
-		<div style="float: right;">
+		<div style="float: right;  padding-bottom:10px;">
 			<form action="" name="formName">
 				<strong>${msg }</strong> <input type="text" name="day"
 					id="form-sday" readonly="readonly" value="${day }"
@@ -150,16 +148,19 @@ table.ui-datepicker-calendar { display:none; }
 				<button type="button" class="btn btn-sm" onclick="excel()">엑셀</button>
 			</form>
 		</div>
+	</div>
+	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
+	<div style="width: 100%; margin: 0 auto;">
 		<table style="width: 100%; margin-left: auto; margin-right: auto;">
-			<tr style="border-bottom: 2px solid gray;">
-				<th style="width: 13%; text-align: center">결제일</th>
-				<th style="width: 30%; text-align: center">방이름</th>
-				<th style="width: 10%; text-align: center">결제종류</th>
-				<th style="width: 10%; text-align: center">인원수</th>
-				<th style="width: 13%; text-align: center">체크인</th>
-				<th style="width: 13%; text-align: center">체크아웃</th>
-				<th style="width: 11%; text-align: center">금액</th>
-			</tr>
+		<tr style="border-bottom: 2px solid gray;">
+			<th style="width: 13%; text-align: center">결제일</th>
+			<th style="width: 30%; text-align: center">방이름</th>
+			<th style="width: 10%; text-align: center">결제종류</th>
+			<th style="width: 10%; text-align: center">인원수</th>
+			<th style="width: 13%; text-align: center">체크인</th>
+			<th style="width: 13%; text-align: center">체크아웃</th>
+			<th style="width: 11%; text-align: center">금액</th>
+		</tr>
 		</table>
 	</div>
 	<div
@@ -188,6 +189,7 @@ table.ui-datepicker-calendar { display:none; }
 			<strong>총금액 : ￦${sum }</strong>
 		</div>
 	</c:if>
+	</div>
 	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
 		<div id="barContainer"
 			style="width: 100%; height: 300px; margin: 10px;"></div>

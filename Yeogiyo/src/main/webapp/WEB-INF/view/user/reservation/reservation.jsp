@@ -83,10 +83,18 @@
 					<input type="hidden" name="roomtype" value="${resdetail.roomtype}">
 					<input type="hidden" name="roomdetails" value="${resdetail.roomdetails}">
 					<input type="hidden" name="roomprice" value="${resdetail.roomprice}">
-					<input type="hidden" name="roomprice" value="${resdetail.roomprice}">
 					<input type="hidden" name="hotelId" value="${hotelId}">
 					<input type="hidden" name="roomnum" value="${roomnum}">
 					<input type="hidden" name="peoplecount" value="${peoplecount}">
+					
+					<c:forEach var ="opt" items="${optlist}">
+						<input type="hidden" name="optNum" value="${opt.optNum}">
+						<input type="hidden" name="optCount" value="${optCount}">
+						<input type="hidden" name="optPrice" value="${opt.optPrice}">
+						<input type="hidden" name="optName" value="${opt.optName}">
+						<input type="hidden" name="tot" value="${opt.optPrice+resdetail.roomprice}">
+					</c:forEach>
+					
 					<button type="submit">예약하기</button>
 					
 					
@@ -95,6 +103,7 @@
 				
 		
 			<div class="reservationLeft">
+			    <c:set var="tot" value="0"/>
 				<div class="panel panel-warning class">
 				    <div class="panel-heading">체크인 날짜</div>
 				    <div class="panel-body">${checkinday}</div>
@@ -104,10 +113,33 @@
 				    <div class="panel-body">${checkoutday}</div>
 			   	</div>
 			   	<div class="panel panel-warning class">
-				    <div class="panel-heading">가격</div>
-				    <div class="panel-body">${resdetail.roomprice}</div>
+				    <div class="panel-heading">방가격</div>
+				    <div class="panel-body">${resdetail.roomprice}
+				    <c:set var="tot" value="${tot + resdetail.roomprice}"/></div>
 			   	</div>
 			   	
+			   	<div class="panel panel-warning class">
+				    <div class="panel-heading">옵션</div>
+				    <div class="panel-body">
+				    	<c:forEach var ="opt" items="${optlist}">
+					 	   ${opt.optName}
+					 	   
+					    </c:forEach>
+				    </div>
+			   	</div>
+			   	<div class="panel panel-warning class">
+				    <div class="panel-heading">옵션가격</div>
+				    <div class="panel-body">
+					    <c:forEach var ="opt" items="${optlist}">
+					  		${opt.optPrice}
+					  		<c:set var="tot" value="${tot + opt.optPrice}"/>
+					    </c:forEach>
+				    </div>
+			   	</div>
+			   	<div class="panel panel-warning class">
+				    <div class="panel-heading">총가격</div>
+				    <div class="panel-body">${tot}</div>
+			   	</div>
 			   	
 			</div>
 		</div>

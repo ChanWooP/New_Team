@@ -89,7 +89,7 @@ public class HotelServiceImpl implements HotelService{
 	public List<Hotel> listaddopt(Map<String, Object> map) {
 		List<Hotel> optlist = null;
 			try {
-				optlist=dao.selectList("user.hotel.showReview", map);
+				optlist=dao.selectList("user.hotel.addoptList", map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

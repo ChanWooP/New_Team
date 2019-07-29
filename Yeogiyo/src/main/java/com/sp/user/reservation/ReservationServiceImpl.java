@@ -1,5 +1,6 @@
 package com.sp.user.reservation;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +75,17 @@ public class ReservationServiceImpl implements ReservationService{
 	public String gethotelname(Map<String, Object> map) {
 		String hotelName = null;
 		try {
-			hotelName=dao.selectOne("selectHotelName",map);
+			hotelName=dao.selectOne("user.reservation.selectHotelName",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return hotelName;
+	}
+
+	@Override
+	public List<Reservation> optadd(Map<String, Object> map) throws Exception {
+		List<Reservation> list = null;
+		list=dao.selectList("user.reservation.addoptPrice",map);
+		return list;
 	}
 }

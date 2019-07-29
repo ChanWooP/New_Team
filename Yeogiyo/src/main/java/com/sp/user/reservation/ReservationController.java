@@ -1,6 +1,7 @@
 package com.sp.user.reservation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -23,11 +24,14 @@ public class ReservationController {
 	@RequestMapping(value="/user/reservation/reservation", method=RequestMethod.POST)
 	public String reservate(@RequestParam String hotelId, @RequestParam String roomtype, @RequestParam int roomprice,
 			@RequestParam int maxpeople, @RequestParam String roomdetails,@RequestParam String checkinday, @RequestParam String checkoutday
-			, @RequestParam int peoplecount, Model model) {
+			, @RequestParam int peoplecount, @RequestParam int optNum, @RequestParam int optCount, Model model) {
 		
 		Map<String, Object> map = new HashMap<>();
+		List<Reservation> optlist = null;
 		int roomnum=0;
+		
 		Reservation resdetail = null;
+		
 		map.put("hotelId", hotelId);
 		map.put("roomtype", roomtype);
 		map.put("roomprice", roomprice);
@@ -36,16 +40,26 @@ public class ReservationController {
 		map.put("roomstatus", "예약가능");
 		map.put("checkinday", checkinday);
 		map.put("checkoutday", checkoutday);
-		roomnum = service.roomnum(map);
+		map.put("optNum", optNum);
+		map.put("optCount", optCount);
 		
-		resdetail=service.reservationdetail(roomnum);
-		
+		try {
+			roomnum = service.roomnum(map);
+			resdetail=service.reservationdetail(roomnum);
+			optlist=service.optadd(map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("hotelId",hotelId);
 		model.addAttribute("resdetail",resdetail);
 		model.addAttribute("checkinday",checkinday);
 		model.addAttribute("checkoutday",checkoutday);	
 		model.addAttribute("peoplecount", peoplecount);
 		model.addAttribute("roomnum", roomnum);
+		model.addAttribute("optlist", optlist);
+		model.addAttribute("optCount", optCount);
+		
 		return ".user.reservation.reservation";
 	}
 	

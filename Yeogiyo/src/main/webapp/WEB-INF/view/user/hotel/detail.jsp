@@ -21,16 +21,21 @@ $(function() {
 		var roomprice=$(this).attr("data-roomprice");
 		var maxpeople=$(this).attr("data-maxpeople");
 		var userId="${sessionScope.member.userId}";
-		
-		
+		var optCount=$("#optCount option:selected").val();
+		var optNum=$("#optCount").closest("tr").find("input").val();
+		 
 		$("form[name=reserForm] input[name=hotelId]").val(hotelId);
 		$("form[name=reserForm] input[name=roomdetails]").val(roomdetails);
 		$("form[name=reserForm] input[name=roomtype]").val(roomtype);
 		$("form[name=reserForm] input[name=roomprice]").val(roomprice);
 		$("form[name=reserForm] input[name=maxpeople]").val(maxpeople);
 		$("form[name=reserForm] input[name=userId]").val(userId);
+		$("form[name=reserForm] input[name=optNum]").val(optNum);
+		$("form[name=reserForm] input[name=optCount]").val(optCount);
+		
 		$("form[name=reserForm]").submit();
 	});
+	
 });
  
 </script>
@@ -123,7 +128,7 @@ $(function() {
 							<p>${detail.detail}</p>
 						</div>
 						<div style="width:800px; margin:0 auto; margin-bottom:30px;">
-						<h2>리뷰</h2>
+						<h4><b>리뷰</b></h4>
 							<c:forEach var="rv" items="${reviewlist}">
 								<div class="panel panel-warning" style="width:800px; margin:0 auto; margin-bottom:30px;">
 									<div class="panel-heading">${rv.reviewTitle}</div>
@@ -131,7 +136,7 @@ $(function() {
 								</div>
 							</c:forEach>
 						</div>
-						<h4> 찾아 오는 길</h4>
+						<h4><b>찾아 오는 길</b></h4>
 						<div id="map"  style="width:800px; margin-top:50px; margin-bottom:30px;">
 							
 							<script>
@@ -152,7 +157,7 @@ $(function() {
 							</script>
 						</div>
 						
-						<h4> 호텔 사진</h4>
+						<h4><b>호텔 사진</b></h4>
 						<div class="imgshow" style="width:800px; margin:0 auto; margin-top:50px;">
 							<div id="myCarousel" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
@@ -193,7 +198,35 @@ $(function() {
 							<p>${detail.detail}</p>
 						</div>
 
+						<div class="addoption" style="margin-top:70px;">
+							<h4><b>추가옵션 선택사항</b></h4>
+								<table style="text-align:center; margin-top:70px; margin-left:40px;">
+									<tr>
+										<th style="text-align:center;">선택</th>
+										<th style="text-align:center;">이름</th>
+										<th	style="text-align:center;">가격</th>
+										<th	style="text-align:center;">인원수</th>
+									</tr>
+									<c:forEach var="op" items="${optlist}">
+										<tr>
+											<td style="width: 180px; text-align:center;"><input type="radio" value="${op.optNum}"></td>
+											<td style="width: 280px; text-align:center;">${op.optName}</td>
+											<td style="width: 280px; text-align:center;">${op.optPrice}</td>
+											<td>
+												<select id="optCount">
+														<option value="">--선택--</option>
+													<c:forEach varStatus="s" begin="1" end="${peoplecount}">
+														<option value="${s.index}">${s.index}</option>
+													</c:forEach>
+												</select>
+											</td>
+										</tr>
+									</c:forEach>		
+								</table>
+								
+								
 						
+						</div>
 						<table class="room" style="margin-top:70px;">
 							<tr>
 								<th>방유형</th>
@@ -236,4 +269,6 @@ $(function() {
 	<input type="hidden" value="${checkinday}" name="checkinday"> 
 	<input type="hidden" value="${checkoutday}" name="checkoutday"> 
 	<input type="hidden" value="${peoplecount}" name="peoplecount">
+	<input type="hidden" name="optNum">
+	<input type="hidden" name="optCount">
 </form>

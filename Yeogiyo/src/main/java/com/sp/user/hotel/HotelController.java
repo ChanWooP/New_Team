@@ -102,15 +102,19 @@ public class HotelController {
 		List<Hotel> plist = service.listPhoto(map);
 		List<Hotel> rlist = service.listHotelRoom(map);
 		List<Hotel> reviewlist = service.listReview(map);
+		List<Hotel> optlist = service.listaddopt(map);
 		
 		model.addAttribute("hotelId",hotelId);
 		model.addAttribute("detail", detail);
 		model.addAttribute("plist",plist);
 		model.addAttribute("rlist", rlist);
+		model.addAttribute("optlist", optlist);
 		model.addAttribute("peoplecount",peoplecount);
 		model.addAttribute("checkinday",checkinday);
 		model.addAttribute("checkoutday",checkoutday);
 		model.addAttribute("reviewlist",reviewlist);
 		return ".user.hotel.detail";
 	}	
+	
+	
 }

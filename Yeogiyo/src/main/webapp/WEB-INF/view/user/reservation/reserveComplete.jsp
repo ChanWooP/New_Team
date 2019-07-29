@@ -50,12 +50,24 @@
 			    <div class="panel-body">
 				    <p>${map.checkoutday}</p>
 				</div>
-			</div>					
+			</div>	
+			<div class="panel panel-warning class">
+			    <div class="panel-heading">옵션</div>
+			    <div class="panel-body">${map.optName}</div>
+			</div>				
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">결제 금액</div>
 			    <div class="panel-body">${map.roomprice}</div>
 			</div>
+			<div class="panel panel-warning class">
+			    <div class="panel-heading">옵션 금액</div>
+			    <div class="panel-body">${map.optPrice}</div>
+			</div>
 			
+			<div class="panel panel-warning class">
+			    <div class="panel-heading">총 금액</div>
+			    <div class="panel-body">${map.tot}</div>
+			</div>
 			<p>이용해 주셔서 감사합니다.</p>
 			<p>최선을 다해서 고객님을 모시겠습니다.</p>
 		</div>

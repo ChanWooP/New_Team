@@ -1,5 +1,6 @@
 package com.sp.user.reservation;
 
+import java.util.List;
 import java.util.Map;
 
 public interface ReservationService {
@@ -10,5 +11,8 @@ public interface ReservationService {
 	public void insertReservation(Map<String, Object> map) throws Exception;
 	public void nomeminsertReservation(Map<String, Object> map) throws Exception;
 	
+	public List<Reservation> optadd(Map<String, Object> map) throws Exception;
+
 	public String gethotelname(Map<String, Object> map);
+	
 }

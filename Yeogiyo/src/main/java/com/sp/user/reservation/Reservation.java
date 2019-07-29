@@ -18,6 +18,9 @@ public class Reservation {
 	private String reservated;
 	private String resType;
 	private int optNum;
+	private int optCount;
+	private int optPrice;
+	private String optName;
 	private int roomnum;
 	private int roomprice;
 	private String roomtype;
@@ -34,7 +37,32 @@ public class Reservation {
 	private String checkinday;
 	private String checkoutday;	
 	private String hotelName;
+	private int tot;
 	
+	public int getTot() {
+		return tot;
+	}
+	public void setTot(int tot) {
+		this.tot = tot;
+	}
+	public int getOptCount() {
+		return optCount;
+	}
+	public void setOptCount(int optCount) {
+		this.optCount = optCount;
+	}
+	public int getOptPrice() {
+		return optPrice;
+	}
+	public void setOptPrice(int optPrice) {
+		this.optPrice = optPrice;
+	}
+	public String getOptName() {
+		return optName;
+	}
+	public void setOptName(String optName) {
+		this.optName = optName;
+	}
 	public String getHotelName() {
 		return hotelName;
 	}

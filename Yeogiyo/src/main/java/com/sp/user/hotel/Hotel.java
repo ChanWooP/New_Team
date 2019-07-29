@@ -29,13 +29,13 @@ public class Hotel {
 	private String userId;
 	private String roomphotoName;
 	private int optNum;
-	private String optNmae;
+	private String optName;
 	private int optPrice;
 	private String reviewNum;
 	private String reviewTitle;
 	private String reviewContent;
 	private int score;
-	
+		
 	public int getListNum() {
 		return listNum;
 	}
@@ -72,11 +72,12 @@ public class Hotel {
 	public void setOptNum(int optNum) {
 		this.optNum = optNum;
 	}
-	public String getOptNmae() {
-		return optNmae;
+	
+	public String getOptName() {
+		return optName;
 	}
-	public void setOptNmae(String optNmae) {
-		this.optNmae = optNmae;
+	public void setOptName(String optName) {
+		this.optName = optName;
 	}
 	public int getOptPrice() {
 		return optPrice;

@@ -30,8 +30,9 @@
 		
 		<update id="insertReservation" parameterType="map">
 			INSERT ALL
-				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
+				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{tot}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
 				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
+				INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) VALUES (RESEROPT_SEQ.nextval, #{optCount}, #{optPrice}, #{optNum}, reservation_seq.CURRVAL)
 				INTO memberreser(reservationNum, userid) VALUES (reservation_seq.CURRVAL,#{userId})
 				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
 			SELECT * FROM DUAL	 
@@ -39,10 +40,19 @@
 		
 		<update id="noMemberinsertReservation" parameterType="map">
 			INSERT ALL
-				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
+				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{tot}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
 				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
+				INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) VALUES (RESEROPT_SEQ.nextval,#{optCount}, #{optPrice}, #{optNum}, reservation_seq.CURRVAL)
 				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
 			SELECT * FROM DUAL	 
 		</update>
+		
+		<select id="hoteladdopt" parameterType="map" resultType="com.sp.user.reservation.Reservation">
+			SELECT optNum, optName, optPrice FROM hoteladdopt WHERE hotelId=#{hotelId}
+		</select>
+		
+		<select id="addoptPrice" parameterType="map" resultType="com.sp.user.reservation.Reservation">
+			SELECT optNum, optName, (optPrice * #{optCount}) optPrice FROM hoteladdopt WHERE optNum=#{optNum}
+		</select>
 		
 </mapper>

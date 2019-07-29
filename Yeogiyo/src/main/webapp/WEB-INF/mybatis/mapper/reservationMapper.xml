@@ -33,6 +33,7 @@
 				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
 				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
 				INTO memberreser(reservationNum, userid) VALUES (reservation_seq.CURRVAL,#{userId})
+				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
 			SELECT * FROM DUAL	 
 		</update>
 		
@@ -40,6 +41,7 @@
 			INSERT ALL
 				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{roomprice}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
 				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{roomprice}, #{roomnum}, reservation_seq.CURRVAL)
+				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
 			SELECT * FROM DUAL	 
 		</update>
 		

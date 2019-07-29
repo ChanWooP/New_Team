@@ -64,6 +64,7 @@ public class HotelController {
 	public String hotelRegisterSession2(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
 			
+			// register1의 세션의 데이터 가져와서 SessionInfo에 저장하기?
 			session.setAttribute("location", hotel);
 			model.addAttribute("basicInfo", hotel);
 		} catch (Exception e) {
@@ -127,31 +128,13 @@ public class HotelController {
 		}
 		return ".owner.hotelRegister.register6";
 	}
-	
-	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.GET)
-	public String hotelRegisterForm6(Model model) throws Exception {
-		return ".owner.hotelRegister.register6";
-	}
-	
-	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.POST)
-	public String hotelRegisterSession6(Hotel hotel, Model model, HttpSession session) throws Exception {
-		try {
-			
-			session.setAttribute("convenient", hotel);
-		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
-			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
-			return ".owner.errorSuccess.error";
-		}
-		return ".owner.hotelRegister.register7";
-	}
 
-	@RequestMapping(value = "/owner/hotelRegister/register7", method = RequestMethod.GET)
+	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.GET)
 	public String hotelRegisterForm7(Model model) throws Exception {
 		return ".owner.hotelRegister.register6";
 	}
 	
-	@RequestMapping(value = "/owner/hotelRegister/register7", method = RequestMethod.POST)
+	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.POST)
 	public String hotelRegisterSubmit(Model model, HttpSession session) throws Exception {
 		try {
 			Hotel hotel = new Hotel();

@@ -168,6 +168,14 @@
 	border: solid 1px #A9A9A9;
 	border-radius: 2px;
 }
+
+.post-form {
+	width: 300px;
+	height: 30px;
+	border: solid 1px #A9A9A9;
+	border-radius: 2px;
+	margin-bottom: 10px;
+}
 </style>
 </head>
 <body>
@@ -183,27 +191,22 @@
 				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
 					href="#">편의 시설/서비스</a></li>
 				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">요금 설정</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
 					href="#">예약 설정 관리</a></li>
 				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
 					href="#">사진</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">프로필</a></li>
 				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
 					href="#">숙소 판매</a></li>
 			</ul>
 		</div>
 
 		<div class="contents-container">
-			<form method="post" name="register1Form">
+			<form method="post" enctype="multipart/form-data" name="register1Form">
 				<div class="title-box">
 					<div class="title">숙소를 찾고 있는 여행객들을 정확히 사로잡아보세요!</div>
 					<div class="description">선택 사항 표시가 없는 한 모든 정보는 필수 항목입니다.</div>
 				</div>
 				<div class="big-contents-box">
 					<div class="big-title">숙소</div>
-					<!-- 숙소 종류 전송 히든폼으로 처리하기 -->
 					<div class="small-contents-box">
 						<div class="small-title">숙소 종류</div>
 						<div class="building-iconBox">
@@ -235,38 +238,71 @@
 						</div>
 						<input type="hidden" name="hotelType" value="">
 					</div>
+					
 					<div class="small-contents-box">
 						<div class="small-title">숙소 크기</div>
 						<input type="text" class="small-form" name="hotelSize">㎡
 					</div>
 				</div>
-
+				
+				<div class="big-contents-box">
+					<div class="big-title">체크인 시간</div>
+					<div>체크인 시간을 입력해주세요.(00:00)</div>
+					<input type="text" class="post-form" name="checkIn">
+				</div>
+				
+				<div class="big-contents-box">
+					<div class="big-title">체크아웃 시간</div>
+					<div>체크아웃 시간을 입력해주세요.(00:00)</div>
+					<input type="text" class="post-form" name="checkOut">
+				</div>
 
 				<div class="big-contents-box">
+					<div class="big-title ">전화번호</div>
+					<div>숙소에 연락하기위한 번호를 알려주세요.(010-0000-0000)</div>
+					<input type="text" class="post-form" name="hotelTel">
+				</div>
+				
+				<div class="big-contents-box">
+					<div class="big-title ">전화번호</div>
+					<div>호텔이 몇성급인지 알려주세요.</div>
+					<input type="text" class="post-form" name="grade">
+				</div>
+				
+				<div class="big-contents-box">
+					<div class="big-title ">사업자번호</div>
+					<div>사업자번호를 입력해주세요</div>
+					<input type="text" class="post-form" name="businessNum">
+				</div>
+				
+
+	<!-- 		
+				이것도 마찬가지로 상세등록페이지에서 방 등록하면서 입력받도록 만들기 일단 폼 주석처리해놨음 나중에 롬기기
+				<div class="big-contents-box">
 					<div class="big-title ">객실 및 세부 정보</div>
-					<div class="small-title">층 수</div>
+					<div class="small-title">총 층 수</div>
 					<div class="form-row">
 						<button type="button" class="plus-btn">+</button>
 						<input type="text" name="stair" class="plus-minus-input">
 						<button type="button" class="minus-btn">-</button>
 					</div>
 				</div>
-
-				<!-- roomname에 호수 저장  -->
-				<!-- 방이나 옵션 등은 하나가 아니라 여러번 인서트 해야함 해당 부분 컨트롤러에서 어떻게 처리? roomCount만큼 돌려서 insert?-->
-				<!-- hotelType과 stair hiddenForm으로 데아터 넣어놓고 보내도록 하고 스크립트로 추가 구현하기 -->
-				<!-- 방마다 요금 압력 받도록 폼 추가하기-->
+				
+				승인 후 상세등록 페이지에서 처리하도록 만들기
+				roomname에 호수 저장 
+				 방이나 옵션 등은 하나가 아니라 여러번 인서트 해야함 해당 부분 컨트롤러에서 어떻게 처리? roomCount만큼 돌려서 insert?
+				 hotelType과 stair hiddenForm으로 데아터 넣어놓고 보내도록 하고 스크립트로 추가 구현하기 
+				 방마다 요금 압력 받도록 폼 추가하기
 				<div class="big-contents-box">
-					<div class="big-title ">1층</div>
-					<!-- 객실 수에 따라 big- 추가 -->
-					<div class="small-title">객실 수</div>
+					<div class="big-title ">총 객실 수</div>
 					<div class="form-row">
 						<button type="button" class="plus-btn">+</button>
 						<input type="text" name="roomCount" class="plus-minus-input">
 						<button type="button" class="minus-btn">-</button>
 					</div>
 				</div>
-
+				
+				등록 완료 후 승인되고 나면 따로 등록하도록 만들기! 일단 주석처리 해놓고 나중에 옮기기
 				<div class="big-contents-box">
 					<div class="big-title ">
 						방이름(호수): <input type="text" id="big-form" name="roomName">
@@ -275,6 +311,7 @@
 					<div class="small-contents-box">
 						<div class="small-title">방 사진</div>
 						<div class="description">방사진을 업로드해주세요.</div>
+						<input type="file" name="hotelPhoto">
 					</div>
 
 					<div class="small-contents-box">
@@ -287,7 +324,7 @@
 						<div class="small-title">요금</div>
 						<div class="description">방의 기본 요금을 입력해주세요.</div>
 						<input type="text" class="small-form" name="roomPrice">원
-						<!-- 옵션변동에 따른 요금 추가 넣어줘야하나? -->
+						옵션변동에 따른 요금 추가 넣어줘야하나?
 					</div>
 
 					<div class="small-contents-box">
@@ -334,20 +371,19 @@
 							<button type="button" class="minus-btn">-</button>
 						</div>
 					</div>
-
-					<div class="btn-box">
-						<!-- 양식 다시 제출 확인 어떻게 해결? redirect해야하나? 강사님께 여쭤보기 -->
-						<button type="button" class="next-btn" id="next-btn" onclick="register1Ok();">다음</button>
-					</div>
+				</div> -->
+				<div class="btn-box">
+				<!-- 양식 다시제출 어떻게 해결? -->
+					<button type="button" class="next-btn" id="next-btn" onclick="register1Ok();">다음</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-	//next-btn에 register1Ok 이벤트 등록하기
 	
 	function hotelType(){
+		
 		return;
 	}
 	
@@ -366,13 +402,43 @@
 			return;
 		}
 		
-		s=f.stair.value;
+		s=f.checkIn.value;
 		if(!s) {
-			alert("몇층까지 있는지 입력해주세요");
-			f.stair.focus();
+			alert("체크인 시간을 입력해주세요");
+			f.checkIn.focus();
 			return;
 		}
 		
+		s=f.checkOut.value;
+		if(!s) {
+			alert("체크아웃 시간을 입력해주세요");
+			f.checkOut.focus();
+			return;
+		}
+		
+		s=f.hotelTel.value;
+		if(!s) {
+			alert("연락을 위한 전화번호를입력해주세요");
+			f.hotelTel.focus();
+			return;
+		}
+		
+		s=f.grade.value;
+		if(!s) {
+			alert("호텔등급을 선택해주세요");
+			f.grade.focus();
+			return;
+		}
+		
+		s=f.businessNum.value;
+		if(!s) {
+			alert("사업자번호를 입력해주세요");
+			f.businessNum.focus();
+			return;
+		}
+		
+		/* 
+		스크립트도 일단 주석처리해놓고 나중에 옮기기
 		s=f.roomCount.value;
 		if(!s) {
 			alert("객실 수를 입력해주세요");
@@ -418,6 +484,28 @@
 		s=f.bathroomCount.value;
 		if(!s) {
 			alert("욕실의 개수를 입력해주세요");
+			f.bathRoomCount.focus();
+			return;
+		}	 
+		
+		s=f.roomPhoto.value;
+		if(!s) {
+			alert("최소 하나의 방 사진을 업로드해주세요.");
+			f.bathRoomCount.focus();
+			return;
+		}	
+		*/
+		
+		s=f.hotelPhoto.value;
+		if(!s) {
+			alert("최소 하나의 호텔 사진을 업로드해주세요.");
+			f.bathRoomCount.focus();
+			return;
+		}	
+		
+		s=f.mainPhoto.value;
+		if(!s) {
+			alert("대표 사진을 업로드해주세요.");
 			f.bathRoomCount.focus();
 			return;
 		}	

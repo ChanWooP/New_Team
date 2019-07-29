@@ -201,8 +201,7 @@
 		</div>
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register4" method="post"
-				name="registerForm">
+			<form action="<%=cp%>/owner/hotelRegister/register4" method="post" name="register4Form">
 				<div class="title-box">
 					<div class="title">숙소 제공 편의 시설/서비스 관리하기</div>
 					<div class="description">숙소에서 제공하는 편의 시설/서비스를 설정하세요.</div>
@@ -210,13 +209,132 @@
 				
 				<div class="big-contents-box">
 					<div class="big-title ">편의 시설 등록</div>
-					<div>숙소에서 제공하는 별도의 편의시설이나 서비스를 등록하세요.</div>
+					<br>
+					<div class="small-contents-box">
+						<div class="small-title">추천 사항</div>
+						<div class="description">자주 검색하는 시설/서비스</div>
+							<select name="자주 검색하는 시설/서비스">
+								<option value="에어컨">에어컨</option>
+								<option value="헤어드라이어">헤어드라이어</option>
+								<option value="다리미">다리미</option>
+								<option value="TV">TV</option>
+								<option value="케이블 TV">케이블 TV</option>
+								<option value="세탁기">세탁기</option>
+								<option value="샴푸">샴푸</option>
+								<option value="리넨">리넨</option>
+								<option value="타월">타월</option>
+							</select>
+							
+							<!-- 유료무료 선택에 따라서 가격 입력 폼 생기거나 사라지게 만들기 -->
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>
+					</div>
 					
 					<div class="small-contents-box">
-						<div class="small-title">
-							편의시설 이름:<input type="text" class="big-form" name="convenientName">
-						</div>
-						<input type="text" class="description-form" name="convenientDescription">
+						<div class="small-title">인터넷</div>
+						<div class="description">여행객들이 이용할 수 있는 인터넷 시설</div>
+							<select name="인터넷">
+								<option value="Wi-Fi">유료  Wi-Fi</option>
+								<option value="인터넷">유료 인터넷</option>
+							</select>
+							
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>
+					</div>
+					
+					<div class="small-contents-box">
+						<div class="small-title">접근/출입 편의</div>
+						<div class="description">여행객들의 편리한 투숙을 위한 시설/서비스</div>
+						
+							<select name="접근/출입 편의">
+								<option value="전용 출입구">전용 출입구</option>
+								<option value="건물 내 엘리베이터">건물 내 엘리베이터</option>
+								<option value="휠체어 접근 가능">휠체어 접근 가능</option>
+								<option value="버저/무선 인터폰">버저/무선 인터폰</option>
+								<option value="도어맨">도어맨</option>
+							</select>
+							
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>							
+					</div>
+					
+					<div class="small-contents-box">
+						<div class="small-title">주방</div>
+						<div class="description">여행객들이 편안하게 먹고 마시는 데 이용할 수 있는 편의 시설 및 용품</div>
+							<select name="주방">
+								<option value="커피/티 메이커">커피/티 메이커</option>
+								<option value="조식">조식</option>
+								<option value="차">차</option>
+							</select>
+							
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>	
+
+					</div>
+					
+					<div class="small-contents-box">
+						<div class="small-title">편의 시설/서비스</div>
+						<div class="description">여행객들이 검색하고 더 많은 예약을 받을 수 있는 기회도 증가시킬 수 있는 시설/서비스</div>
+						
+							<select name="편의 시설/서비스">
+								<option value="책상/업무 공간">책상/업무 공간</option>
+								<option value="개인전용 수영장">개인전용 수영장</option>
+								<option value="난방">난방</option>
+								<option value="냉방">냉방</option>
+								<option value="건조기">건조기</option>
+								<option value="실내 벽난로">실내 벽난로"</option>
+								<option value="옷장">옷장</option>
+								<option value="실내 수영장">실내 수영장</option>
+								<option value="실외 수영장">실외 수영장</option>
+								<option value="체육관">체육관</option>
+								<option value="무료 주차">무료 주차</option>
+								<option value="온수 욕조">온수 욕조</option>
+							</select>
+							
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>
+		
+					</div>
+					
+					<div class="small-contents-box">
+						<div class="small-title">안전시설</div>
+						<div class="description">여행객들의 투숙 기간 동안 필요한 숙소 안전시설</div>
+							<select name="안전시설">
+								<option value="화재 탐지기">화재 탐지기</option>
+								<option value="일산화탐소 탐지기">일산화탐소 탐지기</option>
+								<option value="구급상자">구급상자</option>
+								<option value="소화기">소화기</option>
+							</select>
+						
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>
+					</div>
+					
+					<div class="small-contents-box">
+						<div class="small-title">기타</div>
+						<div class="description">특정 여행객에게 필요할 수도 있는 기타 사항</div>
+							<select name="기타">
+								<option value="흡연 가능">흡연 가능</option>
+								<option value="반려동물 동반 가능">반려동물 동반 가능</option>
+							</select>
+						
+							<select name="is-price">
+								<option value="유료">유료</option>
+								<option value="무료">무료</option>
+							</select>
+							
 					</div>
 				</div>
 
@@ -229,7 +347,21 @@
 	</div>
 
 	<script>
-	
+		// DOM으로 option 유료로 선택된 select는 hotelAddOpt에 저장 option이 무료인 select는 convenient에 저장 
+		// convenient에 opentime closetime 그냥 삭제해버리기
+		// select의 name을 conType으로 저장하기
+		function register4Ok() {
+			var f=document.register4Form;
+			var s=f.convenientName.value;
+			if(!s) {
+				alert("편의시설명을 입력해주세요.");
+				f.zip.focus();
+				return;
+			}
+			
+			f.action="<%=cp%>/owner/hotelRegister/register4";
+			f.submit();
+		}
 	</script>
 </body>
 </html>

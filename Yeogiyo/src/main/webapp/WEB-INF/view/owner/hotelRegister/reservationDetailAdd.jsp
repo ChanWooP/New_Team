@@ -190,29 +190,29 @@
 		</div>
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register7" method="post"
-				name="registerForm">
+			<form action="<%=cp%>/owner/hotelRegister/register5" method="post"
+				name="register5Form">
+				<!-- 예약 상세설정 등록 완료 후 상세 정보 추가에서 방과 같이 입력하도록 만들기 -->
+				<div class="title-box">
+					<div class="title">예약 설정 관리하기</div>
+					<div class="description">비수기, 성수기 등의 예약 설정을 관리하세요.</div>
+				</div>
 				<div class="big-contents-box">
-					<div class="big-title">등록 완료하기 및 숙소 판매 시작하기</div>
-					<div>
-					아래에 등록 완료 버튼을 누르면 등록이 완료됩니다.
-					</div>
-					<div>
-					등록 전 기입한 사항들이 맞는지 다시 확인해주세요!
-					</div>
+					<div class="big-title ">예약 설정 관리하기</div>
+					<div>비수기와 성수기를 설정하고 그에 따른 변동 가격을 입력해주세요.</div>
 					<input type="text">
 				</div>
 
 				<div class="btn-box">
 					<button type="button" class="pre-btn" id="next-btn">이전</button>
-					<button type="submit" class="next-btn" id="next-btn">등록 완료</button>
+					<button type="submit" class="next-btn" id="next-btn">다음</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<script>
-		
+
 	</script>
 </body>
 </html>

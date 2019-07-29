@@ -169,8 +169,12 @@
 					</div>
 
 					<div>
-						<input type="text" name="addr2" id="addr2" maxlength="50"
-							placeholder="나머지 주소" class="post-form">
+						<input type="text" name="addr2" id="addr2" maxlength="50" placeholder="나머지 주소" class="post-form">
+					</div>
+					
+					<div>
+						<input type="hidden" name="latiude" value="">
+						<input type="hidden" name="longitude" value="">
 					</div>
 					<div id="map" style="width: 782px; height: 400px;"></div>
 				</div>
@@ -230,6 +234,8 @@
 				}
 			}).open();
 		}
+		
+		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -244,15 +250,12 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 주소로 좌표를 검색합니다
-		geocoder
-				.addressSearch(
-						'서울 강남구 강남대로 238',
-						function(result, status) {
+		geocoder.addressSearch('서울 강남구 강남대로 238', function(result, status) {
 							// 정상적으로 검색이 완료됐으면 
 							if (status === kakao.maps.services.Status.OK) {
 
-								var coords = new kakao.maps.LatLng(result[0].y,
-										result[0].x);
+								var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+								// hiddenForm 만들어서 value로 설정해주기
 
 								// 결과값으로 받은 위치를 마커로 표시합니다
 								var marker = new kakao.maps.Marker({
@@ -263,7 +266,7 @@
 								// 인포윈도우로 장소에 대한 설명을 표시합니다
 								var infowindow = new kakao.maps.InfoWindow(
 										{
-											content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+											content : '<div style="width:150px;text-align:center;padding:6px 0;">'+"서울 강남구 강남대로 238"+'</div>'
 										});
 								infowindow.open(map, marker);
 

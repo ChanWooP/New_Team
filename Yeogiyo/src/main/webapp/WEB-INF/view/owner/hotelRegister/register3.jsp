@@ -175,6 +175,7 @@
 	border-radius: 2px;
 	margin-bottom: 10px;
 }
+
 </style>
 </head>
 <body>
@@ -231,6 +232,7 @@
 					<div>숙소에 오기 전에 준비해야 할 것들에 대해 알려주세요.</div>
 					<input type="text" class="description-form" name="hotelPrepare">
 				</div>
+				
 				<div class="btn-box">
 					<button type="button" class="pre-btn" id="next-btn">이전</button>
 					<button type="button" class="next-btn" id="next-btn" onclick="register3Ok();">다음</button>

@@ -4,70 +4,69 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Hotel {
 	// hotel 테이블
-	private String hotelId;
-	private String hotelName;
-	private int granted;
+	private String hotelId;	  //
+	private String hotelName; //
+	private int granted;	  //
 
-	// hoteladdopt 테이블
-	private int optNum;
-	private String optName;
-	private String optPrice;
+	// hoteladdopt 테이블		  
+	private int optNum;		  //
+	private String optName;	  //
+	private String optPrice;  //
 
 	// hoteldetail 테이블
-	private String detail;
-	private String mainPhoto;
-	private String addr1;
-	private String addr2;
-	private String postCode;
-	private String latitude;
-	private String longitude;
-	private String hotelSize;
-	private String hotelTel;
+	private String detail;	  //
+	private String mainPhoto; //
+	private String addr1;	  //
+	private String addr2;	  //
+	private String postCode;  //
+	private String latitude;  
+	private String longitude; 
+	private String hotelSize; //
+	private String hotelTel;  //
 	private String hotelCreated;
-	private String checkIn;
-	private String checkOut;
-	private String businessNum;
-	private int grade;
+	private String checkIn;  //
+	private String checkOut; //
+	private String businessNum;  //
+	private int grade;  //혹시 테이블에 grade 없나 확인해보고 없으면 추가하기
 
 	// hotelphoto 테이블
-	private int hotelPhotoNum;
-	private String hotelPhotoName;
+	private int hotelPhotoNum;  //
+	private String hotelPhotoName;  //
 
 	// hotelprepare 테이블
-	private int prepareNum;
-	private String prepareContent;
+	private int prepareNum;  //
+	private String prepareContent;  //
 
 	// hoteltype 테이블
-	private int typeNum;
-	private String type;
+	private int typeNum;  //
+	private String type;  //
 
 	// convenient 테이블
-	private int conNum;
-	private String conName;
-	private String conType;
-	private String conOpenTime;
-	private String conCloseTime;
+	private int conNum;  //
+	private String conName;  //
+	private String conType;  //
+	private String conPrice; //conOpenTime, closeTime DB에서 삭제하기
 
 	// room 테이블
-	private int roomNum;
-	private String roomName;
-	private int stair;
-	private String roomType;
-	private int maxPeople;
-	private String roomStatus;
-	private int roomPrice;
-	private int extraPrice;
+	private int roomNum;  //
+	private String roomName;  //
+	private int stair;  //
+	private String roomType;  //
+	private int maxPeople;  //
+	private String roomStatus; //default 처리 해주기
+	private int roomPrice;  //
+	private int extraPrice;  
 
 	// roomDetail 테이블
-	private int roomDetailNum;
-	private String roomDetails;
+	private int roomDetailNum;  //
+	private String roomDetails;  //
 
 	// roomPhoto 테이블
-	private int roomPhotoNum;
-	private String roomPhotoName;
+	private int roomPhotoNum;  //
+	private String roomPhotoName;  //
 
 	// 이미지 업로드를 위한 MultipartFile 자료형
-	private MultipartFile upload;
+	private MultipartFile[] upload;  //
 
 	public String getHotelId() {
 		return hotelId;
@@ -301,22 +300,14 @@ public class Hotel {
 		this.conType = conType;
 	}
 
-	public String getConOpenTime() {
-		return conOpenTime;
+	public String getconPrice() {
+		return conPrice;
 	}
 
-	public void setConOpenTime(String conOpenTime) {
-		this.conOpenTime = conOpenTime;
+	public void setconPrice(String conPrice) {
+		this.conPrice = conPrice;
 	}
-
-	public String getConCloseTime() {
-		return conCloseTime;
-	}
-
-	public void setConCloseTime(String conCloseTime) {
-		this.conCloseTime = conCloseTime;
-	}
-
+	
 	public int getRoomNum() {
 		return roomNum;
 	}
@@ -413,11 +404,12 @@ public class Hotel {
 		this.roomPhotoName = roomPhotoName;
 	}
 
-	public MultipartFile getUpload() {
+	public MultipartFile[] getUpload() {
 		return upload;
 	}
 
-	public void setUpload(MultipartFile upload) {
+	public void setUpload(MultipartFile[] upload) {
 		this.upload = upload;
 	}
+
 }

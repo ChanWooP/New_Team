@@ -3,8 +3,11 @@ package com.sp.owner.hotel;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Multipart;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sp.common.FileManager;
 import com.sp.common.dao.CommonDAO;
@@ -201,9 +204,12 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public void insertHotelPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
-			String savefileName = fileManager.doFileUpload(hotel.getUpload(), pathname);
-			if (savefileName != null) {
-				dao.insertData("owner.hotel.insertHotelPhoto", hotel);
+			MultipartFile uploads[] = hotel.getUpload();
+			for(int a=0; a < uploads.length; a++) {
+				String savefileName = fileManager.doFileUpload(uploads[a], pathname);
+				if (savefileName != null) {
+					dao.insertData("owner.hotel.insertHotelPhoto", hotel);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -422,12 +428,18 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public void insertRoomPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
-			String saveFilename = fileManager.doFileUpload(hotel.getUpload(), pathname);
-			dao.insertData("owner.hotel.insertRoomPhoto", hotel);
+			MultipartFile uploads[] = hotel.getUpload();
+			for(int a=0; a < uploads.length; a++) {
+				String savefileName = fileManager.doFileUpload(uploads[a], pathname);
+				if (savefileName != null) {
+					dao.insertData("owner.hotel.insertRoomPhoto", hotel);
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
+
 	}
 
 	@Override

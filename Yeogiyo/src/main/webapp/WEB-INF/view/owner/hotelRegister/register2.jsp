@@ -148,7 +148,7 @@
 		</div>
 
 		<div class="contents-container">
-			${sessionScope.basicInfo.stair}
+			${sessionScope.basicInfo}
 			<form method="post" name="register2Form">
 				<div class="title-box">
 					<div class="title">지도상의 숙소 위치 표시/설정하기</div>

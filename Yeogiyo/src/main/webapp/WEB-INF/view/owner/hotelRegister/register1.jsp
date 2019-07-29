@@ -176,6 +176,10 @@
 	border-radius: 2px;
 	margin-bottom: 10px;
 }
+.building-iconBox-activated{
+	background: gold;
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -209,34 +213,34 @@
 					<div class="big-title">숙소</div>
 					<div class="small-contents-box">
 						<div class="small-title">숙소 종류</div>
-						<div class="building-iconBox">
+						<div class="building-iconBox" onclick="motelClick();" id="motel">
 							<div>
 								<i class="fas fa-building" style="font-size: 45px;"></i>
 							</div>
 							<div>모텔</div>
 						</div>
 
-						<div class="building-iconBox">
+						<div class="building-iconBox" onclick="hotelClick();" id="hotel">
 							<div>
 								<i class="fas fa-hotel" style="font-size: 45px;"></i>
 							</div>
 							<div>호텔</div>
 						</div>
 
-						<div class="building-iconBox">
+						<div class="building-iconBox" onclick="homeClick();" id="home">
 							<div>
 								<i class="fas fa-home" style="font-size: 45px;"></i>
 							</div>
 							<div>홈스테이</div>					
 						</div>
 
-						<div class="building-iconBox">
+						<div class="building-iconBox" onclick="campClick();" id="camp">
 							<div>
 								<i class="fas fa-campground" style="font-size: 45px;"></i>
 							</div>
 							<div>캠핑장</div>
 						</div>
-						<input type="hidden" name="hotelType" value="">
+						<input type="hidden" id="hotelType" value="">
 					</div>
 					
 					<div class="small-contents-box">
@@ -274,10 +278,11 @@
 					<div>사업자번호를 입력해주세요</div>
 					<input type="text" class="post-form" name="businessNum">
 				</div>
+
 				
 
-	<!-- 		
-				이것도 마찬가지로 상세등록페이지에서 방 등록하면서 입력받도록 만들기 일단 폼 주석처리해놨음 나중에 롬기기
+			<!-- 
+			이것도 마찬가지로 상세등록페이지에서 방 등록하면서 입력받도록 만들기 일단 폼 주석처리해놨음 나중에 롬기기
 				<div class="big-contents-box">
 					<div class="big-title ">객실 및 세부 정보</div>
 					<div class="small-title">총 층 수</div>
@@ -369,9 +374,9 @@
 							<button type="button" class="plus-btn">+</button>
 							<input type="text" class="plus-minus-input" name="bathRoomCount">
 							<button type="button" class="minus-btn">-</button>
-						</div>
-					</div>
-				</div> -->
+						</div> 
+					</div>-->
+				
 				<div class="btn-box">
 				<!-- 양식 다시제출 어떻게 해결? -->
 					<button type="button" class="next-btn" id="next-btn" onclick="register1Ok();">다음</button>
@@ -382,7 +387,67 @@
 
 	<script type="text/javascript">
 	
-	function hotelType(){
+	function motelClick(){
+		var f=document.getElementById("hotelType");
+		f.value="모텔";
+		
+		var iconBox=document.getElementById("motel");
+		
+		var otherBox=document.querySelectorAll(".building-iconBox-activated");
+		
+		if(otherBox[0]){
+			return;
+		} else if(iconBox.classList.contains("building-iconBox-activated")){
+			iconBox.classList.remove("building-iconBox-activated");
+		} else if(!iconBox.classList.contains("building-iconBox-activated")){
+			iconBox.classList.add("building-iconBox-activated");
+		}
+		
+		return;
+	}
+	
+	function hotelClick(){
+		var f=document.getElementById("hotelType");
+		f.value="호텔";
+		
+		var iconBox=document.getElementById("hotel");
+		
+		
+		if(iconBox.classList.contains("building-iconBox-activated")){
+			iconBox.classList.remove("building-iconBox-activated");
+		} else{
+			iconBox.classList.add("building-iconBox-activated");
+		}
+		
+		return;
+	}
+	
+	function homeClick(){
+		var f=document.getElementById("hotelType");
+		f.value="홈스테이";
+		
+		var iconBox=document.getElementById("home");
+		
+		if(iconBox.classList.contains("building-iconBox-activated")){
+			iconBox.classList.remove("building-iconBox-activated");
+		} else{
+			iconBox.classList.add("building-iconBox-activated");
+		}
+		
+		return;
+	}
+	
+	function campClick(){
+		var f=document.getElementById("hotelType");
+		f.value="캠핑장";
+		
+		var iconBox=document.getElementById("camp");
+		
+		if(iconBox.classList.contains("building-iconBox-activated")){
+			iconBox.classList.remove("building-iconBox-activated");
+		} else{
+			iconBox.classList.add("building-iconBox-activated");
+		}
 		
 		return;
 	}
@@ -495,20 +560,6 @@
 			return;
 		}	
 		*/
-		
-		s=f.hotelPhoto.value;
-		if(!s) {
-			alert("최소 하나의 호텔 사진을 업로드해주세요.");
-			f.bathRoomCount.focus();
-			return;
-		}	
-		
-		s=f.mainPhoto.value;
-		if(!s) {
-			alert("대표 사진을 업로드해주세요.");
-			f.bathRoomCount.focus();
-			return;
-		}	
 		
 		f.action="<%=cp%>/owner/hotelRegister/register1";
 		f.submit();

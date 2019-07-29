@@ -28,7 +28,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
-<body style="background-color:gold">
+<body style="background-color:#fae100">
 <div class="header">
     <tiles:insertAttribute name="header"/>
 </div>

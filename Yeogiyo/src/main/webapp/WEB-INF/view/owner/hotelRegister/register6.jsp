@@ -193,16 +193,15 @@
 			<form action="<%=cp%>/owner/hotelRegister/register6" method="post"
 				name="registerForm">
 				<div class="title-box">
-					<div class="title">숙소 사진 업로드 및 관리하기</div>
-					<div class="description">숙소 사진은 여행객들에게 중요합니다. 보유하고 있는 많은 고화질의 숙소 사진을 업로드하세요. 나중에 더 많은 사진을 추가할 수도 있습니다.</div>
+					<div class="title">숙소 등록 완료하기</div>
+					<div class="description">숙소등록을 완료하기 전에 잘못 기입된 정보는 없는지 다시 확인해주세요.</div>
 				</div>
 				
 				<div class="big-contents-box">
-					<div class="big-title">숙소 사진 업로드 및 관리하기</div>
-					<div>숙소 사진은 여행객들에게 중요합니다. 보유하고 있는 많은 고화질의 숙소 사진을 업로드하세요. 나중에
-						더 많은 사진을 추가할 수도 있습니다.
+					<div class="big-title">숙소 등록 완료</div>
+					<div>숙소 등록 후에는 관리자의 승인을 기다려주세요.
 					</div>
-					<input type="text">
+
 				</div>
 
 				<div class="btn-box">

@@ -9,7 +9,7 @@
 <div class="container">
 	<div style="margin: 0px auto; padding-top: 40px; margin-bottom:100px;">
 		<div class="page-header">
-		    <h1><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;<b>Notice</b></h1>      
+		    <h1><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;<b>공지사항</b></h1>      
 		</div>
 
 		<div>

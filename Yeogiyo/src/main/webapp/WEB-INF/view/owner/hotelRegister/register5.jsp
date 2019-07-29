@@ -190,16 +190,32 @@
 		</div>
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register5" method="post"
+			<form action="<%=cp%>/owner/hotelRegister/register6" method="post"
 				name="registerForm">
 				<div class="title-box">
-					<div class="title">예약 설정 관리하기</div>
-					<div class="description">비수기, 성수기 등의 예약 설정을 관리하세요.</div>
+					<div class="title">숙소 사진 업로드 및 관리하기</div>
+					<div class="description">숙소 사진은 여행객들에게 중요합니다. 보유하고 있는 많은 고화질의 숙소 사진을 업로드하세요. 나중에 더 많은 사진을 추가할 수도 있습니다.</div>
 				</div>
+				
 				<div class="big-contents-box">
-					<div class="big-title ">예약 설정 관리하기</div>
-					<div>비수기와 성수기를 설정하고 그에 따른 변동 가격을 입력해주세요.</div>
-					<input type="text">
+					<div class="big-title">숙소 사진 업로드 및 관리하기</div>
+					<div>숙소 사진은 여행객들에게 중요합니다. 보유하고 있는 많은 고화질의 숙소 사진을 업로드하세요. 나중에
+						더 많은 사진을 추가할 수도 있습니다.
+					</div>
+					
+					<div class="big-contents-box">
+						<div class="small-contents-box">
+							<div class="big-title ">숙소 사진</div>
+							<div>숙소사진을 업로드하세요. 대표사진은 검색시 썸네일로 사용될 사진을 의미합니다.</div>
+							<div class="small-title">숙소 사진</div>
+							<input type="file" name="hotelPhoto">
+						</div>
+						
+						<div class="small-contents-box">
+							<div class="small-title">대표 사진</div>
+							<input type="file" name="mainPhoto">
+						</div>
+					</div>
 				</div>
 
 				<div class="btn-box">

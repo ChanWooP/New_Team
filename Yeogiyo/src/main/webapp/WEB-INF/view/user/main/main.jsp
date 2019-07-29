@@ -5,6 +5,24 @@
 <%
 	String cp = request.getContextPath();
 %>
+<style type="text/css">
+ .main {
+	 background-image: url('<%=cp%>/resource/images/mm.jpg');
+	 background-repeat: no-repeat;
+	 opacity: 0.9!important; filter:alpha(opacity=90);
+	 background-size: 100%;
+	 background-position: center;
+ }
+ .mainsearch{
+ 	width: 500px; 
+ 	margin: 60px; 
+ 	margin-bottom: 10px; 
+ 	min-height: 330px; 
+ 	border: 1px solid yellow; 
+ 	background-color: white; 
+ 	border-radius: 1em;
+ }
+</style>
 <script type="text/javascript">
 	$(function() {
 		var minDate1 = new Date();
@@ -25,29 +43,44 @@
 			minDate : minDate2
 		});
 	});
+	$(function() {
+		$("body").on("click", "#option", function() {
+			var $div=$(this).next("div");
+			var isVisible=$div.is(":visible");
+			
+			if(isVisible) {
+				$div.hide();
+				$("#shift").html(" ▽");
+			} else {
+				$div.show();
+				$("#shift").html(" △");
+			}
+		});
+	});
+	
 </script>
 
+<div class="main">
+
 <div class="container">
-	
-	<div id="mainsearch" style="margin-top: 30px; height: 500px;">
-		<div
-			style="width: 500px; margin: 60px; margin-bottom: 10px; min-height: 330px; border: 1px solid yellow; background-color: white;">
+	<div id="mainsearch" style="margin-top: 20px; min-height: 500px;">
+		<div class="mainsearch">
 			<form action="<%=cp%>/user/hotel/list" method="post" name="searchForm">
 				<div style="margin: 20px;">
 					<div>
 						<label><b>여행지</b></label>
 					</div>
-					<div style="margin-top: 10px;">
-						<input style="width: 430px; height: 40px; border: 1px solid #ccc; border-radius: 4px; padding: 5px;" type="text" placeholder="가고싶은 여행지를 입력해주세요" name="place"
+					<div style="margin-top: 5px;">
+						<input style="width: 420px; height: 40px; border: 1px solid #ccc; border-radius: 4px; padding: 5px;" type="text" placeholder="가고싶은 여행지를 입력해주세요" name="place"
 							required="required">
 					</div>
 				</div>
 				<div style="margin: 20px;">
 					<div>
-						<label><b>체크인 날짜</b></label> <span style="margin-right: 140px;"></span>
+						<label><b>체크인 날짜</b></label> <span style="margin-right: 145px;"></span>
 						<label><b>체크 아웃 날짜</b></label>
 					</div>
-					<div style="margin-top: 10px;">
+					<div style="margin-top: 5px;">
 						<input type="text" name="checkinday" id="form-sday"
 							readonly="readonly"
 							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; padding: 5px;">
@@ -62,7 +95,7 @@
 					<div>
 						<label><b>인원</b></label>
 					</div>
-					<div style="margin-top: 10px;">
+					<div style="margin-top: 5px;">
 						<select
 							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px;" name="peoplecount">
 							<option>인원수 선택</option>
@@ -70,23 +103,47 @@
 							<option value=2>성인2명</option>
 							<option value=4>성인4명</option>
 							<option value=0>4명이상</option>
-						</select> <span style="margin-right: 30px;"></span>
+						</select> <span style="margin-right: 20px;"></span>
 						<button type="submit"
-							style="width: 200px; height: 40px; background-color: #4CAF50; border: none; border-radius: 4px;">
+							style="width: 200px; height: 40px; background-color: skyblue; border: none; border-radius: 4px;">
 							<b>검색</b>
 						</button>
 					</div>
 				</div>
 				<div style="margin: 20px;">
-					<a href="#" id="option">추가 옵션 선택</a>
+					<a id="option">추가 옵션 선택<span id="shift"> ▽</span></a>
+					<div style="margin-top:10px; display: none;">	
+						<div><b>호텔 등급 : </b></div>
+						<div style="margin-bottom:5px;">
+						<input type="checkbox" name="class1" value="1등급"> 1등급&nbsp;
+						<input type="checkbox" name="class2" value="2등급"> 2등급&nbsp;
+						<input type="checkbox" name="class3" value="3등급"> 3등급&nbsp;
+						<input type="checkbox" name="class4" value="4등급"> 4등급&nbsp;
+						</div>
+						<div><b>숙소 유형 : </b></div>
+						<div style="margin-bottom:5px;">
+						<input type="checkbox" name="type1" value="hotel"> 호텔&nbsp;
+						<input type="checkbox" name="type2" value="motel"> 모텔&nbsp;
+						<input type="checkbox" name="type3" value="resort"> 리조트&nbsp;
+						<input type="checkbox" name="type4" value="apartment"> 콘도&nbsp;
+						</div>
+						<div><b>평점 : </b></div>
+						<div style="margin-bottom:5px;">
+						<input type="checkbox" name="score1" value="9"> 9점:최고&nbsp;
+						<input type="checkbox" name="score2" value="8"> 8점:매우 좋음&nbsp;
+						<input type="checkbox" name="score3" value="7"> 7점:좋음&nbsp;
+						<input type="checkbox" name="score4" value="6"> 6점:무난&nbsp;
+						</div>
+					</div>
 				</div>
 			</form>
-		</div>
-		<div
-			style="width: 500px; margin-left: 60px; min-height: 60px; border: 1px solid yellow; background-color: white;">
-			<div style="margin: 5px; margin-left: 20px;">
-				<b>인기 여행지 : </b>
+			<div style="margin: 5px; margin-left: 20px; margin-bottom:20px;">
+				<b>인기 여행지 :</b> &nbsp;<a href="">서울</a>&nbsp;&nbsp;<a href="">부산</a>
+				&nbsp;&nbsp;<a href="">제주도</a>
+				&nbsp;&nbsp;<a href="">도쿄</a>&nbsp;&nbsp;<a href="">오사카</a>
+				&nbsp;&nbsp;<a href="">베이징</a>&nbsp;&nbsp;<a href="">상해</a>
 			</div>
 		</div>
 	</div>
+</div>
 </div>

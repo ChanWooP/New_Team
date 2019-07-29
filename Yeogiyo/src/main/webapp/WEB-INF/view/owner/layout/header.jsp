@@ -57,9 +57,9 @@
 					class="	glyphicon glyphicon-heart"></span> ${sessionScope.member.userId }</a></li>
 			<li><a href="<%=cp%>/user/member/logout"><span
 					class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			<c:if test="${sessionScope.member.userId=='admin' }">
-			<li><a href="<%=cp%>/admin/main"><span
-					class="	glyphicon glyphicon-user"></span> AdminPage</a></li>
+			<c:if test="${sessionScope.member.enabled==2 }">
+			<li><a href="<%=cp%>/user/main"><span
+					class="	glyphicon glyphicon-user"></span> UserPage</a></li>
 			</c:if>		
 		</ul>
 		</c:if>

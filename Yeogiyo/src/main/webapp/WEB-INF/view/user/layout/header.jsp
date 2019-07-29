@@ -22,7 +22,7 @@
 				data-toggle="dropdown" href="#">소식 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<%=cp%>/user/notice/list">공지사항</a></li>
-					<li><a href="<%=cp%>/user/event/list">Event</a></li>
+					<li><a href="<%=cp%>/user/event/list">이벤트</a></li>
 				</ul></li>	
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">고객센터 <span class="caret"></span></a>

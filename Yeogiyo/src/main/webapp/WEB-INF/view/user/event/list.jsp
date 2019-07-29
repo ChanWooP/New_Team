@@ -15,7 +15,7 @@ function searchList() {
 <div class="container">
 	<div style="margin: 0px auto; padding-top: 30px;  margin-bottom:100px;">
 		<div class="page-header">
-		    <h1><span class="glyphicon glyphicon-gift"></span>&nbsp;<b>Event</b></h1>      
+		    <h1><span class="glyphicon glyphicon-gift"></span>&nbsp;<b>이벤트</b></h1>      
 		</div>
 		<div style="margin-top: 0">
 			<div class="panel panel-default">

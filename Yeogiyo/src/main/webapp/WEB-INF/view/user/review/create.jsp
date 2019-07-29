@@ -7,10 +7,9 @@
 %>
 <style type="text/css">
 .reviewCreate {
-		width:750px;
+		width:850px;
 		text-align:center;
-		height: 850px;
-		background:#FCF8E3;
+		height: 750px;
 		margin:30px auto;
 		padding:10px;
 		
@@ -19,25 +18,20 @@
 	resize: none; 
 }
 
-.reviewCreateIn {
-	margin:20px auto;
-	padding-top:60px;
-	border:1px solid black;
-	width:90%;
-	height:90%;
-}
 </style>
 
 <div class="body-container">
 	<div style="padding-top:5px; padding-bottom: 50px; text-align:center;">
-		<div class="reviewAbout">
-				<h2>${review.hotelName}</h2>
-				<h4>${review.roomName}</h4>
-			</div>
+		
 		<div class="reviewCreate">
-			<div class="reviewCreateIn">
+			<div class="panel-body" style="border:1px solid black">
+				<div class="reviewAbout">
+			<h2>${review.hotelName}</h2>
+			<h4>${review.roomName}</h4>
+		</div>
+				
 				<h3>리뷰 작성하기</h3>	
-				<form action="<%=cp%>/user/review/complete" name="reviewCreateForm" method="post">
+				<form action="<%=cp%>/user/review/complete" name="reviewCreateForm" method="post" style="height:600px;">
 					<p>제목</p>
 					<p><input type="text" name="reviewTitle" style="width:550px;"></p>
 					<p>내용</p>

@@ -44,7 +44,7 @@ $(function(){
 						out += "<div>"+item.qnaContent+"</div></div>";
 					});
 					if(count == 0){
-						out += "<div><textarea name='qnaContent' cols='85'></textarea>&nbsp;<button type='button' style='float:right; margin-right:15px;' class='btn btn-sm writeQna'>답변하기</button></div>";
+						out += "<div style='width:100%'><textarea name='qnaContent' style='width:100%'></textarea><br><button type='button' style='float:right'; margin-right:15px;' class='btn btn-sm writeQna'>답변하기</button></div>";
 					}
 				
 					$list.html(out);

@@ -14,7 +14,7 @@
                 ,DECODE(a1.qnaParent,NULL, 0, 1) count
 		        FROM hotelqna h JOIN member m ON h.userId = m.userId
                 LEFT OUTER JOIN (
-                    SELECT qnaParent FROM hotelqna WHERE qnaParent != 0 AND hotelId = 'hotel1'
+                    SELECT qnaParent FROM hotelqna WHERE qnaParent != 0 AND hotelId = #{hotelId}
                 )a1 ON h.qnaNum = a1.qnaParent
 		        WHERE h.qnaParent = 0 AND hotelId = #{hotelId}
 

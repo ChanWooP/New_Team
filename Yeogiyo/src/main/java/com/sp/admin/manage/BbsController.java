@@ -37,7 +37,13 @@ public class BbsController {
 	public String bbsList(@RequestParam(value="page", defaultValue="1") int current_page,
 						@RequestParam(defaultValue="all") String condition,
 						@RequestParam(defaultValue="") String keyword,
-						HttpServletRequest req, Model model) throws Exception {
+						HttpServletRequest req,
+						HttpSession session, Model model) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null || info.getEnabled()!=3) {
+			return "redirect:/user/member/noAuthorized";
+		}
+		
 		int rows=10;
 		int total_page=0;
 		int dataCount=0;

@@ -32,7 +32,12 @@ public class NoticeController {
 	@RequestMapping(value="/admin/notice/list")
 	public String noticeList(
 			@RequestParam(value="page", defaultValue="1") int current_page,
-			HttpServletRequest req, Model model) throws Exception {
+			HttpServletRequest req,
+			HttpSession session, Model model) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null || info.getEnabled()!=3) {
+			return "redirect:/user/member/noAuthorized";
+		}
 		int rows=10;
 		int total_page=0;
 		int dataCount=service.dataCount();

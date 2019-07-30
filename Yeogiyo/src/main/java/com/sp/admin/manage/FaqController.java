@@ -32,8 +32,12 @@ public class FaqController {
 	@RequestMapping(value="/admin/faq/list")
 	public String faqlist(
 			@RequestParam(value="page", defaultValue="1") int current_page,
-			HttpServletRequest req,
+			HttpServletRequest req, HttpSession session,
 			Model model) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null || info.getEnabled()!=3) {
+			return "redirect:/user/member/noAuthorized";
+		}
 		
 		int rows=10;
 		int total_page=0;

@@ -39,9 +39,13 @@ public class EventController {
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(defaultValue="") String keyword,
 			@RequestParam(defaultValue="") String status,
-			HttpServletRequest req, Model model) throws Exception {
-		
-		int rows=8;
+			HttpServletRequest req,
+			HttpSession session, Model model) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null || info.getEnabled()!=3) {
+			return "redirect:/user/member/noAuthorized";
+		}
+		int rows=6;
 		int total_page;
 		int dataCount;
 		

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.common.MyUtil;
+import com.sp.user.member.SessionInfo;
 
 @Controller("admin.mainController")
 public class MainController {
@@ -27,7 +29,12 @@ public class MainController {
 	@RequestMapping(value="/admin/main")
 	public String test(
 			@RequestParam(value="page", defaultValue="1") int current_page,
-			HttpServletRequest req, Model model) {
+			HttpServletRequest req,
+			HttpSession session, Model model) {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null || info.getEnabled()!=3) {
+			return "redirect:/user/member/noAuthorized";
+		}
 		
 		int rows =10;
 		int total_page;

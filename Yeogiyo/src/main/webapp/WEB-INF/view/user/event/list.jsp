@@ -47,13 +47,13 @@ function searchList() {
 						</table>
 						<div>
 						<c:forEach var="dto" items="${list }" varStatus="status">
-							<c:if test="${status.index%4==0 }">
+							<c:if test="${status.index%3==0 }">
 								<c:out value="<div class='row'>" escapeXml="false"/>
 							</c:if>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div class="thumbnail">
 								        <a href="${articleUrl}&eventNum=${dto.eventNum}">
-								          <img src="<%=cp%>/uploads/eventPhoto/${dto.eventPhoto}" alt="eventPhoto" style="width:100%"> 
+								          <img src="<%=cp%>/uploads/eventPhoto/${dto.eventPhoto}" alt="eventPhoto" style="width:100%; height:200px;"> 
 								          <div class="caption">
 								            <p style="text-align: center;">${dto.eventTitle }</p>
 								            <p style="text-align: center; margin-bottom:0px;"><b>${dto.eventStatus }</b></p>
@@ -61,7 +61,7 @@ function searchList() {
 								        </a>
 								      </div>
 								</div>
-							<c:if test="${status.index%4==3 }">
+							<c:if test="${status.index%3==2 }">
 								<c:out value="</div>" escapeXml="false"/>
 							</c:if>	
 						</c:forEach>

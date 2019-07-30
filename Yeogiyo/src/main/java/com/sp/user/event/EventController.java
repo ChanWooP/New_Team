@@ -37,7 +37,7 @@ public class EventController {
 			@RequestParam(defaultValue="") String status,
 			HttpServletRequest req, Model model) throws Exception {
 		
-		int rows=8;
+		int rows=6;
 		int total_page;
 		int dataCount;
 		

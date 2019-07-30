@@ -44,9 +44,16 @@ public class ReservationController {
 		map.put("optCount", optCount);
 		
 		try {
-			roomnum = service.roomnum(map);
-			resdetail=service.reservationdetail(roomnum);
-			optlist=service.optadd(map);
+			if(optNum==0) {
+				roomnum = service.roomnum(map);
+				resdetail=service.reservationdetail(roomnum);
+				
+			}
+			else {
+				roomnum = service.roomnum(map);
+				resdetail=service.reservationdetail(roomnum);
+				optlist=service.optadd(map);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,6 +66,7 @@ public class ReservationController {
 		model.addAttribute("roomnum", roomnum);
 		model.addAttribute("optlist", optlist);
 		model.addAttribute("optCount", optCount);
+		model.addAttribute("optNum",optNum);
 		
 		return ".user.reservation.reservation";
 	}
@@ -67,14 +75,29 @@ public class ReservationController {
 	public String complete(@RequestParam Map<String, Object> map, HttpSession session, Model model) {
 		
 		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String optNums = String.valueOf(map.get("optNum"));
 		String hotelName = service.gethotelname(map);
+		
+		int optNum=Integer.parseInt(optNums);
+		map.put("optNum", optNum);
 		try {
-			if(info !=null) {
-				String userId = info.getUserId();
-				map.put("userId", userId);
-				service.insertReservation(map);
-			} else { 
-				service.nomeminsertReservation(map);
+			if(optNum==0) {
+				if(info !=null) {
+					String userId = info.getUserId();
+					map.put("userId", userId);
+					service.insertReservation(map);
+				} else { 
+					service.nomeminsertReservation(map);
+				}
+			} else {
+				if(info !=null) {
+					String userId = info.getUserId();
+					map.put("userId", userId);
+					service.addinsertReservation(map);
+				} else { 
+					service.addnomeminsertReservation(map);
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

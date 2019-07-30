@@ -33,13 +33,10 @@ function deleteReply(replyNum){
 	
 }
 
-$(function(){
-	$("body").on("click",".updateReply", function(){
-		var replyNum = $(this).parent().parent().children(".replyNum").val();
-		//var replyContent = $(this).parent().parent().children(".replyContent").html();
-		//console.log(replyContent);
-	});
-});
+function backList(){
+	var query = "page=${page}&condition=${condition}&keyword=${keyword}";
+	location.href = "<%=cp%>/owner/review/list?"+query;
+}
 </script>
 <div class="container">
 	<div style="width:100%; margin:0 auto; padding-top:30px;">
@@ -72,7 +69,7 @@ $(function(){
 				<input type="hidden" class="replyNum" value="${dto.replyNum}">
 					<p>└&nbsp;${dto.userId }
 						<c:if test="${sessionScope.member.userId==dto.userId}">	
-						(<a class="updateReply" style="cursor:pointer">수정</a>|<a style="cursor:pointer" onclick="deleteReply('${dto.replyNum}')">삭제</a>)
+						(<a style="cursor:pointer" onclick="deleteReply('${dto.replyNum}')">삭제</a>)
 						</c:if>
 					</p>
 					<div class="replyContent">${dto.replyContent }</div>
@@ -81,7 +78,8 @@ $(function(){
 			
 			<textarea id="replyContent" rows="3" cols="50">
 			</textarea>
-			<p><button type="button" id="replayAdd" class="btn">댓글작성</button></p>
+			<p><button type="button" id="replayAdd" class="btn">댓글작성</button>
+			&nbsp;<button type="button" id="backList" onclick="backList()" class="btn">리스트</button></p>
 		</div>
 	</div>
 </div>

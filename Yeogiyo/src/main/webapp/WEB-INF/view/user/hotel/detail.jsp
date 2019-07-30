@@ -21,9 +21,21 @@ $(function() {
 		var roomprice=$(this).attr("data-roomprice");
 		var maxpeople=$(this).attr("data-maxpeople");
 		var userId="${sessionScope.member.userId}";
-		var optCount=$("#optCount option:selected").val();
-		var optNum=$("#optCount").closest("tr").find("input").val();
-		 
+		
+		var optNum="0";
+		var optCount="0";
+		$(".optNum").each(function(){
+			if($(this).is(":checked")){
+				optNum=$(this).val();
+				optCount=$(this).closest("tr").find("select").val();
+			}
+		});
+		
+		if(! optCount) {
+			alert("인원수를 선택하세요");
+			return false;
+		}
+		
 		$("form[name=reserForm] input[name=hotelId]").val(hotelId);
 		$("form[name=reserForm] input[name=roomdetails]").val(roomdetails);
 		$("form[name=reserForm] input[name=roomtype]").val(roomtype);
@@ -32,7 +44,7 @@ $(function() {
 		$("form[name=reserForm] input[name=userId]").val(userId);
 		$("form[name=reserForm] input[name=optNum]").val(optNum);
 		$("form[name=reserForm] input[name=optCount]").val(optCount);
-		
+
 		$("form[name=reserForm]").submit();
 	});
 	
@@ -209,11 +221,13 @@ $(function() {
 									</tr>
 									<c:forEach var="op" items="${optlist}">
 										<tr>
-											<td style="width: 180px; text-align:center;"><input type="radio" value="${op.optNum}"></td>
+											<td style="width: 180px; text-align:center;">
+												<input type="radio" class="optNum" name="optNum" value="${op.optNum}">
+											</td>
 											<td style="width: 280px; text-align:center;">${op.optName}</td>
 											<td style="width: 280px; text-align:center;">${op.optPrice}</td>
 											<td>
-												<select id="optCount">
+												<select class="optCount">
 														<option value="">--선택--</option>
 													<c:forEach varStatus="s" begin="1" end="${peoplecount}">
 														<option value="${s.index}">${s.index}</option>

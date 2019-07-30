@@ -52,17 +52,20 @@
 				</div>
 			</div>	
 			<div class="panel panel-warning class">
-			    <div class="panel-heading">옵션</div>
-			    <div class="panel-body">${map.optName}</div>
-			</div>				
-			<div class="panel panel-warning class">
 			    <div class="panel-heading">결제 금액</div>
 			    <div class="panel-body">${map.roomprice}</div>
 			</div>
-			<div class="panel panel-warning class">
-			    <div class="panel-heading">옵션 금액</div>
-			    <div class="panel-body">${map.optPrice}</div>
-			</div>
+			
+			<c:if test="${map.optNum!=0}">
+				<div class="panel panel-warning class">
+				    <div class="panel-heading">옵션</div>
+				    <div class="panel-body">${map.optName}</div>
+				</div>				
+				<div class="panel panel-warning class">
+				    <div class="panel-heading">옵션 금액</div>
+				    <div class="panel-body">${map.optPrice}</div>
+				</div>
+			</c:if>
 			
 			<div class="panel panel-warning class">
 			    <div class="panel-heading">총 금액</div>

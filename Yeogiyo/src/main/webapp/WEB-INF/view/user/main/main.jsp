@@ -13,7 +13,7 @@
 	 background-size: 100%;
 	 background-position: center;
  }
- .mainsearch{
+ .mainsearch {
  	width: 500px; 
  	margin: 60px; 
  	margin-bottom: 10px; 

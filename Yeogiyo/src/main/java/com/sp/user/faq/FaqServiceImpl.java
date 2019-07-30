@@ -1,6 +1,7 @@
 package com.sp.user.faq;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +28,10 @@ public class FaqServiceImpl implements FaqService {
 	}
 
 	@Override
-	public List<Faq> listFaq() {
+	public List<Faq> listFaq(Map<String, Object> map) {
 		List<Faq> list=null;
 		try {
-			list=dao.selectList("user.faq.listFaq");
+			list=dao.selectList("user.faq.listFaq", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,17 @@ public class FaqServiceImpl implements FaqService {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+
+	@Override
+	public int dataCount() {
+		int result=0;
+		try {
+			result=dao.selectOne("user.faq.dataCount");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

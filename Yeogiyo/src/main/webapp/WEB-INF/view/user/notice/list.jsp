@@ -11,10 +11,30 @@
 		<div class="page-header">
 		    <h1><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;<b>공지사항</b></h1>      
 		</div>
-
-		<div>
+		<div class="row">
+		    <div class="col-sm-2">
+		      <div class="panel panel-default">
+			  <div class="panel-heading" style="height: 50px; font-size: 25px;"><b>소식</b></div>
+			  
+			  <div class="list-group">
+				  <a href="<%=cp%>/user/notice/list" class="list-group-item active">공지사항</a>
+				  <a href="<%=cp%>/user/event/list" class="list-group-item">이벤트</a>
+			  </div>
+			  
+			</div>
+		    </div>
+		    <div class="col-sm-10">
+			<div>
 			<div class="panel panel-default">
+			<div class="panel-heading">
+      			<a href="<%=cp%>/user/main" style="color:black;"><span class="glyphicon glyphicon-home"></span></a>&nbsp;
+		        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+		        <a href="<%=cp%>/user/notice/list" style="color:black;">소식</a>&nbsp;
+		        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+		        <a href="<%=cp%>/user/notice/list" style="color:black;">공지사항</a>&nbsp;
+        		</div>
 				<div class="panel-body">
+				
 					<table
 							style="width: 100%; margin: 5px auto 0px; border-spacing: 0px;">
 							<tr height="10">
@@ -59,6 +79,8 @@
 								</td>
 							</tr>
 						</table>
+					</div>
+					</div>
 					</div>
 				</div>
 			</div>

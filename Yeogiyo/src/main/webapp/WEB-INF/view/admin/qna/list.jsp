@@ -17,8 +17,28 @@ function searchList() {
 		<div class="page-header">
 		    <h1><span class="glyphicon glyphicon-question-sign"></span>&nbsp;<b>Q&amp;A</b></h1>      
 		</div>
+		<div class="row">
+		    <div class="col-sm-2">
+		      <div class="panel panel-default">
+			  <div class="panel-heading" style="height: 50px; font-size: 25px;"><b>고객센터</b></div>
+			  
+			  <div class="list-group">
+				  <a href="<%=cp%>/user/faq/list" class="list-group-item">FAQ</a>
+				  <a href="<%=cp%>/user/qna/list" class="list-group-item active">Q&amp;A</a>
+			  </div>
+			  
+			</div>
+		    </div>
+		    <div class="col-sm-10">
 		<div style="margin-top: 0">
 			<div class="panel panel-default">
+			<div class="panel-heading">
+      			<a href="<%=cp%>/user/main" style="color:black;"><span class="glyphicon glyphicon-home"></span></a>&nbsp;
+		        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+		        <a href="<%=cp%>/user/faq/list" style="color:black;">고객센터</a>&nbsp;
+		        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+		        <a href="<%=cp%>/user/qna/list" style="color:black;">Q&amp;A</a>&nbsp;
+        		</div>
 				<div class="panel-body">
 					<table style="width: 100%; margin: 5px auto 0px; border-spacing: 0px;">
 							<tr height="10">
@@ -104,3 +124,5 @@ function searchList() {
 			</div>
 		</div>
 	</div>
+	</div>
+</div>	

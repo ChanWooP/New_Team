@@ -17,8 +17,28 @@ function searchList() {
 		<div class="page-header">
 		    <h1><span class="glyphicon glyphicon-edit"></span>&nbsp;<b>신고 리뷰</b></h1>      
 		</div>
+		<div class="row">
+		<div class="col-sm-2">
+	      <div class="panel panel-default">
+		  <div class="panel-heading" style="height: 50px; font-size: 25px;"><b>커뮤니티</b></div>
+		  
+		  <div class="list-group">
+			  <a href="<%=cp%>/admin/bbs/list" class="list-group-item">자유게시판</a>
+			  <a href="<%=cp%>/admin/report/list" class="list-group-item active">신고 리뷰</a>
+		  </div>
+		  
+		</div>
+	    </div>
+	    <div class="col-sm-10">
 		<div style="margin-top: 0">
 			<div class="panel panel-default">
+			<div class="panel-heading">
+      			<a href="<%=cp%>/admin/main" style="color:black;"><span class="glyphicon glyphicon-home"></span></a>&nbsp;
+		        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+		        <a href="<%=cp%>/admin/bbs/list" style="color:black;">커뮤니티</a>&nbsp;
+		        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+		        <a href="<%=cp%>/admin/report/list" style="color:black;">신고 리뷰</a>&nbsp;
+        		</div>
 				<div class="panel-body">
 					<table style="width: 100%; margin: 5px auto 0px; border-spacing: 0px;">
 							<tr height="10">
@@ -90,3 +110,5 @@ function searchList() {
 			</div>
 		</div>
 	</div>
+	</div>
+</div>	

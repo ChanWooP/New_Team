@@ -73,9 +73,28 @@ $(function() {
 		<div class="page-header">
 		    <h1><span class="glyphicon glyphicon-info-sign"></span>&nbsp;<b>FAQ</b></h1>      
 		</div>
-
+		<div class="row">
+		    <div class="col-sm-2">
+		      <div class="panel panel-default">
+			  <div class="panel-heading" style="height: 50px; font-size: 25px;"><b>고객센터</b></div>
+			  
+			  <div class="list-group">
+				  <a href="<%=cp%>/admin/faq/list" class="list-group-item active">FAQ</a>
+				  <a href="<%=cp%>/admin/qna/list" class="list-group-item">Q&amp;A</a>
+			  </div>
+			  
+			</div>
+		    </div>
+		<div class="col-sm-10">
 		<div>
 			<div class="panel panel-default">
+				<div class="panel-heading">
+	      			<a href="<%=cp%>/admin/main" style="color:black;"><span class="glyphicon glyphicon-home"></span></a>&nbsp;
+			        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+			        <a href="<%=cp%>/admin/faq/list" style="color:black;">고객센터</a>&nbsp;
+			        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+			        <a href="<%=cp%>/admin/faq/list" style="color:black;">FAQ</a>&nbsp;
+       			</div>
 				<div class="panel-body">
 					<table style="  border-collapse: separate; border-spacing: 0 5px;">
 						<tbody>
@@ -83,7 +102,7 @@ $(function() {
 							<tr class="tr${dto.faqNum }">
 								<td>
 								<c:if test="${sessionScope.member.enabled==3}">
-									<button type="button" class="btn btn-default faqTitle" style="width:900px; height: 50px; font-size: 15px;">
+									<button type="button" class="btn btn-default faqTitle" style="width:700px; height: 50px; font-size: 15px;">
 										<div align="left">
 											${dto.faqTitle }
 										</div>
@@ -106,6 +125,12 @@ $(function() {
 						</c:forEach>	
 						</tbody>
 					</table>
+					<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+						<tr height="35">
+							<td align="center">${dataCount!=0 ? paging : "등록된 게시물이 없습니다." }
+							</td>
+						</tr>
+					</table>
 					<div style="margin-top:20px;">
 					<c:if test="${sessionScope.member.enabled==3 }">
 					<button type="button" class="btn btn-default btn-sm" 
@@ -118,4 +143,5 @@ $(function() {
 		</div>
 	</div>
 </div>
-
+</div>
+</div>

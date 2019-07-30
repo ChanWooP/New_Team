@@ -11,10 +11,20 @@
 		VALUES(#{faqNum}, #{faqTitle}, #{faqContent})
 	</insert>
 	
-	<select id="listFaq" resultType="com.sp.user.faq.Faq">
-		SELECT faqNum, faqTitle, faqContent
-		FROM faq
-		ORDER BY faqNum DESC
+	<select id="dataCount" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM faq
+	</select>
+	
+	<select id="listFaq" parameterType="map" resultType="com.sp.user.faq.Faq">
+		SELECT * FROM (
+        SELECT ROWNUM rnum, tb.* FROM (
+             SELECT faqNum, faqTitle, faqContent
+                FROM faq
+                ORDER BY faqNum DESC
+<![CDATA[
+	        ) tb WHERE ROWNUM <= ${end}
+	    ) WHERE rnum >= #{start}
+]]>
 	</select>
 	<select id="readFaq" parameterType="Integer" resultType="com.sp.user.faq.Faq">
 		SELECT faqNum, faqTitle, faqContent

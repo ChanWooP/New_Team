@@ -97,6 +97,7 @@
 	border: solid 1px #3B1E1E;
 	display: inline-block;
 	color: #3B1E1E;
+	cursor: pointer;
 }
 
 .building-iconBox:hover {
@@ -240,43 +241,43 @@
 							</div>
 							<div>캠핑장</div>
 						</div>
-						<input type="hidden" id="hotelType" value="">
+						<input type="text" id="hotelType" name="hotelType" readonly="readonly" value="${sessionScope.basicInfo.hotelType}">
 					</div>
 					
 					<div class="small-contents-box">
 						<div class="small-title">숙소 크기</div>
-						<input type="text" class="small-form" name="hotelSize">㎡
+						<input type="text" class="small-form" name="hotelSize" value="${sessionScope.basicInfo.hotelSize}">㎡
 					</div>
 				</div>
 				
 				<div class="big-contents-box">
 					<div class="big-title">체크인 시간</div>
 					<div>체크인 시간을 입력해주세요.(00:00)</div>
-					<input type="text" class="post-form" name="checkIn">
+					<input type="text" class="post-form" name="checkIn" value="${sessionScope.basicInfo.checkIn}">
 				</div>
 				
 				<div class="big-contents-box">
 					<div class="big-title">체크아웃 시간</div>
 					<div>체크아웃 시간을 입력해주세요.(00:00)</div>
-					<input type="text" class="post-form" name="checkOut">
+					<input type="text" class="post-form" name="checkOut" value="${sessionScope.basicInfo.checkOut}">
 				</div>
 
 				<div class="big-contents-box">
 					<div class="big-title ">전화번호</div>
 					<div>숙소에 연락하기위한 번호를 알려주세요.(010-0000-0000)</div>
-					<input type="text" class="post-form" name="hotelTel">
+					<input type="text" class="post-form" name="hotelTel" value="${sessionScope.basicInfo.hotelTel}">
 				</div>
 				
 				<div class="big-contents-box">
-					<div class="big-title ">전화번호</div>
+					<div class="big-title ">호텔 등급</div>
 					<div>호텔이 몇성급인지 알려주세요.</div>
-					<input type="text" class="post-form" name="grade">
+					<input type="text" class="post-form" name="grade" value="${sessionScope.basicInfo.grade}">
 				</div>
 				
 				<div class="big-contents-box">
 					<div class="big-title ">사업자번호</div>
 					<div>사업자번호를 입력해주세요</div>
-					<input type="text" class="post-form" name="businessNum">
+					<input type="text" class="post-form" name="businessNum" value="${sessionScope.basicInfo.businessNum}">
 				</div>
 
 				
@@ -385,68 +386,133 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
+	<script type="text/javascript">	
+	function sessionHotelType(){
+		var f = document.getElementById("hotelType");
+		if(!f){
+			if(f=="모텔"){
+				motelClick();
+				alert("asdfsadf");
+			}
+			else if(f=="호텔"){
+				hotelClick();
+			}
+			else if(f=="홈스테이"){
+				homeClick();
+			}
+			else if(f=="캠핑장"){
+				campClick();
+			}
+		}
+	}
 	
 	function motelClick(){
-		var f=document.getElementById("hotelType");
-		f.value="모텔";
-		
 		var iconBox=document.getElementById("motel");
 		
-		var otherBox=document.querySelectorAll(".building-iconBox-activated");
-		
-		if(otherBox[0]){
-			return;
-		} else if(iconBox.classList.contains("building-iconBox-activated")){
+		if(iconBox.classList.contains("building-iconBox-activated")){
 			iconBox.classList.remove("building-iconBox-activated");
-		} else if(!iconBox.classList.contains("building-iconBox-activated")){
+			
+			var f=document.getElementById("hotelType");
+			f.value=null;
+			
+		} else{
 			iconBox.classList.add("building-iconBox-activated");
+			
+			iconBox=document.getElementById("hotel");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("home");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("camp");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value="모텔";
 		}
 		
 		return;
 	}
 	
-	function hotelClick(){
-		var f=document.getElementById("hotelType");
-		f.value="호텔";
-		
+	function hotelClick(){		
 		var iconBox=document.getElementById("hotel");
-		
 		
 		if(iconBox.classList.contains("building-iconBox-activated")){
 			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value=null;
+			
 		} else{
 			iconBox.classList.add("building-iconBox-activated");
+			
+			iconBox=document.getElementById("motel");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("home");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("camp");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value="호텔";
 		}
 		
 		return;
 	}
 	
 	function homeClick(){
-		var f=document.getElementById("hotelType");
-		f.value="홈스테이";
-		
 		var iconBox=document.getElementById("home");
 		
 		if(iconBox.classList.contains("building-iconBox-activated")){
 			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value=null;
+
 		} else{
 			iconBox.classList.add("building-iconBox-activated");
+			
+			iconBox=document.getElementById("hotel");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("motel");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("camp");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value="홈스테이";
 		}
 		
 		return;
 	}
 	
 	function campClick(){
-		var f=document.getElementById("hotelType");
-		f.value="캠핑장";
-		
 		var iconBox=document.getElementById("camp");
 		
 		if(iconBox.classList.contains("building-iconBox-activated")){
 			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value=null;
+			
 		} else{
 			iconBox.classList.add("building-iconBox-activated");
+			
+			iconBox=document.getElementById("hotel");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("home");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			iconBox=document.getElementById("motel");
+			iconBox.classList.remove("building-iconBox-activated");
+			
+			var f=document.getElementById("hotelType");
+			f.value="캠핑장";
 		}
 		
 		return;
@@ -499,6 +565,12 @@
 		if(!s) {
 			alert("사업자번호를 입력해주세요");
 			f.businessNum.focus();
+			return;
+		}
+		
+		if(!f.hotelType){
+			alert("호텔 종류를 선택해주세요");
+			f.hotelType.focus();
 			return;
 		}
 		

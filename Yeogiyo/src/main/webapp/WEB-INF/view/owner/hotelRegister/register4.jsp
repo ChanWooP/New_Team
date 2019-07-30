@@ -213,7 +213,8 @@
 					<div class="small-contents-box">
 						<div class="small-title">추천 사항</div>
 						<div class="description">자주 검색하는 시설/서비스</div>
-							<select name="자주 검색하는 시설/서비스">
+							<select name="자주 검색하는 시설/서비스" class="selectForm">
+								<option value="none">선택 안 함</option>
 								<option value="에어컨">에어컨</option>
 								<option value="헤어드라이어">헤어드라이어</option>
 								<option value="다리미">다리미</option>
@@ -226,21 +227,26 @@
 							</select>
 							
 							<!-- 유료무료 선택에 따라서 가격 입력 폼 생기거나 사라지게 만들기 -->
+							<!-- 선택 안 함에서 다른 걸로 바뀌면 아래 폼 나오도록 -->
 							<select name="is-price">
 								<option value="유료">유료</option>
 								<option value="무료">무료</option>
 							</select>
+							
+							가격: <input type="text">
 					</div>
 					
 					<div class="small-contents-box">
 						<div class="small-title">인터넷</div>
 						<div class="description">여행객들이 이용할 수 있는 인터넷 시설</div>
-							<select name="인터넷">
+							<select name="인터넷" class="selectForm">
+									<option value="">선택 안 함</option>
 								<option value="Wi-Fi">유료  Wi-Fi</option>
 								<option value="인터넷">유료 인터넷</option>
 							</select>
 							
 							<select name="is-price">
+								<option value="none">선택 안 함</option>
 								<option value="유료">유료</option>
 								<option value="무료">무료</option>
 							</select>
@@ -250,7 +256,8 @@
 						<div class="small-title">접근/출입 편의</div>
 						<div class="description">여행객들의 편리한 투숙을 위한 시설/서비스</div>
 						
-							<select name="접근/출입 편의">
+							<select name="접근/출입 편의" class="selectForm">
+								<option value="none">선택 안 함</option>
 								<option value="전용 출입구">전용 출입구</option>
 								<option value="건물 내 엘리베이터">건물 내 엘리베이터</option>
 								<option value="휠체어 접근 가능">휠체어 접근 가능</option>
@@ -267,7 +274,8 @@
 					<div class="small-contents-box">
 						<div class="small-title">주방</div>
 						<div class="description">여행객들이 편안하게 먹고 마시는 데 이용할 수 있는 편의 시설 및 용품</div>
-							<select name="주방">
+							<select name="주방" class="selectForm">
+								<option value="none">선택 안 함</option>
 								<option value="커피/티 메이커">커피/티 메이커</option>
 								<option value="조식">조식</option>
 								<option value="차">차</option>
@@ -284,7 +292,8 @@
 						<div class="small-title">편의 시설/서비스</div>
 						<div class="description">여행객들이 검색하고 더 많은 예약을 받을 수 있는 기회도 증가시킬 수 있는 시설/서비스</div>
 						
-							<select name="편의 시설/서비스">
+							<select name="편의 시설/서비스" class="selectForm">
+								<option value="none">선택 안 함</option>
 								<option value="책상/업무 공간">책상/업무 공간</option>
 								<option value="개인전용 수영장">개인전용 수영장</option>
 								<option value="난방">난방</option>
@@ -309,7 +318,8 @@
 					<div class="small-contents-box">
 						<div class="small-title">안전시설</div>
 						<div class="description">여행객들의 투숙 기간 동안 필요한 숙소 안전시설</div>
-							<select name="안전시설">
+							<select name="안전시설" class="selectForm">
+								<option value="none">선택 안 함</option>
 								<option value="화재 탐지기">화재 탐지기</option>
 								<option value="일산화탐소 탐지기">일산화탐소 탐지기</option>
 								<option value="구급상자">구급상자</option>
@@ -325,7 +335,8 @@
 					<div class="small-contents-box">
 						<div class="small-title">기타</div>
 						<div class="description">특정 여행객에게 필요할 수도 있는 기타 사항</div>
-							<select name="기타">
+							<select name="기타" class="selectForm">
+								<option value="none">선택 안 함</option>
 								<option value="흡연 가능">흡연 가능</option>
 								<option value="반려동물 동반 가능">반려동물 동반 가능</option>
 							</select>
@@ -362,6 +373,64 @@
 			f.action="<%=cp%>/owner/hotelRegister/register4";
 			f.submit();
 		}
+		
+		var name = document.getElementsByName("is-price")
+		name[1].style.visibility ='hidden';
+		name[2].style.visibility ='hidden';
+		name[3].style.visibility ='hidden';
+		name[4].style.visibility ='hidden';
+		name[5].style.visibility ='hidden';
+		name[6].style.visibility ='hidden';
+		
+		// 작동 안 함 으떠케 만들어야할지 모르겠덩 ㅎㅎ
+		function isPrice(){
+			var select = document.getElementsByClassName("selectForm")		
+			var name = document.getElementsByName("is-price")
+		
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[0].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[0].hide();
+			}
+			
+			
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[1].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[1].hide();
+			}
+			
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[2].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[2].hide();
+			}
+			
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[3].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[3].hide();
+			}
+			
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[4].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[4].hide();
+			}
+			
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[5].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[5].hide();
+			}
+			
+			if(select.options[select.selectedIndex].value != 'none'){
+			name[6].show();
+			} else if(select.options[select.selectedIndex].value == 'none'){
+			name[6].hide();
+			}
+		}
+			
 	</script>
 </body>
 </html>

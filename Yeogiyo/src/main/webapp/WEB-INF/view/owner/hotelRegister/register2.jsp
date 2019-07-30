@@ -158,7 +158,7 @@
 					<div class="big-title">위치</div>
 					<div>
 						<input type="text" name="zip" id="zip" readonly="readonly"
-							class="post-form">
+							class="post-form" onchange="">
 						<button type="button" onclick="daumPostcode();"
 							class="submit-btn">우편번호</button>
 					</div>
@@ -173,14 +173,14 @@
 					</div>
 					
 					<div>
-						<input type="hidden" name="latiude" value="">
-						<input type="hidden" name="longitude" value="">
+						<input type="hidden" name="latitude" id="latitude">
+						<input type="hidden" name="longitude" id="longitude">
 					</div>
 					<div id="map" style="width: 782px; height: 400px;"></div>
 				</div>
 
 				<div class="btn-box">
-					<button type="button" class="pre-btn" id="next-btn">이전</button>
+					<button type="button" class="pre-btn" id="pre-btn">이전</button>
 					<button type="button" class="next-btn" id="next-btn" onclick="register2Ok();">다음</button>
 				</div>
 			</form>
@@ -191,6 +191,57 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=930c81a75d189ec6485debe0c7598cc9&libraries=services"></script>
 	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+	
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		function pointMap(){
+			var addr1 = document.getElementById("addr1").value;	
+			
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch(addr1, function(result, status) {
+				// 정상적으로 검색이 완료됐으면 
+				if (status === kakao.maps.services.Status.OK) {
+
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					
+					// hiddenForm 만들어서 value로 설정해주기
+					var latitude = document.getElementById("latitude");
+					latitude.value= result[0].y;
+					
+					var longitude = document.getElementById("longitude");	
+					longitude.value = result[0].x;
+
+					// 결과값으로 받은 위치를 마커로 표시합니다
+					var marker = new kakao.maps.Marker({
+						map : map,
+						position : coords
+					});
+
+					// 인포윈도우로 장소에 대한 설명을 표시합니다
+					var infowindow = new kakao.maps.InfoWindow(
+							{
+								content : '<div style="width:150px;text-align:center;padding:6px 0;">'+addr1+'</div>'
+							});
+					infowindow.open(map, marker);
+
+					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+					map.panTo(coords);
+				}
+			});
+		}
+	
+		
+		
 		function daumPostcode() {
 			new daum.Postcode({
 				oncomplete : function(data) {
@@ -231,49 +282,13 @@
 
 					// 커서를 상세주소 필드로 이동한다.
 					document.getElementById('addr2').focus();
+					
+					pointMap();
 				}
 			}).open();
 		}
 		
-		
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
 
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울 강남구 강남대로 238', function(result, status) {
-							// 정상적으로 검색이 완료됐으면 
-							if (status === kakao.maps.services.Status.OK) {
-
-								var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-								// hiddenForm 만들어서 value로 설정해주기
-
-								// 결과값으로 받은 위치를 마커로 표시합니다
-								var marker = new kakao.maps.Marker({
-									map : map,
-									position : coords
-								});
-
-								// 인포윈도우로 장소에 대한 설명을 표시합니다
-								var infowindow = new kakao.maps.InfoWindow(
-										{
-											content : '<div style="width:150px;text-align:center;padding:6px 0;">'+"서울 강남구 강남대로 238"+'</div>'
-										});
-								infowindow.open(map, marker);
-
-								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-								map.setCenter(coords);
-							}
-						});
 		
 		function register2Ok() {
 			var f=document.register2Form;
@@ -293,6 +308,13 @@
 			
 			f.action="<%=cp%>/owner/hotelRegister/register2";
 			f.submit();
+		}
+		
+		var prev=document.getElementById("pre-btn");
+		prev.addEventListener("click",back)
+		
+		function back(){
+			window.location.href="<%=cp%>/owner/hotelRegister/register1";
 		}
 	</script>
 </body>

@@ -190,7 +190,7 @@
 		</div>
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register6" method="post"
+			<form action="<%=cp%>/owner/hotelRegister/register5" method="post"
 				name="registerForm">
 				<div class="title-box">
 					<div class="title">숙소 사진 업로드 및 관리하기</div>

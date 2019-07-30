@@ -58,6 +58,10 @@ function detailLoad(hotelName, checkinday, checkoutday, peoplecount){
 	margin-bottom: 10px;
 }
 
+.showHotelList:hover{
+	background-color:#E9F0F4;
+}
+
 .showHotelList td {
 	vertical-align: top;
 	padding: 5px;

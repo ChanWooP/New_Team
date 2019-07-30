@@ -35,7 +35,15 @@ public class Hotel {
 	private String reviewTitle;
 	private String reviewContent;
 	private int score;
-		
+	private double scores;
+	
+	
+	public double getScores() {
+		return scores;
+	}
+	public void setScores(double scores) {
+		this.scores = scores;
+	}
 	public int getListNum() {
 		return listNum;
 	}

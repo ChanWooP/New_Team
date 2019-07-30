@@ -6,8 +6,11 @@
 	<select id="hotelList" parameterType="map" resultType="com.sp.user.hotel.Hotel">
 		SELECT * FROM (
       	  SELECT ROWNUM rnum, tb.* FROM (
-           	 SELECT h.hotelId, hotelname, detail, addr1, addr2, mainphoto
+           	 SELECT h.hotelId, hotelname, detail, addr1, addr2, mainphoto, NVL(a.score,0) score, NVL(a.score,0) scores
                 FROM hotel h JOIN hoteldetail d ON h.hotelId = d.hotelId
+                 LEFT OUTER JOIN (
+                    SELECT hotelId, ROUND(AVG(score),1) score FROM review GROUP BY hotelId
+                )a ON a.hotelId = h.hotelId
 <![CDATA[			
 					WHERE INSTR(addr1,#{addr1})>=1    
 	        ) tb WHERE ROWNUM <= #{end}

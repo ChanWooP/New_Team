@@ -52,11 +52,11 @@
 	margin-left: -1px;
 	margin-right: -1px;
 	vertical-align: middle;
-	border-left: none;
-	border-right: none;
+	border-left: null;
+	border-right: null;
 	border-top: gold solid 1px;
 	border-bottom: gold solid 1px;
-	outline: none;
+	outline: null;
 	text-align: center;
 }
 
@@ -169,7 +169,7 @@
 	border-radius: 2px;
 }
 
-.description-form{
+.description-form {
 	width: 782px;
 	height: 100px;
 }
@@ -202,19 +202,22 @@
 
 		<div class="contents-container">
 			<form action="<%=cp%>/owner/hotelRegister/register4" method="post" name="register4Form">
+			${sessionScope.convenient.convenient[0]}
+			<!-- https://okky.kr/article/197821 -->
 				<div class="title-box">
 					<div class="title">숙소 제공 편의 시설/서비스 관리하기</div>
 					<div class="description">숙소에서 제공하는 편의 시설/서비스를 설정하세요.</div>
 				</div>
-				
+
 				<div class="big-contents-box">
-					<div class="big-title ">편의 시설 등록</div>
+					<div class="big-title ">무료 편의 시설 및 서비스 등록</div>
 					<br>
 					<div class="small-contents-box">
 						<div class="small-title">추천 사항</div>
 						<div class="description">자주 검색하는 시설/서비스</div>
-							<select name="자주 검색하는 시설/서비스" class="selectForm">
-								<option value="none">선택 안 함</option>
+						<div>
+							<select name="recommendation" class="selectForm">
+								<option value="">선택 안 함</option>
 								<option value="에어컨">에어컨</option>
 								<option value="헤어드라이어">헤어드라이어</option>
 								<option value="다리미">다리미</option>
@@ -225,75 +228,56 @@
 								<option value="리넨">리넨</option>
 								<option value="타월">타월</option>
 							</select>
-							
-							<!-- 유료무료 선택에 따라서 가격 입력 폼 생기거나 사라지게 만들기 -->
-							<!-- 선택 안 함에서 다른 걸로 바뀌면 아래 폼 나오도록 -->
-							<select name="is-price">
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>
-							
-							가격: <input type="text">
+						</div>
 					</div>
-					
+
 					<div class="small-contents-box">
 						<div class="small-title">인터넷</div>
 						<div class="description">여행객들이 이용할 수 있는 인터넷 시설</div>
-							<select name="인터넷" class="selectForm">
-									<option value="">선택 안 함</option>
-								<option value="Wi-Fi">유료  Wi-Fi</option>
-								<option value="인터넷">유료 인터넷</option>
+						<div>
+							<select name="internet" class="selectForm">
+								<option value="">선택 안 함</option>
+								<option value="Wi-Fi">Wi-Fi</option>
+								<option value="인터넷">인터넷</option>
 							</select>
-							
-							<select name="is-price">
-								<option value="none">선택 안 함</option>
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>
+						</div>
 					</div>
-					
+
 					<div class="small-contents-box">
 						<div class="small-title">접근/출입 편의</div>
 						<div class="description">여행객들의 편리한 투숙을 위한 시설/서비스</div>
-						
-							<select name="접근/출입 편의" class="selectForm">
-								<option value="none">선택 안 함</option>
+						<div>
+							<select name="access" class="selectForm">
+								<option value="">선택 안 함</option>
 								<option value="전용 출입구">전용 출입구</option>
 								<option value="건물 내 엘리베이터">건물 내 엘리베이터</option>
 								<option value="휠체어 접근 가능">휠체어 접근 가능</option>
 								<option value="버저/무선 인터폰">버저/무선 인터폰</option>
-								<option value="도어맨">도어맨</option>
 							</select>
-							
-							<select name="is-price">
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>							
+						</div>
 					</div>
-					
+
 					<div class="small-contents-box">
 						<div class="small-title">주방</div>
-						<div class="description">여행객들이 편안하게 먹고 마시는 데 이용할 수 있는 편의 시설 및 용품</div>
-							<select name="주방" class="selectForm">
-								<option value="none">선택 안 함</option>
+						<div class="description">여행객들이 편안하게 먹고 마시는 데 이용할 수 있는 편의 시설
+							및 용품</div>
+						<div>
+							<select name="kitchen" class="selectForm">
+								<option value="">선택 안 함</option>
 								<option value="커피/티 메이커">커피/티 메이커</option>
 								<option value="조식">조식</option>
 								<option value="차">차</option>
 							</select>
-							
-							<select name="is-price">
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>	
-
+						</div>
 					</div>
-					
+
 					<div class="small-contents-box">
 						<div class="small-title">편의 시설/서비스</div>
-						<div class="description">여행객들이 검색하고 더 많은 예약을 받을 수 있는 기회도 증가시킬 수 있는 시설/서비스</div>
-						
-							<select name="편의 시설/서비스" class="selectForm">
-								<option value="none">선택 안 함</option>
+						<div class="description">여행객들이 검색하고 더 많은 예약을 받을 수 있는 기회도
+							증가시킬 수 있는 시설/서비스</div>
+						<div>
+							<select name="convenient" class="selectForm">
+								<option value="">선택 안 함</option>
 								<option value="책상/업무 공간">책상/업무 공간</option>
 								<option value="개인전용 수영장">개인전용 수영장</option>
 								<option value="난방">난방</option>
@@ -307,60 +291,77 @@
 								<option value="무료 주차">무료 주차</option>
 								<option value="온수 욕조">온수 욕조</option>
 							</select>
-							
-							<select name="is-price">
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>
-		
+						</div>
 					</div>
-					
+
 					<div class="small-contents-box">
 						<div class="small-title">안전시설</div>
 						<div class="description">여행객들의 투숙 기간 동안 필요한 숙소 안전시설</div>
-							<select name="안전시설" class="selectForm">
-								<option value="none">선택 안 함</option>
+						
+						<div>
+							<select name="safety" class="selectForm">
+								<option value="">선택 안 함</option>
 								<option value="화재 탐지기">화재 탐지기</option>
 								<option value="일산화탐소 탐지기">일산화탐소 탐지기</option>
 								<option value="구급상자">구급상자</option>
 								<option value="소화기">소화기</option>
 							</select>
-						
-							<select name="is-price">
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>
+						</div>
 					</div>
-					
+
 					<div class="small-contents-box">
 						<div class="small-title">기타</div>
 						<div class="description">특정 여행객에게 필요할 수도 있는 기타 사항</div>
-							<select name="기타" class="selectForm">
-								<option value="none">선택 안 함</option>
+						<div>
+							<select name="others" class="selectForm">
+								<option value="">선택 안 함</option>
 								<option value="흡연 가능">흡연 가능</option>
 								<option value="반려동물 동반 가능">반려동물 동반 가능</option>
 							</select>
-						
-							<select name="is-price">
-								<option value="유료">유료</option>
-								<option value="무료">무료</option>
-							</select>
-							
+						</div>
 					</div>
 				</div>
 
+				<div class="big-contents-box">
+					<div class="big-title ">유료 편의 시설 및 서비스 등록</div>
+					<br>
+					<div class="small-contents-box">
+					<div class="small-title">추천 사항</div>
+					<div class="description">자주 검색하는 시설/서비스</div>
+					  <div>
+						<select name="notFree" class="selectForm">
+							<option value="">선택 안 함</option>
+							<option value="에어컨">에어컨</option>
+							<option value="헤어드라이어">헤어드라이어</option>
+							<option value="다리미">다리미</option>
+							<option value="TV">TV</option>
+							<option value="케이블 TV">케이블 TV</option>
+							<option value="세탁기">세탁기</option>
+							<option value="샴푸">샴푸</option>
+							<option value="리넨">리넨</option>
+							<option value="타월">타월</option>
+						</select>
+						
+						<input type="text" name="conPrice" class="conPriceCls" placeholder="가격" style="display: none;">
+					</div>
+				</div>
+			</div>
+
 				<div class="btn-box">
-					<button type="button" class="pre-btn" id="next-btn">이전</button>
-					<button type="submit" class="next-btn" id="next-btn">다음</button>
+					<button type="button" class="pre-btn" onclick="back();">이전</button>
+					<button type="submit" class="next-btn">다음</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
+
+
 	<script>
 		// DOM으로 option 유료로 선택된 select는 hotelAddOpt에 저장 option이 무료인 select는 convenient에 저장 
-		// convenient에 opentime closetime 그냥 삭제해버리기
+		// convenient에 opentime closetime 삭제해버리기
 		// select의 name을 conType으로 저장하기
+		// 아래에 검사하는 부분 이미 만든 폼에서 select를 선택 안 함으로 바꿨을 때 폼 사라지도록?
 		function register4Ok() {
 			var f=document.register4Form;
 			var s=f.convenientName.value;
@@ -369,68 +370,210 @@
 				f.zip.focus();
 				return;
 			}
+			s=f.document.
 			
 			f.action="<%=cp%>/owner/hotelRegister/register4";
 			f.submit();
 		}
 		
-		var name = document.getElementsByName("is-price")
-		name[1].style.visibility ='hidden';
-		name[2].style.visibility ='hidden';
-		name[3].style.visibility ='hidden';
-		name[4].style.visibility ='hidden';
-		name[5].style.visibility ='hidden';
-		name[6].style.visibility ='hidden';
-		
-		// 작동 안 함 으떠케 만들어야할지 모르겠덩 ㅎㅎ
-		function isPrice(){
-			var select = document.getElementsByClassName("selectForm")		
-			var name = document.getElementsByName("is-price")
-		
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[0].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[0].hide();
+		function back(){
+			window.location.href="<%=cp%>/owner/hotelRegister/register3";
 			}
+
+			$(function() {
+				$("form[name=register4Form] select[name=recommendation]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+					
+					// this.selected가 false면 지우도록?
+					
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=recommendation]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
 			
+			$(function() {
+				$("form[name=register4Form] select[name=internet]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=internet]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
+
 			
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[1].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[1].hide();
-			}
+			$(function() {
+				$("form[name=register4Form] select[name=access]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=access]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
+
 			
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[2].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[2].hide();
-			}
+			$(function() {
+				$("form[name=register4Form] select[name=kitchen]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=kitchen]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
+
 			
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[3].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[3].hide();
-			}
+			$(function() {
+				$("form[name=register4Form] select[name=convenient]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=convenient]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
+
 			
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[4].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[4].hide();
-			}
+			$(function() {
+				$("form[name=register4Form] select[name=safety]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=safety]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
+
 			
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[5].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[5].hide();
-			}
+			$(function() {
+				$("form[name=register4Form] select[name=others]").change(
+				function() {
+					var $top = $(this).parent().parent();
+					var $div = $(this).parent();
+
+					if ($(this).val()) {
+						var f = false;
+						$top.find("select[name=others]").each(function() {
+						if (!$(this).val()) {
+							f = true;
+							return false;
+						}
+						});
+
+					if (!f)
+						$top.append($div.clone(true));
+					}
+				});
+
+			});
 			
-			if(select.options[select.selectedIndex].value != 'none'){
-			name[6].show();
-			} else if(select.options[select.selectedIndex].value == 'none'){
-			name[6].hide();
-			}
-		}
-			
-	</script>
+			$(function(){
+				$("form[name=register4Form] select[name=notFree]").change(function(){
+					var $top=$(this).parent().parent();
+					var $div=$(this).parent();
+					
+					if($(this).val()) {
+						
+						var f=false;
+						$top.find("select[name=notFree]").each(function(){
+							if(! $(this).val()) {
+								f=true;
+								return false;
+							}
+						});
+						
+						if(!f )
+							$top.append($div.clone(true));
+						
+					}
+				});
+				
+				$("form[name=register4Form] select[name=notFree]").change(function(){
+					var $div=$(this).parent();
+					
+					if($(this).val()) {
+						$div.find(".conPriceCls").show();
+					} else {
+						$div.find(".conPriceCls").hide();
+					}
+				});
+				
+			});
+
+		</script>
 </body>
 </html>

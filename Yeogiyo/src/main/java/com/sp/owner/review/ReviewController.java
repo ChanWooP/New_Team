@@ -118,7 +118,6 @@ public class ReviewController {
 			service.insertReport(map);
 		} catch (Exception e) {
 			msg = "신고가 실패하였습니다.";
-			e.printStackTrace();
 		}
 		query+="&msg="+URLEncoder.encode(msg, "utf-8");
 		return "redirect:/owner/review/list?"+query;

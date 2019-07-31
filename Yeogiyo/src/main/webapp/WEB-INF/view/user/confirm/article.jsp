@@ -7,7 +7,10 @@
 %>
 <script type="text/javascript">
 function deleteConfirm() {
-	var query="${query}&reservationNum=${dto.reservationNum}";
+	var query="${query}&reservationNum=${dto.reservationNum}&mode=${mode}";
+	<c:if test="${mode=='nomember'}">
+	query+="&userName=${dto.userName}&userEmail=${dto.userEmail}&userTel=${dto.userTel}";
+	</c:if>
 	var url="<%=cp%>/user/confirm/delete?"+query;
 	if(confirm("예약정보를 삭제하시겠습니까?")) {
 		location.href=url;
@@ -55,34 +58,30 @@ $(function() {
 			  	<table class="table">
 						<thead>
 							<tr>
-								<th width="150">예약자 아이디</th>
-								<th>${dto.userId }</th>
+								<th width="150">예약자 이름</th>
+								<th>${dto.userName }</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th width="150">예약자 이름</th>
-								<th>${dto.userName }</th>
-							</tr>
-							<tr>
 								<th width="150">예약자 전화번호</th>
-								<th>${dto.userTel }</th>
+								<td>${dto.userTel }</td>
 							</tr>
 							<tr>
 								<th width="150">예약자 이메일</th>
-								<th>${dto.userEmail }</th>
+								<td>${dto.userEmail }</td>
 							</tr>
 							<tr>
 								<th width="150">인원수</th>
-								<th>${dto.peopleCount }</th>
+								<td>${dto.peopleCount }</td>
 							</tr>
 							<tr>
 								<th width="150">예약 일자</th>
-								<th>${dto.reservated }</th>
+								<td>${dto.reservated }</td>
 							</tr>
 							<tr>
 								<th width="150">예약 날짜</th>
-								<th>${dto.checkinDay } ~ ${dto.checkoutDay }</th>
+								<td>${dto.checkinDay } ~ ${dto.checkoutDay }</td>
 							</tr>
 						</tbody>
 					</table>
@@ -91,6 +90,12 @@ $(function() {
 			<div class="panel panel-default">
 				<div class="panel-heading">예약 호텔 정보</div>
 				<div class="panel-body">
+				<div class="row">
+				
+					<div class="col-md-4">
+					<img src="<%=cp %>/uploads/hotelMain/${dto.mainPhoto}" class="img-thumbnail" alt="mainPhoto" width="400">
+					</div>
+					<div class="col-md-8">
 					<table class="table">
 						<thead>
 							<tr>
@@ -101,20 +106,20 @@ $(function() {
 						<tbody>
 							<tr>
 								<th width="150">호텔 유형</th>
-								<th>${dto.type }</th>
+								<td>${dto.type }</td>
 							</tr>
 							<tr>
 								<th width="150">호텔 전화번호</th>
-								<th>${dto.hotelTel }</th>
+								<td>${dto.hotelTel }</td>
 							</tr>
 							
 							<tr>
 								<th width="150">호텔 주소</th>
-								<th>${dto.addr1 }</th>
+								<td>${dto.addr1 }</td>
 							</tr>
 							<tr>
 								<th width="150">호텔 상세주소</th>
-								<th>${dto.addr2 }</th>
+								<td>${dto.addr2 }</td>
 							</tr>
 						</tbody>
 						<tfoot>
@@ -124,6 +129,8 @@ $(function() {
 							</tr>
 						</tfoot>
 					</table>
+					</div>
+					</div>
 				</div>
 				</div>
 					<table style="width: 100%; margin: 5px auto; border-spacing: 0px;">
@@ -133,6 +140,7 @@ $(function() {
 									onclick="deleteConfirm();">
 									예약 취소</button>
 							</td>
+							<c:if test="${not empty sessionScope.member }">
 							<td align="left" width="60" id="reserveReview" style="display: none;">
 								<button type="button" class="btn btn-default btn-sm" 
 									onclick="reviewCreated();">
@@ -144,6 +152,15 @@ $(function() {
 									예약 리스트
 								</button>
 							</td>
+							</c:if>
+							<c:if test="${empty sessionScope.member }">
+							<td align="right" width="60">
+								<button type="button" class="btn btn-default btn-sm"
+									onclick="javascript:location.href='<%=cp%>/';">
+									메인페이지
+								</button>
+							</td>
+							</c:if>
 						</tr>
 					</table>
 					

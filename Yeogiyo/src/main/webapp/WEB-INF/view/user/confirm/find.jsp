@@ -16,16 +16,12 @@
 <script type="text/javascript">
 function sendFind() {
 	var f=document.findForm;
-	var s="";
-	<c:if test="${mode=='findPwd'}">
-	
-	s=f.userName.value;
+	var s=f.userName.value;
 	if(!s) {
 		alert("이름을 입력하세요");
 		f.userName.focus();
 		return;
 	}
-	</c:if>
 	s=f.userEmail.value;
 	if(!s) {
 		alert("이메일을 입력하세요");
@@ -38,7 +34,7 @@ function sendFind() {
 		f.userTel.focus();
 		return;
 	}
-	f.action="<%=cp%>/user/mail/send";
+	f.action="<%=cp%>/user/confirm/send";
 	f.submit();
 }
 </script>
@@ -46,20 +42,9 @@ function sendFind() {
 <div class="container">
 	<div style="margin: 0px auto; padding-top: 120px; width: 400px;">
 		<div class="mainform">
-			<span style="font-weight: bold; font-size: 30px;">${title }</span>
+			<span style="font-weight: bold; font-size: 30px;">비회원 예약내역확인</span>
 		</div>
 		<form name="findForm" method="post">
-		<c:if test="${mode=='findPwd' }">
-			<div style="margin-top: 15px;">
-				<label>
-				<span style="font-weight: bold; font-size: 20px; ">아이디</span>
-				</label>
-				<div style="margin-top: 10px;">
-					<input type="text" name="userId" id="userId" tabindex="2"
-						class="logintext">
-				</div>
-			</div>
-		</c:if>	
 			<div style="margin-top: 15px;">
 				<label>
 				<span style="font-weight: bold; font-size: 20px; ">이름</span>
@@ -89,7 +74,7 @@ function sendFind() {
 			</div>
 			<div style="margin-top: 15px;">
 				<button type="button" onclick="sendFind()" class="btnconfirm">
-			    	<span style="font-weight: bold; font-size: 25px;">${title }</span>
+			    	<span style="font-weight: bold; font-size: 25px;">예매내역확인</span>
 			    </button>
 			</div>
 			

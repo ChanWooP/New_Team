@@ -1,72 +1,87 @@
 package com.sp.owner.hotel;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class Hotel {
 	// hotel 테이블
-	private String hotelId;	  //
-	private String hotelName; //
-	private int granted;	  //
+	private String hotelId;
+	private String hotelName;
+	private int granted;
 
-	// hoteladdopt 테이블		  
-	private int optNum;		  //
-	private String optName;	  //
-	private String optPrice;  //
+	// hoteladdopt 테이블
+	private int optNum;
+	private String optName;
+	private String optPrice;
 
 	// hoteldetail 테이블
-	private String detail;	  //
-	private String mainPhoto; //
-	private String addr1;	  //
-	private String addr2;	  //
-	private String postCode;  //
-	private String latitude;  
-	private String longitude; 
-	private String hotelSize; //
-	private String hotelTel;  //
+	private String detail;
+	private String mainPhoto;
+	private String addr1;
+	private String addr2;
+	private String postCode;
+	private String latitude;
+	private String longitude;
+	private String hotelSize;
+	private String hotelTel;
 	private String hotelCreated;
-	private String checkIn;  //
-	private String checkOut; //
-	private String businessNum;  //
-	private int grade;  //혹시 테이블에 grade 없나 확인해보고 없으면 추가하기
+	private String checkIn;
+	private String checkOut;
+	private String businessNum;
+	private int grade;
 
 	// hotelphoto 테이블
-	private int hotelPhotoNum;  //
-	private String hotelPhotoName;  //
+	private int hotelPhotoNum;
+	private String hotelPhotoName;
 
 	// hotelprepare 테이블
-	private int prepareNum;  //
-	private String prepareContent;  //
+	private int prepareNum;
+	private String prepareContent;
 
 	// hoteltype 테이블
-	private int typeNum;  //
-	private String type;  //
+	private int typeNum;
+	private String type;
 
 	// convenient 테이블
-	private int conNum;  //
-	private String conName;  //
-	private String conType;  //
-	private String conPrice; //conOpenTime, closeTime DB에서 삭제하기
+	private int conNum;
+	private String conName;
+	private String conType;
+	private String conPrice; // conOpenTime, closeTime DB에서 삭제하기
 
 	// room 테이블
-	private int roomNum;  //
-	private String roomName;  //
-	private int stair;  //
-	private String roomType;  //
-	private int maxPeople;  //
-	private String roomStatus; //default 처리 해주기
-	private int roomPrice;  //
-	private int extraPrice;  
+	private int roomNum;
+	private String roomName;
+	private int stair;
+	private String roomType;
+	private int maxPeople;
+	private String roomStatus; // default 처리 해주기
+	private int roomPrice;
+	private int extraPrice; // 까먹지 말고 방 추가 때 넣기
 
 	// roomDetail 테이블
-	private int roomDetailNum;  //
-	private String roomDetails;  //
+	private int roomDetailNum;
+	private String roomDetails;
 
 	// roomPhoto 테이블
-	private int roomPhotoNum;  //
-	private String roomPhotoName;  //
+	private int roomPhotoNum;
+	private String roomPhotoName;
 
+	// 배열들
+	// 위에 int로 준 optNum 같은 필드들 스프링에서 에러가 날 수 있으니 String으로 처리해주고 나중에 형변환시키기
 	// 이미지 업로드를 위한 MultipartFile 자료형
-	private MultipartFile[] upload;  //
+	private MultipartFile[] upload;
+
+	// register4에서 데이터를 받아오기 위한 필드들
+	private List<String> recommendation;
+	private List<String> internet;
+	private List<String> access;
+	private List<String> kitchen;
+	private List<String> convenient;
+	private List<String> safety;
+	private List<String> others;
+	private List<String> notFree;
+	private List<String> conPrices;
 
 	public String getHotelId() {
 		return hotelId;
@@ -300,14 +315,14 @@ public class Hotel {
 		this.conType = conType;
 	}
 
-	public String getconPrice() {
+	public String getConPrice() {
 		return conPrice;
 	}
 
-	public void setconPrice(String conPrice) {
+	public void setConPrice(String conPrice) {
 		this.conPrice = conPrice;
 	}
-	
+
 	public int getRoomNum() {
 		return roomNum;
 	}
@@ -410,6 +425,78 @@ public class Hotel {
 
 	public void setUpload(MultipartFile[] upload) {
 		this.upload = upload;
+	}
+
+	public List<String> getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(List<String> recommendation) {
+		this.recommendation = recommendation;
+	}
+
+	public List<String> getInternet() {
+		return internet;
+	}
+
+	public void setInternet(List<String> internet) {
+		this.internet = internet;
+	}
+
+	public List<String> getAccess() {
+		return access;
+	}
+
+	public void setAccess(List<String> access) {
+		this.access = access;
+	}
+
+	public List<String> getKitchen() {
+		return kitchen;
+	}
+
+	public void setKitchen(List<String> kitchen) {
+		this.kitchen = kitchen;
+	}
+
+	public List<String> getConvenient() {
+		return convenient;
+	}
+
+	public void setConvenient(List<String> convenient) {
+		this.convenient = convenient;
+	}
+
+	public List<String> getSafety() {
+		return safety;
+	}
+
+	public void setSafety(List<String> safety) {
+		this.safety = safety;
+	}
+
+	public List<String> getOthers() {
+		return others;
+	}
+
+	public void setOthers(List<String> others) {
+		this.others = others;
+	}
+
+	public List<String> getNotFree() {
+		return notFree;
+	}
+
+	public void setNotFree(List<String> notFree) {
+		this.notFree = notFree;
+	}
+
+	public List<String> getConPrices() {
+		return conPrices;
+	}
+
+	public void setConPrices(List<String> conPrices) {
+		this.conPrices = conPrices;
 	}
 
 }

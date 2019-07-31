@@ -148,7 +148,6 @@
 		</div>
 
 		<div class="contents-container">
-			${sessionScope.basicInfo}
 			<form method="post" name="register2Form">
 				<div class="title-box">
 					<div class="title">지도상의 숙소 위치 표시/설정하기</div>
@@ -157,24 +156,25 @@
 				<div class="big-contents-box">
 					<div class="big-title">위치</div>
 					<div>
-						<input type="text" name="zip" id="zip" readonly="readonly"
-							class="post-form" onchange="">
+						<input type="text" name="postCode" id="zip" readonly="readonly"
+							class="post-form" value="${sessionScope.location.postCode}">
 						<button type="button" onclick="daumPostcode();"
 							class="submit-btn">우편번호</button>
 					</div>
 
 					<div>
-						<input type="text" name="addr1" id="addr1" maxlength="50"
+						<input type="text" name="addr1" id="addr1" maxlength="50" value="${sessionScope.location.addr1}"
 							placeholder="기본 주소" readonly="readonly" class="post-form">
 					</div>
 
 					<div>
-						<input type="text" name="addr2" id="addr2" maxlength="50" placeholder="나머지 주소" class="post-form">
+						<input type="text" name="addr2" id="addr2" maxlength="50" value="${sessionScope.location.addr2}"
+						placeholder="나머지 주소" class="post-form">
 					</div>
 					
 					<div>
-						<input type="hidden" name="latitude" id="latitude">
-						<input type="hidden" name="longitude" id="longitude">
+						<input type="hidden" name="latitude" id="latitude" value="${sessionScope.location.latitude}">
+						<input type="hidden" name="longitude" id="longitude" value="${sessionScope.location.longitude}">
 					</div>
 					<div id="map" style="width: 782px; height: 400px;"></div>
 				</div>
@@ -201,6 +201,9 @@
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 		
+		
+		window.onload = pointMap();
+		
 		function pointMap(){
 			var addr1 = document.getElementById("addr1").value;	
 			
@@ -214,7 +217,7 @@
 
 					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 					
-					// hiddenForm 만들어서 value로 설정해주기
+					// alert창 안 사라짐! 왜 이러지?
 					var latitude = document.getElementById("latitude");
 					latitude.value= result[0].y;
 					
@@ -292,10 +295,10 @@
 		
 		function register2Ok() {
 			var f=document.register2Form;
-			var s=f.zip.value;
+			var s=f.postCode.value;
 			if(!s) {
 				alert("우편번호를 입력해주세요.");
-				f.zip.focus();
+				f.postCode.focus();
 				return;
 			}
 			

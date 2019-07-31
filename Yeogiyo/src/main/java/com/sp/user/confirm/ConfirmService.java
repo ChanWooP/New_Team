@@ -9,4 +9,8 @@ public interface ConfirmService {
 	public int dataCount(Map<String, Object> map);
 	public Confirm readConfirm(int reservationNum);
 	public void deleteReservation(int reservationNum) throws Exception;
+	
+	public int noMemberdataCount(Map<String, Object> map);
+	public List<Confirm> listNoMemberConfirm(Map<String, Object> map);
+	public Confirm readnoMemberConfirm(int reservationNum);
 }

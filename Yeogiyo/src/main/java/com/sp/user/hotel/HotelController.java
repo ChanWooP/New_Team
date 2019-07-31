@@ -80,6 +80,7 @@ public class HotelController {
 		model.addAttribute("checkoutday",checkoutday);	
 		model.addAttribute("peoplecount",peoplecount);
 		model.addAttribute("hotelCount",hotelCount);
+		model.addAttribute("place",place);
 		
 		return ".user.hotel.list";
 	}

@@ -58,6 +58,40 @@
 		});
 	});
 	
+	function hotelSearch(){
+		var f = document.searchForm;
+		f.action="<%=cp%>/user/hotel/list";
+		
+		var place = f.place.value;
+		if(!place){
+			alert("여행지를 입력해주세요");
+			f.place.focus();
+			return;
+		}
+		
+		var checkinday = f.checkinday.value;
+		if(!checkinday){
+			alert("체크인날짜를 선택해주세요");
+			f.checkinday.focus();
+			return;
+		}
+		
+		var checkoutday = f.checkoutday.value;
+		if(!checkoutday){
+			alert("체크아웃날짜를 선택해주세요");
+			f.checkoutday.focus();
+			return;
+		}
+		
+		var peoplecount = f.peoplecount.value;
+		if(peoplecount=="no"){
+			alert("인원수를 선택해주세요");
+			f.peoplecount.focus();
+			return;
+		}
+		
+		f.submit();
+	}
 </script>
 
 <div class="main">
@@ -65,7 +99,7 @@
 <div class="container">
 	<div id="mainsearch" style="margin-top: 20px; min-height: 500px;">
 		<div class="mainsearch">
-			<form action="<%=cp%>/user/hotel/list" method="post" name="searchForm">
+			<form action="" method="post" name="searchForm">
 				<div style="margin: 20px;">
 					<div>
 						<label><b>여행지</b></label>
@@ -98,13 +132,13 @@
 					<div style="margin-top: 5px;">
 						<select
 							style="width: 200px; height: 40px; border: 1px solid #ccc; border-radius: 4px;" name="peoplecount">
-							<option>인원수 선택</option>
+							<option value="no">인원수 선택</option>
 							<option value=1>성인1명</option>
 							<option value=2>성인2명</option>
 							<option value=4>성인4명</option>
 							<option value=0>4명이상</option>
 						</select> <span style="margin-right: 20px;"></span>
-						<button type="submit"
+						<button type="button" onclick="hotelSearch()"
 							style="width: 200px; height: 40px; background-color: skyblue; border: none; border-radius: 4px;">
 							<b>검색</b>
 						</button>

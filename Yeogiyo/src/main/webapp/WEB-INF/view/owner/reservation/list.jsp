@@ -224,7 +224,21 @@ $(document).ready(function () {
 	<div style="width:100%; margin:0 auto; padding-top:30px;">
 		 <h1><span class="glyphicon glyphicon-calendar"></span>&nbsp;<b>전체예약확인</b></h1>
 	</div>
-	<div style="width: 100%; margin: 0 auto; padding-top: 10px; font-size:25px; text-align:center;">
+	<hr>
+	<div style="width:17%; float:left; border:1px solid #DDDDDD; margin-right:2px;">
+		<div style="font-size:20px; background-color:#F5F5F5; padding:5px;"><b>예약관리</b></div>
+		<div style="font-size:16px; padding:5px; font-weight:bold; cursor:pointer">
+			<p><a href="<%=cp%>/owner/reservation/list"> - 전체 예약 관리</a></p>
+		</div>
+	</div>
+	<div style="width:80%; float:right; border:1px solid #DDDDDD; margin-bottom:10px;">
+		<div style="font-size:20px; font-weight:bold; background-color:#F5F5F5; padding:5px;">
+			<span class="glyphicon glyphicon-home"></span>&nbsp;
+			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;예약관리&nbsp;
+			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;전체 예약 관리
+		</div>
+	<div style="padding:10px;">
+	<div style="width: 100%; margin: 0 auto; font-size:25px; text-align:center;">
 		${day }월&nbsp;예약현황
 	</div>
 	<div style="float: right; margin-bottom:10px;">
@@ -235,7 +249,7 @@ $(document).ready(function () {
 			<button type="button" class="btn btn-sm" onclick="view()">보기</button>
 		</form>
 	</div>
-	<table style="width: 100%; margin-left: auto; margin-right: auto; margin-bottom:10px;" border="3">
+	<table style="width: 100%; margin-left: auto; margin-right: auto; margin-bottom:10px; border:3px solid #DDDDDD" border=1 >
 		<thead style="text-align:center;">
 			<tr>
 				<td>일</td>
@@ -257,5 +271,7 @@ $(document).ready(function () {
 				
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 </div>

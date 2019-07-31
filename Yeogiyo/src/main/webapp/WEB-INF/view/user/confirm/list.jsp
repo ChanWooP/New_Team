@@ -59,6 +59,7 @@ function searchList() {
 								</td>
 							</tr>
 						</table>
+						<c:if test="${not empty sessionScope.member }">
 						<table style="width: 100%; margin: 20px auto; border-spacing: 0px;">
 							<tr height="40">
 								<td align="left" width="100">
@@ -66,7 +67,7 @@ function searchList() {
 										onclick="javascript:location.href='<%=cp%>/user/confirm/list';">새로고침</button>
 								</td>
 								<td align="center">
-									<form name="searchForm" action="<%=cp%>/user/bbs/list"
+									<form name="searchForm" action="<%=cp%>/user/confirm/list"
 										method="post">
 										<select name="condition" class="selectField" style="height:30px;">
 											<option value="hotelName"
@@ -85,6 +86,7 @@ function searchList() {
 								</td>
 							</tr>
 						</table>
+						</c:if>
 					</div>
 				</div>
 			</div>

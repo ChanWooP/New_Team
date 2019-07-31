@@ -43,7 +43,7 @@ function backList(){
 		 <h1><span class="glyphicon glyphicon-comment"></span>&nbsp;<b>댓글</b></h1>
 	</div>
 	<div style="border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
-		<table style="width:80%; height:50%;" border="1">
+		<table style="width:100%; height:50%;" border="1">
 			<tr>
 				<th style="text-align:center;">제목</th>
 				<td>&nbsp;${dto.reviewTitle }</td>
@@ -62,9 +62,9 @@ function backList(){
 			</tr>
 		</table>
 		<div style="margin-top:10px;">
-			<p>댓글</p>
+			<p><b><h4>댓글</h4></b></p>
 			<input type="hidden" id="reviewNum" value="${dto.reviewNum }">
-			<div id="replyList">
+			<div id="replyList" style="background-color:#DDDDDD;">
 				<c:forEach var="dto" items="${list }">
 				<input type="hidden" class="replyNum" value="${dto.replyNum}">
 					<p>└&nbsp;${dto.userId }
@@ -72,7 +72,8 @@ function backList(){
 						(<a style="cursor:pointer" onclick="deleteReply('${dto.replyNum}')">삭제</a>)
 						</c:if>
 					</p>
-					<div class="replyContent">${dto.replyContent }</div>
+					<div class="replyContent" style="padding-left:20px;">${dto.replyContent }</div>
+					 
 				</c:forEach>
 			</div>
 			

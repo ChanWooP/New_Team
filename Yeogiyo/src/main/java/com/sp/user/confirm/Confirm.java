@@ -11,7 +11,14 @@ public class Confirm {
 	private String reservated;
 	private int peopleCount;
 	private String checkinDay, checkoutDay;
+	private String mainPhoto;
 	
+	public String getMainPhoto() {
+		return mainPhoto;
+	}
+	public void setMainPhoto(String mainPhoto) {
+		this.mainPhoto = mainPhoto;
+	}
 	public int getReservationNum() {
 		return reservationNum;
 	}

@@ -30,7 +30,7 @@
 <select id="listConfirm" parameterType="map" resultType="com.sp.user.confirm.Confirm">
 		SELECT * FROM (
 		    SELECT ROWNUM rnum, tb.* FROM (
-			     SELECT mr.userId, mr.reservationNum, hotelName, userName, 
+			     SELECT mr.userId, mr.reservationNum, hotelName, userName, userTel, userEmail,
 			     	TO_CHAR(reservated, 'YYYY-MM-DD') reservated,
 			     	TO_CHAR(checkinDay, 'YYYY-MM-DD') checkinDay,
 			     	TO_CHAR(checkoutDay, 'YYYY-MM-DD') checkoutDay  
@@ -51,7 +51,7 @@
 </select>
 
 <select id="readConfirm" parameterType="Integer" resultType="com.sp.user.confirm.Confirm">
-	SELECT mr.reservationNum, mr.userId, userName, userTel, userEmail, peopleCount, 
+	SELECT mr.reservationNum, mr.userId userName, userTel, userEmail, peopleCount, mainPhoto,
 		reservated, TO_CHAR(checkinDay, 'YYYY-MM-DD') checkinDay,
 	    TO_CHAR(checkoutDay, 'YYYY-MM-DD') checkoutDay,
 		hotelName, type, hotelTel, addr1, addr2, totPrice     	 
@@ -82,5 +82,46 @@
 <delete id="deleteReservation" parameterType="Integer">
 	DELETE reservation WHERE reservationNum=#{reservationNum}
 </delete>
+
+
+<select id="noMemberDataCount" parameterType="map" resultType="Integer">
+	select NVL(COUNT(*),0) from reservation
+	WHERE userName=#{userName}
+	AND userEmail=#{userEmail}
+	AND userTel=#{userTel} 
+</select>
+
+<select id="nomemberList" parameterType="map" resultType="com.sp.user.confirm.Confirm">
+		SELECT * FROM (
+		    SELECT ROWNUM rnum, tb.* FROM (
+			     SELECT r.reservationNum, hotelName, userName, userTel, userEmail,
+			     	TO_CHAR(reservated, 'YYYY-MM-DD') reservated,
+			     	TO_CHAR(checkinDay, 'YYYY-MM-DD') checkinDay,
+			     	TO_CHAR(checkoutDay, 'YYYY-MM-DD') checkoutDay  
+			        FROM reservation r
+			        JOIN reserdetail rd ON r.reservationNum = rd.reservationNum
+					JOIN hotel h ON r.hotelId=h.hotelId
+					WHERE userName=#{userName}
+					AND userEmail=#{userEmail}
+					AND userTel=#{userTel} 
+					
+	<![CDATA[
+	        ) tb WHERE ROWNUM <= #{end}
+	    ) WHERE rnum >= #{start}
+	]]>
+</select>
+
+<select id="nomemberConfirm" parameterType="Integer" resultType="com.sp.user.confirm.Confirm">
+	SELECT r.reservationNum, userName, userTel, userEmail, peopleCount, mainPhoto,
+		reservated, TO_CHAR(checkinDay, 'YYYY-MM-DD') checkinDay,
+	    TO_CHAR(checkoutDay, 'YYYY-MM-DD') checkoutDay,
+		hotelName, type, hotelTel, addr1, addr2, totPrice     	 
+		FROM reservation r
+        JOIN reserdetail rd ON r.reservationNum = rd.reservationNum
+		JOIN hotel h ON r.hotelId=h.hotelId
+        JOIN hoteldetail hd ON h.hotelId=hd.hotelId
+		JOIN hoteltype ht ON h.typeNum=ht.typeNum
+		WHERE r.reservationNum=#{reservationNum}
+</select>
 
 </mapper>

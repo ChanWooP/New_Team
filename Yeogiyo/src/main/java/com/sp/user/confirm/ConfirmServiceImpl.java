@@ -63,6 +63,43 @@ public class ConfirmServiceImpl implements ConfirmService {
 		}
 		
 	}
+	
+	@Override
+	public int noMemberdataCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.selectOne("user.confirm.noMemberDataCount", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@Override
+	public List<Confirm> listNoMemberConfirm(Map<String, Object> map) {
+		List<Confirm> list=null;
+		try {
+			list=dao.selectList("user.confirm.nomemberList", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public Confirm readnoMemberConfirm(int reservationNum) {
+		Confirm dto=null;
+		try {
+			dto=dao.selectOne("user.confirm.nomemberConfirm", reservationNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	
+	
 
 	
 

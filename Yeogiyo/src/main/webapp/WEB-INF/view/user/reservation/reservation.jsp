@@ -80,27 +80,20 @@
 					<input type="hidden" name="hotelId" value="${hotelId}">
 					<input type="hidden" name="roomnum" value="${roomnum}">
 					<input type="hidden" name="peoplecount" value="${peoplecount}">
-					
-					<c:forEach var ="opt" items="${optlist}">
+									
+					<c:forEach var ="opt" items="${plist}">
 						<input type="hidden" name="optNum" value="${opt.optNum}">	
-						<input type="hidden" name="optCount" value="${optCount}">
+						<input type="hidden" name="optCount" value="${opt.optCount}">
 						<input type="hidden" name="optPrice" value="${opt.optPrice}">
 						<input type="hidden" name="optName" value="${opt.optName}">
-						<input type="hidden" name="tot" value="${opt.optPrice+resdetail.roomprice}">
 					</c:forEach>
-					
-					<c:if test="${optlist.size()!=0}">
-						<input type="hidden" name="optNum" value="0">
-						<input type="hidden" name="tot" value="${resdetail.roomprice}">
-					</c:if>
-					
+					<input type="hidden" name ="tot" value=	"${resdetail.roomprice+total}">					
 					<button type="submit">예약하기</button>
 					
 					
 				</form>
 			</div>
 				
-		
 			<div class="reservationLeft">
 			    <c:set var="tot" value="0"/>
 				<div class="panel panel-warning class">
@@ -117,29 +110,22 @@
 				    <c:set var="tot" value="${tot + resdetail.roomprice}"/></div>
 			   	</div>
 			   	<c:if test="${optNum!=0}">
+				   <c:forEach var ="opt" items="${plist}" varStatus="s">	
 				   	<div class="panel panel-warning class">
-					    <div class="panel-heading">옵션</div>
-					    <div class="panel-body">
-					    	<c:forEach var ="opt" items="${optlist}">
-						 	   ${opt.optName}
-						 	</c:forEach>
-					    </div>
+					    <div class="panel-heading">옵션 ${s.count}</div>
+					   		<div class="panel-body">
+					    	${opt.optName} / ${opt.optPrice}원 / ${opt.optCount}명 / 합계 : ${opt.total} 원
+						    </div>
+						    
 				   	</div>
-				   	<div class="panel panel-warning class">
-					    <div class="panel-heading">옵션가격</div>
-					    <div class="panel-body">
-						    <c:forEach var ="opt" items="${optlist}">
-						  		${opt.optPrice}
-						  		<c:set var="tot" value="${tot + opt.optPrice}"/>
-						    </c:forEach>
-					    </div>
-				   	</div>
-			   	</c:if>
+				   </c:forEach>	
+				</c:if>
 			   	<div class="panel panel-warning class">
 				    <div class="panel-heading">총가격</div>
-				    <div class="panel-body">${tot}</div>
+				    <div class="panel-body">${tot+total}</div>
 			   	</div>
-			   	
+			    	
+			
 			</div>
 		</div>
 	</div>

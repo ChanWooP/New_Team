@@ -51,25 +51,24 @@
 				</div>
 			</div>	
 			<div class="panel panel-warning class">
-			    <div class="panel-heading">결제 금액</div>
+			    <div class="panel-heading">방 가격</div>
 			    <div class="panel-body">${map.roomprice}</div>
 			</div>
 			
-			<c:if test="${map.optNum!=0}">
-				<div class="panel panel-warning class">
-				    <div class="panel-heading">옵션</div>
-				    <div class="panel-body">${map.optName}</div>
-				</div>				
-				<div class="panel panel-warning class">
-				    <div class="panel-heading">옵션 금액</div>
-				    <div class="panel-body">${map.optPrice}</div>
-				</div>
-			</c:if>
+		
+				<c:forEach var ="opt" items="${plist}" varStatus="s">	
+					<div class="panel panel-warning class">
+					   	<div class="panel-heading">
+					    	옵션 ${s.count}
+					    </div>
+					    
+					   	<div class="panel-body">
+					    	${opt.optName} / ${opt.optPrice}원 / ${opt.optCount}명 / 합계 : ${opt.total} 원
+						</div>						    
+					 </div>
+				</c:forEach>	
 			
-			<div class="panel panel-warning class">
-			    <div class="panel-heading">총 금액</div>
-			    <div class="panel-body">${map.tot}</div>
-			</div>
+			
 			<p>이용해 주셔서 감사합니다.</p>
 			<p>최선을 다해서 고객님을 모시겠습니다.</p>
 		</div>

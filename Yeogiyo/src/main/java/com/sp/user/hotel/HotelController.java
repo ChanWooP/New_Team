@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -88,10 +87,12 @@ public class HotelController {
 	
 	// 호텔 상세보기
 	@RequestMapping(value="/user/hotel/detail")
-	public String article(@RequestParam String hotelName, @RequestParam String checkinday, @RequestParam String checkoutday, @RequestParam int peoplecount, Model model) {
+	public String article(@RequestParam String hotelName, @RequestParam String checkinday,
+			 
+			@RequestParam String checkoutday, @RequestParam int peoplecount, Model model) {
 				
 		Map<String, Object> map = new HashMap<>();
-
+				
 		String hotelId=null;
 		hotelId=service.getHotelId(hotelName);
 		

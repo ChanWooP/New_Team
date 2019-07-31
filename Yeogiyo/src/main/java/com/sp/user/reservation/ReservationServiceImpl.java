@@ -72,31 +72,27 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public List<Reservation> optadd(Map<String, Object> map) throws Exception {
-		List<Reservation> list = null;
-		list=dao.selectList("user.reservation.addoptPrice",map);
-		return list;
-	}
+	public void optadd(List<Map<String, Object>> optlist) {
 
-	@Override
-	public void addinsertReservation(Map<String, Object> map) throws Exception {
 		try {
-			dao.updateData("user.reservation.addinsertReservation", map);
+			for(Map<String , Object> map : optlist) {
+				dao.insertData("user.reservation.addopt",map);
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
+			// TODO: handle exception
 		}
 		
 	}
 
 	@Override
-	public void addnomeminsertReservation(Map<String, Object> map) throws Exception {
+	public int getreserNum() {
+		int reserNum=0;
 		try {
-			dao.updateData("user.reservation.addnoMemberinsertReservation",map);
-		}catch (Exception e) {
+			reserNum=dao.selectOne("user.reservation.getreservationNum");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw e;
-		}	
-		
+		}
+		return reserNum;
 	}
 }

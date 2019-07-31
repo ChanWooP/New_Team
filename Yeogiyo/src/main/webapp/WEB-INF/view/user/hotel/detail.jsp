@@ -19,12 +19,20 @@ $(function() {
 		var maxpeople=$(this).attr("data-maxpeople");
 		var userId="${sessionScope.member.userId}";
 		
-		var optNum="0";
+		var optNum= 0;
 		var optCount="0";
+		var price=0;
+		var optName;
 		$(".optNum").each(function(){
 			if($(this).is(":checked")){
 				optNum=$(this).val();
 				optCount=$(this).closest("tr").find("select").val();
+				price=$(this).attr("data-price");
+				optName=$(this).attr("data-name");
+				$("form[name=reserForm]").append("<input type='hidden' name='optNum' value='"+optNum+"'>");
+				$("form[name=reserForm]").append("<input type='hidden' name='optCount' value='"+optCount+"'>");
+				$("form[name=reserForm]").append("<input type='hidden' name='optPrice' value='"+price+"'>");
+				$("form[name=reserForm]").append("<input type='hidden' name='optName' value='"+optName+"'>");
 			}
 		});
 		
@@ -39,8 +47,7 @@ $(function() {
 		$("form[name=reserForm] input[name=roomprice]").val(roomprice);
 		$("form[name=reserForm] input[name=maxpeople]").val(maxpeople);
 		$("form[name=reserForm] input[name=userId]").val(userId);
-		$("form[name=reserForm] input[name=optNum]").val(optNum);
-		$("form[name=reserForm] input[name=optCount]").val(optCount);
+
 
 		$("form[name=reserForm]").submit();
 	});
@@ -219,7 +226,7 @@ $(function() {
 									<c:forEach var="op" items="${optlist}">
 										<tr>
 											<td style="width: 180px; text-align:center;">
-												<input type="radio" class="optNum" name="optNum" value="${op.optNum}">
+												<input type="checkbox" class="optNum" name="optNum" value="${op.optNum}" data-price="${op.optPrice}" data-name="${op.optName}">
 											</td>
 											<td style="width: 280px; text-align:center;">${op.optName}</td>
 											<td style="width: 280px; text-align:center;">${op.optPrice}</td>
@@ -254,11 +261,13 @@ $(function() {
 									<td style="width: 80px;">${dto.roomdetails}</td>
 									<td>${dto.maxpeople}</td>
 									<td>${dto.roomprice}</td>
-									<td><button type="button" class="reservationBtn"
+									<td>	
+										<button type="button" class="reservationBtn"
 											data-hotelId="${hotelId}" data-maxpeople="${dto.maxpeople}"
 											data-roomprice="${dto.roomprice}"
 											data-roomtype="${dto.roomtype}"
-											data-roomdetails="${dto.roomdetails}">예약하기</button></td>
+											data-roomdetails="${dto.roomdetails}">예약하기</button>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -325,6 +334,5 @@ $(function() {
 	<input type="hidden" value="${checkinday}" name="checkinday"> 
 	<input type="hidden" value="${checkoutday}" name="checkoutday"> 
 	<input type="hidden" value="${peoplecount}" name="peoplecount">
-	<input type="hidden" name="optNum">
-	<input type="hidden" name="optCount">
+
 </form>

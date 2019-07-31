@@ -17,9 +17,11 @@
 	        AND roomdetails=#{roomdetails}
 	        AND roomstatus=#{roomstatus}
 		</select>
+		
 		<select id="selectHotelName" parameterType="map" resultType="String">
 			SELECT hotelName FROM hotel WHERE hotelId=#{hotelId}
 		</select>
+		
 		<select id="showresdetail" parameterType="Integer" resultType="com.sp.user.reservation.Reservation">
 			SELECT h.hotelName,roomname, stair, roomtype, maxpeople, roomstatus, roomprice, rd.roomdetails 
 			FROM room r
@@ -30,45 +32,27 @@
 		
 		<update id="insertReservation" parameterType="map">
 			INSERT ALL
-				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{tot}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
-				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{tot}, #{roomnum}, reservation_seq.CURRVAL)
-				INTO memberreser(reservationNum, userid) VALUES (reservation_seq.CURRVAL,#{userId})
-				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
+				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(#{reservationNum}, #{tot}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
+				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{tot}, #{roomnum}, #{reservationNum})
+				INTO memberreser(reservationNum, userid) VALUES (#{reservationNum}, #{userId})
+				INTO pay(reservationNum,  paytype) VALUES(#{reservationNum} ,'카드')
 			SELECT * FROM DUAL	 
 		</update>
 		
 		<update id="noMemberinsertReservation" parameterType="map">
 			INSERT ALL
-				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{tot}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
-				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{tot}, #{roomnum}, reservation_seq.CURRVAL)
-				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
+				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(#{reservationNum}, #{tot}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
+				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{tot}, #{roomnum}, #{reservationNum})
+				INTO pay(reservationNum,  paytype) VALUES(#{reservationNum} ,'카드')
 			SELECT * FROM DUAL	 
-		</update>
-		<update id="addinsertReservation" parameterType="map">
-			INSERT ALL
-				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{tot}, 1, #{userName}, #{userTel}, #{userEmail},#{hotelId})
-				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{tot}, #{roomnum}, reservation_seq.CURRVAL)
-				INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) VALUES (RESEROPT_SEQ.nextval, #{optCount}, #{optPrice}, #{optNum}, reservation_seq.CURRVAL)
-				INTO memberreser(reservationNum, userid) VALUES (reservation_seq.CURRVAL,#{userId})
-				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
-			SELECT * FROM DUAL	 
-		</update>
+		</update>	
 		
-		<update id="addnoMemberinsertReservation" parameterType="map">
-			INSERT ALL
-				INTO reservation(reservationNum, totprice, checkmember, userName, userTel, userEmail, hotelId) VALUES(reservation_seq.nextval,#{tot}, 0, #{userName}, #{userTel}, #{userEmail},#{hotelId})
-				INTO reserdetail(resdetailNum, peoplecount, restype, checkinday, checkoutday,price, roomnum, reservationNum) VALUES(RESERDETAIL_SEQ.nextval, #{peoplecount},'카드', #{checkinday}, #{checkoutday}, #{tot}, #{roomnum}, reservation_seq.CURRVAL)
-				INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) VALUES (RESEROPT_SEQ.nextval,#{optCount}, #{optPrice}, #{optNum}, reservation_seq.CURRVAL)
-				INTO pay(reservationNum,  paytype) VALUES(reservation_seq.CURRVAL ,'카드')
-			SELECT * FROM DUAL	 
-		</update>
-		
-		<select id="hoteladdopt" parameterType="map" resultType="com.sp.user.reservation.Reservation">
-			SELECT optNum, optName, optPrice FROM hoteladdopt WHERE hotelId=#{hotelId}
+		<select id="getreservationNum" resultType="Integer">
+			SELECT RESERVATION_SEQ.NEXTVAL reservationNum FROM DUAL
 		</select>
 		
-		<select id="addoptPrice" parameterType="map" resultType="com.sp.user.reservation.Reservation">
-			SELECT optNum, optName, (optPrice * #{optCount}) optPrice FROM hoteladdopt WHERE optNum=#{optNum}
-		</select>
-		
+		<insert id="addopt" parameterType="map">
+			INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) 
+			VALUES (RESEROPT_SEQ.nextval, #{optCount}, #{total}, #{optNum}, #{reservationNum})			
+		</insert>
 </mapper>

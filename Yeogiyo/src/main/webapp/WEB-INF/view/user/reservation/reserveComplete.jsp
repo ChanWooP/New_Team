@@ -5,8 +5,7 @@
 <%
 	String cp = request.getContextPath();
 %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 
 .payment{
@@ -28,7 +27,7 @@
 }
  
 </style>
-<div class="body-container">
+<div class="container">
 	<div class= "payment">
 		<div class="bills">
 			<h1>결제 내역</h1>

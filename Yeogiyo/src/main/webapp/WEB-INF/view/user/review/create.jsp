@@ -20,7 +20,7 @@
 
 </style>
 
-<div class="body-container">
+<div class="container">
 	<div style="padding-top:5px; padding-bottom: 50px; text-align:center;">
 		
 		<div class="reviewCreate">

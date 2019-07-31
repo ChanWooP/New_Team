@@ -109,5 +109,30 @@ public class HotelServiceImpl implements HotelService{
 	}
 
 
+	@Override
+	public List<Hotel> listHotPlace(Map<String, Object> map) {
+		List<Hotel> hotplacelist= null;
+		try {
+			hotplacelist=dao.selectList("user.hotel.showHotPlace", map);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return hotplacelist;
+	}
+
+
+	@Override
+	public void insertHotelQnA(Map<String, Object> map) throws Exception{
+		try {
+			dao.insertData("user.hotel.hotelqna",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
+	}
+
+
 
 }

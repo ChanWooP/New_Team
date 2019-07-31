@@ -36,8 +36,64 @@ public class Hotel {
 	private String reviewContent;
 	private int score;
 	private double scores;
+	private String placeName;
+	private String placeDis;
+	private String placePhoto;
+	private String hotelqnaTitle;
+	private String hotelqnaContent;
+	private String hotelqnaParent;
+	private String hotelqnaCreated;
+	private int hotelqnaNum;
 	
 	
+	public String getHotelqnaTitle() {
+		return hotelqnaTitle;
+	}
+	public void setHotelqnaTitle(String hotelqnaTitle) {
+		this.hotelqnaTitle = hotelqnaTitle;
+	}
+	public String getHotelqnaContent() {
+		return hotelqnaContent;
+	}
+	public void setHotelqnaContent(String hotelqnaContent) {
+		this.hotelqnaContent = hotelqnaContent;
+	}
+	public String getHotelqnaParent() {
+		return hotelqnaParent;
+	}
+	public void setHotelqnaParent(String hotelqnaParent) {
+		this.hotelqnaParent = hotelqnaParent;
+	}
+	public String getHotelqnaCreated() {
+		return hotelqnaCreated;
+	}
+	public void setHotelqnaCreated(String hotelqnaCreated) {
+		this.hotelqnaCreated = hotelqnaCreated;
+	}
+	public int getHotelqnaNum() {
+		return hotelqnaNum;
+	}
+	public void setHotelqnaNum(int hotelqnaNum) {
+		this.hotelqnaNum = hotelqnaNum;
+	}
+	public String getPlaceName() {
+		return placeName;
+	}
+	public void setPlaceName(String placeName) {
+		this.placeName = placeName;
+	}
+	public String getPlaceDis() {
+		return placeDis;
+	}
+	public void setPlaceDis(String placeDis) {
+		this.placeDis = placeDis;
+	}
+	public String getPlacePhoto() {
+		return placePhoto;
+	}
+	public void setPlacePhoto(String placePhoto) {
+		this.placePhoto = placePhoto;
+	}
 	public double getScores() {
 		return scores;
 	}

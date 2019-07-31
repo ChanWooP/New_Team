@@ -5,8 +5,6 @@
 <%
    String cp=request.getContextPath();
 %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 .checkUser #name,#tel,#email,#cardNum,.card,#secureNum{
@@ -26,13 +24,13 @@
 .reservationLeft{
 	text-align: center;
 	float: left;
-	width:450px;
-	padding-left: 100px;
+	width:350px;
+	
 }
 </style>
 
-<div class="body-container">
-	<div style="padding: 40px 0;">
+<div class="container">
+	<div style="padding: 80px 0;">
 		<div class="reservation">
 			<div class="reservationLeft">
 				<div class="panel panel-warning class">
@@ -46,10 +44,6 @@
 				<div class="panel panel-warning class">
 					    <div class="panel-heading">방유형</div>
 					    <div class="panel-body">${resdetail.roomtype}</div>
-				</div>
-				<div class="panel panel-warning class">
-					    <div class="panel-heading">최대인원</div>
-					    <div class="panel-body">${resdetail.maxpeople}</div>
 				</div>
 				<div class="panel panel-warning class">
 					    <div class="panel-heading">세부사항</div>

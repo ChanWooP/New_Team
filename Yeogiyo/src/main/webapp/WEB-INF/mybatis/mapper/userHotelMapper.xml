@@ -65,5 +65,14 @@
 	    ) WHERE rnum >= 1
 ]]>
 	</select>
+	
+	<select id="showHotPlace" parameterType="map" resultType="com.sp.user.hotel.Hotel">
+		SELECT placeName,placeDis, placePhoto FROM hotplace WHERE hotelId=#{hotelId}
+	</select>
+	
+	<insert id="hotelqna" parameterType="map">
+		INSERT INTO hotelqna(qnaNum, qnaTitle, qnaContent, qnaParent, qnaCreated, userId, hotelId)
+		VALUES(HOTELQNA_SEQ.nextval, #{hotelqnaTitle}, #{hotelqnaContent}, 0, SYSDATE, #{userId}, #{hotelId})
+	</insert>
 
 </mapper>

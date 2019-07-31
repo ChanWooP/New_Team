@@ -12,6 +12,9 @@ public interface HotelService {
 	public List<Hotel> listHotelRoom(Map<String, Object> map);
 	public List<Hotel> listaddopt(Map<String, Object> map);
 	public List<Hotel> listReview(Map<String, Object> map);
+	public List<Hotel> listHotPlace(Map<String, Object> map);
 	
 	public String getHotelId(String hotelName); 
+	
+	public void insertHotelQnA(Map<String, Object> map) throws Exception;
 }

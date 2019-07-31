@@ -5,10 +5,7 @@
 <%
 	String cp = request.getContextPath();
 %>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 $(function() {
 	$("#form-sday").datepicker({showMonthAfterYear:true});
@@ -46,6 +43,11 @@ $(function() {
 		$("form[name=reserForm] input[name=optCount]").val(optCount);
 
 		$("form[name=reserForm]").submit();
+	});
+	
+	$(".hotelQnA").click(function(){
+		var hotelName = $(this).attr("data-hotelName");
+		location.href="<%=cp%>/user/hotel/hotelqnaCreate?hotelName=" + hotelName;
 	});
 	
 });
@@ -120,7 +122,7 @@ $(function() {
 </script>
 
 
-<div class="body-container">
+<div class="container">
 	<div style="padding-top: 30px; padding-bottom: 50px;">
 		<div>
 			<div class="panel panel-warning">
@@ -128,6 +130,9 @@ $(function() {
 					<div class="hotelname">
 						<h3>${detail.hotelName}</h3>
 						<small>${detail.addr1}, ${detail.addr2}</small>
+						<c:if test="${not empty sessionScope.member}">
+							<button style="align:right;" class="hotelQnA" data-hotelName="${detail.hotelName}">호텔에 문의하기</button>
+						</c:if>
 					</div>
 				</div>
 						
@@ -139,15 +144,7 @@ $(function() {
 							</h4>
 							<p>${detail.detail}</p>
 						</div>
-						<div style="width:800px; margin:0 auto; margin-bottom:30px;">
-						<h4><b>리뷰</b></h4>
-							<c:forEach var="rv" items="${reviewlist}">
-								<div class="panel panel-warning" style="width:800px; margin:0 auto; margin-bottom:30px;">
-									<div class="panel-heading">${rv.reviewTitle}</div>
-									<div class="panel-body">${rv.reviewContent} ${rv.score}</div>
-								</div>
-							</c:forEach>
-						</div>
+						
 						<h4><b>찾아 오는 길</b></h4>
 						<div id="map"  style="width:800px; margin-top:50px; margin-bottom:30px;">
 							
@@ -265,6 +262,51 @@ $(function() {
 								</tr>
 							</c:forEach>
 						</table>
+						
+						<h4><b>주변 명소 사진</b></h4>
+						<div class="hotshow" style="width:800px; margin:0 auto; margin-top:50px;">
+							<div id="myCarousel1" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<c:forEach var="dto" items="${hotlist}" varStatus="status">
+										<li data-target="#myCarousel" data-slide-to="${status.index}"
+											${status.index==0?"class='active'":""}></li>
+									</c:forEach>
+								</ol>
+	
+								<div class="carousel-inner" style="width:800px; margin:0 auto;">
+									<c:forEach var="dto" items="${hotlist}" varStatus="status">
+										<div class="item ${status.index==0?'active':''}">
+											<img
+												src="<%=cp%>/uploads/hotplace/${dto.placePhoto}"
+												style="width:1000px;">
+											<p>${dto.placeName}</p>
+											<p>${dto.placeDis}</p>	
+										</div>
+									</c:forEach>
+								</div>
+	
+								<a class="left carousel-control" href="#myCarousel1"
+									data-slide="prev"> <span
+									class="glyphicon glyphicon-chevron-left"></span> <span
+									class="sr-only">Previous</span>
+								</a> <a class="right carousel-control" href="#myCarousel1"
+									data-slide="next"> <span
+									class="glyphicon glyphicon-chevron-right"></span> <span
+									class="sr-only">Next</span>
+								</a>
+							</div>
+						</div>
+
+						
+						<div style="width:800px; margin:0 auto; margin-top:30px;">
+						<h4><b>리뷰</b></h4>
+							<c:forEach var="rv" items="${reviewlist}">
+								<div class="panel panel-warning" style="width:800px; margin:0 auto; margin-bottom:30px;">
+									<div class="panel-heading">${rv.reviewTitle}</div>
+									<div class="panel-body"><p>평점 : ${rv.score}</p>${rv.reviewContent}</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>

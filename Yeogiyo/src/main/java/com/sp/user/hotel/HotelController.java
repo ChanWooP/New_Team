@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -103,18 +104,48 @@ public class HotelController {
 		List<Hotel> rlist = service.listHotelRoom(map);
 		List<Hotel> reviewlist = service.listReview(map);
 		List<Hotel> optlist = service.listaddopt(map);
+		List<Hotel> hotlist = service.listHotPlace(map);
 		
 		model.addAttribute("hotelId",hotelId);
 		model.addAttribute("detail", detail);
 		model.addAttribute("plist",plist);
 		model.addAttribute("rlist", rlist);
+		model.addAttribute("hotlist",hotlist);
 		model.addAttribute("optlist", optlist);
+		model.addAttribute("reviewlist",reviewlist);
 		model.addAttribute("peoplecount",peoplecount);
 		model.addAttribute("checkinday",checkinday);
 		model.addAttribute("checkoutday",checkoutday);
-		model.addAttribute("reviewlist",reviewlist);
 		return ".user.hotel.detail";
 	}	
+	
+	@RequestMapping(value="/user/hotel/hotelqnaCreate")
+	public String hotelqnaCreateForm (@RequestParam String hotelName, HttpSession session, Model model) {
+		SessionInfo info = (SessionInfo)session.getAttribute("member");
+		String userId=info.getUserId();
+		String hotelId=null;
+		hotelId=service.getHotelId(hotelName);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("userId", userId);
+		map.put("hotelId", hotelId);
+		
+		model.addAttribute("map",map);
+		
+		return ".user.hotel.hotelqnaCreate";
+	}
+	
+	@RequestMapping(value="/user/hotel/hotelqnaCreateComplete")
+	public String hotelqnaComplete(@RequestParam Map<String, Object> map) {
+		
+		try {
+			service.insertHotelQnA(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/user/main";
+	}
 	
 	
 }

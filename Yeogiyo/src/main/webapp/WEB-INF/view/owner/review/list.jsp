@@ -68,6 +68,10 @@ function closes(){
 	$("#Modal").hide();
 }
 
+function reLoad(){
+	location.href = "<%=cp%>/owner/review/list";
+}
+
 $(function(){
 	$("body").on("click",".report", function(){
 		var reviewNum = $(this).parent().children().first().val();
@@ -81,26 +85,25 @@ $(function(){
 	<div style="width:100%; margin:0 auto; padding-top:30px;">
 		 <h1><span class="glyphicon glyphicon-comment"></span>&nbsp;<b>리뷰</b></h1>
 	</div>
-	<div style="border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
-		<table style="margin-bottom:10px; width:100%;">
-			<tr>
-				<td>${dataCount }개(${page}/${total_page } 페이지)</td>
-				<td align="right">
-				${msg }
-				<form name="searchForm" action="<%=cp%>/owner/review/list" method="post">
-					<select name="condition" style="height:30px;">
-						<option value="all" ${condition=="all"?"selected='selected'":"" }>모두</option>
-						<option value="reviewTitle" ${condition=="reviewTitle"?"selected='selected'":"" }>제목</option>
-						<option value="reviewCreated" ${condition=="reviewCreated"?"selected='selected'":"" }>작성일</option>
-						<option value="userId" ${condition=="userId"?"selected='selected'":"" }>아이디</option>
-					</select>
-	 				<input type="text" name="keyword" style="height:30px;" placeholder="리뷰 검색" value="${keyword }">
-	 				<button type="button" class="btn" onclick="hotSearch()">검색</button>
-				</form>
-				</td>
-			</tr>
-		</table>
+		<hr>
+	<div style="width:17%; float:left; border:1px solid #DDDDDD; margin-right:2px;">
+		<div style="font-size:20px; background-color:#F5F5F5; padding:5px;"><b>고객센터</b></div>
+		<div style="font-size:16px; padding:5px; font-weight:bold; cursor:pointer">
+			<p><a href="<%=cp%>/owner/review/list"> - 리뷰</a></p>
+			<p><a href="<%=cp%>/owner/hotelqna/list"> - 문의사항</a></p>
+		</div>
+	</div>
+	<div style="width:80%; float:right; border:1px solid #DDDDDD; margin-bottom:10px;">
+	<div style="font-size:20px; font-weight:bold; background-color:#F5F5F5; padding:5px;">
+			<span class="glyphicon glyphicon-home"></span>&nbsp;
+			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;고객센터&nbsp;
+			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;리뷰
+		</div>
+		
+	<div style=" padding:10px; margin-bottom:10px;">
+	${dataCount }개(${page}/${total_page } 페이지)
 		<div style="width:100%; margin:0 auto; padding:10px; margin-top:10px;" >
+		
 			<table style="width:100%; margin-left:auto; margin-right:auto;" >
 				<tr style="border-bottom: 2px solid gray;">
 					<th style="width:10%;">번호</th>
@@ -134,7 +137,28 @@ $(function(){
 				</c:if>
 			</td>
 		</tr>
+
 	</table>
+	<table style="margin-bottom:10px; width:100%;">
+			<tr>
+				<td style="width:10%"><button type="button" class="btn" onclick="reLoad()">새로고침</button></td>
+				<td align="center">
+				${msg }
+				<form name="searchForm" action="<%=cp%>/owner/review/list" method="post">
+					<select name="condition" style="height:30px;">
+						<option value="all" ${condition=="all"?"selected='selected'":"" }>모두</option>
+						<option value="reviewTitle" ${condition=="reviewTitle"?"selected='selected'":"" }>제목</option>
+						<option value="reviewCreated" ${condition=="reviewCreated"?"selected='selected'":"" }>작성일</option>
+						<option value="userId" ${condition=="userId"?"selected='selected'":"" }>아이디</option>
+					</select>
+	 				<input type="text" name="keyword" style="height:30px;" placeholder="리뷰 검색" value="${keyword }">
+	 				<button type="button" class="btn" onclick="hotSearch()">검색</button>
+				</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
 	</div>
 		<div id="Modal" class="modal">
 		<div class="modal-content">

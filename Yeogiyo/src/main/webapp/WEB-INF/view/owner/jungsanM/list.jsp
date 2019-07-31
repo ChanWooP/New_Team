@@ -137,6 +137,21 @@ table.ui-datepicker-calendar { display:none; }
 	<div style="width:100%; margin:0 auto; padding-top:30px;">
 		 <h1><span class="glyphicon glyphicon-usd"></span>&nbsp;<b>월말정산</b></h1>
 	</div>
+	<hr>
+	<div style="width:17%; float:left; border:1px solid #DDDDDD; margin-right:2px;">
+		<div style="font-size:20px; background-color:#F5F5F5; padding:5px;"><b>정산</b></div>
+		<div style="font-size:16px; padding:5px; font-weight:bold; cursor:pointer">
+			<p><a href="<%=cp%>/owner/jungsanD/list"> - 일일정산</a></p>
+			<p><a href="<%=cp%>/owner/jungsanM/list"> - 월말정산</a></p>
+		</div>
+	</div>
+	<div style="width:80%; float:right; border:1px solid #DDDDDD; margin-bottom:10px;">
+	<div style="font-size:20px; font-weight:bold; background-color:#F5F5F5; padding:5px;">
+			<span class="glyphicon glyphicon-home"></span>&nbsp;
+			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;정산&nbsp;
+			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;월말정산
+		</div>
+	<div style="padding:10px;">
 	<div style="width: 100%; margin: 0 auto;">
 		<div style="float: right;  padding-bottom:10px;">
 			<form action="" name="formName">
@@ -149,7 +164,7 @@ table.ui-datepicker-calendar { display:none; }
 			</form>
 		</div>
 	</div>
-	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
+	<div style="clear: both; border:1px solid #DDDDDD; padding:10px; border-radius:20px; margin-bottom:10px;">
 	<div style="width: 100%; margin: 0 auto;">
 		<table style="width: 100%; margin-left: auto; margin-right: auto;">
 		<tr style="border-bottom: 2px solid gray;">
@@ -190,12 +205,14 @@ table.ui-datepicker-calendar { display:none; }
 		</div>
 	</c:if>
 	</div>
-	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
+	<div style="clear: both; border:1px solid #DDDDDD; padding:10px; border-radius:20px; margin-bottom:10px;">
 		<div id="barContainer"
 			style="width: 100%; height: 300px; margin: 10px;"></div>
 	</div>
-	<div style="clear: both; border:1px solid gray; padding:10px; border-radius:20px; margin-bottom:10px;">
+	<div style="clear: both; border:1px solid #DDDDDD; padding:10px; border-radius:20px; margin-bottom:10px;">
 		<div id="barContainer2"
 			style="width: 100%; height: 300px; margin: 10px;"></div>
+	</div>
+	</div>
 	</div>
 </div>

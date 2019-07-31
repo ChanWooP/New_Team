@@ -41,7 +41,7 @@ public class ReviewServiceImpl implements ReviewService{
 		try {
 			dao.insertData("owner.review.insertReport", map);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 

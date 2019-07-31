@@ -58,6 +58,11 @@ function report(){
 	var reviewNum = $("#reviewNum").val();
 	var reportcontent = $("#reportcontent").val();
 	
+	if(!reportcontent){
+		alert("내용을 입력해주세요");
+		return;
+	}
+	
 	var query = "?reviewNum="+reviewNum+"&reportContent="+reportcontent;
 	query += "&page=${page}&condition=${condition}&keyword=${keyword}";
 	
@@ -98,10 +103,12 @@ $(function(){
 			<span class="glyphicon glyphicon-home"></span>&nbsp;
 			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;고객센터&nbsp;
 			<span class="glyphicon glyphicon-chevron-right"></span>&nbsp;리뷰
+			<div style="float:right"><b>${msg }</b></div>
 		</div>
 		
 	<div style=" padding:10px; margin-bottom:10px;">
-	${dataCount }개(${page}/${total_page } 페이지)
+	<div style="float:left">${dataCount }개(${page}/${total_page } 페이지)</div>
+	
 		<div style="width:100%; margin:0 auto; padding:10px; margin-top:10px;" >
 		
 			<table style="width:100%; margin-left:auto; margin-right:auto;" >
@@ -143,7 +150,7 @@ $(function(){
 			<tr>
 				<td style="width:10%"><button type="button" class="btn" onclick="reLoad()">새로고침</button></td>
 				<td align="center">
-				${msg }
+				
 				<form name="searchForm" action="<%=cp%>/owner/review/list" method="post">
 					<select name="condition" style="height:30px;">
 						<option value="all" ${condition=="all"?"selected='selected'":"" }>모두</option>

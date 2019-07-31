@@ -48,6 +48,41 @@ function detailLoad(hotelName, checkinday, checkoutday, peoplecount){
 	location.href = "<%=cp%>/user/hotel/detail?hotelName="+hotelName+"&checkinday="+checkinday+"&checkoutday="+checkoutday+"&peoplecount="+peoplecount;
 }
 
+function hotelSearch(){
+	var f = document.searchForm;
+	f.action="<%=cp%>/user/hotel/list";
+	
+	var place = f.place.value;
+	if(!place){
+		alert("여행지를 입력해주세요");
+		f.place.focus();
+		return;
+	}
+	
+	var checkinday = f.checkinday.value;
+	if(!checkinday){
+		alert("체크인날짜를 선택해주세요");
+		f.checkinday.focus();
+		return;
+	}
+	
+	var checkoutday = f.checkoutday.value;
+	if(!checkoutday){
+		alert("체크아웃날짜를 선택해주세요");
+		f.checkoutday.focus();
+		return;
+	}
+	
+	var peoplecount = f.peoplecount.value;
+	if(peoplecount=="no"){
+		alert("인원수를 선택해주세요");
+		f.peoplecount.focus();
+		return;
+	}
+	
+	f.submit();
+}
+
 $(function() {
 	var minDate1 = new Date();
 	var minDate2 = new Date();
@@ -142,7 +177,7 @@ $(function() {
 				<p><span class="glyphicon glyphicon-user"></span>인원
 				<select
 					style="width: 170px; height: 40px; border: 1px solid #ccc; border-radius: 4px;" name="peoplecount">
-					<option>인원수 선택</option>
+					<option value="no">인원수 선택</option>
 					<option value=1 ${peoplecount=="1"?"selected='selected'":"" }>성인1명</option>
 					<option value=2 ${peoplecount=="2"?"selected='selected'":"" }>성인2명</option>
 					<option value=4 ${peoplecount=="4"?"selected='selected'":"" }>성인4명</option>
@@ -150,7 +185,7 @@ $(function() {
 				</select>
 				</p>
 				<p>
-				<button type="submit"
+				<button type="button" onclick="hotelSearch()"
 					style="width: 170px; height: 40px; background-color: skyblue; border: none; border-radius: 4px;">
 					<b>검색</b>
 				</button>

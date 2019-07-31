@@ -212,29 +212,23 @@
 				<div class="big-contents-box">
 					<div class="big-title ">숙소명 입력</div>
 					<div>의미있고 마음을 끄는 숙소명을 사용해 보세요.</div>
-					<input type="text" class="post-form" name="hotelName">
+					<input type="text" class="post-form" name="hotelName" value="${sessionScope.description.hotelName}">
 				</div>
 
 				<div class="big-contents-box">
 					<div class="big-title ">숙소 소개</div>
 					<div>여행객들이 꼭 이 숙소에서 투숙해야 하는 이유를 알려주세요.</div>
-					<input type="text" class="description-form" name="hotelDescription">
-				</div>
-
-				<div class="big-contents-box">
-					<div class="big-title ">숙소 규칙</div>
-					<div>숙소 투숙 시 지켜야 할 규칙에 대해 알려주세요.</div>
-					<input type="text" class="description-form" name=hotelRule>
+					<input type="text" class="description-form" name="detail" value="${sessionScope.description.detail}">
 				</div>
 
 				<div class="big-contents-box">
 					<div class="big-title ">숙소 준비사항</div>
 					<div>숙소에 오기 전에 준비해야 할 것들에 대해 알려주세요.</div>
-					<input type="text" class="description-form" name="hotelPrepare">
+					<input type="text" class="description-form" name="prepareContent" value="${sessionScope.description.prepareContent}">
 				</div>
 				
 				<div class="btn-box">
-					<button type="button" class="pre-btn" id="next-btn">이전</button>
+					<button type="button" class="pre-btn" id="pre-btn" onclick="back();">이전</button>
 					<button type="button" class="next-btn" id="next-btn" onclick="register3Ok();">다음</button>
 				</div>
 			</form>
@@ -251,29 +245,26 @@
 				return;
 			}
 			
-			s=f.hotelDescription.value;
+			s=f.detail.value;
 			if(!s) {
 				alert("숙소 소개를 입력해주세요.");
-				f.hotelDescription.focus();
+				f.detail.focus();
 				return;
 			}
 			
-			s=f.hotelRule.value;
-			if(!s) {
-				alert("숙소 규칙을 입력해주세요.");
-				f.hotelRule.focus();
-				return;
-			}
-			
-			s=f.hotelPrepare.value;
+			s=f.prepareContent.value;
 			if(!s) {
 				alert("숙소 준비사항을 입력해주세요.");
-				f.hotelPrepare.focus();
+				f.prepareContent.focus();
 				return;
 			}
 			
 			f.action="<%=cp%>/owner/hotelRegister/register3";
 			f.submit();
+		}
+		
+		function back(){
+			window.location.href="<%=cp%>/owner/hotelRegister/register2";
 		}
 	</script>
 </body>

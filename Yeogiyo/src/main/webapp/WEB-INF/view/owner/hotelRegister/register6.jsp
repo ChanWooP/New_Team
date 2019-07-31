@@ -205,7 +205,7 @@
 				</div>
 
 				<div class="btn-box">
-					<button type="button" class="pre-btn" id="next-btn">이전</button>
+					<button type="button" class="pre-btn" id="pre-btn" onclick="back();">이전</button>
 					<button type="submit" class="next-btn" id="next-btn">다음</button>
 				</div>
 			</form>
@@ -213,7 +213,9 @@
 	</div>
 
 	<script>
-		
+		function back(){
+			window.location.href="<%=cp%>/owner/hotelRegister/register5";
+		}
 	</script>
 </body>
 </html>

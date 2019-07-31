@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Hotplace {
 	
 	private int placeNum;
-	private int placeDis;
+	private double placeDis;
 	private String placeName;
 	private String placePhoto;
 	private String hotelId;
@@ -27,10 +27,10 @@ public class Hotplace {
 	public void setPlaceNum(int placeNum) {
 		this.placeNum = placeNum;
 	}
-	public int getPlaceDis() {
+	public double getPlaceDis() {
 		return placeDis;
 	}
-	public void setPlaceDis(int placeDis) {
+	public void setPlaceDis(double placeDis) {
 		this.placeDis = placeDis;
 	}
 	public String getPlaceName() {

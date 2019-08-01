@@ -4,7 +4,7 @@
 <mapper namespace="owner.jungsanM">
 	<update id="insertJungsan" parameterType="map">
       INSERT INTO jungsanm (jungsanNum, jungsanCreated, hotelId, paydate, paytype, roomnum, roomname, peopleCount, checkinDay, checkoutDay, price)
-        SELECT jungsanM_seq.NEXTVAL jungsanNum ,'2019-07' jungsanCreated ,hotelId, paydate, paytype, roomnum, roomname, peopleCount, checkinDay, checkoutDay, price
+        SELECT jungsanM_seq.NEXTVAL jungsanNum ,#{day} jungsanCreated ,hotelId, paydate, paytype, roomnum, roomname, peopleCount, checkinDay, checkoutDay, price
         FROM jungsanD 
         where hotelId = #{hotelId}
         AND TO_CHAR(jungsanCreated,'YYYY-MM') = #{day}

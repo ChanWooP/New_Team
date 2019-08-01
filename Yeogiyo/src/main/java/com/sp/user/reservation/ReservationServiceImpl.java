@@ -72,15 +72,16 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public void optadd(List<Map<String, Object>> optlist) {
-
-		try {
-			for(Map<String , Object> map : optlist) {
-				dao.insertData("user.reservation.addopt",map);
+	public void optadd(List<Map<String, Object>> optlist) throws Exception{	
+		
+			try {
+				for(Map<String , Object> map : optlist) {
+					dao.insertData("user.reservation.addopt", map);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 		
 	}
 

@@ -100,9 +100,9 @@ public class ReservationController {
 		int total=0;
 		
 		if(optCount!=null) {
-			int c, p, t;
+			int c, p, t, n;
 			for(int i=0; i<optCount.length; i++) {
-				
+				n=Integer.parseInt(optNum[i]);
 				c=Integer.parseInt(optCount[i]);
 				p=Integer.parseInt(optPrice[i]);
 				t=c*p;
@@ -110,7 +110,7 @@ public class ReservationController {
 				Map<String, Object> map2=new HashMap<>();
 				
 				map2.put("optName", optName[i]);
-				map2.put("optNum", optNum[i]);
+				map2.put("optNum", n);
 				map2.put("total", t);
 				map2.put("optCount", c);
 				map2.put("optPrice", p);

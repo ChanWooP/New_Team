@@ -52,7 +52,7 @@
 		</select>
 		
 		<insert id="addopt" parameterType="map">
-			INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) 
-			VALUES (RESEROPT_SEQ.nextval, #{optCount}, #{total}, #{optNum}, #{reservationNum})			
+			INSERT INTO reseropt(resoptNum, resoptuserCount, resoptPrice, optNum, reservationNum) 
+			VALUES (RESEROPT_SEQ.NEXTVAl, #{optCount}, #{total}, #{optNum}, #{reservationNum})			
 		</insert>
 </mapper>

@@ -13,6 +13,6 @@ public interface ReservationService {
 	public int getreserNum();
 	
 	public String gethotelname(Map<String, Object> map);
-	public void optadd(List<Map<String, Object>> optlist);
+	public void optadd(List<Map<String, Object>> optlist) throws Exception;
 	
 }

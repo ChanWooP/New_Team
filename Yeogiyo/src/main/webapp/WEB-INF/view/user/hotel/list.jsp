@@ -193,7 +193,7 @@ $(function() {
 				</form>
 			</div>
 		</div>
-			<div style="width:80%; float:right; border:1px solid #DDDDDD; margin-bottom:10px;">
+			<div style="width:80%; float:right; margin-bottom:10px;">
 				<c:forEach var="dto" items="${list}">
 					<div class="showHotelList">
 						<table>

@@ -48,8 +48,7 @@
 	<insert id="insertHotel"
 		parameterType="com.sp.owner.hotel.Hotel">
 		INSERT INTO hotel(hotelId, hotelName, typeNum)
-		VALUES
-		#{hotelId}, #{hotelName}, #{typeNum}
+		VALUES(#{hotelId}, #{hotelName}, #{typeNum})
 	</insert>
 
 	<update id="updateHotel"

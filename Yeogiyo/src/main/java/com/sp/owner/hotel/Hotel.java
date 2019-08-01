@@ -70,10 +70,13 @@ public class Hotel {
 	// 배열들
 	// 위에 int로 준 optNum 같은 필드들 스프링에서 에러가 날 수 있으니 String으로 처리해주고 나중에 형변환시키기
 	// 이미지 업로드를 위한 MultipartFile 자료형
+	// 마찬가지로 하나로 받고 반복문 돌리는 게 나을 듯함!
 	private List<MultipartFile> uploads;
 	private MultipartFile mainUpload;
 
 	// register4에서 데이터를 받아오기 위한 필드들
+	// SessionInfo 따로 만들어서 넘기고 hotel은 db작업할 때만 사용하기
+	// conType을 어떻게 넘겨받을지 생각하기 각자 히든폼 줘서 배열로 넘겨받고 인덱싱? 2차원 배열?
 	private List<String> recommendation;
 	private List<String> internet;
 	private List<String> access;

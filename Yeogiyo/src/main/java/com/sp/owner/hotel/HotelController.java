@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sp.user.member.SessionInfo;
+
 @Controller("owner.hotel.hotelController")
 public class HotelController {
 
@@ -45,7 +47,10 @@ public class HotelController {
 	// 배열을 필드로 갖는 자료형 클래스를 만들고 사본 배열을 만들어서 데이터를 저장 후 set으로 저장 데이터는 어떻게 넘겨받아야 하지? 배열?
 	@RequestMapping(value = "/owner/hotelRegister/register1", method = RequestMethod.POST)
 	public String hotelRegisterSession1(Hotel hotel, Model model, HttpSession session) throws Exception {
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
 		try {
+			if(info!=null)
+				hotel.setHotelId(info.getUserId());
 			session.setMaxInactiveInterval(30 * 60);
 			session.setAttribute("basicInfo", hotel);
 		} catch (Exception e) {
@@ -99,15 +104,7 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register4", method = RequestMethod.POST)
 	public String hotelRegisterSession4(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("recommendation", hotel);
-			session.setAttribute("internet", hotel);
-			session.setAttribute("access", hotel);
-			session.setAttribute("kitchen", hotel);
 			session.setAttribute("convenient", hotel);
-			session.setAttribute("safety", hotel);
-			session.setAttribute("others", hotel);
-			session.setAttribute("notFree", hotel);
-			session.setAttribute("conPrices", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -134,12 +131,10 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.GET)
-	public String hotelRegisterForm7(Model model) throws Exception {
+	public String hotelRegisterForm6(Model model) throws Exception {
 		return ".owner.hotelRegister.register6";
 	}
 	
-	
-	// hotleId null로 찍힘 원인 확인 불가! sysout 으로 출력도 안 됨 제대로 안 보내지는 건가?
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.POST)
 	public String hotelRegisterSubmit(Model model, HttpSession session) throws Exception {
 		try {
@@ -147,13 +142,14 @@ public class HotelController {
 			
 			// 숙소 종류, 숙소 크기,  체크인 시간, 체크아웃 시간, 전화번호, 숙소 등급, 사업자번호
 			Hotel basicInfo = (Hotel) session.getAttribute("basicInfo");
-			hotel.setType(basicInfo.getType());
+			hotel.setTypeNum(basicInfo.getTypeNum());
 			hotel.setHotelSize(basicInfo.getHotelSize());
 			hotel.setCheckIn(basicInfo.getCheckIn());
 			hotel.setCheckOut(basicInfo.getCheckIn());
 			hotel.setHotelTel(basicInfo.getCheckIn());
 			hotel.setGrade(basicInfo.getGrade());
 			hotel.setBusinessNum(basicInfo.getBusinessNum());
+			hotel.setHotelId(basicInfo.getHotelId());
 
 			// 우편번호, 기본 주소, 상세 주소
 			Hotel location = (Hotel) session.getAttribute("location");
@@ -178,14 +174,25 @@ public class HotelController {
 			hotel.setConPrices(((Hotel) session.getAttribute("conPrices")).getConPrices());
 			
 			// 호텔 사진, 호텔 대표 사진
-			Hotel photo = (Hotel)	session.getAttribute("photo");
+			Hotel photo = (Hotel)session.getAttribute("photo");
 			hotel.setUploads(photo.getUploads());
 			hotel.setMainUpload(photo.getMainUpload());
 			
-			
 			// 세션 삭제하기
-			session.invalidate();
-			
+			//session.invalidate();
+			session.removeAttribute("basicInfo");
+			session.removeAttribute("location");
+			session.removeAttribute("description");
+			session.removeAttribute("recommendation");
+			session.removeAttribute("internet");
+			session.removeAttribute("access");
+			session.removeAttribute("kitchen");
+			session.removeAttribute("convenient");
+			session.removeAttribute("safety");
+			session.removeAttribute("others");
+			session.removeAttribute("notFree");
+			session.removeAttribute("conPrices");
+			session.removeAttribute("photo");
 			
 			service.insertHotel(hotel);
 			service.insertHotelPrepare(hotel);

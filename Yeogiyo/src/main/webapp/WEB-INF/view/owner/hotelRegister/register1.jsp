@@ -250,8 +250,7 @@
 							</div>
 							<div>캠핑장</div>
 						</div>
-						<input type="hidden" id="type" name="type" readonly="readonly" value="${sessionScope.basicInfo.type}">
-						<input type="hidden" name="hotelId" readonly="readonly" value="${sessionScope.member.userId}">
+						<input type="hidden" id="type" name="typeNum" readonly="readonly" value="${sessionScope.basicInfo.type}">
 					</div>
 					
 					<div class="small-contents-box">
@@ -340,7 +339,7 @@
 			iconBox.classList.remove("building-iconBox-activated");
 			
 			var f=document.getElementById("type");
-			f.value="모텔";
+			f.value="2";
 		}
 		
 		return;
@@ -368,7 +367,7 @@
 			iconBox.classList.remove("building-iconBox-activated");
 			
 			var f=document.getElementById("type");
-			f.value="호텔";
+			f.value="1";
 		}
 		
 		return;
@@ -396,7 +395,7 @@
 			iconBox.classList.remove("building-iconBox-activated");
 			
 			var f=document.getElementById("type");
-			f.value="홈스테이";
+			f.value="3";
 		}
 		
 		return;
@@ -424,7 +423,7 @@
 			iconBox.classList.remove("building-iconBox-activated");
 			
 			var f=document.getElementById("type");
-			f.value="캠핑장";
+			f.value="4";
 		}
 		
 		return;

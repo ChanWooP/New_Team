@@ -77,6 +77,9 @@ function sendFind() {
 			    	<span style="font-weight: bold; font-size: 25px;">예매내역확인</span>
 			    </button>
 			</div>
+			<div style="margin-top: 10px;" align="center">
+			<a href="<%=cp%>/user/member/login">회원예매내역확인</a>
+			</div>
 			
 			<div style="margin-top: 20px; margin-bottom:100px; text-align:center;">
 				<span style="color:blue;">${message }</span>

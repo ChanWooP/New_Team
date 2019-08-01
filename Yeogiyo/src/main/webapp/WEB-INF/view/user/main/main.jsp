@@ -7,7 +7,7 @@
 %>
 <style type="text/css">
  .main {
-	 background-image: url('<%=cp%>/resource/images/mm.jpg');
+	 background-image: url('<%=cp%>/resource/images/1.jpg');
 	 background-repeat: no-repeat;
 	 opacity: 0.9!important; filter:alpha(opacity=90);
 	 background-size: 100%;

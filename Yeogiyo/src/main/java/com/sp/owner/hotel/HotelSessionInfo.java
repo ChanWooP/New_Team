@@ -4,16 +4,10 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Hotel {
+public class HotelSessionInfo {
 	// hotel 테이블
 	private String hotelId;
 	private String hotelName;
-	private int granted;
-
-	// hoteladdopt 테이블
-	private int optNum;
-	private String optName;
-	private String optPrice;
 
 	// hoteldetail 테이블
 	private String detail;
@@ -31,52 +25,20 @@ public class Hotel {
 	private String businessNum;
 	private int grade;
 
-	// hotelphoto 테이블
-	private int hotelPhotoNum;
-	private String hotelPhotoName;
-
 	// hotelprepare 테이블
-	private int prepareNum;
 	private String prepareContent;
 
 	// hoteltype 테이블
 	private int typeNum;
 	private String type;
 
-	// convenient 테이블
-	private int conNum;
-	private String conName;
-	private String conType;
-	private String conPrice; // conOpenTime, closeTime DB에서 삭제하기
-
-	// room 테이블
-	private int roomNum;
-	private String roomName;
-	private int stair;
-	private String roomType;
-	private int maxPeople;
-	private String roomStatus; // default 처리 해주기
-	private int roomPrice;
-	private int extraPrice; // 까먹지 말고 방 추가 때 넣기
-
 	// roomDetail 테이블
-	private int roomDetailNum;
 	private String roomDetails;
 
-	// roomPhoto 테이블
-	private int roomPhotoNum;
-	private String roomPhotoName;
-
-	// 배열들
-	// 위에 int로 준 optNum 같은 필드들 스프링에서 에러가 날 수 있으니 String으로 처리해주고 나중에 형변환시키기
-	// 이미지 업로드를 위한 MultipartFile 자료형
-	// 마찬가지로 하나로 받고 반복문 돌리는 게 나을 듯함!
 	private List<MultipartFile> uploads;
 	private MultipartFile mainUpload;
 
-	// register4에서 데이터를 받아오기 위한 필드들
-	// SessionInfo 따로 만들어서 넘기고 hotel은 db작업할 때만 사용하기
-	// conType을 어떻게 넘겨받을지 생각하기 각자 히든폼 줘서 배열로 넘겨받고 인덱싱? 2차원 배열?
+	// convenient 테이블
 	private List<String> recommendation;
 	private List<String> internet;
 	private List<String> access;
@@ -84,7 +46,6 @@ public class Hotel {
 	private List<String> convenient;
 	private List<String> safety;
 	private List<String> others;
-	private List<String> conTypes;
 	private List<String> notFree;
 	private List<String> conPrices;
 
@@ -104,38 +65,6 @@ public class Hotel {
 		this.hotelName = hotelName;
 	}
 
-	public int getGranted() {
-		return granted;
-	}
-
-	public void setGranted(int granted) {
-		this.granted = granted;
-	}
-
-	public int getOptNum() {
-		return optNum;
-	}
-
-	public void setOptNum(int optNum) {
-		this.optNum = optNum;
-	}
-
-	public String getOptName() {
-		return optName;
-	}
-
-	public void setOptName(String optName) {
-		this.optName = optName;
-	}
-
-	public String getOptPrice() {
-		return optPrice;
-	}
-
-	public void setOptPrice(String optPrice) {
-		this.optPrice = optPrice;
-	}
-
 	public String getDetail() {
 		return detail;
 	}
@@ -150,14 +79,6 @@ public class Hotel {
 
 	public void setMainPhoto(String mainPhoto) {
 		this.mainPhoto = mainPhoto;
-	}
-
-	public List<String> getConTypes() {
-		return conTypes;
-	}
-
-	public void setConTypes(List<String> conTypes) {
-		this.conTypes = conTypes;
 	}
 
 	public String getAddr1() {
@@ -256,30 +177,6 @@ public class Hotel {
 		this.grade = grade;
 	}
 
-	public int getHotelPhotoNum() {
-		return hotelPhotoNum;
-	}
-
-	public void setHotelPhotoNum(int hotelPhotoNum) {
-		this.hotelPhotoNum = hotelPhotoNum;
-	}
-
-	public String getHotelPhotoName() {
-		return hotelPhotoName;
-	}
-
-	public void setHotelPhotoName(String hotelPhotoName) {
-		this.hotelPhotoName = hotelPhotoName;
-	}
-
-	public int getPrepareNum() {
-		return prepareNum;
-	}
-
-	public void setPrepareNum(int prepareNum) {
-		this.prepareNum = prepareNum;
-	}
-
 	public String getPrepareContent() {
 		return prepareContent;
 	}
@@ -304,132 +201,12 @@ public class Hotel {
 		this.type = type;
 	}
 
-	public int getConNum() {
-		return conNum;
-	}
-
-	public void setConNum(int conNum) {
-		this.conNum = conNum;
-	}
-
-	public String getConName() {
-		return conName;
-	}
-
-	public void setConName(String conName) {
-		this.conName = conName;
-	}
-
-	public String getConType() {
-		return conType;
-	}
-
-	public void setConType(String conType) {
-		this.conType = conType;
-	}
-
-	public String getConPrice() {
-		return conPrice;
-	}
-
-	public void setConPrice(String conPrice) {
-		this.conPrice = conPrice;
-	}
-
-	public int getRoomNum() {
-		return roomNum;
-	}
-
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-	}
-
-	public String getRoomName() {
-		return roomName;
-	}
-
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
-	}
-
-	public int getStair() {
-		return stair;
-	}
-
-	public void setStair(int stair) {
-		this.stair = stair;
-	}
-
-	public String getRoomType() {
-		return roomType;
-	}
-
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
-	}
-
-	public int getMaxPeople() {
-		return maxPeople;
-	}
-
-	public void setMaxPeople(int maxPeople) {
-		this.maxPeople = maxPeople;
-	}
-
-	public String getRoomStatus() {
-		return roomStatus;
-	}
-
-	public void setRoomStatus(String roomStatus) {
-		this.roomStatus = roomStatus;
-	}
-
-	public int getRoomPrice() {
-		return roomPrice;
-	}
-
-	public void setRoomPrice(int roomPrice) {
-		this.roomPrice = roomPrice;
-	}
-
-	public int getExtraPrice() {
-		return extraPrice;
-	}
-
-	public void setExtraPrice(int extraPrice) {
-		this.extraPrice = extraPrice;
-	}
-
-	public int getRoomDetailNum() {
-		return roomDetailNum;
-	}
-
-	public void setRoomDetailNum(int roomDetailNum) {
-		this.roomDetailNum = roomDetailNum;
-	}
-
 	public String getRoomDetails() {
 		return roomDetails;
 	}
 
 	public void setRoomDetails(String roomDetails) {
 		this.roomDetails = roomDetails;
-	}
-
-	public int getRoomPhotoNum() {
-		return roomPhotoNum;
-	}
-
-	public void setRoomPhotoNum(int roomPhotoNum) {
-		this.roomPhotoNum = roomPhotoNum;
-	}
-
-	public String getRoomPhotoName() {
-		return roomPhotoName;
-	}
-
-	public void setRoomPhotoName(String roomPhotoName) {
-		this.roomPhotoName = roomPhotoName;
 	}
 
 	public List<MultipartFile> getUploads() {

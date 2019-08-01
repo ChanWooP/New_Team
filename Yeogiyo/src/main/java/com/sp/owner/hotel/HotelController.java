@@ -46,13 +46,13 @@ public class HotelController {
 	// @SessionAttribute?, @ModelAttribute?
 	// 배열을 필드로 갖는 자료형 클래스를 만들고 사본 배열을 만들어서 데이터를 저장 후 set으로 저장 데이터는 어떻게 넘겨받아야 하지? 배열?
 	@RequestMapping(value = "/owner/hotelRegister/register1", method = RequestMethod.POST)
-	public String hotelRegisterSession1(Hotel hotel, Model model, HttpSession session) throws Exception {
+	public String hotelRegisterSession1(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
 		try {
 			if(info!=null)
-				hotel.setHotelId(info.getUserId());
+				hinfo.setHotelId(info.getUserId());
 			session.setMaxInactiveInterval(30 * 60);
-			session.setAttribute("basicInfo", hotel);
+			session.setAttribute("basicInfo", hinfo);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -67,9 +67,9 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register2", method = RequestMethod.POST)
-	public String hotelRegisterSession2(Hotel hotel, Model model, HttpSession session) throws Exception {
+	public String hotelRegisterSession2(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("location", hotel);
+			session.setAttribute("location", hinfo);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			e.printStackTrace();
@@ -85,9 +85,9 @@ public class HotelController {
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register3", method = RequestMethod.POST)
-	public String hotelRegisterSession3(Hotel hotel, Model model, HttpSession session) throws Exception {
+	public String hotelRegisterSession3(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("description", hotel);
+			session.setAttribute("description", hinfo);
 		} catch (Exception e) {
 			
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -102,9 +102,9 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register4", method = RequestMethod.POST)
-	public String hotelRegisterSession4(Hotel hotel, Model model, HttpSession session) throws Exception {
+	public String hotelRegisterSession4(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("convenient", hotel);
+			session.setAttribute("convenient", hinfo);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -119,9 +119,9 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register5", method = RequestMethod.POST)
-	public String hotelRegisterSession5(Hotel hotel, Model model, HttpSession session) throws Exception {
+	public String hotelRegisterSession5(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("photo", hotel);
+			session.setAttribute("photo", hinfo);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -139,9 +139,10 @@ public class HotelController {
 	public String hotelRegisterSubmit(Model model, HttpSession session) throws Exception {
 		try {
 			Hotel hotel = new Hotel();
-			
+
 			// 숙소 종류, 숙소 크기,  체크인 시간, 체크아웃 시간, 전화번호, 숙소 등급, 사업자번호
-			Hotel basicInfo = (Hotel) session.getAttribute("basicInfo");
+			HotelSessionInfo basicInfo = (HotelSessionInfo) session.getAttribute("basicInfo");
+			
 			hotel.setTypeNum(basicInfo.getTypeNum());
 			hotel.setHotelSize(basicInfo.getHotelSize());
 			hotel.setCheckIn(basicInfo.getCheckIn());
@@ -152,17 +153,17 @@ public class HotelController {
 			hotel.setHotelId(basicInfo.getHotelId());
 
 			// 우편번호, 기본 주소, 상세 주소
-			Hotel location = (Hotel) session.getAttribute("location");
+			HotelSessionInfo location = (HotelSessionInfo) session.getAttribute("location");
 			hotel.setPostCode(location.getPostCode());
 			hotel.setAddr1(location.getAddr1());
 			hotel.setAddr2(location.getAddr2());
 			
 			// 숙소명, 숙소 소개, 숙소 준비사항
-			Hotel description = (Hotel) session.getAttribute("description");
+			HotelSessionInfo description = (HotelSessionInfo) session.getAttribute("description");
 			hotel.setHotelName(description.getHotelName());
 			hotel.setDetail(description.getDetail());
 			
-			// 무료 편의시설(conveninet), 유료 편의시설(hotelAddOpt)	
+			// 무료 편의시설(conveninet), 유료 편의시설(hotelAddOpt)	다른 방식으로 넘겨줘야할 거 같은데 어떻게? insert에서 여러개 할 거 배열이나 List로 넘겨줘야할 거 같음 수정해보기 세션 하나로 합칠 수 있나?
 			hotel.setRecommendation(((Hotel) session.getAttribute("recommendation")).getRecommendation());
 			hotel.setInternet( ((Hotel) session.getAttribute("internet")).getInternet());
 			hotel.setAccess(((Hotel) session.getAttribute("access")).getAccess());
@@ -174,7 +175,7 @@ public class HotelController {
 			hotel.setConPrices(((Hotel) session.getAttribute("conPrices")).getConPrices());
 			
 			// 호텔 사진, 호텔 대표 사진
-			Hotel photo = (Hotel)session.getAttribute("photo");
+			HotelSessionInfo photo = (HotelSessionInfo)session.getAttribute("photo");
 			hotel.setUploads(photo.getUploads());
 			hotel.setMainUpload(photo.getMainUpload());
 			
@@ -183,15 +184,7 @@ public class HotelController {
 			session.removeAttribute("basicInfo");
 			session.removeAttribute("location");
 			session.removeAttribute("description");
-			session.removeAttribute("recommendation");
-			session.removeAttribute("internet");
-			session.removeAttribute("access");
-			session.removeAttribute("kitchen");
 			session.removeAttribute("convenient");
-			session.removeAttribute("safety");
-			session.removeAttribute("others");
-			session.removeAttribute("notFree");
-			session.removeAttribute("conPrices");
 			session.removeAttribute("photo");
 			
 			service.insertHotel(hotel);

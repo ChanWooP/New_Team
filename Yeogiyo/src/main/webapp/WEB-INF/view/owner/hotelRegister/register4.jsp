@@ -221,6 +221,7 @@
 					<div class="small-contents-box">
 						<div class="small-title">추천 사항</div>
 						<div class="description">자주 검색하는 시설/서비스</div>
+						<input type="hidden" readonly="readonly" value="recommendation" name="conTypes">
 						<div>
 							<select name="recommendation" class="selectForm">
 								<option value="">선택 안 함</option>
@@ -240,6 +241,7 @@
 					<div class="small-contents-box">
 						<div class="small-title">인터넷</div>
 						<div class="description">여행객들이 이용할 수 있는 인터넷 시설</div>
+						<input type="hidden" readonly="readonly" value="internet" name="conTypes">
 						<div>
 							<select name="internet" class="selectForm">
 								<option value="">선택 안 함</option>
@@ -252,6 +254,7 @@
 					<div class="small-contents-box">
 						<div class="small-title">접근/출입 편의</div>
 						<div class="description">여행객들의 편리한 투숙을 위한 시설/서비스</div>
+						<input type="hidden" readonly="readonly" value="access" name="conTypes">
 						<div>
 							<select name="access" class="selectForm">
 								<option value="">선택 안 함</option>
@@ -267,6 +270,7 @@
 						<div class="small-title">주방</div>
 						<div class="description">여행객들이 편안하게 먹고 마시는 데 이용할 수 있는 편의 시설
 							및 용품</div>
+						<input type="hidden" readonly="readonly" value="kitchen" name="conTypes">
 						<div>
 							<select name="kitchen" class="selectForm">
 								<option value="">선택 안 함</option>
@@ -281,6 +285,7 @@
 						<div class="small-title">편의 시설/서비스</div>
 						<div class="description">여행객들이 검색하고 더 많은 예약을 받을 수 있는 기회도
 							증가시킬 수 있는 시설/서비스</div>
+						<input type="hidden" readonly="readonly" value="convenient" name="conTypes">
 						<div>
 							<select name="convenient" class="selectForm">
 								<option value="">선택 안 함</option>
@@ -303,7 +308,7 @@
 					<div class="small-contents-box">
 						<div class="small-title">안전시설</div>
 						<div class="description">여행객들의 투숙 기간 동안 필요한 숙소 안전시설</div>
-						
+						<input type="hidden" readonly="readonly" value="safety" name="conTypes">
 						<div>
 							<select name="safety" class="selectForm">
 								<option value="">선택 안 함</option>
@@ -318,6 +323,7 @@
 					<div class="small-contents-box">
 						<div class="small-title">기타</div>
 						<div class="description">특정 여행객에게 필요할 수도 있는 기타 사항</div>
+						<input type="hidden" readonly="readonly" value="others" name="conTypes">
 						<div>
 							<select name="others" class="selectForm">
 								<option value="">선택 안 함</option>

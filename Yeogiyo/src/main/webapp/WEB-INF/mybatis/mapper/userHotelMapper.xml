@@ -60,6 +60,7 @@
 			SELECT ROWNUM rnum, tb.* FROM (
 				SELECT reviewNum, reviewTitle, reviewContent, score FROM review
 					WHERE hotelId=#{hotelId}
+					 order by reviewnum desc
 <![CDATA[
 	        ) tb WHERE ROWNUM <= 4
 	    ) WHERE rnum >= 1

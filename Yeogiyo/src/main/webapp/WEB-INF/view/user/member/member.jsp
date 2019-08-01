@@ -12,6 +12,12 @@
 </style>
 
 <script type="text/javascript">
+$(function() {
+	$("#birth").datepicker({
+		showMonthAfterYear : true
+	});
+});
+
 function memberOk() {
 	var f=document.memberForm;
 	var s=f.userId.value;
@@ -41,6 +47,12 @@ function memberOk() {
 		return;
 	}
 	f.userPwd.value=s;
+	
+	if(str!= f.userPwdCheck.value) {
+        alert("패스워드가 일치하지 않습니다. ");
+        f.userPwdCheck.focus();
+        return;
+	}
 	
 	s=f.userName.value;
 	s=s.trim();
@@ -254,11 +266,11 @@ function changeEmail() {
 									style="text-align: right; padding-top: 5px;"><label
 									style="font-weight: 900;">생년월일</label></td>
 								<td style="padding: 0 0 15px 15px;">
-									<p style="margin-bottom: 5px;">
-										<input type="text" name="birth" maxlength="15" class="boxTF"
+									<p style="margin-bottom: 10px;">
+										<input type="text" name="birth" maxlength="15" class="boxTF" 
+											id="birth" readonly="readonly"
 											style="width: 95%;" placeholder="생년월일" value="${dto.birth }">
 									</p>
-									<p class="help-block">생년월일은 2000-01-01형식으로 입력해 주세요.</p>
 								</td>
 							</tr>
 							<tr>
@@ -318,7 +330,7 @@ function changeEmail() {
 									</p>
 								</td>
 							</tr>
-							<c:if test="${mode=='member'}">
+							<c:if test="${mode=='join'}">
 								<tr>
 									<td width="120" valign="top"
 										style="text-align: right; padding-top: 5px;"><label

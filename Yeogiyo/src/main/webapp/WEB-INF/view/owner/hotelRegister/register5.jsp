@@ -14,11 +14,13 @@
 <style>
 .left-nav {
 	float: left;
-	height: 100%;
-	width: 150px;
 	margin: 35px;
 	border-radius: 2px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.left-nav ul {
+	margin-bottom: 0px;
 }
 
 .left-nav ul li {
@@ -28,6 +30,21 @@
 
 .left-nav ul li a {
 	color: #3B1E1E;
+	display:block;
+}
+
+.left-nav ul li a:hover{
+	color: #3B1E1E;
+	display:block;
+	text-decoration: none;
+}
+
+.left-nav ul li:hover{
+	background: gold;;
+}
+
+.left-nav-activated{
+	background: gold;
 }
 
 .contents-container {
@@ -168,30 +185,18 @@
 	<div class="container">
 		<div class="left-nav">
 			<ul>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">기본 정보</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">위치</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">소개</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">편의 시설/서비스</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">요금 설정</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">예약 설정 관리</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">사진</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">프로필</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">숙소 판매</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register1"><i class="fas fa-check" style="color:#3B1E1E"></i>기본 정보</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register2"><i class="fas fa-check" style="color: #3B1E1E"></i>위치</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register3"><i class="fas fa-check" style="color: #3B1E1E"></i>소개</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register4"><i class="fas fa-check" style="color: #3B1E1E"></i>편의 시설/서비스</a></li>
+				<li class="left-nav-activated"><a href="<%=cp%>/owner/hotelRegister/register5"><i class="fas fa-check" style="color: #3B1E1E"></i>사진</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register6"><i class="fas fa-check" style="color: #3B1E1E"></i>등록 완료</a></li>
 			</ul>
 		</div>
 
+
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register5" method="post"
-				name="registerForm">
+			<form action="<%=cp%>/owner/hotelRegister/register5" method="post" name="registerForm" enctype="multipart/form-data">
 				<div class="title-box">
 					<div class="title">숙소 사진 업로드 및 관리하기</div>
 					<div class="description">숙소 사진은 여행객들에게 중요합니다. 보유하고 있는 많은 고화질의 숙소 사진을 업로드하세요. 나중에 더 많은 사진을 추가할 수도 있습니다.</div>
@@ -205,28 +210,48 @@
 					
 					<div class="big-contents-box">
 						<div class="small-contents-box">
-							<div class="big-title ">숙소 사진</div>
+							<div class="big-title">숙소 사진</div>
 							<div>숙소사진을 업로드하세요. 대표사진은 검색시 썸네일로 사용될 사진을 의미합니다.</div>
 							<div class="small-title">숙소 사진</div>
-							<input type="file" name="hotelPhoto">
+							<input type="file" name="uploads" accept="image/*" multiple="multiple" required="required">
 						</div>
 						
 						<div class="small-contents-box">
 							<div class="small-title">대표 사진</div>
-							<input type="file" name="mainPhoto">
+							<input type="file" name="mainUpload" accept="image/*" required="required">
 						</div>
 					</div>
 				</div>
 
 				<div class="btn-box">
 					<button type="button" class="pre-btn" id="pre-btn" onclick="back();">이전</button>
-					<button type="submit" class="next-btn" id="next-btn">다음</button>
+					<button type="submit" class="next-btn" id="next-btn" onclick="rehister5Ok();">다음</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<script>
+		function register5Ok() {
+			var f=document.register4Form;
+			var s=f.uploads.value;
+			if(!s) {
+				alert("사진을 최소 하나이상  첨부해주세요.");
+				f.uploads.focus();
+				return;
+			}
+			
+			s=f.mainUpload.value;
+			if(!s) {
+				alert("대표사진을 최소 하나이상  첨부해주세요.");
+				f.mainuUpload.focus();
+				return;
+			}
+			
+			f.action="<%=cp%>/owner/hotelRegister/register5";
+			f.submit();
+		}
+	
 		function back(){
 			window.location.href="<%=cp%>/owner/hotelRegister/register4";
 		}

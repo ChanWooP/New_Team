@@ -70,7 +70,8 @@ public class Hotel {
 	// 배열들
 	// 위에 int로 준 optNum 같은 필드들 스프링에서 에러가 날 수 있으니 String으로 처리해주고 나중에 형변환시키기
 	// 이미지 업로드를 위한 MultipartFile 자료형
-	private MultipartFile[] upload;
+	private List<MultipartFile> uploads;
+	private MultipartFile mainUpload;
 
 	// register4에서 데이터를 받아오기 위한 필드들
 	private List<String> recommendation;
@@ -419,12 +420,20 @@ public class Hotel {
 		this.roomPhotoName = roomPhotoName;
 	}
 
-	public MultipartFile[] getUpload() {
-		return upload;
+	public List<MultipartFile> getUploads() {
+		return uploads;
 	}
 
-	public void setUpload(MultipartFile[] upload) {
-		this.upload = upload;
+	public void setUploads(List<MultipartFile> uploads) {
+		this.uploads = uploads;
+	}
+
+	public MultipartFile getMainUpload() {
+		return mainUpload;
+	}
+
+	public void setMainUpload(MultipartFile mainUpload) {
+		this.mainUpload = mainUpload;
 	}
 
 	public List<String> getRecommendation() {

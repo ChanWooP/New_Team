@@ -49,7 +49,7 @@
 		parameterType="com.sp.owner.hotel.Hotel">
 		INSERT INTO hotel(hotelId, hotelName, typeNum)
 		VALUES
-		#{userId}, #{hotelName}, #{typeNum}
+		#{hotelId}, #{hotelName}, #{typeNum}
 	</insert>
 
 	<update id="updateHotel"
@@ -95,7 +95,7 @@
 		INSERT INTO hotelAddOpt(optNum, optName, optPrice,
 		hotelId)
 		VALUES(hotelAddOpt_SEQ.NEXTVAL, #{optName}, #{optPrice},
-		#{userId})
+		#{hotelId})
 	</insert>
 
 	<update id="updateHotelAddOpt"
@@ -131,7 +131,7 @@
 		addr1, addr2, postCode, latitude, longitude
 		, hotelSize, hotelTel,
 		hotelCreated, checkIn, checkOut, businessNum)
-		VALUES(#{userId},
+		VALUES(#{hotelId},
 		#{detail}, #{mainPhoto}, #{addr1}, #{addr2},
 		#{postCode}, #{latitude},
 		#{longitude}
@@ -178,7 +178,7 @@
 		parameterType="com.sp.owner.hotel.Hotel">
 		INSERT INTO hotelPhoto(hotelPhotoNum, hotelPhotoName,
 		hotelId)
-		VALUES(hotelPhoto_SEQ.NEXTVAL, #{hotelPhotoName}, #{userId})
+		VALUES(hotelPhoto_SEQ.NEXTVAL, #{hotelPhotoName}, #{hotelId})
 	</insert>
 
 	<update id="updateHotelPhoto"
@@ -210,7 +210,7 @@
 		INSERT INTO hotelPrepare(hotelPrepareNum,
 		hotelPrepareContent, hotelId)
 		VALUES(hotelPrepare_SEQ.NEXTVAL,
-		#{hotelPrepareContent}, #{userId})
+		#{hotelPrepareContent}, #{hotelId})
 	</insert>
 
 	<update id="updateHotelPrepare"

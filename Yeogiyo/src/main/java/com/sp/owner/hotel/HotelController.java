@@ -1,5 +1,7 @@
 package com.sp.owner.hotel;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,8 +99,15 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register4", method = RequestMethod.POST)
 	public String hotelRegisterSession4(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			
+			session.setAttribute("recommendation", hotel);
+			session.setAttribute("internet", hotel);
+			session.setAttribute("access", hotel);
+			session.setAttribute("kitchen", hotel);
 			session.setAttribute("convenient", hotel);
+			session.setAttribute("safety", hotel);
+			session.setAttribute("others", hotel);
+			session.setAttribute("notFree", hotel);
+			session.setAttribute("conPrices", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -115,8 +124,7 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register5", method = RequestMethod.POST)
 	public String hotelRegisterSession5(Hotel hotel, Model model, HttpSession session) throws Exception {
 		try {
-			
-			session.setAttribute("fee", hotel);
+			session.setAttribute("photo", hotel);
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -130,46 +138,65 @@ public class HotelController {
 		return ".owner.hotelRegister.register6";
 	}
 	
+	
+	// hotleId null로 찍힘 원인 확인 불가! sysout 으로 출력도 안 됨 제대로 안 보내지는 건가?
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.POST)
 	public String hotelRegisterSubmit(Model model, HttpSession session) throws Exception {
 		try {
 			Hotel hotel = new Hotel();
 			
-			// 호텔 종류, 방의 갯수, 방이름(호수), 숙박가능인원, 침대, 욕실
+			// 숙소 종류, 숙소 크기,  체크인 시간, 체크아웃 시간, 전화번호, 숙소 등급, 사업자번호
 			Hotel basicInfo = (Hotel) session.getAttribute("basicInfo");
+			hotel.setType(basicInfo.getType());
+			hotel.setHotelSize(basicInfo.getHotelSize());
+			hotel.setCheckIn(basicInfo.getCheckIn());
+			hotel.setCheckOut(basicInfo.getCheckIn());
+			hotel.setHotelTel(basicInfo.getCheckIn());
+			hotel.setGrade(basicInfo.getGrade());
+			hotel.setBusinessNum(basicInfo.getBusinessNum());
 
-			// 
+			// 우편번호, 기본 주소, 상세 주소
 			Hotel location = (Hotel) session.getAttribute("location");
+			hotel.setPostCode(location.getPostCode());
+			hotel.setAddr1(location.getAddr1());
+			hotel.setAddr2(location.getAddr2());
 			
-			// 
+			// 숙소명, 숙소 소개, 숙소 준비사항
 			Hotel description = (Hotel) session.getAttribute("description");
+			hotel.setHotelName(description.getHotelName());
+			hotel.setDetail(description.getDetail());
 			
-			// 
-			Hotel convenient = (Hotel) session.getAttribute("convenient");
+			// 무료 편의시설(conveninet), 유료 편의시설(hotelAddOpt)	
+			hotel.setRecommendation(((Hotel) session.getAttribute("recommendation")).getRecommendation());
+			hotel.setInternet( ((Hotel) session.getAttribute("internet")).getInternet());
+			hotel.setAccess(((Hotel) session.getAttribute("access")).getAccess());
+			hotel.setKitchen(((Hotel) session.getAttribute("kitchen")).getKitchen());
+			hotel.setConvenient(((Hotel) session.getAttribute("convenient")).getConvenient());
+			hotel.setSafety(((Hotel) session.getAttribute("safety")).getSafety());
+			hotel.setOthers(((Hotel) session.getAttribute("others")).getOthers());
+			hotel.setNotFree(((Hotel) session.getAttribute("notFree")).getNotFree());
+			hotel.setConPrices(((Hotel) session.getAttribute("conPrices")).getConPrices());
 			
-			// 
-			Hotel fee = (Hotel)	session.getAttribute("fee");
+			// 호텔 사진, 호텔 대표 사진
+			Hotel photo = (Hotel)	session.getAttribute("photo");
+			hotel.setUploads(photo.getUploads());
+			hotel.setMainUpload(photo.getMainUpload());
 			
-			// 
-			Hotel reservationOption = (Hotel) session.getAttribute("reservationOption");
-			
-			// 
-			Hotel photo = (Hotel) session.getAttribute("photo");
-			
-			// 
-			Hotel profile = (Hotel) session.getAttribute("profile");
 			
 			// 세션 삭제하기
+			session.invalidate();
+			
 			
 			service.insertHotel(hotel);
-			service.insertHotelAddOpt(hotel);
-			service.insertHotelDetail(hotel);
-			// service.insertHotelPhoto(hotel);
 			service.insertHotelPrepare(hotel);
-			service.insertConvenient(hotel);
-			service.insertRoom(hotel);
-			service.insertRoomDetail(hotel);
-			// service.insertRoomPhoto(hotel);
+			service.insertHotelDetail(hotel);
+			service.insertHotelAddOpt(hotel);	
+			
+			String root=session.getServletContext().getRealPath("/");
+			String path=root+"uploads"+File.separator+"photo";
+
+			service.insertHotelPhoto(hotel, path);
+
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -217,5 +244,15 @@ public class HotelController {
 			return ".owner.errorSuccess.error";
 		}
 		return ".owner.hotel.viewInfo";
+	}
+	
+	@RequestMapping(value = "/owner/errorSuccess/error", method = RequestMethod.GET)
+	public String error(Model model) throws Exception {
+		return ".owner.errorSuccess.error";
+	}
+	
+	@RequestMapping(value = "/owner/errorSuccess/success", method = RequestMethod.GET)
+	public String success(Model model) throws Exception {
+		return ".owner.errorSuccess.success";
 	}
 }

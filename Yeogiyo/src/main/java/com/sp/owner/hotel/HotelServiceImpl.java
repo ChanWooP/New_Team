@@ -3,8 +3,6 @@ package com.sp.owner.hotel;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.Multipart;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -117,7 +115,16 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public void insertHotelAddOpt(Hotel hotel) throws Exception {
 		try {
-			dao.insertData("owner.hotel.insertHotelAddOpt", hotel);
+			
+			List<String> notFree = hotel.getNotFree();
+			List<String> conPrices = hotel.getConPrices();
+			for(int i=0; i<notFree.size(); i++) {
+				hotel.setOptName(notFree.get(i));
+				hotel.setOptPrice(conPrices.get(i));
+				
+				dao.insertData("owner.hotel.insertHotelAddOpt", hotel);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -204,9 +211,9 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public void insertHotelPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
-			MultipartFile uploads[] = hotel.getUpload();
-			for(int a=0; a < uploads.length; a++) {
-				String savefileName = fileManager.doFileUpload(uploads[a], pathname);
+			List<MultipartFile> uploads = hotel.getUploads();
+			for(int a=0; a < uploads.size(); a++) {
+				String savefileName = fileManager.doFileUpload(uploads.get(a), pathname);
 				if (savefileName != null) {
 					dao.insertData("owner.hotel.insertHotelPhoto", hotel);
 				}
@@ -296,11 +303,45 @@ public class HotelServiceImpl implements HotelService {
 		}
 		return dto;
 	}
-
+	
 	@Override
 	public void insertConvenient(Hotel hotel) throws Exception {
 		try {
-			dao.insertData("owner.hotel.insertConvenient", hotel);
+			for(int i=0; i<hotel.getRecommendation().size(); i++) {
+				hotel.setConName(hotel.getRecommendation().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
+			for(int i=0; i<hotel.getInternet().size(); i++) {
+				hotel.setConName(hotel.getInternet().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
+			for(int i=0; i<hotel.getAccess().size(); i++) {
+				hotel.setConName(hotel.getAccess().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
+			for(int i=0; i<hotel.getKitchen().size(); i++) {
+				hotel.setConName(hotel.getKitchen().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
+			for(int i=0; i<hotel.getConvenient().size(); i++) {
+				hotel.setConName(hotel.getConvenient().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
+			for(int i=0; i<hotel.getSafety().size(); i++) {
+				hotel.setConName(hotel.getSafety().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
+			for(int i=0; i<hotel.getOthers().size(); i++) {
+				hotel.setConName(hotel.getOthers().get(i));
+				dao.insertData("owner.hotel.insertConvenient", hotel);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -428,9 +469,9 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public void insertRoomPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
-			MultipartFile uploads[] = hotel.getUpload();
-			for(int a=0; a < uploads.length; a++) {
-				String savefileName = fileManager.doFileUpload(uploads[a], pathname);
+			List<MultipartFile> uploads = hotel.getUploads();
+			for(int a=0; a < uploads.size(); a++) {
+				String savefileName = fileManager.doFileUpload(uploads.get(a), pathname);
 				if (savefileName != null) {
 					dao.insertData("owner.hotel.insertRoomPhoto", hotel);
 				}

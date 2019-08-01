@@ -14,11 +14,13 @@
 <style>
 .left-nav {
 	float: left;
-	height: 100%;
-	width: 150px;
 	margin: 35px;
 	border-radius: 2px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.left-nav ul {
+	margin-bottom: 0px;
 }
 
 .left-nav ul li {
@@ -28,6 +30,21 @@
 
 .left-nav ul li a {
 	color: #3B1E1E;
+	display:block;
+}
+
+.left-nav ul li a:hover{
+	color: #3B1E1E;
+	display:block;
+	text-decoration: none;
+}
+
+.left-nav ul li:hover{
+	background: gold;;
+}
+
+.left-nav-activated{
+	background: gold;
 }
 
 .contents-container {
@@ -187,20 +204,12 @@
 	<div class="container">
 		<div class="left-nav">
 			<ul>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">기본 정보</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">위치</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">소개</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">편의 시설/서비스</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">예약 설정 관리</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">사진</a></li>
-				<li><i class="fas fa-check" style="color: #3B1E1E"></i><a
-					href="#">숙소 판매</a></li>
+				<li class="left-nav-activated"><a href="<%=cp%>/owner/hotelRegister/register1"><i class="fas fa-check" style="color:#3B1E1E"></i>기본 정보</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register2"><i class="fas fa-check" style="color: #3B1E1E"></i>위치</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register3"><i class="fas fa-check" style="color: #3B1E1E"></i>소개</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register4"><i class="fas fa-check" style="color: #3B1E1E"></i>편의 시설/서비스</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register5"><i class="fas fa-check" style="color: #3B1E1E"></i>사진</a></li>
+				<li><a href="<%=cp%>/owner/hotelRegister/register6"><i class="fas fa-check" style="color: #3B1E1E"></i>등록 완료</a></li>
 			</ul>
 		</div>
 
@@ -241,7 +250,8 @@
 							</div>
 							<div>캠핑장</div>
 						</div>
-						<input type="text" id="type" name="type" readonly="readonly" value="${sessionScope.basicInfo.type}">
+						<input type="hidden" id="type" name="type" readonly="readonly" value="${sessionScope.basicInfo.type}">
+						<input type="hidden" name="hotelId" readonly="readonly" value="${sessionScope.member.userId}">
 					</div>
 					
 					<div class="small-contents-box">

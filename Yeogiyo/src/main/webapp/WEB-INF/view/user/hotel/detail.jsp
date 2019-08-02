@@ -136,9 +136,9 @@ $(function() {
 				<div class="panel-heading">
 					<div class="hotelname">
 						<h3>${detail.hotelName}</h3>
-						<small>${detail.addr1}, ${detail.addr2}</small>
+						<small style="margin-right:10px;">${detail.addr1}, ${detail.addr2}</small>
 						<c:if test="${not empty sessionScope.member}">
-							<button style="align:right;" class="hotelQnA" data-hotelName="${detail.hotelName}">호텔에 문의하기</button>
+							<button style="align:right;" class="btn btn-default btn-sm hotelQnA" data-hotelName="${detail.hotelName}">호텔에 문의하기</button>
 						</c:if>
 					</div>
 				</div>
@@ -262,7 +262,7 @@ $(function() {
 									<td>${dto.maxpeople}</td>
 									<td>${dto.roomprice}</td>
 									<td>	
-										<button type="button" class="reservationBtn"
+										<button type="button" class="btn btn-default btn-sm reservationBtn"
 											data-hotelId="${hotelId}" data-maxpeople="${dto.maxpeople}"
 											data-roomprice="${dto.roomprice}"
 											data-roomtype="${dto.roomtype}"

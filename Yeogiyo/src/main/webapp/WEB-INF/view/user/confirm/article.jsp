@@ -93,7 +93,7 @@ $(function() {
 				<div class="row">
 				
 					<div class="col-md-4">
-					<img src="<%=cp %>/uploads/hotelMain/${dto.mainPhoto}" class="img-thumbnail" alt="mainPhoto" width="400">
+					<img src="<%=cp%>/resource/images/hotel/L7main.jpg" class="img-thumbnail" alt="mainPhoto" width="400">
 					</div>
 					<div class="col-md-8">
 					<table class="table">

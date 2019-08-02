@@ -180,4 +180,75 @@
 		</div>
 	</div>
 </div>
+</div><br>
+<div class="container">
+<h1 align="center">Yeogiyo</h1><br>
+<p align="center">여기요 에서는 고객들이 원하는 장소, 원하는 날짜에 맞춰 가장 최고의 숙박을 제공합니다.</p>
+<p align="center">여기요는 전세계 25,000호텔들과 리조트, 팬션과 함께합니다.</p>
+<p align="center">여기요와 함께 전세계 여행을 떠나보세요</p><br><hr><br>
+<h1 align="center">이번달 추천 여행 명소</h1><br>
+<div class="row">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="<%=cp%>/resource/images/jeju.jpg">
+        <img src="<%=cp%>/resource/images/jeju.jpg" alt="jeju" style="width:100%">
+        <div class="caption">
+          <p>제주도</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="<%=cp%>/resource/images/osaka.jpg">
+        <img src="<%=cp%>/resource/images/osaka.jpg" alt="osaka" style="width:100%">
+        <div class="caption">
+          <p>오사카</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="<%=cp%>/resource/images/hongkong.jpg">
+        <img src="<%=cp%>/resource/images/hongkong.jpg" alt="hongkong" style="width:100%">
+        <div class="caption">
+          <p>홍콩</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="<%=cp%>/resource/images/be.jpg">
+        <img src="<%=cp%>/resource/images/be.jpg" alt="beijing" style="width:100%; height: 250px;">
+        <div class="caption">
+          <p>베이징</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="<%=cp%>/resource/images/ba.jpg">
+        <img src="<%=cp%>/resource/images/ba.jpg" alt="Barcelona" style="width:100%; height: 250px;">
+        <div class="caption">
+          <p>바르셀로나</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="<%=cp%>/resource/images/newyork.jpg">
+        <img src="<%=cp%>/resource/images/newyork.jpg" alt="NewYork" style="width:100%; height: 250px;">
+        <div class="caption">
+          <p>뉴욕</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 </div>

@@ -196,8 +196,7 @@
 
 
 		<div class="contents-container">
-			<form action="<%=cp%>/owner/hotelRegister/register6" method="post"
-				name="registerForm">
+			<form action="<%=cp%>/owner/hotelRegister/register6" method="post" name="registerForm">
 				<div class="title-box">
 					<div class="title">숙소 등록 완료하기</div>
 					<div class="description">숙소등록을 완료하기 전에 잘못 기입된 정보는 없는지 다시 확인해주세요.</div>

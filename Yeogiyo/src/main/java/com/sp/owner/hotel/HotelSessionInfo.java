@@ -30,7 +30,6 @@ public class HotelSessionInfo {
 
 	// hoteltype 테이블
 	private int typeNum;
-	private String type;
 
 	// roomDetail 테이블
 	private String roomDetails;
@@ -191,14 +190,6 @@ public class HotelSessionInfo {
 
 	public void setTypeNum(int typeNum) {
 		this.typeNum = typeNum;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public String getRoomDetails() {

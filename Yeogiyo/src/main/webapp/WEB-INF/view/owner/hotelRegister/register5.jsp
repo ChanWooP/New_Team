@@ -225,33 +225,13 @@
 
 				<div class="btn-box">
 					<button type="button" class="pre-btn" id="pre-btn" onclick="back();">이전</button>
-					<button type="submit" class="next-btn" id="next-btn" onclick="rehister5Ok();">다음</button>
+					<button type="submit" class="next-btn" id="next-btn">다음</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<script>
-		function register5Ok() {
-			var f=document.register4Form;
-			var s=f.uploads.value;
-			if(!s) {
-				alert("사진을 최소 하나이상  첨부해주세요.");
-				f.uploads.focus();
-				return;
-			}
-			
-			s=f.mainUpload.value;
-			if(!s) {
-				alert("대표사진을 최소 하나이상  첨부해주세요.");
-				f.mainuUpload.focus();
-				return;
-			}
-			
-			f.action="<%=cp%>/owner/hotelRegister/register5";
-			f.submit();
-		}
-	
 		function back(){
 			window.location.href="<%=cp%>/owner/hotelRegister/register4";
 		}

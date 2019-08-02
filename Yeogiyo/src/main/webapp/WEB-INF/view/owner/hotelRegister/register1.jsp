@@ -250,7 +250,7 @@
 							</div>
 							<div>캠핑장</div>
 						</div>
-						<input type="hidden" id="type" name="typeNum" readonly="readonly" value="${sessionScope.basicInfo.type}">
+						<input type="hidden" id="type" name="typeNum" readonly="readonly" value="${sessionScope.basicInfo.typeNum}">
 					</div>
 					
 					<div class="small-contents-box">

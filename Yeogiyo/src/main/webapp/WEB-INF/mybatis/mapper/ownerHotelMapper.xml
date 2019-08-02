@@ -199,24 +199,24 @@
 	<!-- hotelPrepare table query -->
 	<select id="selectHotelPrepare" parameterType="java.lang.String"
 		resultType="com.sp.owner.hotel.Hotel">
-		SELECT hotelPrepareNum, hotelPrepareContent, hotelId FROM
+		SELECT prepareNum, prepareContent, hotelId FROM
 		hotelPrepare
 		WHERE hotelId=#{hotelId}
 	</select>
 
 	<insert id="insertHotelPrepare"
 		parameterType="com.sp.owner.hotel.Hotel">
-		INSERT INTO hotelPrepare(hotelPrepareNum,
-		hotelPrepareContent, hotelId)
+		INSERT INTO hotelPrepare(prepareNum,
+		prepareContent, hotelId)
 		VALUES(hotelPrepare_SEQ.NEXTVAL,
-		#{hotelPrepareContent}, #{hotelId})
+		#{prepareContent}, #{hotelId})
 	</insert>
 
 	<update id="updateHotelPrepare"
 		parameterType="com.sp.owner.hotel.Hotel">
 		UPDATE hotelPrepare
 		SET
-		hotelprePareContent=#{hotelPrepareContent}
+		prepareContent=#{prepareContent}
 		WHERE hotelId=#{hotelId}
 	</update>
 

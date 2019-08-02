@@ -6,20 +6,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sp.common.FileManager;
 import com.sp.user.member.SessionInfo;
 
 @Controller("owner.hotel.hotelController")
 public class HotelController {
-
-	// 예외처리 마저 해주기
-	// 세션에 개인정보 변경이나 호텔 삭제 등에는 세션에 저장해놓은 멤버와 비교하도록 만들기
-	// 호텔오너의 호텔 삭제 요청을 위한 request 컬럼 hotel 테이블에 추가했음! 관리자는 request가 1인 호텔목록을 볼 수 있고 승인해주는 방식 삭제 시간상 일단 보류
-	// 호텔오너 페이지 시큐리티로 접근 제한하기
-	// 파일 업로드 정상 작동하는지 확인하기
 
 	@Autowired
 	private HotelService service;
@@ -41,10 +37,6 @@ public class HotelController {
 		return ".owner.hotelRegister.register1";
 	}
 
-	// 데이터 그대로 나오도록 만들기
-	// mapping할 페이지 여러 개 만들고 정보 전부 session에 저장하고 가져와서 쿼리 실행하게 만들기 @RequestParam?
-	// @SessionAttribute?, @ModelAttribute?
-	// 배열을 필드로 갖는 자료형 클래스를 만들고 사본 배열을 만들어서 데이터를 저장 후 set으로 저장 데이터는 어떻게 넘겨받아야 하지? 배열?
 	@RequestMapping(value = "/owner/hotelRegister/register1", method = RequestMethod.POST)
 	public String hotelRegisterSession1(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
@@ -53,8 +45,19 @@ public class HotelController {
 				hinfo.setHotelId(info.getUserId());
 			session.setMaxInactiveInterval(30 * 60);
 			session.setAttribute("basicInfo", hinfo);
+			
+			System.out.println("Register1");
+			System.out.println("호텔 종류: "+hinfo.getTypeNum());
+			System.out.println("호텔 크기: "+hinfo.getHotelSize());
+			System.out.println("호텔 체크인 시간: "+hinfo.getCheckIn());
+			System.out.println("호텔 체크아웃 시간: "+hinfo.getCheckOut());
+			System.out.println("호텔 전화번호: "+hinfo.getHotelTel());
+			System.out.println("호텔 등급: "+hinfo.getGrade());
+			System.out.println("호텔 사업자번호: "+hinfo.getBusinessNum());
+			System.out.println();
+			
 		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
+			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
@@ -70,8 +73,13 @@ public class HotelController {
 	public String hotelRegisterSession2(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
 			session.setAttribute("location", hinfo);
+			
+			System.out.println("Register2");
+			System.out.println("호텔 우편번호: "+hinfo.getPostCode());
+			System.out.println("호텔 기본 주소: "+hinfo.getAddr1());
+			System.out.println("호텔 상세 주소: "+hinfo.getAddr2());
+			System.out.println();
 		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
@@ -88,8 +96,14 @@ public class HotelController {
 	public String hotelRegisterSession3(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
 			session.setAttribute("description", hinfo);
-		} catch (Exception e) {
 			
+			System.out.println("Register3");
+			System.out.println("호텔 이름: "+hinfo.getHotelName());
+			System.out.println("호텔 소개: "+hinfo.getDetail());
+			System.out.println("호텔 준비사항: "+hinfo.getPrepareContent());
+			System.out.println();
+		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
@@ -105,8 +119,50 @@ public class HotelController {
 	public String hotelRegisterSession4(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
 			session.setAttribute("convenient", hinfo);
+			
+			System.out.println("Register4");
+			for(int i = 0; i < hinfo.getRecommendation().size(); i ++) {
+				System.out.println("추천사항: "+hinfo.getRecommendation().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getInternet().size(); i ++) {
+				System.out.println("인터넷: "+hinfo.getInternet().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getAccess().size(); i ++) {
+				System.out.println("접근/출입편의: "+hinfo.getAccess().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getKitchen().size(); i ++) {
+				System.out.println("주방: "+hinfo.getKitchen().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getConvenient().size(); i ++) {
+				System.out.println("편의시설 및 서비스: "+hinfo.getConvenient().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getSafety().size(); i ++) {
+				System.out.println("안전시설: "+hinfo.getSafety().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getOthers().size(); i ++) {
+				System.out.println("기타: "+hinfo.getOthers().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getOthers().size(); i ++) {
+				System.out.println("기타: "+hinfo.getOthers().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getNotFree().size(); i ++) {
+				System.out.println("유료 서비스: "+hinfo.getNotFree().get(i));
+			}
+			
+			for(int i = 0; i < hinfo.getConPrices().size(); i ++) {
+				System.out.println("가격: "+hinfo.getConPrices().get(i));
+			}
+			System.out.println();
 		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
+			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
@@ -121,9 +177,23 @@ public class HotelController {
 	@RequestMapping(value = "/owner/hotelRegister/register5", method = RequestMethod.POST)
 	public String hotelRegisterSession5(HotelSessionInfo hinfo, Model model, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("photo", hinfo);
+			SessionInfo info = (SessionInfo) session.getAttribute("member");
+			if(info!=null)
+				hinfo.setHotelId(info.getUserId());
+			
+			// mainPhoto 이름 어떻게? detail에 넣어야 하는데 어떻게? 세션에 저장하지 말고 바로 인서트
+			String root=session.getServletContext().getRealPath("/");
+			String pathname=root+"uploads"+File.separator+"photo";
+			// service.insertHotelPhoto(hinfo, pathname);
+						
+			System.out.println("Register6");
+			for(int i = 0; i < hinfo.getUploads().size(); i ++) {
+				System.out.println("사진: "+hinfo.getUploads().get(i));
+			}
+			System.out.println("대표 사진: "+hinfo.getMainUpload());
+			System.out.println();
 		} catch (Exception e) {
-			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
+			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
@@ -135,14 +205,29 @@ public class HotelController {
 		return ".owner.hotelRegister.register6";
 	}
 	
+	// NPE 뜸 뭐가 null인지 확인 해보고 그 부분 고치기
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.POST)
+	@Transactional
 	public String hotelRegisterSubmit(Model model, HttpSession session) throws Exception {
 		try {
 			Hotel hotel = new Hotel();
+			HotelSessionInfo hinfo = new HotelSessionInfo();
+			
+			// 세션의 배열 HotelSessionInfo 자료형에 저장						
+			HotelSessionInfo convenientSession = (HotelSessionInfo) session.getAttribute("convenient");
+			hinfo.setRecommendation(convenientSession.getRecommendation());
+			hinfo.setInternet(convenientSession.getInternet());		
+			hinfo.setAccess(convenientSession.getAccess());						
+			hinfo.setKitchen(convenientSession.getKitchen());		
+			hinfo.setConvenient(convenientSession.getConvenient());					
+			hinfo.setSafety(convenientSession.getSafety());			
+			hinfo.setOthers(convenientSession.getOthers());		
+			hinfo.setNotFree(convenientSession.getNotFree());		
+			hinfo.setConPrices(convenientSession.getConPrices());
+			
 
 			// 숙소 종류, 숙소 크기,  체크인 시간, 체크아웃 시간, 전화번호, 숙소 등급, 사업자번호
 			HotelSessionInfo basicInfo = (HotelSessionInfo) session.getAttribute("basicInfo");
-			
 			hotel.setTypeNum(basicInfo.getTypeNum());
 			hotel.setHotelSize(basicInfo.getHotelSize());
 			hotel.setCheckIn(basicInfo.getCheckIn());
@@ -162,22 +247,12 @@ public class HotelController {
 			HotelSessionInfo description = (HotelSessionInfo) session.getAttribute("description");
 			hotel.setHotelName(description.getHotelName());
 			hotel.setDetail(description.getDetail());
-			
-			// 무료 편의시설(conveninet), 유료 편의시설(hotelAddOpt)	다른 방식으로 넘겨줘야할 거 같은데 어떻게? insert에서 여러개 할 거 배열이나 List로 넘겨줘야할 거 같음 수정해보기 세션 하나로 합칠 수 있나?
-			hotel.setRecommendation(((Hotel) session.getAttribute("recommendation")).getRecommendation());
-			hotel.setInternet( ((Hotel) session.getAttribute("internet")).getInternet());
-			hotel.setAccess(((Hotel) session.getAttribute("access")).getAccess());
-			hotel.setKitchen(((Hotel) session.getAttribute("kitchen")).getKitchen());
-			hotel.setConvenient(((Hotel) session.getAttribute("convenient")).getConvenient());
-			hotel.setSafety(((Hotel) session.getAttribute("safety")).getSafety());
-			hotel.setOthers(((Hotel) session.getAttribute("others")).getOthers());
-			hotel.setNotFree(((Hotel) session.getAttribute("notFree")).getNotFree());
-			hotel.setConPrices(((Hotel) session.getAttribute("conPrices")).getConPrices());
+			hotel.setPrepareContent(description.getPrepareContent());
 			
 			// 호텔 사진, 호텔 대표 사진
 			HotelSessionInfo photo = (HotelSessionInfo)session.getAttribute("photo");
-			hotel.setUploads(photo.getUploads());
 			hotel.setMainUpload(photo.getMainUpload());
+			hinfo.setUploads(photo.getUploads());
 			
 			// 세션 삭제하기
 			//session.invalidate();
@@ -187,18 +262,18 @@ public class HotelController {
 			session.removeAttribute("convenient");
 			session.removeAttribute("photo");
 			
+			String root=session.getServletContext().getRealPath("/");
+			String pathname=root+"uploads"+File.separator+"photo";
+			
 			service.insertHotel(hotel);
 			service.insertHotelPrepare(hotel);
 			service.insertHotelDetail(hotel);
-			service.insertHotelAddOpt(hotel);	
-			
-			String root=session.getServletContext().getRealPath("/");
-			String path=root+"uploads"+File.separator+"photo";
-
-			service.insertHotelPhoto(hotel, path);
+			service.insertConvenient(hotel, hinfo);
+			service.insertHotelAddOpt(hotel, hinfo);	
 
 		} catch (Exception e) {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
+			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}

@@ -113,18 +113,18 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public void insertHotelAddOpt(Hotel hotel) throws Exception {
+	public void insertHotelAddOpt(Hotel hotel, HotelSessionInfo hinfo) throws Exception {
 		try {
-			
-			List<String> notFree = hotel.getNotFree();
-			List<String> conPrices = hotel.getConPrices();
-			for(int i=0; i<notFree.size(); i++) {
+
+			List<String> notFree = hinfo.getNotFree();
+			List<String> conPrices = hinfo.getConPrices();
+			for (int i = 0; i < notFree.size(); i++) {
 				hotel.setOptName(notFree.get(i));
 				hotel.setOptPrice(conPrices.get(i));
-				
+
 				dao.insertData("owner.hotel.insertHotelAddOpt", hotel);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -209,12 +209,14 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public void insertHotelPhoto(Hotel hotel, String pathname) throws Exception {
+	public void insertHotelPhoto(Hotel hotel, String pathname, HotelSessionInfo hinfo) throws Exception {
 		try {
-			List<MultipartFile> uploads = hotel.getUploads();
-			for(int a=0; a < uploads.size(); a++) {
-				String savefileName = fileManager.doFileUpload(uploads.get(a), pathname);
+			List<MultipartFile> uploads = hinfo.getUploads();
+			String savefileName = "";
+			for (int a = 0; a < uploads.size(); a++) {
+				savefileName = fileManager.doFileUpload(uploads.get(a), pathname);
 				if (savefileName != null) {
+					hotel.setHotelPhotoName(savefileName);
 					dao.insertData("owner.hotel.insertHotelPhoto", hotel);
 				}
 			}
@@ -224,7 +226,7 @@ public class HotelServiceImpl implements HotelService {
 		}
 
 	}
-
+	
 	@Override
 	public void updateHotelPhoto(Hotel hotel, String pathname) throws Exception {
 		try {
@@ -303,45 +305,67 @@ public class HotelServiceImpl implements HotelService {
 		}
 		return dto;
 	}
-	
+
 	@Override
-	public void insertConvenient(Hotel hotel) throws Exception {
+	public void insertConvenient(Hotel hotel, HotelSessionInfo hinfo) throws Exception {
 		try {
-			for(int i=0; i<hotel.getRecommendation().size(); i++) {
-				hotel.setConName(hotel.getRecommendation().get(i));
-				dao.insertData("owner.hotel.insertConvenient", hotel);
+			for (int i = 0; i < hinfo.getRecommendation().size(); i++) {
+				if(hinfo.getRecommendation().get(i)!=null && hinfo.getRecommendation().get(i)=="") {
+					hotel.setConName(hinfo.getRecommendation().get(i));
+					// 원래는 conType register4 페이지에서 히든폼으로 받아와야함! 시간 맞추느라 대충 하드코딩함!
+					hotel.setConType("recommendation");
+					dao.insertData("owner.hotel.insertConvenient", hotel);
+				}
 			}
-			
-			for(int i=0; i<hotel.getInternet().size(); i++) {
-				hotel.setConName(hotel.getInternet().get(i));
-				dao.insertData("owner.hotel.insertConvenient", hotel);
+
+			for (int i = 0; i < hinfo.getInternet().size(); i++) {
+				if(hinfo.getInternet().get(i)!=null && hinfo.getInternet().get(i)=="") {
+					hotel.setConName(hinfo.getInternet().get(i));
+					hotel.setConType("internet");
+					dao.insertData("owner.hotel.insertConvenient", hotel);
+				}	
 			}
-			
-			for(int i=0; i<hotel.getAccess().size(); i++) {
-				hotel.setConName(hotel.getAccess().get(i));
-				dao.insertData("owner.hotel.insertConvenient", hotel);
+
+			for (int i = 0; i < hinfo.getAccess().size(); i++) {
+				if(hinfo.getAccess().get(i)!=null && hinfo.getAccess().get(i)=="") {
+					hotel.setConName(hinfo.getAccess().get(i));
+					hotel.setConType("access");
+					dao.insertData("owner.hotel.insertConvenient", hotel);
+				}	
 			}
-			
-			for(int i=0; i<hotel.getKitchen().size(); i++) {
-				hotel.setConName(hotel.getKitchen().get(i));
+
+			for (int i = 0; i < hinfo.getKitchen().size(); i++) {
+				if(hinfo.getAccess().get(i)!=null && hinfo.getAccess().get(i)=="") {
+				hotel.setConName(hinfo.getKitchen().get(i));
+				hotel.setConType("kitchen");
 				dao.insertData("owner.hotel.insertConvenient", hotel);
+				}
 			}
-			
-			for(int i=0; i<hotel.getConvenient().size(); i++) {
-				hotel.setConName(hotel.getConvenient().get(i));
+
+			for (int i = 0; i < hinfo.getConvenient().size(); i++) {
+				if(hinfo.getConvenient().get(i)!=null && hinfo.getConvenient().get(i)=="") {
+					hotel.setConName(hinfo.getConvenient().get(i));
+					hotel.setConType("convenient");
+					dao.insertData("owner.hotel.insertConvenient", hotel);
+				}
+			}
+
+			for (int i = 0; i < hinfo.getSafety().size(); i++) {
+				if(hinfo.getSafety().get(i)!=null && hinfo.getSafety().get(i)=="") {
+					hotel.setConName(hinfo.getSafety().get(i));
+					hotel.setConType("safety");
+					dao.insertData("owner.hotel.insertConvenient", hotel);
+				}
+			}
+
+			for (int i = 0; i < hinfo.getOthers().size(); i++) {
+				if(hinfo.getOthers().get(i)!=null && hinfo.getOthers().get(i)=="") {
+				hotel.setConName(hinfo.getOthers().get(i));
+				hotel.setConType("others");
 				dao.insertData("owner.hotel.insertConvenient", hotel);
+				}
 			}
-			
-			for(int i=0; i<hotel.getSafety().size(); i++) {
-				hotel.setConName(hotel.getSafety().get(i));
-				dao.insertData("owner.hotel.insertConvenient", hotel);
-			}
-			
-			for(int i=0; i<hotel.getOthers().size(); i++) {
-				hotel.setConName(hotel.getOthers().get(i));
-				dao.insertData("owner.hotel.insertConvenient", hotel);
-			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -467,12 +491,13 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public void insertRoomPhoto(Hotel hotel, String pathname) throws Exception {
+	public void insertRoomPhoto(Hotel hotel, String pathname, HotelSessionInfo hinfo) throws Exception {
 		try {
-			List<MultipartFile> uploads = hotel.getUploads();
-			for(int a=0; a < uploads.size(); a++) {
+			List<MultipartFile> uploads = hinfo.getUploads();
+			for (int a = 0; a < uploads.size(); a++) {
 				String savefileName = fileManager.doFileUpload(uploads.get(a), pathname);
 				if (savefileName != null) {
+					hotel.setHotelPhotoName(savefileName);
 					dao.insertData("owner.hotel.insertRoomPhoto", hotel);
 				}
 			}

@@ -16,7 +16,7 @@ public interface HotelService {
 	
 	// hotelAddOpt 테이블
 	public Hotel selectHotelAddOpt(String hotelId) throws Exception;
-	public void insertHotelAddOpt(Hotel hotel) throws Exception;
+	public void insertHotelAddOpt(Hotel hotel, HotelSessionInfo hinfo) throws Exception;
 	public void updateHotelAddOpt(Hotel hotel) throws Exception;
 	public void deleteHotelAddOpt(String hotelId) throws Exception;
 	
@@ -28,7 +28,7 @@ public interface HotelService {
 	
 	// hotelPhoto 테이블
 	public Hotel selectHotelPhoto(String hotelId) throws Exception;
-	public void insertHotelPhoto(Hotel hotel, String pathname) throws Exception;
+	public void insertHotelPhoto(Hotel hotel, String pathname, HotelSessionInfo hinfo) throws Exception;
 	public void updateHotelPhoto(Hotel hotel, String pathname) throws Exception;
 	public void deleteHotelPhoto(String hotelId, String pathname) throws Exception;
 	
@@ -40,7 +40,7 @@ public interface HotelService {
 	
 	// convenient 테이블 
 	public Hotel selectConvenient(String hotelId) throws Exception;
-	public void insertConvenient(Hotel hotel) throws Exception;
+	public void insertConvenient(Hotel hotel, HotelSessionInfo hinfo) throws Exception;
 	public void updateConvenient(Hotel hotel) throws Exception;
 	public void deleteConvenient(String hotelId) throws Exception;
 	
@@ -58,7 +58,7 @@ public interface HotelService {
 	
 	// roomPhoto 테이블
 	public List<Hotel> selectRoomPhoto(String hotelId) throws Exception;
-	public void insertRoomPhoto(Hotel hotel, String pathname) throws Exception;
+	public void insertRoomPhoto(Hotel hotel, String pathname, HotelSessionInfo hinfo) throws Exception;
 	public void updateRoomPhoto(Hotel hotel, String pathname) throws Exception;
 	public void deleteRoomPhoto(Hotel hotel, String pathname) throws Exception;
 	

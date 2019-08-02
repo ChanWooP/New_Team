@@ -223,7 +223,7 @@
   <div class="col-md-4">
     <div class="thumbnail">
       <a href="<%=cp%>/resource/images/be.jpg">
-        <img src="<%=cp%>/resource/images/be.jpg" alt="beijing" style="width:100%">
+        <img src="<%=cp%>/resource/images/be.jpg" alt="beijing" style="width:100%; height: 300px;">
         <div class="caption">
           <p>베이징</p>
         </div>
@@ -233,7 +233,7 @@
   <div class="col-md-4">
     <div class="thumbnail">
       <a href="<%=cp%>/resource/images/ba.jpg">
-        <img src="<%=cp%>/resource/images/ba.jpg" alt="Barcelona" style="width:100%">
+        <img src="<%=cp%>/resource/images/ba.jpg" alt="Barcelona" style="width:100%; height: 300px;">
         <div class="caption">
           <p>바르셀로나</p>
         </div>
@@ -243,9 +243,9 @@
   <div class="col-md-4">
     <div class="thumbnail">
       <a href="<%=cp%>/resource/images/newyork.jpg">
-        <img src="<%=cp%>/resource/images/newyork.jpg" alt="NewYork" style="width:100%">
+        <img src="<%=cp%>/resource/images/newyork.jpg" alt="NewYork" style="width:100%; height: 300px;">
         <div class="caption">
-          <p>홍콩</p>
+          <p>뉴욕</p>
         </div>
       </a>
     </div>

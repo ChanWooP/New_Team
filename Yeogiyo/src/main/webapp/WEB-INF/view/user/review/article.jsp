@@ -134,25 +134,25 @@ $(function(){
 			<div class="panel-body">
 				<table>
 					<tr>
-						<td>제목 :<td>
-						<td>${article.reviewTitle}</td>
+						<td style="width:60px; padding-bottom:5px;">제목 :<td>
+						<td style="width:660px; padding-bottom:5px;">${article.reviewTitle}</td>
 					</tr>
 					<tr>
-						<td>작성일 :<td>
-						<td>${article.reviewCreated}</td>
+						<td style="padding-bottom:5px;">작성일 :<td>
+						<td style="padding-bottom:5px;">${article.reviewCreated}</td>
 					</tr>
 					
 					<tr>
-						<td>작성자 :<td>
-						<td>${article.userName}</td>
+						<td style="padding-bottom:5px;">작성자 :<td>
+						<td style="padding-bottom:5px;">${article.userName}</td>
 					</tr>
 					<tr>
-						<td>평점 :<td>
-						<td>${article.score}점</td>
+						<td style="padding-bottom:5px;">평점 :<td>
+						<td style="padding-bottom:5px;">${article.score}점</td>
 					</tr>
 					<tr>
-						<td>내용 :<td>
-						<td>${article.reviewContent}</td>
+						<td style="padding-bottom:5px;">내용 :<td>
+						<td style="padding-bottom:5px;">${article.reviewContent}</td>
 					</tr>
 				
 				</table>

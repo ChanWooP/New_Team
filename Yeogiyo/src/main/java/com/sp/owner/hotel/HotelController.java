@@ -34,7 +34,7 @@ public class HotelController {
 
 	@RequestMapping(value = "/owner/hotelRegister/register1", method = RequestMethod.GET)
 	public String hotelRegisterForm1(Model model) throws Exception {
-		return ".owner.hotelRegister.register1";
+		return ".user.hotelRegister.register1";
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register1", method = RequestMethod.POST)
@@ -61,12 +61,12 @@ public class HotelController {
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
-		return ".owner.hotelRegister.register2";
+		return ".user.hotelRegister.register2";
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register2", method = RequestMethod.GET)
 	public String hotelRegisterForm2(Model model) throws Exception {
-		return ".owner.hotelRegister.register2";
+		return ".user.hotelRegister.register2";
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register2", method = RequestMethod.POST)
@@ -82,14 +82,14 @@ public class HotelController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
-			return ".owner.errorSuccess.error";
+			return ".user.errorSuccess.error";
 		}
-		return ".owner.hotelRegister.register3";
+		return ".user.hotelRegister.register3";
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register3", method = RequestMethod.GET)
 	public String hotelRegisterForm3(Model model) throws Exception {
-		return ".owner.hotelRegister.register3";
+		return ".user.hotelRegister.register3";
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register3", method = RequestMethod.POST)
@@ -107,12 +107,12 @@ public class HotelController {
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
-		return ".owner.hotelRegister.register4";
+		return ".user.hotelRegister.register4";
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register4", method = RequestMethod.GET)
 	public String hotelRegisterForm4(Model model) throws Exception {
-		return ".owner.hotelRegister.register4";
+		return ".user.hotelRegister.register4";
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register4", method = RequestMethod.POST)
@@ -166,12 +166,12 @@ public class HotelController {
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
-		return ".owner.hotelRegister.register5";
+		return ".user.hotelRegister.register5";
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register5", method = RequestMethod.GET)
 	public String hotelRegisterForm5(Model model) throws Exception {
-		return ".owner.hotelRegister.register5";
+		return ".user.hotelRegister.register5";
 	}
 	
 	@RequestMapping(value = "/owner/hotelRegister/register5", method = RequestMethod.POST)
@@ -197,12 +197,12 @@ public class HotelController {
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
 			return ".owner.errorSuccess.error";
 		}
-		return ".owner.hotelRegister.register6";
+		return ".user.hotelRegister.register6";
 	}
 
 	@RequestMapping(value = "/owner/hotelRegister/register6", method = RequestMethod.GET)
 	public String hotelRegisterForm6(Model model) throws Exception {
-		return ".owner.hotelRegister.register6";
+		return ".user.hotelRegister.register6";
 	}
 	
 	// NPE 뜸 뭐가 null인지 확인 해보고 그 부분 고치기
@@ -275,7 +275,7 @@ public class HotelController {
 			// 오우너 메인 페이지 넣을 예정 어떻게 어디에 만들지?
 			e.printStackTrace();
 			model.addAttribute("message", "호텔등록 중 오류가 발생했습니다. 다시 시도해주세요.");
-			return ".owner.errorSuccess.error";
+			return ".user.errorSuccess.error";
 		}
 		model.addAttribute("message", "호텔등록을 성공적으로마쳤습니다. 관리자의 승인을 기다려주세요.");
 		return ".owner.errorSuccess.success";
@@ -329,5 +329,10 @@ public class HotelController {
 	@RequestMapping(value = "/owner/errorSuccess/success", method = RequestMethod.GET)
 	public String success(Model model) throws Exception {
 		return ".owner.errorSuccess.success";
+	}
+	
+	@RequestMapping(value="/owner/hotelDetail/roomDetail", method= RequestMethod.GET)
+	public String roomDetail() {
+		return ".owner.hotelDetail.roomDetail";
 	}
 }

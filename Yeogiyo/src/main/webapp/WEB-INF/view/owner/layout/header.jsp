@@ -23,6 +23,9 @@
 				</ul></li>	
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">방관리 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<%=cp%>/owner/hotelDetail/roomDetail">방추가</a></li>
+				</ul>
 		</li>
 		<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">예약관리 <span class="caret"></span></a>

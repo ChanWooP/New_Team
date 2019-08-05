@@ -52,11 +52,10 @@ $(function(){
 				
 				<c:forEach var="dto" items="${list}">
 					<tr>
-						<td style="width:150px; padding:20px; marging:20px;"><img class="mainPhoto"
-									src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg"></td>
+						<td style="width:150px; padding:20px; marging:20px;"><a>${dto.hotelName}</a></td>
 						<td style="width:150px; padding:20px; marging:20px;">${dto.addr1}, ${dto.addr2}</td>
 						<td style="width:350px; padding:20px; marging:20px;">${dto.detail}</td>
-						<td style="width:250px; padding:20px; marging:20px;"><img src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg" style="width:200px; height:100px;"></td>
+						<td style="width:250px; padding:20px; marging:20px;"><img src="<%=cp%>/resource/images/hotel/${dto.mainphoto}" style="width:200px; height:100px;"></td>
 						<td style="width:150px; padding:20px; marging:20px;"><button type="button" class="wishDeleteBtn" data-hotelId="${dto.hotelId}">삭제하기</button></td>
 					</tr>
 				</c:forEach>

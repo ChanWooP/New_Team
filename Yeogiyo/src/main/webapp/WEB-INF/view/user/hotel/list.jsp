@@ -199,7 +199,7 @@ $(function() {
 						<table>
 							<tr>
 								<td><img class="mainPhoto"
-									src="<%=cp%>/resource/images/hotel/${dto.mainphoto}.jpg"></td>
+									src="<%=cp%>/resource/images/hotel/${dto.mainphoto}"></td>
 								<td>
 									<h3>
 										<a
